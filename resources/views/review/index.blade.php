@@ -48,7 +48,7 @@
                         @endforelse
                         <h1>halo dek</h1>
                     </tbody>
-                </table>
+                 </table>
             </div>
         </div>
     </div>
