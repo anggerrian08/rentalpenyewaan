@@ -1,0 +1,859 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root{
+    --orange:#ffa500;
+}
+
+*{
+    font-family: 'Nunito', sans-serif;
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+/*buat ngeblok tulisan supaya orange*/
+*::selection{
+    background: var(--orange);
+    color:#fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth; /*agar saat discroll akan smooth*/
+}
+
+section{
+    padding: 2rem 9%; /*ukuran kotak orange discover more*/
+}
+
+/*bagian design untuk book now*/
+.heading{
+    text-align: center;
+    padding: 2.5rem 0;
+}
+
+.heading span{
+    font-size: 3.5rem;
+    background-color: rgba(255, 165, 0, .2); /*background belakaang text*/
+    color: var(--orange); /*warna text*/
+    border-radius: .5rem;
+    padding: .2rem 1rem;
+}
+
+.heading span.space{
+    background: none; /*agar pada bagian yang terisi kosong ituu bisa hilang menggunakan none*/
+}
+
+/*untuk warna orange pada tombol login now*/
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--orange);
+    color:#fff;
+    padding: .8rem 3rem;
+    border: .2rem solid var(--orange);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+/*apabila dipencet tombol login now akan berwarna orange pada bagian dalamnya*/
+.btn:hover{
+    background: rgba(255, 165, 0, .2);
+    color: var(--orange);
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #333;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+}
+
+/*buat design bagian logo ravel*/
+header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/*logo atas navbar */
+header .logo img{
+    width: 75px;
+}
+
+header .navbar a{
+    color:#fff;
+    font-size: 2rem;
+    margin: 0 .8rem;
+    align-items: center;
+}
+
+/*pada bagian home dll apabila kursor diletakkan disana akan berwarna orange*/
+header .navbar a:hover{
+    color:var(--orange);
+}
+
+header .icons i{
+    font-size: 2.5rem;
+    color:#fff;
+    margin-right: 2rem;
+}
+
+/*pada bagian login dan user apabila kursor diletakkan disana akan berwarna orange*/
+header .icons i:hover{
+    color:var(--orange);
+}
+
+/*pada bagian ini berfungsi untuk membuat navbar dibawah galaxy home dll*/
+header .search-bar-container{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 2rem;
+    background: #333;
+    border-top: .1rem solid rgba(255, 255, 255, .2);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /*untuk menyembunyikan kotak search ke tombol cari*/
+}
+
+/*supaya apabila dipencet nanti keluar kotak search*/
+header .search-bar-container.active{
+    clip-path: polygon(0 0, 100% 0, 100% 100% , 0 100%); /*memunculkan kotak search pada tombol cari*/
+}
+
+/*untuk tampilan search memanjang dan diberi border radius supaya seperti ada bulatan pada bagian samping search*/
+header .search-bar-container #search-bar{
+    width: 100%;
+    padding: 1rem;
+    text-transform: none;
+    color:#333;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+}
+
+header .search-bar-container label{
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+}
+
+/*untuk tombol cari supaya ketika dipencet berwarna orange*/
+header .search-bar-container label:hover{
+    color: var(--orange);
+}
+
+body{
+    height: 200rem;
+}
+
+
+.login-form-container{
+    position: fixed;
+    top: -120%;
+    left: 0;
+    z-index:10000;
+    min-height: 100vh;
+    width:100%;
+    background: rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-container.active{
+    top:0;
+
+}
+
+.login-form-container form{
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    width: 50rem;
+}
+
+.login-form-container form h3{
+    font-size: 3rem;
+    color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem 0; /*jarak pada login*/
+}
+
+/*untuk design bagian login*/
+.login-form-container form .box{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color:#333;
+    margin: .6rem 0;
+    border: .1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+}
+
+/*warna garis pada pinggir login*/
+.login-form-container form .box:focus{
+    border-color: var(--orange);
+}
+
+/*jarak pada password*/
+.login-form-container form #remember{
+    margin:2rem 0;
+}
+
+.login-form-container form label{
+    font-size: 1.5rem; /*ukuran font pada remember me*/
+}
+
+.login-form-container form .btn{
+    display:block; /*remember me kebawah*/
+    width: 100%; /*ukuran login now memanjang*/
+}
+
+.login-form-container form p{
+    padding: .5rem 0;
+    font-size: 1.5rem; /*untuk ukuran forget password? click here don't have and account? register now*/
+    color: #666;
+}
+
+.login-form-container form p a{
+    color: var(--orange); /*warna orange pada click here register now*/
+}
+
+/* untuk warna dalam saat dipencet akan berwarna abu-abu. click here & register now*/
+.login-form-container form p a:hover{
+    color:#333;
+    text-decoration: underline;
+}
+
+/*untuk menambahkan tanda x atau keluar*/
+.login-form-container #form-close{
+    position: absolute;
+    top: 2rem; right: 3rem;
+    font-size: 5rem;
+    color:#fff;
+    cursor:pointer;
+}
+
+#menu-bar{
+    color:#fff;
+    border: .1rem solid #fff; /*kotak putih pada menu*/
+    border-radius: .5rem; 
+    font-size: 3rem;
+    padding: .5rem 1.2rem; /*ukuran border-radius*/
+    cursor: pointer;
+    display: none;
+}
+
+.home{
+    min-height: 100vh; /*tinggi pada galaxy is beautiful dan agar kebawah */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    position: relative;
+    z-index: 0;
+}
+
+.home .content{
+    text-align: center; /* text galaxy is beautiful ketengah*/
+}
+
+.home .content h3{
+    font-size: 4.5rem; /*ukuran tulisan galaxy is beautiful*/
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 .3rem .5rem rgba(0,0,0,.3); /*text bayangan galaxy..*/
+}
+
+.home .content p{
+    font-size: 2.5rem; /*ukuran tulisan galaxy is beautiful*/
+    color: #fff;
+    padding:.5rem o;
+}
+
+
+/*design pada bagian video*/
+.home .video-container video{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: -1; /*menampilkan text galaxy is beautiful dan dibawahnya*/
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.home .controls{  /*titik hitam untuk geser*/
+    padding:1rem;
+    border-radius: 5rem;
+    background: rgba(0,0,0,.7);
+    position:relative;
+    top: 10rem;
+}
+
+.home .controls .vid-btn{ 
+    height: 2rem;
+    width: 2rem;
+    display:inline-block; /*agar titik hitam memanjang*/
+    border-radius: 50%;
+    background: #fff; /*untuk titik putih pada bagian hitam*/
+    cursor: pointer;
+    margin: 0 .5rem; /*jarak titik putihnya*/
+}
+
+.home .controls .vid-btn.active{
+    background: var(--orange); /*warna titik putih yang dilapisi warna orange*/
+}
+
+/*background book*/
+.book{
+    /*background-image: url(bg\ book.jpg);*/
+    background-color: white;
+}
+
+/*warna text pada bagian atas seperti where to*/
+.book h3{
+    color: #e6e5e5;
+}
+
+.book .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.book .row .image{
+    flex: 1 1 40rem;
+}
+
+.book .row .image img{
+    width: 100%; /*ukuran foto atau book now itu*/
+}
+
+
+/*design pada bagian formulir book now*/
+.book .row form{
+    flex:1 1 40rem;
+    padding: 2rem;
+    box-shadow: 0 1rem 2rem rgba(210, 40, 40, 0.1);
+    border-radius: .5rem;
+}
+
+.book .row form .inputBox{
+    padding:.5rem 0;
+}
+
+
+/*bagian dd/mm/yyyy*/
+.book .row form .inputBox input{
+    width:100%;
+    padding: 1rem;
+    border: .1rem solid rgba(247, 6, 6, 0.1);
+    font-size: 1.7rem;
+    color:#333;
+    text-transform: none;
+}
+
+/*warna pada bagian h3 where to dan dibawahnya*/
+.book .row form .inputBox h3{
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: #666;
+}
+
+.packages .box-container{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.packages .box-container .box{
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+}
+
+/*design img packages*/
+.packages .box-container .box img{
+    height: 25rem;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+/*ukuran font pada image packages*/
+.packages .box-container .box .content h3{
+    font-size: 2rem;
+    color: #333;
+}
+
+/*untuk warna tanda lokasi pada packages*/
+.packages .box-container .box .content h3 i{
+    color: var(--orange);
+}
+
+/*untuk pengertian yang p.lorem itu. tapi bisa diubah*/
+.packages .box-container .box .content p{
+    font-size: 1.7rem;
+    color: #666; /*warna textnya*/
+    padding: 1rem 0;
+}
+
+.packages .box-container .box .content .stars i{
+    font-size: 1.7rem;
+    color: var(--orange); /*warna bintang pada packages*/
+}
+
+/*harga pada packages*/
+.packages .box-container .box .content .price{
+    font-size: 2rem;
+    color:#333;
+    padding-top: 1rem; /* untuk spasi pada bagian harga itu*/
+}
+
+/*warna harga yang kedua*/
+.packages .box-container .box .content .price span{
+    color:#666;
+    font-size: 1.5rem;
+    text-decoration: line-through; /*mencoret sebuah harga kedua*/
+}
+
+/*design pada service bagian logo hotel dll*/
+.service .box-container{
+    display: flex; /*supaya logo hotels dll sama tulisannya rata kanan*/
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.service .box-container .box{
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    padding: 1rem; /*jarak pada setiap box service*/
+    text-align: center;
+}
+
+.service .box-container .box i{
+    padding: 1rem;
+    font-size: 5rem;
+    color: var(--orange); /*warna pada logo hotels dll*/
+}
+
+.service .box-container .box h3{
+    font-size: 2.5rem;
+    color: #333; /*warna pada tulisan h3  affordable hotels dll*/
+}
+
+.service .box-container .box p{
+    font-size: 1.5rem;
+    color: #666; /*warna pada tulisan p affordable hotels dll*/
+    padding: 1rem 0;
+}
+
+
+.service .box-container .box:hover{
+    box-shadow: 0 1rem 2rem;
+    color: rgba(0,0,0,.1);
+}
+
+
+/*desing pada gallery*/
+.gallery .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.gallery .box-container .box{
+    overflow: hidden;
+    box-shadow: 0 1rem rgba(0,0,0,.1);
+    border: 1rem solid #fff; /*untuk bagian dalam foto ada bordernya*/
+    border-radius:.5rem;
+    flex: 1 1 30rem;
+    height: 25rem; /*tinggi pada foto supaya ukurannya sama semua*/
+    position: relative;
+}
+
+.gallery .box-container .box img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.gallery .box-container .box .content{
+    position: absolute;
+    top:-100%; /*di minuskan supaya menghilangkan text sementara*/
+    left:0;
+    height: 100%;
+    width:100%;
+    text-align: center;
+    background:rgba(0,0,0,.7);
+    padding: 2rem;
+    padding-top:5rem;
+}
+
+.gallery .box-container .box:hover .content{
+    top:0; /*supaya textnya muncul dari atas foto gallery*/
+}
+
+
+.gallery .box-container .box .content h3{
+    font-size: 2.5rem; /*ukuran h3 gallery*/
+    color: var(--orange); /*warna pada amazing nebula*/
+}
+ 
+.gallery .box-container .box .content p{
+    font-size: 1.5rem; /*ukuran font pada p gallery*/
+    color: #eee;
+    padding: .5rem 0;
+}
+
+
+/*pop up gallery start*/
+.popup {
+    display: none;
+    position: fixed; /*position:fixed membuat sebuah pop up*/
+    top: 60%; /*agar keatas*/
+    left: 50%;
+    transform: translate(-50%, -50%); /*agar seimbang ketengah*/
+    background: white;
+    padding: 50px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 650px;
+}
+
+.popup img { /*pengaturan image pada pop up*/
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.popup h3 { /*untuk h3 kebawah foto dngan memberika space atau margin-bottom*/
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.popup p { /*untuk p dibawahnya h3*/
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+/*.close { untuk tombol close
+    display: block;
+    margin-top: 10px;
+    color: #333;
+    cursor: pointer;
+}*/
+
+/* Style untuk tombol close pada popup */
+.close {
+    font-size: 20px; /* Ukuran font X untuk close supaya membesar */
+    font-weight: bold; /*Ketebalan font */
+    color: #212121; /* Warna teks */
+    background-color: #fff; /* Warna latar belakang */
+    border: none; /* Tanpa border */
+    padding: 10px 20px; /* Padding (atas, kanan, bawah, kiri) */
+    cursor: pointer; /* Menunjukkan kursor pointer saat diarahkan ke tombol */
+    border-radius: 5px; /* Sudut melengkung pada tombol */
+}
+
+/* Hover effect untuk tombol close */
+.close:hover {
+    background-color: #555; /* Warna latar belakang saat dihover */
+    color: #fff; /* Warna teks saat dihover */
+}
+
+/*pop up gallery ends*/
+
+
+
+
+.review .review-slider{
+    padding-bottom: 2rem;
+
+}
+/*design pada review*/
+.review .box{ /*ada box ditext dan fotonya*/
+    padding:2rem;
+    text-align: center;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+    border-radius: .5rem;
+}
+
+/*ukuran fotonya review*/
+.review .box img{
+    height: 13rem;
+    width: 13rem;
+    border-radius:50%; /*agar berbentuk bulat*/
+    object-fit: cover;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+/*text pada h3 nama */
+.review .box h3{
+    color:#333;
+    font-size: 2.5rem;
+}
+
+.review .box p{
+    color:#666;
+    font-size: 1.5rem;
+    padding:1rem 0;
+}
+
+/*design bintangnya*/
+.review .box .stars i{
+    color:var(--orange);
+    font-size: 1.7rem;
+}
+
+/*design pada contact*/
+.contact .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.contact .row .image{
+    flex: 1 1 35rem;
+}
+
+.contact .row .image img{
+    width: 100%;
+
+}
+
+.contact .row form{
+    flex: 1 1 50rem;
+    padding:2rem;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+    border-radius: .5rem;
+}
+
+.contact .row form .inputBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.contact .row form .inputBox input, .contact .row form textarea{
+    width: 49%;
+    margin: 1rem 0;
+    padding:1rem;
+    font-size: 1.7rem;
+    color: #333;
+    background: #f7f7f7;
+    text-transform: none;
+}
+
+.contact .row form textarea{
+    height: 15rem;
+    resize: none;
+    width: 100%; /*ukuran pada box textarea message*/
+}
+
+/*design pada brand*/
+.brand-container{
+    text-align: center;
+}
+
+.brand-container img{
+    width: 50%;
+    border-radius: 50%;
+}
+
+/*warna pada bagian bawah background footer*/
+.footer{
+    background: #333;
+}
+
+.footer .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.footer .box-container .box{
+    padding: 1rem 0;
+    flex: 1 1 20rem;/*mengatur jarak pada bagian box about us,branch,location,dan follow us*/
+}
+
+/* h3 atau judul seperti about us dll*/
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    padding: .7rem 0;
+    color:#fff;
+}
+/*.footer .box-container .box p{
+    font-size: 1.5rem;
+    padding: .7rem 0;
+    color:#eee;
+}*/
+.logo-container {
+    display: flex;
+    justify-content: space-between; /* Untuk menjaga jarak yang merata di antara logo */
+    align-items: center; /* Untuk mengalign logo secara vertikal */
+  }
+
+.logo img{
+    width: 200px;
+}
+  
+.logoapk img {
+    max-width: 36px; /* Atur lebar maksimum logo agar tidak terlalu besar */
+    height: auto; /* Biarkan tinggi logo disesuaikan secara otomatis */
+    margin: 0 10px; /* Memberikan jarak antara logo */
+  }
+  
+.footer .box-container .box a{
+    display: block;
+    font-size: 2.5rem;
+    padding: .7rem 0;
+    color:#fff;
+}
+
+/*warna pada tulisan p kalau diclick nanti warna orange*/
+.footer .box-container .box a:hover{
+    color:var(--orange);
+    text-decoration: underline;
+}
+
+.footer .credit{
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 1rem ;
+    font-size: 2rem;
+    font-weight: normal;
+    color:#fff;
+    border-top: .1rem solid rgba(255, 255, 255, .2);
+}
+
+.footer .credit span{
+    color:var(--orange);
+
+}
+
+/*loadingg gif
+.loader-container {
+    display: none; /* Loader ini mungkin awalnya disembunyikan dan ditampilkan menggunakan JavaScript ketika diperlukan. 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+body{
+    height: 300rem;
+}
+
+
+
+
+/*untuk responsive*/
+/*media queries*/
+@media (max-width:1200px){
+
+    html{
+        font-size: 55%;
+    }
+    .popup{
+        width: 500px;
+    }
+}
+
+@media (max-width:991px){
+    header{
+        padding:2rem; /*padding yaitu ruang kosong atau space*/
+    }
+    section{ /*bagian*/
+        padding: 2rem; /*bagian atas headernya itu space*/
+    }
+    .popup{
+        width: 450px;
+    }
+}
+ 
+/*berfungsi untuk apabila layar dikecilkan akan muncul seperti menu garis tiga dan galaxy pindah ke atas dan home dll pindah kebawah seperti ada garis*/
+@media (max-width:768px){
+    #menu-bar{
+        display:initial;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: #333;
+        border-top: .1rem solid rgba(255, 255, 255, .2);
+        padding: 1rem 2rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    header .navbar a{
+        display: block;
+        border-radius: .5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        background: #222; /*warna box pada menu dan teman2nya*/
+    }
+    .popup{
+        width: 400px;
+    }
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+    .heading span{
+        font-size: 2.5rem;
+    }
+    .contact .row form .inputBox input{
+        width: 100%; /*agar formnya kebawah apabila layar dikecilkan seperti android*/
+    }
+    .popup{
+        width: 300px;
+    }
+}
