@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
 :root{
-    --orange:#ffa500;
+    /* --orange:#ffa500; */
+    --orange:#50c2f7;
 }
 
 *{
     font-family: 'Nunito', sans-serif;
-    margin: 0; 
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-transform: capitalize;
@@ -39,9 +40,10 @@ section{
     padding: 2.5rem 0;
 }
 
+/*warna background text span seperti booknow,packages dkk*/
 .heading span{
     font-size: 3.5rem;
-    background-color: rgba(255, 165, 0, .2); /*background belakaang text*/
+    background-color: #fff5e1; /*background belakaang text*/
     color: var(--orange); /*warna text*/
     border-radius: .5rem;
     padding: .2rem 1rem;
@@ -63,9 +65,9 @@ section{
     font-size: 1.7rem;
 }
 
-/*apabila dipencet tombol login now akan berwarna orange pada bagian dalamnya*/
+/*apabila dipencet pada semua tombol akan berwarna putih pada bagian dalamnya*/
 .btn:hover{
-    background: rgba(255, 165, 0, .2);
+    background: rgba(247, 247, 247, 0.7);;
     color: var(--orange);
 }
 
@@ -74,7 +76,7 @@ header{
     top: 0;
     left: 0;
     right: 0;
-    background: #333;
+    background:#333;
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -257,7 +259,7 @@ body{
 #menu-bar{
     color:#fff;
     border: .1rem solid #fff; /*kotak putih pada menu*/
-    border-radius: .5rem; 
+    border-radius: .5rem;
     font-size: 3rem;
     padding: .5rem 1.2rem; /*ukuran border-radius*/
     cursor: pointer;
@@ -311,7 +313,7 @@ body{
     top: 10rem;
 }
 
-.home .controls .vid-btn{ 
+.home .controls .vid-btn{
     height: 2rem;
     width: 2rem;
     display:inline-block; /*agar titik hitam memanjang*/
@@ -522,7 +524,7 @@ body{
     font-size: 2.5rem; /*ukuran h3 gallery*/
     color: var(--orange); /*warna pada amazing nebula*/
 }
- 
+
 .gallery .box-container .box .content p{
     font-size: 1.5rem; /*ukuran font pada p gallery*/
     color: #eee;
@@ -723,13 +725,13 @@ body{
 .logo img{
     width: 200px;
 }
-  
+
 .logoapk img {
     max-width: 36px; /* Atur lebar maksimum logo agar tidak terlalu besar */
     height: auto; /* Biarkan tinggi logo disesuaikan secara otomatis */
     margin: 0 10px; /* Memberikan jarak antara logo */
   }
-  
+
 .footer .box-container .box a{
     display: block;
     font-size: 2.5rem;
@@ -760,7 +762,7 @@ body{
 
 /*loadingg gif
 .loader-container {
-    display: none; /* Loader ini mungkin awalnya disembunyikan dan ditampilkan menggunakan JavaScript ketika diperlukan. 
+    display: none; /* Loader ini mungkin awalnya disembunyikan dan ditampilkan menggunakan JavaScript ketika diperlukan.
     position: fixed;
     top: 50%;
     left: 50%;
@@ -809,7 +811,7 @@ body{
         width: 450px;
     }
 }
- 
+
 /*berfungsi untuk apabila layar dikecilkan akan muncul seperti menu garis tiga dan galaxy pindah ke atas dan home dll pindah kebawah seperti ada garis*/
 @media (max-width:768px){
     #menu-bar{

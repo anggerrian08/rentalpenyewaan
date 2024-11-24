@@ -86,7 +86,7 @@
     <span class="vid-btn" data-src="vendor/asset/img/mclaren.mp4"></span>
     <span class="vid-btn" data-src="vendor/asset/img/mclaren3.mp4"></span>
     <span class="vid-btn" data-src="vendor/asset/img/mclaren4.mp4"></span>
-    <span class="vid-btn" data-src="vendor/asset/img/mclarenb.mp4"></span>
+    <span class="vid-btn" data-src="vendor/asset/img/mclaren2.mp4"></span>
 </div>
 
 <div class="video-container"> <!--loop autoplay muted berfungsi agar vidio yang ditampilkan akan bisa diplay-->
@@ -110,29 +110,30 @@
     </h1>
 
     <div class="row">
-        <div class="image"> <!--!book.jpg untuk foto bagian kiri nebula yang berbentuk hati-->
-            <img src="vendor/asset/img/logobooknow.avif" alt="">
+        <div class="image"> <!-- Gambar di bagian kiri -->
+            <img src="vendor/asset/img/booknows.jpg" alt="Rental Car">
         </div>
         <form action="">
             <div class="inputBox">
-                <h3>where to</h3>
-                <input type="text" placeholder="place name">
+                <h3>Lokasi Penjemputan</h3>
+                <input type="text" placeholder="Masukkan lokasi penjemputan">
             </div>
             <div class="inputBox">
-                <h3>how many</h3>
-                <input type="number" placeholder="number of guests">
-            </div>
-            <div class="div inputBox">
-                <h3>arrivals</h3>
+                <h3>Tanggal Mulai</h3>
                 <input type="date">
             </div>
             <div class="inputBox">
-                <h3>leaving</h3>
+                <h3>Tanggal Selesai</h3>
                 <input type="date">
+            </div>
+            <div class="inputBox">
+                <h3>Durasi Sewa</h3>
+                <input type="number" placeholder="Masukkan jumlah hari">
             </div>
             <input type="submit" class="btn" value="book now">
         </form>
     </div>
+
 </section>
 <!--book section end-->
 
@@ -397,8 +398,8 @@
         <div class="box">
             <img src="vendor/asset/img/1gly.jpg" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/1gly.jpg')">see more</a> <!--diberi btn karena untuk bisa dipencet-->
             </div>
         </div>
@@ -407,8 +408,8 @@
         <div class="box">
             <img src="vendor/asset/img/2gly.jpg" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/2gly.jpg')">see more</a>
             </div>
         </div>
@@ -417,8 +418,8 @@
         <div class="box">
             <img src="vendor/asset/img/3gly.jpg" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/3gly.jpg')">see more</a>
             </div>
         </div>
@@ -427,8 +428,8 @@
         <div class="box">
             <img src="vendor/asset/img/4gly.jpg" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/4gly.jpg')">see more</a>
             </div>
         </div>
@@ -437,8 +438,8 @@
         <div class="box">
             <img src="vendor/asset/img/5gly.jpg" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/5gly.jpg')">see more</a>
             </div>
         </div>
@@ -447,8 +448,8 @@
         <div class="box">
             <img src="vendor/asset/img/6gly.webp" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/6gly.webp')">see more</a>
             </div>
         </div>
@@ -457,8 +458,8 @@
         <div class="box">
             <img src="vendor/asset/img/7gly.jpeg" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/7gly.jpeg')">see more</a>
             </div>
         </div>
@@ -467,8 +468,8 @@
         <div class="box">
             <img src="vendor/asset/img/8gly.avif" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/8gly.avif')">see more</a>
             </div>
         </div>
@@ -476,8 +477,8 @@
         <div class="box">
             <img src="vendor/asset/img/9gly.jpg" alt="">
             <div class="content">
-                <h3>amazing places</h3>
-                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <h3>Our Car Collection</h3>
+                <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
                 <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/9gly.jpg')">see more</a>
             </div>
         </div>
@@ -485,64 +486,64 @@
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span><!--&times; untuk tombol close-->
             <img id="popupImg" src="vendor/asset/img/1gly.jpg" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/2gly.jpg" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/3gly.jpg" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/4gly.jpg" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/5gly.jpg" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/6gly.webp" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/7gly.jpeg" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/8gly.avif" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
             <img id="popupImg" src="vendor/asset/img/9gly.jpg" alt="">
-            <h3>Amazing Places</h3>
-            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+            <h3>Our Car Collection</h3>
+            <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
 
@@ -647,7 +648,7 @@
     <div class="row">
 
         <div class="image"> <!--foto astronout pada bagian kiri-->
-            <img src="vendor/asset/img/logocontact.avif" alt="">
+            <img src="vendor/asset/img/contact.jpg" alt="">
         </div>
 
         <form action=""> <!--formulir mengisinya-->
@@ -720,10 +721,10 @@
 
         <div class="box">
             <h3>follow us</h3>
-            <a href="https://m.facebook.com/story.php?story_fbid=pfbid02Hiu2qA7Gi4PW7g7mcjwjchLkymQy76Ppzo28xum2b1Vf6e6B6HyUHst8oyu7m6Ajl&id=61550361976984&mibextid=Nif5oz">facebook</a>
-            <a href="https://instagram.com/evvamaulani?igshid=YTQwZjQ0NmI0OA==">instagram</a>
-            <a href="https://x.com/vanyyce?s=09">twitter</a>
-            <a href="https://github.com/evamaulanifshl">github</a>
+            <a href="">facebook</a>
+            <a href="">instagram</a>
+            <a href="">twitter</a>
+            <a href="">github</a>
         </div>
     </div>
 <!--footer section end-->
