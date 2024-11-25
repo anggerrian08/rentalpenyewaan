@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyRental</title>
-    <link rel="icon" type="image/x-icon" href="vendor/asset/img/logotitle.png" >
+    {{-- logo title --}}
+    <link rel="icon" type="image/x-icon" href="vendor/asset/img/" >
     <link rel="stylesheet" href="{{ asset('vendor/asset/style.css') }}">
 
     <!--berfungsi untuk swipe pada bagian review dan brand-->
@@ -27,7 +28,8 @@
 
         </div>
 
-        <a href="#" class="logo"><img src="vendor/asset/img/mylogo.png" alt=""></a>
+        {{-- logo navbar --}}
+        <a href="#" class="logo"><img src="vendor/asset/img/" alt=""></a>
 
         <nav class="navbar">
             <a href="#home">Home</a>
@@ -396,152 +398,152 @@
     <div class="box-container">
 
         <div class="box">
-            <img src="vendor/asset/img/1gly.jpg" alt="">
+            <img src="vendor/asset/img/g1.jpg" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/1gly.jpg')">see more</a> <!--diberi btn karena untuk bisa dipencet-->
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g1.jpg')">see more</a> <!--diberi btn karena untuk bisa dipencet-->
             </div>
         </div>
 
 
         <div class="box">
-            <img src="vendor/asset/img/2gly.jpg" alt="">
+            <img src="vendor/asset/img/g2.webp" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/2gly.jpg')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g2.webp')">see more</a>
             </div>
         </div>
 
 
         <div class="box">
-            <img src="vendor/asset/img/3gly.jpg" alt="">
+            <img src="vendor/asset/img/g3.jpg" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/3gly.jpg')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g3.jpg')">see more</a>
             </div>
         </div>
 
 
         <div class="box">
-            <img src="vendor/asset/img/4gly.jpg" alt="">
+            <img src="vendor/asset/img/g4.jpg" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/4gly.jpg')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g4.jpg')">see more</a>
             </div>
         </div>
 
 
         <div class="box">
-            <img src="vendor/asset/img/5gly.jpg" alt="">
+            <img src="vendor/asset/img/g5.webp" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/5gly.jpg')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g5.webp')">see more</a>
             </div>
         </div>
 
 
         <div class="box">
-            <img src="vendor/asset/img/6gly.webp" alt="">
+            <img src="vendor/asset/img/g6.jpg" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/6gly.webp')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g6.jpg')">see more</a>
             </div>
         </div>
 
 
         <div class="box">
-            <img src="vendor/asset/img/7gly.jpeg" alt="">
+            <img src="vendor/asset/img/g7.jpg" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/7gly.jpeg')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g7.jpg')">see more</a>
             </div>
         </div>
 
 
         <div class="box">
-            <img src="vendor/asset/img/8gly.avif" alt="">
+            <img src="vendor/asset/img/g8.jpeg" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/8gly.avif')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g8.jpeg')">see more</a>
             </div>
         </div>
 
         <div class="box">
-            <img src="vendor/asset/img/9gly.jpg" alt="">
+            <img src="vendor/asset/img/g9.jpeg" alt="">
             <div class="content">
                 <h3>Our Car Collection</h3>
                 <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
-                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/9gly.jpg')">see more</a>
+                <a href="#gallery" class="btn" onclick="openPopup('vendor/asset/img/g9.jpeg')">see more</a>
             </div>
         </div>
 <!--pop up bagian gallery start-->
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span><!--&times; untuk tombol close-->
-            <img id="popupImg" src="vendor/asset/img/1gly.jpg" alt="">
+            <img id="popupImg" src="vendor/asset/img/g1.jpg" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/2gly.jpg" alt="">
+            <img id="popupImg" src="vendor/asset/img/g2.webp" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/3gly.jpg" alt="">
+            <img id="popupImg" src="vendor/asset/img/g3.jpg" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/4gly.jpg" alt="">
+            <img id="popupImg" src="vendor/asset/img/g4.jpg" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/5gly.jpg" alt="">
+            <img id="popupImg" src="vendor/asset/img/g5.webp" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/6gly.webp" alt="">
+            <img id="popupImg" src="vendor/asset/img/g6.jpg" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/7gly.jpeg" alt="">
+            <img id="popupImg" src="vendor/asset/img/g7.jpg" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/8gly.avif" alt="">
+            <img id="popupImg" src="vendor/asset/img/g8.jpeg" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
 
         <div class="popup" id="myPopup">
             <span class="close" onclick="closePopup()">&times;</span>
-            <img id="popupImg" src="vendor/asset/img/9gly.jpg" alt="">
+            <img id="popupImg" src="vendor/asset/img/g9.jpeg" alt="">
             <h3>Our Car Collection</h3>
             <p>Lihat berbagai pilihan mobil terbaik yang tersedia untuk disewa!</p>
         </div>
@@ -689,7 +691,8 @@
         <div class="box">
             <h3>about us</h3>
             <div class="logo">
-                <img src="vendor/asset/img/mylogo.png" alt="">
+                {{-- logo about us --}}
+                <img src="vendor/asset/img/" alt="">
             </div>
             <br>
             <div class="logoapk">
