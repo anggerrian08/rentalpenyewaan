@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel</title>
+    <link rel="icon" type="image/x-icon" href="assets/logotitle.png" >
+    <link rel="stylesheet" href="style.css">
+
+    <!--berfungsi untuk swipe pada bagian review dan brand-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!--untuk memunculkan icon user dan cari-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!--icon loadingnya-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-HJxx8fGCE9DJqNMz+wnfOeOXTYOwA2wJT+M35XGO3w3gIF5W7EfeU0fbhuBeyP5w" crossorigin="anonymous">
+</head>
+<body>
+
+    <!--header section star-->
+
+    <header>
+
+        <!--menambahkan menu garis tiga-->
+        <div id="menu-bar" class="fas fa-bars">
+
+        </div>
+
+        <a href="#" class="logo"><img src="assets/mylogo.png" alt=""></a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#book">Book</a>
+            <a href="#packages">Packages</a>
+            <a href="#service">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#review">Review</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    <!--icons cari dan juga login-->
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-user" id="login-btn"></i>
+          </div>
+
+          <!--pada bagian cari akan diberi tulisan-->
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+    <!--header section end-->
+
+    <!--login from container-->
+    <!--untuk bagian formulir login-->
+    <div class="login-form-container" id="login-form">
+
+        <!--untuk icon x atau close pada login-->
+        <i class="fas fa-times " id="form-close"></i>
+        
+        <!--untuk bagian mengisi login-->
+        <form action="">
+            <h3>Login</h3>
+            <input type="email" class="box" placeholder="enter your email">
+            <input type="password" class="box" placeholder="password">
+            <input type="submit" value="login now" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">remember me</label>
+            <p>forget password? <a href="#">click here</a></p>
+            <p>don't have and account? <a href="#">register now</a></p>
+        </form>
+    </div>
+
+<!--home section starts-->
+<section class="home" id="home"> <!--kalau tidak ada id maka tombol diatas navbar tidak akan bisa dipencet-->
+<div class="content">
+    <h3>adventure is worthwhile</h3>
+    <p>Discover New Places With Us, Adventure Awaits</p>
+    <a href="#" class="btn">discover more</a>
+</div>
+
+<!--bagian video home yang dapat diganti-ganti dg mengactive kan video agar vidio tersebu aktif-->
+<div class="controls">
+    <span class="vid-btn active" data-src="assets/vid-1.mp4"></span>
+    <span class="vid-btn" data-src="assets/vid-2.mp4"></span>
+    <span class="vid-btn" data-src="assets/vid-3.mp4"></span>
+    <span class="vid-btn" data-src="assets/vid-4.mp4"></span>
+    <span class="vid-btn" data-src="assets/vid-5.mp4"></span>
+</div>
+
+<div class="video-container"> <!--loop autoplay muted berfungsi agar vidio yang ditampilkan akan bisa diplay-->
+    <video src="assets/vid-1.mp4" id="video-slider" loop autoplay muted></video>
+</div>
+
+</section>
+<!--home section end-->
+
+<!--book section starts-->
+<section class="book" id="book">
+    <h1 class="heading">
+        <span>b</span>
+        <span>o</span>
+        <span>o</span>
+        <span>k</span>
+        <span class="space"></span>
+        <span>n</span>
+        <span>o</span>
+        <span>w</span>
+    </h1>
+
+    <div class="row">
+        <div class="image"> <!--!book.jpg untuk foto bagian kiri nebula yang berbentuk hati-->
+            <img src="assets/logobooknow.avif" alt="">
+        </div>
+        <form action="">
+            <div class="inputBox">
+                <h3>where to</h3>
+                <input type="text" placeholder="place name">
+            </div>
+            <div class="inputBox">
+                <h3>how many</h3>
+                <input type="number" placeholder="number of guests">
+            </div>
+            <div class="div inputBox">
+                <h3>arrivals</h3>
+                <input type="date">
+            </div>
+            <div class="inputBox">
+                <h3>leaving</h3>
+                <input type="date">
+            </div>
+            <input type="submit" class="btn" value="book now">
+        </form>
+    </div>
+</section>
+<!--book section end-->
+
+<!--packages section starts-->
+<section class="packages" id="packages">
+
+        <h1 class="heading">
+            <span>p</span>
+            <span>a</span>
+            <span>c</span>
+            <span>k</span>
+            <span>a</span>
+            <span>g</span>
+            <span>e</span>
+            <span>s</span>
+        </h1>
+    
+        <div class="box-container">
+            <div class="box" >
+                <img src="assets/balipkg.webp" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i> Bali </h3>
+                    <p>Paket tour bali By TravelEva</p>
+                    <div class="stars"> <!--memunculkan bintang pada bagian packages-->
+                        <i class="fas fa-star"></i> <!--diberi lima iclass fa star karena supaya muncul bintang 5 dan apabila diganti menjadi far bintangnya tidak berwarna orange-->
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><!--contohnya ini-->
+                    </div>
+                    <div class="price"> Rp.2.455.900 <span>Rp.4.500.000</span></div>
+                    <a href="" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="assets/borobuduryogyapkg.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i> Yogyakarta </h3>
+                    <p>Paket tour Yogyakarta By TravelEva</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price"> Rp.1.200.000 <span>Rp.3.000.000</span></div>
+                    <a href="" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="assets/bangkokpkgs.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i> Thailand </h3>
+                    <p>Paket tour Bangkok By TravelEva</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price"> Rp.16.899.000 <span>Rp.18.080.000</span></div>
+                    <a href="" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="assets/parispackages.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i> Paris </h3>
+                    <p>Paket tour Paris By TravelEva</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price"> Rp.17.000.000 <span>Rp.17.600.000</span></div>
+                    <a href="" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="assets/koreapackages.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i> Korea </h3>
+                    <p>Paket tour Seoul Korea By TravelEva</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price"> Rp.15.900.000 <span>Rp.19.999.000</span></div>
+                    <a href="" class="btn">book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="assets/japanpackages.jpg" alt="">
+                <div class="content">
+                    <h3><i class="fas fa-map-marker-alt"></i> Tokyo </h3>
+                    <p>Paket tour Tokyo Jepang By TravelEva</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="price"> Rp.18.999.000 <span>Rp.20.500.000</span></div>
+                    <a href="" class="btn">book now</a>
+                </div>
+            </div>
+
+        <div class="box">
+            <img src="assets/hongkongpkgs.webp" alt="">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> Hongkong </h3>
+                <p>Paket tour Hongkong By TravelEva</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="price"> Rp.23.999.000 <span>Rp.25.700.000</span></div>
+                <a href="" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="assets/sydneypackages.webp" alt="">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> Sydney </h3>
+                <p>Paket tour Sydney By TravelEva</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="price"> Rp.18.933.000 <span>Rp.19.599.000</span></div>
+                <a href="" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="assets/turkeypkg.jpg" alt="">
+            <div class="content">
+                <h3><i class="fas fa-map-marker-alt"></i> Turki </h3>
+                <p>Paket tour Turki By TravelEva</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="price"> Rp.11.650.000 <span>Rp.14.080.000</span></div>
+                <a href="" class="btn">book now</a>
+            </div>
+        </div>
+</section>
+<!--packages section end-->
+
+<!--service section starts-->
+<section class="service" id="service">
+    <h1 class="heading">
+        <span>s</span>
+        <span>e</span>
+        <span>r</span>
+        <span>v</span>
+        <span>i</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+<div class="box-container">
+    <div class="box">
+        <i class="fas fa-hotel"></i> <!--iconnya-->
+        <h3>affordable hotels</h3>
+        <p>Hotel is a building, company or business that provides lodging services and also provides food and drinks for guests who come</p>
+    </div>
+    <div class="box">
+        <i class="fas fa-utensils"></i>
+        <h3>food and drink</h3>
+        <p>Food and drink are all ingredients, both in natural form and in man-made form, which are consumed by humans, except for medicines.</p>
+    </div>
+    <div class="box">
+        <i class="fas fa-bullhorn"></i>
+        <h3>safty guide</h3>
+        <p>Safety Equipment. Guidance on how to use and care for safety equipment properly.</p>
+    </div>
+    <div class="box">
+        <i class="fas fa-globe-asia"></i>
+        <h3>around the world</h3>
+        <p>Globe can also be referred to as an artificial model of the earth that gives a picture of the shape of the earth so that it is close to its actual shape. </p>
+    </div>
+    <div class="box">
+        <i class="fas fa-plane"></i>
+        <h3>fastest travel</h3>
+        <p>The word "travel" in English can usually be interpreted as "traveling". That's why, when you travel to various places within a considerable distance, you can be called traveling.</p>
+    </div>
+    <div class="box">
+        <i class="fas fa-hiking"></i>
+        <h3>adventures</h3>
+        <p>Adventure is an unorthodox experience, but of an interesting nature. Adventurers are called adventurers, namely people who like to seek experiences that are difficult, dangerous and others.</p>
+    </div>
+</div>
+</section>
+<!--service section end-->
+
+<!--gallery section starts-->
+<section class="gallery" id="gallery">
+    <h1 class="heading">
+        <span>g</span>
+        <span>a</span>
+        <span>l</span>
+        <span>l</span>
+        <span>e</span>
+        <span>r</span>
+        <span>y</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="assets/1gly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/1gly.jpg')">see more</a> <!--diberi btn karena untuk bisa dipencet-->
+            </div>
+        </div>
+
+
+        <div class="box">
+            <img src="assets/2gly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/2gly.jpg')">see more</a>
+            </div>
+        </div>
+
+        
+        <div class="box">
+            <img src="assets/3gly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/3gly.jpg')">see more</a>
+            </div>
+        </div>
+
+        
+        <div class="box">
+            <img src="assets/4gly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/4gly.jpg')">see more</a>
+            </div>
+        </div>
+
+        
+        <div class="box">
+            <img src="assets/5gly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/5gly.jpg')">see more</a>
+            </div>
+        </div>
+
+        
+        <div class="box">
+            <img src="assets/6gly.webp" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/6gly.webp')">see more</a>
+            </div>
+        </div>
+
+        
+        <div class="box">
+            <img src="assets/7gly.jpeg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/7gly.jpeg')">see more</a>
+            </div>
+        </div>
+
+        
+        <div class="box">
+            <img src="assets/8gly.avif" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/8gly.avif')">see more</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="assets/9gly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/9gly.jpg')">see more</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="assets/parisgly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/parisgly.jpg')">see more</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="assets/germanygly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn"onclick="openPopup('assets/germanygly.jpg')" >see more</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="assets/tokyogly.jpg" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+                <a href="#gallery" class="btn" onclick="openPopup('assets/tokyogly.jpg')">see more</a>
+            </div>
+        </div>
+
+<!--pop up bagian gallery start-->
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span><!--&times; untuk tombol close-->
+            <img id="popupImg" src="assets/1gly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/2gly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/3gly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/4gly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/5gly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/6gly.webp" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/7gly.jpeg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/8gly.avif" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+    
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/9gly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/parisgly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/germanygly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+
+        <div class="popup" id="myPopup">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <img id="popupImg" src="assets/tokyogly.jpg" alt="">
+            <h3>Amazing Places</h3>
+            <p>Berikut kumpulan foto wisata terbaik kami!.</p>
+        </div>
+<!--pop up bagian gallery ends-->
+    </div>
+</section>
+
+<!--gallery section end-->
+
+<!--review section starts-->
+<section class="review" id="review">
+
+    <h1 class="heading">
+        <span>r</span>
+        <span>e</span>
+        <span>v</span>
+        <span>i</span>
+        <span>e</span>
+        <span>w</span>
+    </h1>
+
+    <div class="swiper-container review-slider"> <!--agar bisa diswipe kesamping-->
+<!--dan review slider ditaruh di script.js-->
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="assets/bright.jpeg" alt="">
+                    <h3>bright vachirawit</h3>
+                    <p>Saya sangat puas dengan layanan pelanggan yang diberikan oleh agen perjalanan ini. Mereka sangat responsif dan membantu.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i> <!-- far buat ngasih bintang separuh-->
+                    </div>
+                </div>
+            </div>
+
+        <div class="swiper-slide">
+            <div class="box">
+                <img src="assets/chaeunwo.jpg" alt="">
+                <h3>cha eun woo</h3>
+                <p>Saya sangat puas dengan layanan pelanggan yang diberikan oleh agen perjalanan ini. Mereka sangat responsif dan membantu.</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i> <!-- far buat ngasih bintang separuh-->
+                </div>
+            </div>
+        </div>
+
+    <div class="swiper-slide">
+        <div class="box">
+            <img src="assets/ahnhyoseop.jpeg" alt="">
+            <h3>ahn hyo seop</h3>
+            <p>Saya sangat puas dengan layanan pelanggan yang diberikan oleh agen perjalanan ini. Mereka sangat responsif dan membantu.</p>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i> <!-- far buat ngasih bintang separuh-->
+            </div>
+        </div>
+    </div>
+
+<div class="swiper-slide">
+    <div class="box">
+        <img src="assets/dewjsu.jpeg" alt="">
+        <h3>dew jsu</h3>
+        <p>Saya sangat puas dengan layanan pelanggan yang diberikan oleh agen perjalanan ini. Mereka sangat responsif dan membantu.</p>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i> <!-- far buat ngasih bintang separuh-->
+        </div>
+    </div>
+</div>
+</div>
+    </div>
+</section>
+<!--review section end-->
+
+<!--contact section starts-->
+<section class="contact" id="contact">
+    <h1 class="heading">
+        <span>c</span>
+        <span>o</span>
+        <span>n</span>
+        <span>t</span>
+        <span>a</span>
+        <span>c</span>
+        <span>t</span>
+    </h1>
+
+    <div class="row">
+
+        <div class="image"> <!--foto astronout pada bagian kiri-->
+            <img src="assets/logocontact.avif" alt="">
+        </div>
+
+        <form action=""> <!--formulir mengisinya-->
+            <div class="inputBox">
+                <input type="text" placeholder="name">
+                <input type="email" placeholder="email">
+            </div>
+            <div class="inputBox">
+                <input type="number" placeholder="number">
+                <input type="text" placeholder="subject">
+            </div>
+            <textarea placeholder="message" name="" id="" cols="30" rows="10"></textarea>
+            <input type="submit" class="btn" value="send message">
+        </form>
+    </div>
+
+</section>
+<!--contact section end-->
+
+<!--brand section-->
+<section class="brand-container">
+    <div class="swiper-container brand-slider"> <!--diberi class swiper untuk bisa diswipe sendiri apabila layar dikecilkan maupun layar full-->
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="assets/1.jpg" alt="brand1"></div>
+            <div class="swiper-slide"><img src="assets/2.jpg" alt="brand2"></div>
+            <div class="swiper-slide"><img src="assets/3.jpg" alt="brand3"></div>
+            <div class="swiper-slide"><img src="assets/4.jpg" alt="brand4"></div>
+            <div class="swiper-slide"><img src="assets/5.jpg" alt="brand5"></div>
+            <div class="swiper-slide"><img src="assets/6.jpg" alt="brand6"></div>
+        </div>
+    </div>
+</section>
+
+<!--footer section-->
+<section class="footer">
+    <div class="box-container">
+
+        <div class="box">
+            <h3>about us</h3>
+            <div class="logo">
+                <img src="assets/mylogo.png" alt="">
+            </div>
+            <br>
+            <div class="logoapk">
+                <!--<img src="github-removebg-preview.png" alt="">-->
+                <img src="assets/facebook1.jpg" alt="">
+                <img src="assets/instagram1.png" alt="">
+                <img src="assets/twitter1.png" alt="">
+                <img src="assets/github1.jpg" alt="">
+            </div>
+        </div>
+        <div class="box">
+            <h3>branch locations</h3>
+            <a href="https://g.co/kgs/zpXBB7">Indonesia</a>
+            <a href="https://g.co/kgs/5u9hrN">USA</a>
+            <a href="https://g.co/kgs/K6fH6g">Korea selatan</a>
+            <a href="https://g.co/kgs/j3zaD2">Japan</a>
+        </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#home">home</a>
+            <a href="#book">book</a>
+            <a href="#packages">packages</a>
+            <a href="#service">services</a>
+            <a href="#gallery">gallery</a>
+            <a href="#review">review</a>
+            <a href="#contact">contact</a>
+        </div>
+
+        <div class="box">
+            <h3>follow us</h3>
+            <a href="https://m.facebook.com/story.php?story_fbid=pfbid02Hiu2qA7Gi4PW7g7mcjwjchLkymQy76Ppzo28xum2b1Vf6e6B6HyUHst8oyu7m6Ajl&id=61550361976984&mibextid=Nif5oz">facebook</a>
+            <a href="https://instagram.com/evvamaulani?igshid=YTQwZjQ0NmI0OA==">instagram</a>
+            <a href="https://x.com/vanyyce?s=09">twitter</a>
+            <a href="https://github.com/evamaulanifshl">github</a>
+        </div>
+    </div>
+<!--footer section end-->
+
+
+<!--loader
+<div class="loader-container">
+    <i class="fas fa-spinner fa-spin"></i>
+</div>-->
+
+    <h1 class="credit"> created by <span> TravelEva </span>| all rights reserved! </h1>
+</section>
+
+   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!--custom js link-->
+    <script src="script.js"></script>
+</body>
+</html>
