@@ -1,52 +1,73 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-400 to-blue-500 p-6 sm:p-12">
+        <div class="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
+            <!-- Header -->
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-gray-800">{{ __('Create Your Account') }}</h2>
+                <p class="mt-2 text-gray-600">
+                    {{ __('Sign up to start your journey') }}
+                </p>
+            </div>
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <!-- Register Form -->
+            <form class="mt-8 space-y-6" method="POST" action="{{ route('register') }}">
+                @csrf
+
+                <!-- Name Input -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-green-700">{{ __('Name') }}</label>
+                    <input id="name" name="name" type="text" required
+                        class="mt-1 block w-full rounded-lg border-green-300 shadow-sm py-2 px-3 text-gray-900
+                               focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    <x-input-error :messages="$errors->get('name')" class="mt-2 text-red-600" />
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-green-700">{{ __('Email Address') }}</label>
+                    <input id="email" name="email" type="email" required
+                        class="mt-1 block w-full rounded-lg border-green-300 shadow-sm py-2 px-3 text-gray-900
+                               focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-600" />
+                </div>
+
+                <!-- Password Input -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-green-700">{{ __('Password') }}</label>
+                    <input id="password" name="password" type="password" required
+                        class="mt-1 block w-full rounded-lg border-green-300 shadow-sm py-2 px-3 text-gray-900
+                               focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600" />
+                </div>
+
+                <!-- Confirm Password Input -->
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium text-green-700">{{ __('Confirm Password') }}</label>
+                    <input id="password_confirmation" name="password_confirmation" type="password" required
+                        class="mt-1 block w-full rounded-lg border-green-300 shadow-sm py-2 px-3 text-gray-900
+                               focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-red-600" />
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg shadow-sm
+                               text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                        {{ __('Register') }}
+                    </button>
+                </div>
+            </form>
+
+            <!-- Footer -->
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    {{ __('Already have an account?') }}
+                    <a href="{{ route('login') }}" class="text-green-600 hover:text-green-500 font-medium">
+                        {{ __('Sign in here') }}
+                    </a>
+                </p>
+            </div>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </x-guest-layout>

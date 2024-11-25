@@ -14,6 +14,7 @@
    body {
             font-family: 'Roboto', sans-serif;
         }
+
   </style>
  </head>
  <body class="bg-gray-100">
@@ -87,7 +88,7 @@
   </section>
   <!-- Fleet Section -->
   <section class="py-12 bg-white">
-   <div class="max-w-6xl mx-auto text-center">
+   <div class="max-w-6xl mx-auto text-center relative">
     <h2 class="text-2xl md:text-3xl font-bold mb-8">
      ARMADA PILIHAN ANDA
     </h2>
@@ -95,13 +96,9 @@
      CITY CAR
     </h3>
     <div class="flex justify-center items-center space-x-4">
-     <button class="text-red-500">
-      <i class="fas fa-chevron-left">
-      </i>
-     </button>
      <div class="w-full p-4">
         <!-- Swiper -->
-        <div class="swiper mySwiper">
+        <div class="swiper mySwiper relative">
           <div class="swiper-wrapper">
             <!-- Card 1 -->
             <div class="swiper-slide">
@@ -238,15 +235,11 @@
           </div>
 
           <!-- Navigation -->
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
         </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
 
-     <button class="text-red-500">
-      <i class="fas fa-chevron-right">
-      </i>
-     </button>
     </div>
    </div>
   </section>
@@ -276,6 +269,8 @@
         },
       },
     });
+
+
   </script>
  </body>
 </html>
