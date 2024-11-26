@@ -170,7 +170,7 @@
                         <i class="fas fa-star"></i><!--contohnya ini-->
                     </div> --}}
                     <div class="price"> Rp.2.455.900 <span>Rp.4.500.000</span></div>
-                    <a href="" class="btn">book now</a>
+                    <a href="{{ route('login') }}" class="btn">book now</a>
                 </div>
             </div>
 

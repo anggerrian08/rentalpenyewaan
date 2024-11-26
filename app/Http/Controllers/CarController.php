@@ -13,10 +13,22 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Car::with('category', 'plat')->latest()->paginate(8);
-        return view('car.index', compact('data'));
+        $request->validate([
+            'input' => 'nullable|string|max:255'
+        ]);
+
+        $input = $request->input('input');
+        if ($input) {
+            $data = Car::where('name', 'LIKE', '%'.$input.'%')->paginate(8);
+        }else{
+            $data= Car::latest()->paginate(8);
+        }
+
+        return view('car.index',compact('data'));
+        // $data = Car::with('category', 'plat')->latest()->paginate(8);
+        // return view('car.index', compact('data'));
     }
 
     /**
@@ -157,18 +169,5 @@ class CarController extends Controller
         return back()->with('success', 'succes deleted car');
     }
 
-    public function search(Request $request){
-        $request->validate([
-            'input' => 'nullable|string|max:20'
-        ]);
 
-        $input = $request->input('input');
-        if ($input) {
-            $data = Car::where('name', 'LIKE', '%'.$input.'%')->paginate(8);
-        }else{
-            $data= Car::latest()->paginate(8);
-        }
-
-        return view('car.index',compact('data'));
-    }
 }
