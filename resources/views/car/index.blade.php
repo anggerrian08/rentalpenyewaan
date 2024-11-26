@@ -42,10 +42,10 @@
                         <form action="{{ route('car.destroy', $item->id) }}" method="POST" class="d-inline delete-form">
                             @csrf
                             @method('DELETE')
-                            
+
                             <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="{{ $item->id }}"><i class="bx bx-trash"></i></button>
                         </form>
-                        
+
                     </div>
                     <!-- Product Image -->
                     <img src="{{ asset('storage/uploads/' . $item->photo) }}" class="card-img-top img-fluid" alt="{{ $item->name }}" style="width: 100%; height: 200px; object-fit: cover;">
@@ -60,11 +60,11 @@
                 </div>
             </div>
         @empty
-            <div class="col-12">
-                <div class="alert alert-warning text-center" role="alert">
-                    No products found.
-                </div>
+        <div class="col-12">
+            <div class="alert alert-warning text-center" role="alert">
+                No products found.
             </div>
+        </div>
         @endforelse
     </div>
 
@@ -72,6 +72,6 @@
     <div class="d-flex justify-content-end mt-4">
         {{ $data->links() }}
     </div>
-    
-    
+
+
 @endsection
