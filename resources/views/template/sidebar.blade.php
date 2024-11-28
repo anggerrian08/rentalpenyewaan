@@ -2,17 +2,17 @@
     <div class="sidebar-wrapper" data-simplebar="true">
         <div class="sidebar-header">
             <div>
-                <i class="bi bi-book" style="font-size: 3rem;"></i>
+                {{-- <i class="bi bi-book" style="font-size: 3rem;"></i> --}}
             </div>
             <div>
-                <h4 class="logo-text">Library</h4>
+                <h4 class="logo-text">Rental</h4>
             </div>
-            <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i></div>
+            {{-- <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i></div> --}}
         </div>
         <!--navigation-->
         <ul class="metismenu" id="menu">
             <li>
-                <a href="#" class="">
+                <a href="{{ route('dashboard') }}" class="">
                     <div class="parent-icon"><i class='bx bx-home-circle'></i></div>
                     <div class="menu-title">Dashboard</div>
                 </a>
@@ -20,20 +20,20 @@
             <li class="menu-label">Menu</li>
             <li>
                 <a href="{{route('category.index')}}">
-                    <div class="parent-icon fa fa-table"></div>
-                    <div class="menu-title">Category</div>
+                    <div class="parent-icon fa fa-tags"></div>
+                    <div class="menu-title">Kategori</div>
                 </a>
             </li>
             <li>
                 <a href="{{route('plat.index')}}" class="">
-                    <div class="parent-icon fa fa-book"></div>
+                    <div class="parent-icon fa fa-id-card"></div>
                     <div class="menu-title">Plat</div>
                 </a>
             </li>
             <li>
                 <a class="" href="{{route('car.index')}}">
-                    <div class="parent-icon"><i class="fa fa-user-check"></i></div>
-                    <div class="menu-title">car</div>
+                    <div class="parent-icon"><i class="fa fa-car"></i></div>
+                    <div class="menu-title">Mobil</div>
                 </a>
             </li>
             <li>

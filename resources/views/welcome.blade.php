@@ -43,7 +43,7 @@
     <!--icons cari dan juga login-->
         <div class="icons">
             <i class="fas fa-search" id="search-btn"></i>
-            <i class="fas fa-user" id="login-btn"></i>
+            <a href="{{ route('login') }}"><i class="fas fa-user" id="login-btn"></i></a>
           </div>
 
           <!--pada bagian cari akan diberi tulisan-->
@@ -56,13 +56,13 @@
 
     <!--login from container-->
     <!--untuk bagian formulir login-->
-    <div class="login-form-container" id="login-form">
+    {{-- <div class="login-form-container" id="login-form"> --}}
 
         <!--untuk icon x atau close pada login-->
         <i class="fas fa-times " id="form-close"></i>
 
         <!--untuk bagian mengisi login-->
-        <form action="">
+        {{-- <form action="">
             <h3>Login</h3>
             <input type="email" class="box" placeholder="enter your email">
             <input type="password" class="box" placeholder="password">
@@ -71,7 +71,7 @@
             <label for="remember">remember me</label>
             <p>forget password? <a href="#">click here</a></p>
             <p>don't have and account? <a href="#">register now</a></p>
-        </form>
+        </form> --}}
     </div>
 
 <!--home section starts-->
