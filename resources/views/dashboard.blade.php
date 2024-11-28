@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 @extends('template')
+=======
+@extends('template.index')
+
+>>>>>>> 4e3fe439abc95ee9216e4b998846c8b7b1889d03
 @section('content')
 <div class="page-content">
     <section class="row">
