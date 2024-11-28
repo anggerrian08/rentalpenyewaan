@@ -66,12 +66,12 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <!-- Pagination -->
             <div class="d-flex justify-content-end mt-3">
                 {{ $data->links() }}
             </div>
-            
+
         </div>
     </div>
     @include('plat.modal')

@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        $user->assignRole('admin');
+        $user->assignRole('user');
 
         Auth::login($user);
 
