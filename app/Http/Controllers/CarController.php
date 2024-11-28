@@ -10,26 +10,37 @@ use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $request->validate([
-            'input' => 'nullable|string|max:255'
+            'input' => 'nullable|string|max:255',
         ]);
 
         $input = $request->input('input');
+        $startPrice = $request->input('start_price');
+        $endPrice = $request->input('end_price');
+
+        $query = Car::query();
+
         if ($input) {
-            $data = Car::where('name', 'LIKE', '%'.$input.'%')->paginate(8);
-        }else{
-            $data= Car::latest()->paginate(8);
+            $query->where('name', 'LIKE', '%' . $input . '%')->orWhereHas('category', function($query) use ($input){
+                $query->where('name', 'LIKE', '%'.$input.'%');
+            });
         }
 
-        return view('car.index',compact('data'));
-        // $data = Car::with('category', 'plat')->latest()->paginate(8);
-        // return view('car.index', compact('data'));
+        if ($startPrice !== null) {
+            $query->where('price', '>=', $startPrice);
+        }
+
+        if ($endPrice !== null) {
+            $query->where('price', '<=', $endPrice);
+        }
+
+        $data = $query->latest()->paginate(8);
+
+        return view('car.index', compact('data'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -169,5 +180,27 @@ class CarController extends Controller
         return back()->with('success', 'succes deleted car');
     }
 
+    public function filter(Request $request){
+        $request->validate([
+            'start_price' => 'nullable|numeric|min:0',
+            'end_price' => 'nullable|numeric|min:0',
+        ]);
 
+        $startPrice = $request->input('start_price');
+        $endPrice = $request->input('end_price');
+
+        $query = Car::query();
+
+        if ($startPrice !== null) {
+            $query->where('price', '>=', $startPrice);
+        }
+
+        if ($endPrice !== null) {
+            $query->where('price', '<=', $endPrice);
+        }
+
+        $data = $query->whereBetween('price', [$startPrice, $endPrice])->paginate(8);
+
+        return view('car.index', compact('data'));
+    }
 }

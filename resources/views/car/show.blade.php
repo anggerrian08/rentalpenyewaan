@@ -1,4 +1,4 @@
-@extends('template.index')
+@extends('template')
 
 @section('content')
 <div class="container">
@@ -13,7 +13,7 @@
         <div class="col-md-6">
             <h1 class="mb-3">{{ $product->name }}</h1>
             <h4 class="text-muted mb-4">Category: <span class="text-primary">{{ $product->category->name }}</span></h4>
-            
+
             <div class="d-flex align-items-center mb-4">
                 <span class="fw-bold text-success h3">${{ number_format($product->price,  0, ',', '.') }}</span>
             </div>
@@ -35,7 +35,7 @@
                 <strong class="h4">Description:</strong>
                 <br>
                 <span>{{ $product->description }}</span>
-            </p> 
+            </p>
         </div>
     </div>
 

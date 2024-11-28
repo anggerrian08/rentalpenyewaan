@@ -1,4 +1,4 @@
-@extends('template.index')
+@extends('template')
 
 @section('content')
     <div class="card radius-10">
@@ -9,7 +9,7 @@
                 <div class="col-md-6 d-flex align-items-center">
                     <!-- Tombol Tambah Kategori -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa-solid fa-calendar-plus me-1"></i> Tambah
+                        <i class="bi bi-plus-circle me-1"></i> Tambah
                     </button>
                 </div>
                 <div class="col-md-3 ms-auto">
@@ -18,7 +18,7 @@
                         @csrf
                         <input type="text" name="input" class="form-control me-2" placeholder="Cari plat..." value="{{request('input')}}">
                         <button type="submit" class="btn btn-outline-secondary">
-                            <i class="fa-solid fa-search"></i>
+                            <i class="bi bi-search"></i>
                         </button>
                     </form>
                 </div>
@@ -46,13 +46,13 @@
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center">
                                         <button type="button" class="btn btn-sm btn-success mb-2 me-2" data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">
-                                            <i class="fa-solid fa-pen-to-square"></i> Edit
+                                            <i class="bi bi-pencil-square"></i> Edit
                                         </button>
                                         <form action="{{ route('plat.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus {{ $item->name }}?')" name="archive">
-                                                <i class="fa-solid fa-trash-can"></i> Hapus
+                                                <i class="bi bi-trash"></i> Hapus
                                             </button>
                                         </form>
                                     </div>
