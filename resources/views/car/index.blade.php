@@ -1,4 +1,4 @@
-@extends('template.index')
+@extends('template')
 
 @section('content')
     <div class="row">
@@ -10,16 +10,22 @@
                         <!-- New Product Button -->
                         <div class="col-lg-3 col-xl-2">
                             <a href="{{ route('car.create') }}" class="btn btn-primary mb-3 mb-lg-0">
-                                <i class='fa-solid fa-calendar-plus me-1'></i> Tambah
+                                <i class='bi bi-plus-circle me-1'></i> New Product
                             </a>
                         </div>
-
                         <!-- Search and Filter Form -->
                         <div class="col-lg-9 col-xl-10">
-
                             <form action="{{ route('car.index') }}" method="GET" class="float-lg-end">
-                                <div class="input-group">
-                                    <input type="text" name="input" class="form-control" placeholder="Cari mobil..." value="{{ request('input') }}">
+                                <div class="input-group mb-2">
+                                    <input type="text" name="input" class="form-control" placeholder="Search car..."
+                                        value="{{ request('input') }}">
+                                    <!-- Search Button -->
+                                    <button type="submit" class="btn btn-outline-secondary bg-warning">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            <form action="{{ route('car.filter') }}" method="GET" class="float-lg-end">
                                 <div class="input-group mb-2">
                                     <!-- Start Price -->
                                     <input type="number" name="start_price" class="form-control" placeholder="Start Price"
@@ -28,15 +34,12 @@
                                     <input type="number" name="end_price" class="form-control" placeholder="End Price"
                                         value="{{ request('end_price') }}" min="0">
                                     <!-- Search -->
-                                    <input type="text" name="input" class="form-control" placeholder="Search car..."
-                                        value="{{ request('input') }}">
                                     <!-- Search Button -->
-                                    <button type="submit" class="btn btn-outline-secondary">
-                                        <i class="fa-solid fa-search"></i>
+                                    <button type="submit" class="btn btn-outline-secondary bg-warning">
+                                        <i class="bi bi-search"></i>
                                     </button>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -53,13 +56,13 @@
                     <div class="position-absolute top-0 start-0 m-2">
                         @if (auth()->user()->hasRole('admin'))
                             <a href="{{ route('car.edit', $item->id) }}" class="btn btn-sm btn-warning me-1"><i
-                                    class="bx bx-edit"></i></a>
+                                    class="bi bi-pencil-square"></i></a>
                             <form action="{{ route('car.destroy', $item->id) }}" method="POST"
                                 class="d-inline delete-form">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="btn btn-sm btn-danger btn-delete"
-                                    data-id="{{ $item->id }}"><i class="bx bx-trash"></i></button>
+                                    data-id="{{ $item->id }}"><i class="bi bi-trash"></i></button>
                             </form>
                         @else
                             <button data-bs-target="#add_ulasan{{ $item->id }}" data-bs-toggle="modal"

@@ -1,4 +1,4 @@
-@extends('template.index')
+@extends('template')
 
 @section('content')
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -24,19 +24,19 @@
             <form action="{{ route('car.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-            
+
                 <!-- Product Title -->
                 <div class="mb-3">
                     <label for="inputProductTitle" class="form-label fw-bold">Product Title</label>
                     <input type="text" class="form-control" id="inputProductTitle" name="name" value="{{ old('name', $data->name) }}" placeholder="Enter product title">
                 </div>
-            
+
                 <!-- Description -->
                 <div class="mb-3">
                     <label for="inputProductDescription" class="form-label fw-bold">Description</label>
                     <textarea class="form-control" id="inputProductDescription" rows="3" name="description">{{ old('description', $data->description) }}</textarea>
                 </div>
-            
+
                 <!-- Price and Stock -->
                 <div class="row g-3">
                     <div class="col-md-6">
@@ -48,7 +48,7 @@
                         <input type="number" class="form-control" id="inputStock" name="stock" value="{{ old('stock', $data->stock) }}" min="0">
                     </div>
                 </div>
-            
+
                 <!-- Category -->
                 <div class="mb-3">
                     <label for="inputProductType" class="form-label fw-bold">Product Type</label>
@@ -58,17 +58,17 @@
                         @endforeach
                     </select>
                 </div>
-            
+
                 <!-- Plat -->
                 <div class="mb-3">
-                    <label for="inputVendor" class="form-label fw-bold">Vendor</label>
+                    <label for="inputVendor" class="form-label fw-bold">Plat</label>
                     <select name="plat_id" class="form-select" id="inputVendor">
                         @foreach($data_plat as $plat)
                             <option value="{{ $plat->id }}" {{ $plat->id == $data->plat_id ? 'selected' : '' }}>{{ $plat->plat }}</option>
                         @endforeach
                     </select>
                 </div>
-            
+
                 <!-- Photo -->
                 <div class="mb-3">
                     <label for="image-uploadify" class="form-label fw-bold">Product Images</label>
@@ -77,13 +77,13 @@
                         <img src="{{ asset('storage/uploads/' . $data->photo) }}" alt="Product Image" class="mt-3" style="width: 200px; height: auto;">
                     @endif
                 </div>
-            
+
                 <!-- Submit Button -->
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Update Product</button>
                 </div>
             </form>
-            
+
         </div>
     </div>
 </div>

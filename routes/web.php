@@ -29,6 +29,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
 });
 Route::middleware('auth')->group(function () {
     // car
+    Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');
     Route::resource('/review', ReviewController::class)->only('index','show');
 
