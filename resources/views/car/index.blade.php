@@ -16,15 +16,19 @@
 
                         <!-- Search and Filter Form -->
                         <div class="col-lg-9 col-xl-10">
+
                             <form action="{{ route('car.index') }}" method="GET" class="float-lg-end">
+
                                 <div class="input-group">
                                     <input type="text" name="input" class="form-control" placeholder="Cari mobil..." value="{{ request('input') }}">
+
                                     <!-- Search Button -->
                                     <button type="submit" class="btn btn-outline-secondary">
                                         <i class="fa-solid fa-search"></i>
                                     </button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -39,33 +43,44 @@
                 <div class="card position-relative">
                     <!-- Icons for Edit and Delete -->
                     <div class="position-absolute top-0 start-0 m-2">
-                        <a href="{{ route('car.edit', $item->id) }}" class="btn btn-sm btn-warning me-1"><i class="bx bx-edit"></i></a>
-                        <form action="{{ route('car.destroy', $item->id) }}" method="POST" class="d-inline delete-form">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="{{ $item->id }}"><i class="bx bx-trash"></i></button>
-                        </form>
+                        @if (auth()->user()->hasRole('admin'))
+                            <a href="{{ route('car.edit', $item->id) }}" class="btn btn-sm btn-warning me-1"><i
+                                    class="bx bx-edit"></i></a>
+                            <form action="{{ route('car.destroy', $item->id) }}" method="POST"
+                                class="d-inline delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-sm btn-danger btn-delete"
+                                    data-id="{{ $item->id }}"><i class="bx bx-trash"></i></button>
+                            </form>
+                        @else
+                            <button data-bs-target="#add_ulasan{{ $item->id }}" data-bs-toggle="modal"
+                                class="btn btn-sm btn-warning me-1">
+                                <i class="bx bx-edit"></i>
+                            </button>
+                        @endif
 
                     </div>
                     <!-- Product Image -->
-                    <img src="{{ asset('storage/uploads/' . $item->photo) }}" class="card-img-top img-fluid" alt="{{ $item->name }}" style="width: 100%; height: 200px; object-fit: cover;">
+                    <img src="{{ asset('storage/uploads/' . $item->photo) }}" class="card-img-top img-fluid"
+                        alt="{{ $item->name }}" style="width: 100%; height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h6 class="card-title">{{ $item->name }}</h6>
                         <div class="clearfix">
                             <p class="mb-0 float-start">Stock: {{ $item->stock }}</p>
-                            <p class="mb-0 float-end fw-bold text-success">${{ number_format($item->price,  0, ',', '.') }}</p>
+                            <p class="mb-0 float-end fw-bold text-success">${{ number_format($item->price, 0, ',', '.') }}
+                            </p>
                         </div>
                         <a href="{{ route('car.show', $item->id) }}" class="btn btn-primary w-100 mt-3">View Details</a>
                     </div>
                 </div>
             </div>
         @empty
-        <div class="col-12">
-            <div class="alert alert-warning text-center" role="alert">
-                No products found.
+            <div class="col-12">
+                <div class="alert alert-warning text-center" role="alert">
+                    No products found.
+                </div>
             </div>
-        </div>
         @endforelse
     </div>
 
@@ -74,5 +89,60 @@
         {{ $data->links() }}
     </div>
 
+    {{-- give review --}}
+    @foreach ($data as $item)
+        <div class="modal fade" id="add_ulasan{{ $item->id }}" tabindex="-1" aria-labelledby="addUlasanLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
 
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="addUlasanLabel"><i class="bx bx-comment"></i> Add Review</h5>
+                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Product Information -->
+                        <div class="mb-4">
+                            <h6 class="fw-bold text-primary">{{ $item->name }}</h6>
+                            <p class="text-muted">Stock: {{ $item->stock }} | Price:
+                                ${{ number_format($item->price, 0, ',', '.') }}</p>
+                        </div>
+
+                        <!-- Review Text -->
+                        <form action="{{ route('review.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="car_id" value="{{ $item->id }}">
+                            <div class="mb-3">
+                                <label for="ulasan" class="form-label fw-bold">Your Review</label>
+                                <textarea class="form-control" id="ulasan" name="review" rows="5" placeholder="Write your review here..."
+                                    required></textarea>
+                            </div>
+
+                            <!-- Rating -->
+                            <div class="mb-3">
+                                <label for="rating" class="form-label fw-bold">Rating</label>
+                                <select class="form-select" id="rating" name="rating" required>
+                                    <option value="" selected disabled>Select Rating</option>
+                                    <option value="1">1 - Poor</option>
+                                    <option value="2">2 - Fair</option>
+                                    <option value="3">3 - Good</option>
+                                    <option value="4">4 - Very Good</option>
+                                    <option value="5">5 - Excellent</option>
+                                </select>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bx bx-x"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bx bx-send"></i> Submit
+                        </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 @endsection
