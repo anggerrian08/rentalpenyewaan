@@ -1,22 +1,22 @@
 @extends('template.index')
 
 @section('content')
-    <h1>Halaman Plat</h1>
     <div class="card radius-10">
         <div class="card-body">
+            <h4>Management Plat</h4><br>
             <!-- Header dengan tombol tambah dan pencarian -->
             <div class="row mb-3">
                 <div class="col-md-6 d-flex align-items-center">
                     <!-- Tombol Tambah Kategori -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa-solid fa-calendar-plus me-1"></i> Tambah Plat
+                        <i class="fa-solid fa-calendar-plus me-1"></i> Tambah
                     </button>
                 </div>
                 <div class="col-md-3 ms-auto">
                     <!-- Form Pencarian -->
                     <form action="{{route('plat.index')}}" method="GET" class="d-flex">
                         @csrf
-                        <input type="text" name="input" class="form-control me-2" placeholder="Cari kategori..." value="{{request('input')}}">
+                        <input type="text" name="input" class="form-control me-2" placeholder="Cari plat..." value="{{request('input')}}">
                         <button type="submit" class="btn btn-outline-secondary">
                             <i class="fa-solid fa-search"></i>
                         </button>
@@ -30,7 +30,7 @@
                     <thead class="table-light text-center">
                         <tr>
                             <th>No</th>
-                            <th>Plat</th>
+                            <th>Nomor Plat</th>
                             <th>Opsi</th>
                         </tr>
                     </thead>
@@ -66,12 +66,12 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <!-- Pagination -->
             <div class="d-flex justify-content-end mt-3">
                 {{ $data->links() }}
             </div>
-            
+
         </div>
     </div>
     @include('plat.modal')

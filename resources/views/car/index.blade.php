@@ -5,11 +5,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <h4>Management Mobil</h4><br>
                     <div class="row align-items-center">
                         <!-- New Product Button -->
                         <div class="col-lg-3 col-xl-2">
                             <a href="{{ route('car.create') }}" class="btn btn-primary mb-3 mb-lg-0">
-                                <i class='bx bxs-plus-square'></i> New Product
+                                <i class='fa-solid fa-calendar-plus me-1'></i> Tambah
                             </a>
                         </div>
 
@@ -17,7 +18,7 @@
                         <div class="col-lg-9 col-xl-10">
                             <form action="{{ route('car.index') }}" method="GET" class="float-lg-end">
                                 <div class="input-group">
-                                    <input type="text" name="input" class="form-control" placeholder="Search car..." value="{{ request('input') }}">
+                                    <input type="text" name="input" class="form-control" placeholder="Cari mobil..." value="{{ request('input') }}">
                                     <!-- Search Button -->
                                     <button type="submit" class="btn btn-outline-secondary">
                                         <i class="fa-solid fa-search"></i>

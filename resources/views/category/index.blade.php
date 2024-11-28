@@ -1,15 +1,16 @@
 @extends('template.index')
 
 @section('content')
-    <h1>Halaman Category</h1>
+
     <div class="card radius-10">
         <div class="card-body">
+            <h4>Management Kategori</h4><br>
             <!-- Header dengan tombol tambah dan pencarian -->
             <div class="row mb-3">
                 <div class="col-md-6 d-flex align-items-center">
                     <!-- Tombol Tambah Kategori -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa-solid fa-calendar-plus me-1"></i> Tambah Kategori
+                        <i class="fa-solid fa-calendar-plus me-1"></i> Tambah
                     </button>
                 </div>
                 <div class="col-md-3 ms-auto">
@@ -30,7 +31,7 @@
                     <thead class="table-light text-center">
                         <tr>
                             <th>No</th>
-                            <th>Jenis Buku</th>
+                            <th>Nama Kategori</th>
                             <th>Opsi</th>
                         </tr>
                     </thead>
@@ -66,12 +67,12 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <!-- Pagination -->
             <div class="d-flex justify-content-end mt-3">
                 {{ $data->links() }}
             </div>
-            
+
         </div>
     </div>
     @include('category.modal')
