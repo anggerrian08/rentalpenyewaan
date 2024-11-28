@@ -92,7 +92,13 @@
                     <img src="{{asset('assets/images/avatars/avatar-1.png')}}" class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         <p class="user-name mb-0">User Email</p>
-                        <p class="designation mb-0">Role</p>
+                        <p class="designation mb-0">
+                            @if (auth()->user()->hasRole('admin'))
+                                <div class="badge btn-success">admin</div>
+                            @else
+                            <div class="badge btn-success">user</div>
+                            @endif
+                        </p>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
