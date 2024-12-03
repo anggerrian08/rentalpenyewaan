@@ -1,104 +1,57 @@
-<<<<<<< HEAD
 @extends('template')
-=======
-@extends('template.index')
-
->>>>>>> 4e3fe439abc95ee9216e4b998846c8b7b1889d03
 @section('content')
-<div class="page-content">
-    <section class="row">
-        <div class="col-12 col-lg-9">
-            <div class="row">
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon purple mb-2">
-                                        <i class="iconly-boldShow"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Profile Views</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon blue mb-2">
-                                        <i class="iconly-boldProfile"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Followers</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon green mb-2">
-                                        <i class="iconly-boldAdd-User"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Following</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <div class="stats-icon red mb-2">
-                                        <i class="iconly-boldBookmark"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Saved Post</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid default-dashboard">
+    <div class="row">
+      <div class="col-xl-12 proorder-md-10 box-col-12">
+        <div class="card">
+          <div class="card-header custom-border-bottom">
+            <div class="header-top">
+              <h4>Grafik cart</h4>
+              <div class="dropdown icon-dropdown setting-menu">
+                <button class="btn dropdown-toggle" id="userdropdown9" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <svg>
+                    <use href="https://admin.pixelstrap.net/zono/assets/svg/icon-sprite.svg#setting"> </use>
+                  </svg>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userdropdown9"><a class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a class="dropdown-item" href="#">Yearly </a></div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Profile Visit</h4>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart-profile-visit"></div>
-                        </div>
+          </div>
+          <div class="card-body">
+            <div id="groupBarChart"></div>
+            <div class="sales-data">
+              <ul>
+                <li>
+                  <div class="total-sales">
+                    <div>
+                      <h5>$4,875 </h5><span>Total Sales </span>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-xl-4">
-
+                    <div class="total-reached"><span>1,00,00</span><span>85% goal reached</span></div>
+                  </div>
+                  <div class="progress-data">
+                    <div class="progress sm-progress-bar progress-border-primary">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"> </div>
                     </div>
-                </div>
-              
+                  </div>
+                </li>
+                <li>
+                  <div class="total-sales">
+                    <div>
+                      <h5>$7,560</h5><span>Total Income</span>
+                    </div>
+                    <div class="total-reached"> <span>1,00,00</span><span>45% goal reached   </span></div>
+                  </div>
+                  <div class="progress-data">
+                    <div class="progress sm-progress-bar progress-border-secondary">
+                      <div class="progress-bar bg-secondary" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
+          </div>
         </div>
-    </section>
-</div>
+      </div>
+    </div>
+  </div>
 @endsection
-
