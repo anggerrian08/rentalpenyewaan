@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <span></span>
     <div class="row">
         <!-- Product Image -->
         <div class="col-md-6">

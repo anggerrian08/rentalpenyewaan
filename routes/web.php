@@ -12,6 +12,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/aproval', function () {
+    return view('aproval.index');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -23,6 +28,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::resource('/plat', PlatController::class)->only('index', 'store', 'update','destroy');
     // Route::get('/loginlogs', [LoginLogsController::class, 'index'])->name('loginlogs.index');
     Route::resource('/car', CarController::class)->except('index', 'show');
+
+
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
