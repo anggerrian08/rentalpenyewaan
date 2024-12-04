@@ -1,5 +1,5 @@
-@extends('template')
-@section('content')
+@extends('layouts.template')
+@section('content') <br>
 <div class="container-fluid default-dashboard">
     <div class="row">
       <div class="col-xl-12 proorder-md-10 box-col-12">
