@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.template')
 
 @section('content')
     <div class="row">
@@ -16,7 +16,6 @@
                         <!-- Search and Filter Form -->
                         <div class="col-lg-9 col-xl-10">
                             <form action="{{ route('car.index') }}" method="GET" class="float-lg-end">
-<<<<<<< HEAD
                                 <div class="input-group mb-2">
                                     <input type="text" name="input" class="form-control" placeholder="Search car..."
                                         value="{{ request('input') }}">
@@ -35,17 +34,6 @@
                                     <input type="number" name="end_price" class="form-control" placeholder="End Price"
                                         value="{{ request('end_price') }}" min="0">
                                     <!-- Search -->
-=======
-
-                                <div class="input-group">
-                                    <input type="text" name="input" class="form-control" placeholder="Cari mobil..." value="{{ request('input') }}">
-
->>>>>>> 4e3fe439abc95ee9216e4b998846c8b7b1889d03
-                                    <!-- Search Button -->
-                                    <button type="submit" class="btn btn-outline-secondary bg-warning">
-                                        <i class="bi bi-search"></i>
-                                    </button>
-                                </div>
                             </form>
                         </div>
                     </div>
