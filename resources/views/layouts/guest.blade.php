@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased text-gray-900">
-        <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-400 to-blue-500 py-6 sm:py-12 relative">
+        <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-400 to-blue-100 py-6 sm:py-12 relative">
             <!-- Logo Section -->
             <div class="absolute top-4 left-4">
                 <a href="/" class="block">
@@ -24,7 +24,7 @@
             </div>
 
             <!-- Content Section -->
-            <div class="w-full sm:max-w-md lg:max-w-lg bg-green-50 dark:bg-green-900 shadow-lg rounded-lg px-5 py-5">
+            <div class="w-full sm:max-w-md lg:max-w-lg bg-blue-50 dark:bg-blue-100 shadow-lg rounded-lg px-5 py-5">
                 {{ $slot }}
             </div>
 
