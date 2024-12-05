@@ -114,9 +114,9 @@
 
  */
 :root {
-    --theme-default: #2b5f60;
+    --theme-default: #01A8EF;
     --theme-secondary: #c06240;
-    --light-background: rgba(242, 243, 247, .7);
+    --light-background: #F2FBFF;
     --body-font-color: #86909c;
     --chart-border: #f5f5f5;
     --recent-chart-bg: #fcfcfd;
@@ -127,7 +127,7 @@
     --chart-text-color: rgba(82, 82, 108, .8);
     --recent-dashed-border: rgba(82, 82, 108, .3);
     --chart-dashed-border: rgba(82, 82, 108, .2);
-    --chart-progress-light: rgba(82, 82, 108, .1);
+    --chart-progress-light: rgba(0, 108, 231, 0.1);
     --recent-box-bg: #f2f4f7;
     --recent-border: rgba(97, 101, 122, .25);
     --course-light-btn: #f2f3f7;
@@ -42767,7 +42767,7 @@ footer p .footer-icon {
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content>li .sidebar-link:hover {
-    background-color: rgba(43, 94, 94, .1);
+    background-color: #EDEDED;
     border-radius: 10px
 }
 
