@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\LoginLogs;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,22 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        $user = Auth::user();
+        $ip_address = $request->ip();
+
+        $detail_login = LoginLogs::where('user_id', $user->id)->where('ip_address', $ip_address)->first();
+        if($detail_login){
+            $detail_login->update([
+                'login_time' => now()->setTimezone('Asia/jakarta')
+            ]);
+        }else{
+            LoginLogs::create([
+                'user_id' => $user->id,
+                'ip_address' => $ip_address,
+                'login_time' => now()->setTimezone('Asia/jakarta')
+            ]);
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
