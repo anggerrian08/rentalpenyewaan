@@ -9,8 +9,8 @@
     <meta name="description" content="Zono admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Zono admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../assets/images/logo/humma.jpg" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/humma.jpg') }}" type="image/x-icon">
     <title>HUMMA RENTCAR</title>
 
 <style>
@@ -45,30 +45,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css') }}">
     <!-- ico-font-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/icofont.css') }}">
     <!-- Themify icon-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/themify.css') }}">
     <!-- Flag icon-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/flag-icon.css') }}">
     <!-- Feather icon-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/feather-icon.css') }}">
     <!-- Plugins css start-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/datatables.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/owlcarousel.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/slick-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/scrollbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/animate.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/owlcarousel.css') }}">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/bootstrap.css') }}">
     <!-- App css-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <!-- Responsive css-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
   </head>
   <body>
     <!-- loader starts-->
@@ -90,7 +90,7 @@
             <div class="logo-wrapper"><a href="index.html"> <img class="img-fluid for-light" src="../assets/images/logo/logo.png" alt=""><img class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png" alt=""></a></div>
             <div class="toggle-sidebar">
               <svg class="sidebar-toggle">
-                <use href="../assets/svg/icon-sprite.svg#stroke-animation"></use>
+                <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-animation') }}"></use>
               </svg>
             </div>
           </div>
@@ -120,7 +120,7 @@
               </li>
               <li class="profile-nav onhover-dropdown pe-0 py-0">
                 <div class="d-flex align-items-center profile-media">
-                  <img class="b-r-25" src="../assets/images/dashboard/profile.png" alt="">
+                  <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}" alt="">
                   <div class="flex-grow-1 user">
                     <span>Helen Walter</span>
                     <p class="mb-0 font-nunito">Admin
@@ -158,13 +158,13 @@
           <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
         </div>
       </div>
-      <!-- Page Header Ends                              -->
+      <!-- Page Header Ends-->
       <!-- Page body Start -->
       <div class="page-body-wrapper">
         <!-- Page Sidebar Start-->
         <div class="sidebar-wrapper" data-layout="stroke-svg">
           <div>
-            <div class="logo-wrapper"><a href="{{ route('dashboard') }}"> <img class="img-fluid for-light" src="../assets/images/logo/humma.jpg" alt=""></a>
+            <div class="logo-wrapper"><a href="{{ route('dashboard') }}"> <img class="img-fluid for-light" src="{{ asset('assets/images/logo/humma.jpg') }}" alt=""></a>
               {{-- <div class="toggle-sidebar">
                 <svg class="sidebar-toggle">
                   <use href="../assets/svg/icon-sprite.svg#toggle-icon"></use>
@@ -284,48 +284,47 @@
       </div>
     </div>
     <!-- latest jquery-->
-    <script src="../assets/js/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <!-- Bootstrap js-->
-    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- feather icon js-->
-    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-    <!-- scrollbar js-->
-    <script src="../assets/js/scrollbar/simplebar.js"></script>
-    <script src="../assets/js/scrollbar/custom.js"></script>
-    <!-- Sidebar jquery-->
-    <script src="../assets/js/config.js"></script>
-    <!-- Plugins JS start-->
-    <script src="../assets/js/sidebar-menu.js"></script>
-    <script src="../assets/js/sidebar-pin.js"></script>
-    <script src="../assets/js/slick/slick.min.js"></script>
-    <script src="../assets/js/slick/slick.js"></script>
-    <script src="../assets/js/header-slick.js"></script>
-    <script src="../assets/js/chart/morris-chart/raphael.js"></script>
-    <script src="../assets/js/chart/morris-chart/morris.js"> </script>
-    <script src="../assets/js/chart/morris-chart/prettify.min.js"></script>
-    <script src="../assets/js/chart/apex-chart/apex-chart.js"></script>
-    <script src="../assets/js/chart/apex-chart/stock-prices.js"></script>
-    <script src="../assets/js/chart/apex-chart/moment.min.js"></script>
-    <script src="../assets/js/notify/bootstrap-notify.min.js"></script>
-    <script src="../assets/js/dashboard/default.js"></script>
-    <script src="../assets/js/notify/index.js"></script>
-    <script src="../assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
-    <script src="../assets/js/datatable/datatables/datatable.custom.js"></script>
-    <script src="../assets/js/datatable/datatables/datatable.custom1.js"></script>
-    <script src="../assets/js/owlcarousel/owl.carousel.js"></script>
-    <script src="../assets/js/owlcarousel/owl-custom.js"></script>
-    <script src="../assets/js/typeahead/handlebars.js"></script>
-    <script src="../assets/js/typeahead/typeahead.bundle.js"></script>
-    <script src="../assets/js/typeahead/typeahead.custom.js"></script>
-    <script src="../assets/js/typeahead-search/handlebars.js"></script>
-    <script src="../assets/js/typeahead-search/typeahead-custom.js"></script>
-    <script src="../assets/js/height-equal.js"></script>
-    <!-- Plugins JS Ends-->
-    <!-- Theme js-->
-    <script src="../assets/js/script.js"></script>
-    <!-- <script src="../assets/js/theme-customizer/customizer.js"></script> -->
-    <!-- Plugin used-->
+    <!-- Bootstrap js -->
+<script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+<!-- Feather icon js -->
+<script src="{{ asset('assets/js/icons/feather-icon/feather.min.js') }}"></script>
+<script src="{{ asset('assets/js/icons/feather-icon/feather-icon.js') }}"></script>
+<!-- Scrollbar js -->
+<script src="{{ asset('assets/js/scrollbar/simplebar.js') }}"></script>
+<script src="{{ asset('assets/js/scrollbar/custom.js') }}"></script>
+<!-- Sidebar jquery -->
+<script src="{{ asset('assets/js/config.js') }}"></script>
+<!-- Plugins JS start -->
+<script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
+<script src="{{ asset('assets/js/sidebar-pin.js') }}"></script>
+<script src="{{ asset('assets/js/slick/slick.min.js') }}"></script>
+<script src="{{ asset('assets/js/slick/slick.js') }}"></script>
+<script src="{{ asset('assets/js/header-slick.js') }}"></script>
+<script src="{{ asset('assets/js/chart/morris-chart/raphael.js') }}"></script>
+<script src="{{ asset('assets/js/chart/morris-chart/morris.js') }}"></script>
+<script src="{{ asset('assets/js/chart/morris-chart/prettify.min.js') }}"></script>
+<script src="{{ asset('assets/js/chart/apex-chart/apex-chart.js') }}"></script>
+<script src="{{ asset('assets/js/chart/apex-chart/stock-prices.js') }}"></script>
+<script src="{{ asset('assets/js/chart/apex-chart/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/notify/bootstrap-notify.min.js') }}"></script>
+<script src="{{ asset('assets/js/dashboard/default.js') }}"></script>
+<script src="{{ asset('assets/js/notify/index.js') }}"></script>
+<script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+<script src="{{ asset('assets/js/datatable/datatables/datatable.custom1.js') }}"></script>
+<script src="{{ asset('assets/js/owlcarousel/owl.carousel.js') }}"></script>
+<script src="{{ asset('assets/js/owlcarousel/owl-custom.js') }}"></script>
+<script src="{{ asset('assets/js/typeahead/handlebars.js') }}"></script>
+<script src="{{ asset('assets/js/typeahead/typeahead.bundle.js') }}"></script>
+<script src="{{ asset('assets/js/typeahead/typeahead.custom.js') }}"></script>
+<script src="{{ asset('assets/js/typeahead-search/handlebars.js') }}"></script>
+<script src="{{ asset('assets/js/typeahead-search/typeahead-custom.js') }}"></script>
+<script src="{{ asset('assets/js/height-equal.js') }}"></script>
+<!-- Plugins JS Ends -->
+<!-- Theme js -->
+<script src="{{ asset('assets/js/script.js') }}"></script>
   </body>
 
 <!-- Mirrored from admin.pixelstrap.net/zono/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Nov 2024 14:47:43 GMT -->
