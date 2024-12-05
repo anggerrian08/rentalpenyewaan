@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Plat extends Model
+class Merek extends Model
 {
-    
-    protected $fillable = ['plat'];
+    protected $guarded = ['id'];
 
     public function car(){
-        return $this->hasOne(Car::class);
+        return $this->hasMany(Car::class);
     }
 }

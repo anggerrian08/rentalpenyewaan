@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('login_logs', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('ip_address');
-            $table->timestamp('login_time');
+            $table->foreignId('car_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->text('review');
+            $table->integer('rating');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('login_logs');
+        Schema::dropIfExists('reviews');
     }
 };
