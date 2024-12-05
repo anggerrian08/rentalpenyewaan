@@ -1,14 +1,14 @@
 @extends('layouts.template')
 
-@section('content')
+@section('content') <br>
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
     <div class="breadcrumb-title pe-3 text-primary">RentalMobil</div>
     <div class="ps-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
-                <li class="breadcrumb-item">
+                {{-- <li class="breadcrumb-item">
                     <a href="javascript:;" class="text-decoration-none text-dark"><i class="bx bx-home-alt"></i></a>
-                </li>
+                </li> --}}
                 <li class="breadcrumb-item active" aria-current="page">Orders</li>
             </ol>
         </nav>
