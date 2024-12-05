@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detail_pembayaran;
+use App\Models\CarLikes;
 use Illuminate\Http\Request;
 
-class DetailPembayaranController extends Controller
+class CarLikesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class DetailPembayaranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(detail_pembayaran $detail_pembayaran)
+    public function show(CarLikes $carLikes)
     {
         //
     }
@@ -42,7 +42,7 @@ class DetailPembayaranController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(detail_pembayaran $detail_pembayaran)
+    public function edit(CarLikes $carLikes)
     {
         //
     }
@@ -50,7 +50,7 @@ class DetailPembayaranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, detail_pembayaran $detail_pembayaran)
+    public function update(Request $request, CarLikes $carLikes)
     {
         //
     }
@@ -58,7 +58,7 @@ class DetailPembayaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(detail_pembayaran $detail_pembayaran)
+    public function destroy(CarLikes $carLikes)
     {
         //
     }

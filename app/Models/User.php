@@ -22,7 +22,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'photo',
+        'ktp',
+        'sim',
+        'nik',
+        'birth_date',
+        'jk',
+        'address',
+        'phone_number',
+        'status',
+        'login_time',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,5 +56,19 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function car(){
+        return $this->hasMany(Car::class);
+    }
+
+
+    public function user(){
+        return $this->belongsToMany(Car::class, 'car_likes', 'user_id', 'car_id');
+    }
+
+
+    public function review(){
+        return $this->hasMany(Review::class);
     }
 }

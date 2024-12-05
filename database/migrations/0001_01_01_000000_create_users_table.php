@@ -16,6 +16,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('photo');
+            $table->string('ktp');
+            $table->string('sim');
+            $table->string('nik')->unique();
+            $table->date('birth_date'); // tgl_lahir
+            $table->enum('jk', ['laki-laki', 'perempuan']);
+            $table->string('address');
+            $table->string('phone_number');
+            $table->enum('status', ['accepted', 'in_process', 'rejected'])->default('in_process');
+            $table->timestamp('login_time')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

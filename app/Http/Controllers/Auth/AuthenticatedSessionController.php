@@ -29,21 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $user = Auth::user();
-        $ip_address = $request->ip();
+        // $user = Auth::user();
+        // $ip_address = $request->ip();
 
-        $detail_login = LoginLogs::where('user_id', $user->id)->where('ip_address', $ip_address)->first();
-        if($detail_login){
-            $detail_login->update([
-                'login_time' => now()->setTimezone('Asia/jakarta')
-            ]);
-        }else{
-            LoginLogs::create([
-                'user_id' => $user->id,
-                'ip_address' => $ip_address,
-                'login_time' => now()->setTimezone('Asia/jakarta')
-            ]);
-        }
+        // $detail_login = LoginLogs::where('user_id', $user->id)->where('ip_address', $ip_address)->first();
+        // if($detail_login){
+        //     $detail_login->update([
+        //         'login_time' => now()->setTimezone('Asia/jakarta')
+        //     ]);
+        // }else{
+        //     LoginLogs::create([
+        //         'user_id' => $user->id,
+        //         'ip_address' => $ip_address,
+        //         'login_time' => now()->setTimezone('Asia/jakarta')
+        //     ]);
+        // }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

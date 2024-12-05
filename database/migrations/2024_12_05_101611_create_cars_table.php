@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained()->cascadeOnUpdate();
-            $table->foreignId('plat_id')->constrained()->cascadeOnUpdate();
+            $table->foreignId('merek_id')->constrained()->onUpdate('cascade');
             $table->string('name');
             $table->text('description');
+            $table->enum('fuel_type', ['gasoline', 'diesel']);
+            $table->date('manufacture_year'); 
+            $table->string('plat')->unique();
             $table->integer('price');
             $table->integer('stock');
             $table->string('photo');

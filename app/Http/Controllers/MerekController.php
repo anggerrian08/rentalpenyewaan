@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\denda;
+use App\Models\Merek;
 use Illuminate\Http\Request;
 
-class DendaController extends Controller
+class MerekController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class DendaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(denda $denda)
+    public function show(Merek $merek)
     {
         //
     }
@@ -42,7 +42,7 @@ class DendaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(denda $denda)
+    public function edit(Merek $merek)
     {
         //
     }
@@ -50,7 +50,7 @@ class DendaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, denda $denda)
+    public function update(Request $request, Merek $merek)
     {
         //
     }
@@ -58,7 +58,7 @@ class DendaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(denda $denda)
+    public function destroy(Merek $merek)
     {
         //
     }
