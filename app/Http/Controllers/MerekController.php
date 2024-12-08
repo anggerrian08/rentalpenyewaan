@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Merek;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MerekController extends Controller
 {
@@ -12,54 +13,44 @@ class MerekController extends Controller
      */
     public function index()
     {
-        //
+        $data = Merek::paginate(8);
+        return view('merek.index', compact('data'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        if (Merek::where('name', $data['name'])->exists()) {
+            return back()->with('error', 'Failed to add Merek because it already exists.');
+        }
+
+        Merek::create($data);
+        Alert::success('Berhasil', 'Data berhasil ditambahkan');
+        return redirect()->route('merek.index')->with('success', 'Merek added successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Merek $merek)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Merek $merek)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Merek $merek)
     {
-        //
-    }
+        $data = $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+        if (Merek::where('name', $data['name'])->where('id', '!=', $merek->id)->exists()) {
+            return back()->with('error', 'Failed to update Merek because the name already exists.');
+        }
+
+        $merek->update($data);
+        return redirect()->route('merek.index')->with('success', 'Merek updated successfully.');
+    }
     public function destroy(Merek $merek)
     {
-        //
+        try {
+            $merek->delete();
+            return redirect()->route('merek.index')->with('success', 'Merek deleted successfully.');
+        } catch (\Throwable $th) {
+            return back()->with('error', 'gagal hapus karena relasi dengan car');
+        }
     }
 }
