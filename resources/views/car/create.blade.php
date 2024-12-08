@@ -9,7 +9,7 @@
                 {{-- <li class="breadcrumb-item">
                     <a href="javascript:;" class="text-decoration-none text-dark"><i class="bx bx-home-alt"></i></a>
                 </li> --}}
-                <li class="breadcrumb-item active" aria-current="page">Orders</li>
+                {{-- <li class="breadcrumb-item active" aria-current="page">Orders</li> --}}
             </ol>
         </nav>
     </div>

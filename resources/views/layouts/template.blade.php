@@ -10,7 +10,7 @@
     <meta name="keywords" content="admin template, Zono admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo/humma.jpg') }}" type="image/x-icon">
+    {{-- <link rel="shortcut icon" href="{{ asset('assets/images/logo/humma.jpg') }}" type="image/x-icon"> --}}
     <title>HUMMA RENTCAR</title>
 
 <style>
@@ -201,7 +201,7 @@
                       <h6 class="">Data Mobil</h6>
                     </div>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('car.index') }}">
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link" href="{{ route('merek.index') }}">
                     <i class="fa fa-car"></i>
                       <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>

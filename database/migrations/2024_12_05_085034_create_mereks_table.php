@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('mereks', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('logo');
-            $table->date('founded_date');
+            
             $table->timestamps();
         });
     }

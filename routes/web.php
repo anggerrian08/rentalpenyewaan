@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginLogsController;
 use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\MerekController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');
     Route::resource('/review', ReviewController::class)->only('index','show');
+    Route::resource('/merek', MerekController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
