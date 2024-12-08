@@ -216,8 +216,8 @@
                         <span class="">Jenis Mobil</span>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="general-widget.html">List jenis mobil</a></li>
-                        <li><a href="chart-widget.html">Tambah jenis mobil</a></li>
+                        <li><a href="jenis mobil">List jenis mobil</a></li>
+                        <li><a href="tambah jenis mobil">Tambah jenis mobil</a></li>
                     </ul>
                 </li>
 
@@ -256,7 +256,7 @@
                       <h6 class="">User</h6>
                     </div>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="aproval#">
                     <i class="fa fa-user-check"></i>
                     <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
