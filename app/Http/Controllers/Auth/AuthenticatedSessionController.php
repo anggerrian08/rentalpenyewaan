@@ -29,23 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // $user = Auth::user();
-        // $ip_address = $request->ip();
+        $user = Auth::user();
 
-        // $detail_login = LoginLogs::where('user_id', $user->id)->where('ip_address', $ip_address)->first();
-        // if($detail_login){
-        //     $detail_login->update([
-        //         'login_time' => now()->setTimezone('Asia/jakarta')
-        //     ]);
-        // }else{
-        //     LoginLogs::create([
-        //         'user_id' => $user->id,
-        //         'ip_address' => $ip_address,
-        //         'login_time' => now()->setTimezone('Asia/jakarta')
-        //     ]);
-        // }
+        if($user->status == 'accepted'){
+            $request->session()->regenerate();
+            $user->update([
+                'login_time' => now()->setTimezone('Asia/Jakarta'),
+            ]);
+            return redirect()->intended(route('dashboard', absolute: false));
+        }else{
+            Auth::logout();
+            return back()->withErrors([
+                'email' => 'Your account is not approved. Please contact support.',
+            ]);
+        }
 
-        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
