@@ -30,6 +30,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 
 
 });
+
+    Route::get('/DataUser  ', function(){
+        return view('data_user.index');
+    });
 Route::get('/loginlogs', [LoginLogsController::class, 'index'])->name('loginlogs.index');
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
