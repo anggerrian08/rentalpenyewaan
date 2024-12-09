@@ -22,16 +22,6 @@
             <form method="POST" action="{{ route('login') }}" class="mt-6">
                 @csrf
                 <div class="mb-4">
-                    <label for="username" class="block text-gray-600 font-medium mb-2">Username</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        placeholder="Masukkan nama lengkap"
-                        class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        required>
-                </div>
-                <div class="mb-4">
                     <label for="email" class="block text-gray-600 font-medium mb-2">Email Address</label>
                     <input
                         type="email"
