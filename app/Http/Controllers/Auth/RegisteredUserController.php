@@ -60,11 +60,11 @@ class RegisteredUserController extends Controller
             'jk' => $request->jk,
             'address' => $request->address,
             'phone_number' => $request->phone_number,
-            'status' => 'accepted',
+            'status' => 'in_process',
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('admin');
+        $user->assignRole('user');
 
         event(new Registered($user));
 
