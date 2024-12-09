@@ -52,106 +52,105 @@
     }
 
 </style>
-    <span>
-    </span>
-    <head>
-        <!-- Card 1: Kotak Biru -->
-<div class="kotak-biru">
-    <div class="d-flex justify-content-between align-items-start mb-3">
-        <!-- Heading "Merk Mobil" -->
-        <div>
-            <h2 class="text-white fw-bold mb-1">Aproval User</h2>
-            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Aproval User</p>
+
+<span>
+</span>
+<head>
+    <!-- Card 1: Kotak Biru -->
+    <div class="kotak-biru">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <!-- Heading "Merk Mobil" -->
+            <div>
+                <h2 class="text-white fw-bold mb-1">Aproval User</h2>
+                <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Aproval User</p>
+            </div>
         </div>
     </div>
-</div>
 
+</head>
 
-
-    <body>
-        <div class="col-md-12 project-list">
-            <div class="card">
-                <div class="row align-items-center">
-                    <!-- Kolom untuk filter -->
-                    <div class="col-md-2 p-0 text-end">
-                        <form class="d-flex justify-content-end">
-                            <!-- Dropdown filter -->
-                            <select class="form-select me-2" aria-label="Filter Merk Mobil">
-                                <option value="" selected>Filter</option>
-                                <option value="a-z">A-Z</option>
-                                <option value="z-a">Z-A</option>
-                                <option value="terbaru">Terbaru</option>
-                                <option value="terlama">Terlama</option>
-                            </select>
-                        </form>
-                    </div>
-
-                    <!-- Kolom untuk search -->
-                    <div class="col-md-2 p-0 text-end">
-                        <form action="" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
-                            <span id="search-icon">
-                                <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
-                            </span>
-                            <input type="text" style="border: none;" placeholder="Cari aproval user..." aria-label="Search">
-                        </form>
-                    </div>
-
-                    <!-- Kolom untuk tombol Terima -->
-                    <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
-                        <button type="button" class="btn btn-success">Terima</button>
-                    </div>
+<body>
+    <div class="col-md-12 project-list">
+        <div class="card">
+            <div class="row align-items-center">
+                <!-- Kolom untuk filter -->
+                <div class="col-md-2 p-0 text-end">
+                    <form class="d-flex justify-content-end">
+                        <!-- Dropdown filter -->
+                        <select class="form-select me-2" aria-label="Filter Merk Mobil">
+                            <option value="" selected>Filter</option>
+                            <option value="a-z">A-Z</option>
+                            <option value="z-a">Z-A</option>
+                            <option value="terbaru">Terbaru</option>
+                            <option value="terlama">Terlama</option>
+                        </select>
+                    </form>
                 </div>
 
+                <!-- Kolom untuk search -->
+                <div class="col-md-2 p-0 text-end">
+                    <form action="" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                        <span id="search-icon">
+                            <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
+                        </span>
+                        <input type="text" style="border: none;" placeholder="Cari aproval user..." aria-label="Search">
+                    </form>
+                </div>
 
-                <div class="col-sm-12 mt-3">
-                    {{-- <div class="card"> --}}
-                    <div class="card-block row">
-                        <div class="col-sm-12 col-lg-12 col-xl-12">
-                            <div class="table-responsive custom-scrollbar">
-                                <table class="table table-light">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Pilih</th>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Nik</th>
-                                            <th scope="col">Umur</th>
-                                            <th scope="col">Jenis Kelamin</th>
-                                            <th scope="col">No Hp</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($user as $isi)
-                                        <tr>
-                                            <td>{{ $loop->iteration}}</td>
-                                            <td>{{ $isi->name }}</td>
-                                            <td>{{ $isi->nik }}</td>
-                                            <td>{{ $isi->birt_date }}</td>
-                                            <td>{{ $isi->jk }}</td>
-                                            <td>{{ $isi->phone_number }}</td>
-                                            <td >
-                                                <div class="d-flex justify-content-center flex item-center">
-                                                    <button style="position: relative; right:20px" type="button" class="btn btn-info btn-sm p-1" data-bs-toggle="modal" data-bs-target="#show{{ $isi->id }}">
-                                                        <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                                    </button>
+                <!-- Kolom untuk tombol Terima -->
+                <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
+                    <button type="button" class="btn btn-success">Terima</button>
+                </div>
+            </div>
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                       @endforeach
-                                    </tbody>
-                                </table>
-                                <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
-                                </hr>
-                            </div>
+            <div class="col-sm-12 mt-3">
+                <div class="card-block row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive custom-scrollbar">
+                            <table class="table table-light">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Pilih</th>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Nik</th>
+                                        <th scope="col">Umur</th>
+                                        <th scope="col">Jenis Kelamin</th>
+                                        <th scope="col">No Hp</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($user as $isi)
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="user_ids[]" value="{{ $isi->id }}">
+                                        </td>
+                                        <td>{{ $loop->iteration}}</td>
+                                        <td>{{ $isi->name }}</td>
+                                        <td>{{ $isi->nik }}</td>
+                                        <td>{{ $isi->birt_date }}</td>
+                                        <td>{{ $isi->jk }}</td>
+                                        <td>{{ $isi->phone_number }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center flex item-center">
+                                                <button style="position: relative; right:20px" type="button" class="btn btn-info btn-sm p-1" data-bs-toggle="modal" data-bs-target="#show{{ $isi->id }}">
+                                                    <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-    </body>
+    </div>
+
     <!-- Pagination -->
     <div class="row mt-3">
         <div class="col-md-12 text-center">
@@ -175,5 +174,5 @@
         </div>
     </div>
 
-    </body>
+</body>
 @endsection
