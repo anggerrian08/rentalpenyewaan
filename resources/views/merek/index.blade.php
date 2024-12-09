@@ -105,20 +105,22 @@
                         <h4 class="card-title m-0">{{ $merk->name }}</h4>
                     </div>
                     <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
-                    <div>
-                        <td>{{ \Carbon\Carbon::parse($merk->created_add)->translatedFormat('l, d F Y') }}</td>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <form action="{{ route('merek.destroy', $merk->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm me-2 p-1">
-                                <i class="fa fa-trash" style="font-size: 15px;"></i>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            {{ \Carbon\Carbon::parse($merk->created_add)->translatedFormat('d-M-Y') }}
+                        </div>
+                        <div>
+                            <form action="{{ route('merek.destroy', $merk->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm me-2 p-1 ">
+                                    <i class="fa fa-trash" style="font-size: 15px;"></i>
+                                </button>
+                            </form>
+                            <button type="button" class="btn btn-warning btn-sm p-1" data-bs-toggle="modal" data-bs-target="#edit{{ $merk->id }}">
+                                <i class="fa fa-edit" style="font-size: 15px;"></i>
                             </button>
-                        </form>
-                        <button type="button" class="btn btn-warning btn-sm p-1" data-bs-toggle="modal" data-bs-target="#edit{{ $merk->id }}">
-                            <i class="fa fa-edit" style="font-size: 15px;"></i>
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>

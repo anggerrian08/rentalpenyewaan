@@ -216,8 +216,10 @@
                         <span class="">Jenis Mobil</span>
                     </a>
                     <ul class="sidebar-submenu">
+
                         <li><a href="jenis mobil">List jenis mobil</a></li>
                         <li><a href="tambah jenis mobil">Tambah jenis mobil</a></li>
+
                     </ul>
                 </li>
 
@@ -235,7 +237,7 @@
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Data Sewa</span></a>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('riwayat.index') }}">
                     <i class="fa fa-history"></i>
                       <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
@@ -275,14 +277,15 @@
         </div>
         <!-- Page Sidebar Ends-->
         <div class="page-body">
-
-@yield('content')
+        @yield('content')
+        @include('sweetalert::alert')
         </div>
 
         <!-- footer start-->
 
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <!-- Bootstrap js-->
