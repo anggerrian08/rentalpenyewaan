@@ -7,17 +7,14 @@ use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\MerekController;
-use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApprovalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/aproval', function () {
-    return view('aproval.index');
-});
 
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
@@ -29,13 +26,9 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::resource('/car', CarController::class)->except('index', 'show');
-<<<<<<< HEAD
-    Route::resource('/riwayat', RiwayatController::class);
-
-=======
     Route::resource('/merek', MerekController::class);
->>>>>>> 24ef9d63fb0721086715ff6e5caaf02751171697
-
+    Route::resource('/user', UserController::class);
+    Route::resource('/aproval', ApprovalController::class);
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
