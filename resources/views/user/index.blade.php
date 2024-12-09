@@ -60,15 +60,12 @@
     <div class="d-flex justify-content-between align-items-start mb-3">
         <!-- Heading "Merk Mobil" -->
         <div>
-            <h2 class="text-white fw-bold mb-1">Aproval User</h2>
-            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Aproval User</p>
+            <h2 class="text-white fw-bold mb-1">Daftar User</h2>
+            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">User | Daftar User</p>
         </div>
     </div>
 </div>
-
-
-
-    <body>
+<body>
         <div class="col-md-12 project-list">
             <div class="card">
                 <div class="row align-items-center">
@@ -92,15 +89,15 @@
                             <span id="search-icon">
                                 <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
                             </span>
-                            <input type="text" style="border: none;" placeholder="Cari aproval user..." aria-label="Search">
+                            <input type="text" style="border: none;" placeholder="Cari daftar user..." aria-label="Search">
                         </form>
                     </div>
 
-                    <!-- Kolom untuk tombol Terima -->
+                    {{-- <!-- Kolom untuk tombol Terima -->
                     <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
                         <button type="button" class="btn btn-success">Terima</button>
                     </div>
-                </div>
+                </div> --}}
 
 
                 <div class="col-sm-12 mt-3">
@@ -111,7 +108,6 @@
                                 <table class="table table-light">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Pilih</th>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">Nik</th>
@@ -122,7 +118,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($user as $isi)
+
+                                       @foreach ($data as $isi)
                                         <tr>
                                             <td>{{ $loop->iteration}}</td>
                                             <td>{{ $isi->name }}</td>
