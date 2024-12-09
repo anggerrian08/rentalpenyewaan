@@ -92,7 +92,7 @@
                             <span id="search-icon">
                                 <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
                             </span>
-                            <input type="text" style="border: none;" placeholder="Cari merk mobil..." aria-label="Search">
+                            <input type="text" style="border: none;" placeholder="Cari aproval user..." aria-label="Search">
                         </form>
                     </div>
 
@@ -122,7 +122,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Data rows akan ditambahkan di sini -->
+                                        @foreach ($user as $isi)
+                                        <tr>
+                                            <td>{{ $loop->iteration}}</td>
+                                            <td>{{ $isi->name }}</td>
+                                            <td>{{ $isi->nik }}</td>
+                                            <td>{{ $isi->birt_date }}</td>
+                                            <td>{{ $isi->jk }}</td>
+                                            <td>{{ $isi->phone_number }}</td>
+                                            <td >
+                                                <div class="d-flex justify-content-center flex item-center">
+                                                    <button style="position: relative; right:20px" type="button" class="btn btn-info btn-sm p-1" data-bs-toggle="modal" data-bs-target="#show{{ $isi->id }}">
+                                                        <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                    </button>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                       @endforeach
                                     </tbody>
                                 </table>
                                 <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
