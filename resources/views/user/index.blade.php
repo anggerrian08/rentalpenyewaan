@@ -68,37 +68,33 @@
 <body>
         <div class="col-md-12 project-list">
             <div class="card">
-                <div class="row align-items-center">
-                    <!-- Kolom untuk filter -->
-                    <div class="col-md-2 p-0 text-end">
-                        <form class="d-flex justify-content-end">
-                            <!-- Dropdown filter -->
-                            <select class="form-select me-2" aria-label="Filter Merk Mobil">
-                                <option value="" selected>Filter</option>
-                                <option value="a-z">A-Z</option>
-                                <option value="z-a">Z-A</option>
-                                <option value="terbaru">Terbaru</option>
-                                <option value="terlama">Terlama</option>
-                            </select>
-                        </form>
+                <div class="col-md-12 project-list">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <!-- Kolom untuk filter -->
+                                <form class="d-flex justify-content-between" method="GET" action="{{ route('user.index') }}">
+                                    <!-- Dropdown filter -->
+                                    <select name="gender" class="form-select me-2" aria-label="Filter Jenis Kelamin">
+                                        <option value="" selected>Filter Jenis Kelamin</option>
+                                        <option value="laki-laki">Laki-laki</option>
+                                        <option value="perempuan">Perempuan</option>
+                                    </select>
+                
+                                    <!-- Kolom untuk search -->
+                                    <div class="input-group me-2">
+                                        <span class="input-group-text" id="search-icon">
+                                            <i class="fa fa-search" style="color:#00000040;"></i>
+                                        </span>
+                                        <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan email..." aria-label="Search">
+                                    </div>
+                
+                                    <button type="submit" class="btn btn-primary">Cari</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Kolom untuk search -->
-                    <div class="col-md-2 p-0 text-end">
-                        <form action="" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
-                            <span id="search-icon">
-                                <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
-                            </span>
-                            <input type="text" style="border: none;" placeholder="Cari daftar user..." aria-label="Search">
-                        </form>
-                    </div>
-
-                    {{-- <!-- Kolom untuk tombol Terima -->
-                    <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
-                        <button type="button" class="btn btn-success">Terima</button>
-                    </div>
-                </div> --}}
-
+                </div>
 
                 <div class="col-sm-12 mt-3">
                     {{-- <div class="card"> --}}
@@ -119,25 +115,29 @@
                                     </thead>
                                     <tbody>
 
-                                       @foreach ($data as $isi)
-                                        <tr>
-                                            <td>{{ $loop->iteration}}</td>
-                                            <td>{{ $isi->name }}</td>
-                                            <td>{{ $isi->nik }}</td>
-                                            <td>{{ $isi->birt_date }}</td>
-                                            <td>{{ $isi->jk }}</td>
-                                            <td>{{ $isi->phone_number }}</td>
-                                            <td >
-                                                <div class="d-flex justify-content-center flex item-center">
-                                                    <button style="position: relative; right:20px" type="button" class="btn btn-info btn-sm p-1" data-bs-toggle="modal" data-bs-target="#show{{ $isi->id }}">
-                                                        <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                                    </button>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                       @endforeach
-                                    </tbody>
+                                        <tbody>
+                                            @forelse ($data as $isi)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $isi->name }}</td>
+                                                    <td>{{ $isi->nik }}</td>
+                                                    <td>{{ $isi->birth_date }}</td>
+                                                    <td>{{ $isi->jk }}</td>
+                                                    <td>{{ $isi->phone_number }}</td>
+                                                    <td>
+                                                        <div class="d-flex justify-content-center align-items-center">
+                                                            <button style="position: relative; right:20px" type="button" class="btn btn-info btn-sm p-1" data-bs-toggle="modal" data-bs-target="#show{{ $isi->id }}">
+                                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="7" class="text-center btn btn-danger">Tidak ada data</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
                                 </table>
                                 <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                 </hr>
@@ -172,5 +172,76 @@
         </div>
     </div>
 
-    </body>
+
+    @foreach ($data as $isi)
+    <!-- Modal Detail User -->
+    <div class="modal fade" id="show{{ $isi->id }}" tabindex="-1" aria-labelledby="showLabel{{ $isi->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showLabel{{ $isi->id }}">Detail User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Nama</th>
+                            <td>{{ $isi->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>NIK</th>
+                            <td>{{ $isi->nik }}</td>
+                        </tr>
+                        <tr>
+                            <th>Umur</th>
+                            <td>{{ $isi->birt_date }}</td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Kelamin</th>
+                            <td>{{ $isi->jk }}</td>
+                        </tr>
+                        <tr>
+                            <th>No Hp</th>
+                            <td>{{ $isi->phone_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>Alamat</th>
+                            <td>{{ $isi->address }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ $isi->email }}</td>
+                        </tr>
+                        <tr>
+                            <th>photo</th>
+                            <td><img src="{{asset('storage/uploads/photo/'. $isi->photo)}}" alt="" height="100px"></td>
+                        </tr>
+                        <tr>
+                            <th>ktp</th>
+                            <td><img src="{{asset('storage/uploads/ktp/'. $isi->ktp)}}" alt="" height="100px"></td>
+                        </tr>
+                        <tr>
+                            <th>sim</th>
+                            <td><img src="{{asset('storage/uploads/sim/'. $isi->sim)}}" alt="" height="100px"></td>
+                        </tr>
+                        <tr>
+                            <th>status</th>
+                            <td class="badge btn-">{{$isi->status}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="{{ route('user.destroy', $isi->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE') <!-- Menggunakan PATCH untuk update -->
+                        <button class="btn btn-danger" type="submit">hapus</button>
+                    </form>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Detail User -->
+@endforeach
 @endsection

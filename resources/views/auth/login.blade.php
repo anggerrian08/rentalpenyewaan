@@ -6,8 +6,8 @@
     <title>Login - HummaCar</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center w-screen h-screen">
 
+<body class="bg-gray-100 flex items-center justify-center w-screen h-screen">
 
     <div class="bg-white rounded-lg shadow-lg w-full h-full flex overflow-hidden">
         <!-- Bagian Kiri: Ilustrasi -->
@@ -18,6 +18,14 @@
 
         <!-- Bagian Kanan: Form Login -->
         <div class="flex-1 p-8 lg:p-12">
+            @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                @foreach ($errors->all() as $error)
+                    <span class="block sm:inline">{{ $error }}</span>
+                @endforeach
+            </div>
+        @endif
+        
             <h2 class="text-3xl font-bold text-gray-800 text-center">Login</h2>
             <form method="POST" action="{{ route('login') }}" class="mt-6">
                 @csrf
