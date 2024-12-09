@@ -18,9 +18,12 @@ Route::get('/aproval', function () {
     return view('aproval.index');
 });
 
+Route::get('/jenis mobil', function () {
+    return view('list_jenis_mobil.index');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
