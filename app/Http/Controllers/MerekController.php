@@ -11,9 +11,17 @@ class MerekController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Merek::paginate(8);
+        $request->validate([
+            'name' => 'nullable|string|max:30'
+        ]);
+        $search = $request->input('search');
+        if($search){
+            $data = Merek::where('name', 'LIKE','%'.$search.'%')->paginate(8);
+        }else{
+            $data = Merek::latest()->paginate(8);
+        }
         return view('merek.index', compact('data'));
     }
     public function store(Request $request)

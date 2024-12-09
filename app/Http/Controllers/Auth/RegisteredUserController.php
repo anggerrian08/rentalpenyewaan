@@ -30,46 +30,45 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'lowercase', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'photo' => ['required', 'image', 'mimes:jpg,png,jpeg' ,'max:2048'], // Maks 2MB
-            'ktp' => ['required', 'image','mimes:jpg,png,jpeg', 'max:2048'], // Maks 2MB
-            'sim' => ['required', 'image','mimes:jpg,png,jpeg', 'max:2048'], // Maks 2MB
-            'nik' => ['required', 'string', 'max:16'],
-            'birth_date' => ['required', 'date'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+            'photo' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+            'ktp' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+            'sim' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+            'nik' => ['required', 'string', 'max:255'],
+            'birt_date' => ['required', 'date'],
             'jk' => ['required', 'in:laki-laki,perempuan'],
-            'address' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string'],
             'phone_number' => ['required', 'string', 'max:15'],
+            // 'status' => ['required', 'in:accepted,in_process,rejected'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        // Upload files
-        $photoPath = $request->file('photo');
-        $photoPath->storeAs('photoprofile', $photoPath->hashName(),'public');
-
-        $ktpPath = $request->file('ktp');
-        $ktpPath->storeAs('photoktp', $ktpPath->hashName(), 'public');
-
-        $simPath = $request->file('sim');
-        $simPath->storeAs('photosim',$simPath->hashName(), 'public');
+        $photo = $request->file('photo');
+        $photo->storeAs('uploads/photo', $photo->hashName(), 'public');
+        $ktp = $request->file('ktp');
+        $ktp->storeAs('uploads/ktp', $ktp->hashName(), 'public');
+        $sim = $request->file('sim');
+        $sim->storeAs('uploads/sim', $sim->hashName(), 'public');
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'photo' => $photoPath->hashName(),
-            'ktp' => $ktpPath->hashName(),
-            'sim' => $simPath->hashName(),
+            'photo' => $photo->hashName(),
+            'ktp' => $ktp->hashName(),
+            'sim' => $sim->hashName(),
             'nik' => $request->nik,
-            'birth_date' => $request->birth_date,
+            'birt_date' => $request->birt_date,
             'jk' => $request->jk,
             'address' => $request->address,
             'phone_number' => $request->phone_number,
+            'status' => 'accepted',
+            'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('user');
+        $user->assignRole('admin');
 
         event(new Registered($user));
 
-        return redirect(route('login'))->with('success', 'Registration successful. Please login.');
+
+        return redirect(route('login'));
     }
 }
