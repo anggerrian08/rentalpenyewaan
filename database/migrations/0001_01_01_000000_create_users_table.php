@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('ktp');
             $table->string('sim');
             $table->string('nik')->unique();
-            $table->date('birth_date'); // tgl_lahir
+            $table->date('birt_date');
             $table->enum('jk', ['laki-laki', 'perempuan']);
-            $table->string('address');
-            $table->string('phone_number');
-            $table->enum('status', ['accepted', 'in_process', 'rejected'])->default('in_process');
+            $table->text('address');
+            $table->string('phone_number')->unique();
+            $table->enum('status', ['accepted', 'in_process' ,'rejected']);
             $table->timestamp('login_time')->nullable();
             $table->string('password');
             $table->rememberToken();
