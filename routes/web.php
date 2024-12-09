@@ -7,6 +7,7 @@ use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\MerekController;
+use App\Http\Controllers\RiwayatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
     Route::resource('/plat', PlatController::class)->only('index', 'store', 'update','destroy');
     Route::resource('/car', CarController::class)->except('index', 'show');
+    Route::resource('/riwayat', RiwayatController::class);
 
 
 });
