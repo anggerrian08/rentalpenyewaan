@@ -80,7 +80,7 @@
                                         <option value="laki-laki">Laki-laki</option>
                                         <option value="perempuan">Perempuan</option>
                                     </select>
-                
+
                                     <!-- Kolom untuk search -->
                                     <div class="input-group me-2">
                                         <span class="input-group-text" id="search-icon">
@@ -88,7 +88,7 @@
                                         </span>
                                         <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan email..." aria-label="Search">
                                     </div>
-                
+
                                     <button type="submit" class="btn btn-primary">Cari</button>
                                 </form>
                             </div>
@@ -121,7 +121,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $isi->name }}</td>
                                                     <td>{{ $isi->nik }}</td>
-                                                    <td>{{ $isi->birth_date }}</td>
+                                                    <td>{{ $isi->birt_date }}</td>
                                                     <td>{{ $isi->jk }}</td>
                                                     <td>{{ $isi->phone_number }}</td>
                                                     <td>
@@ -134,7 +134,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="7" class="text-center btn btn-danger">Tidak ada data</td>
+                                                    <td colspan="12" class="text-center">Tidak ada data user yang ditemukan</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -172,76 +172,109 @@
         </div>
     </div>
 
+@foreach ($data as $isi)
+<!-- Modal Detail User -->
+<div class="modal fade" id="show{{ $isi->id }}" tabindex="-1" aria-labelledby="showLabel{{ $isi->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-5">
+            <div class="modal-header">
+                <h5 class="modal-title" id="showLabel{{ $isi->id }}">
+                    <img src="{{ asset('assets/images/logo/humma.jpg') }}" alt="" width="200px">
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-stretch">
+                    <!-- Foto Profil -->
+                    <div class="me-4 text-center">
+                        <img src="{{ asset('storage/uploads/photo/' . $isi->photo) }}" alt="Foto Profil" class="rounded-circle border" width="120" height="120">
+                        <h5 class="mt-2">{{ $isi->username }}</h5>
+                        <h3 class="mt-1">Eva Maulani</h3>
+                        <p class="text-muted">{{ $isi->phone_number }}</p>
+                        <div class="d-flex justify-content-center gap-2 mt-2">
+                            <button class="btn btn-outline-info" type="button">Email</button>
+                            <button class="btn btn-outline-info" type="button">Send</button>
+                        </div>
+                        <hr class="my-3">
+                        <div class="alert alert-light-dark light alert-dismissible fade show text-dark border-left-wrapper" role="alert"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12" y2="17"></line></svg>
+                            <p class="txt-dark"></p>
+                          </div>
+                    </div>
 
-    @foreach ($data as $isi)
-    <!-- Modal Detail User -->
-    <div class="modal fade" id="show{{ $isi->id }}" tabindex="-1" aria-labelledby="showLabel{{ $isi->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="showLabel{{ $isi->id }}">Detail User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- Garis Vertikal -->
+                    <div class="border-start mx-4" style="height: auto; border-left: 2px solid #7a7979;"></div>
+
+                    <!-- Detail User -->
+                    {{-- <div class="w-100">
+                        <table class="table table-borderless">
+                            <tr>
+                                <th class="text-muted">Nama</th>
+                                <td class="text-muted">{{ $isi->name }}</td>
+                                <th class="text-muted">NIK</th>
+                                <td class="text-muted">{{ $isi->nik }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Tanggal Lahir</th>
+                                <td class="text-muted">{{ $isi->birt_date }}</td>
+                                <th class="text-muted">Jenis Kelamin</th>
+                                <td class="text-muted">{{ $isi->jk }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Alamat</th>
+                                <td colspan="3" class="text-muted">{{ $isi->address }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Email</th>
+                                <td class="text-muted">{{ $isi->email }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Foto KTP</th>
+                                <td>
+                                    <img src="{{ asset('storage/uploads/ktp/' . $isi->ktp) }}" alt="KTP" width="100">
+                                </td>
+                                <th class="text-muted">Foto SIM</th>
+                                <td>
+                                    <img src="{{ asset('storage/uploads/sim/' . $isi->sim) }}" alt="SIM" width="100">
+                                </td>
+                            </tr>
+                        </table>
+                    </div> --}}
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-muted m-0">Nama</p>
+                            <p class="text-muted m-0">{{ $isi->name }}</p><br>
+                            <p class="text-muted m-0">Email</p>
+                            <p class="text-muted m-0">{{ $isi->email }}</p><br>
+                            <p class="text-muted m-0">Alamat</p>
+                            <p class="text-muted m-0">{{ $isi->address }}</p><br>
+                            <p class="text-muted m-0">Foto KTP</p>
+                            <p class="text-muted m-0"><img src="{{ asset('storage/uploads/ktp/' . $isi->ktp) }}" alt="KTP" width="200"></p>
+                        </div>
+                        <div class="col">
+                            <p class="text-muted m-0">NIK</p>
+                            <p class="text-muted m-0">{{ $isi->nik }}</p><br>
+                            <p class="text-muted m-0">Tanggal lahir</p>
+                            <p class="text-muted m-0">{{ $isi->birt_date }}</p><br>
+                            <p class="text-muted m-0">Jenis Kelamin</p>
+                            <p class="text-muted m-0">{{ $isi->jk }}</p>
+                            <br><br>
+                            <p class="text-muted m-0">Foto SIM</p>
+                            <p class="text-muted m-0"><img src="{{ asset('storage/uploads/sim/' . $isi->sim) }}" alt="SIM" width="205"></p>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="modal-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Nama</th>
-                            <td>{{ $isi->name }}</td>
-                        </tr>
-                        <tr>
-                            <th>NIK</th>
-                            <td>{{ $isi->nik }}</td>
-                        </tr>
-                        <tr>
-                            <th>Umur</th>
-                            <td>{{ $isi->birt_date }}</td>
-                        </tr>
-                        <tr>
-                            <th>Jenis Kelamin</th>
-                            <td>{{ $isi->jk }}</td>
-                        </tr>
-                        <tr>
-                            <th>No Hp</th>
-                            <td>{{ $isi->phone_number }}</td>
-                        </tr>
-                        <tr>
-                            <th>Alamat</th>
-                            <td>{{ $isi->address }}</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>{{ $isi->email }}</td>
-                        </tr>
-                        <tr>
-                            <th>photo</th>
-                            <td><img src="{{asset('storage/uploads/photo/'. $isi->photo)}}" alt="" height="100px"></td>
-                        </tr>
-                        <tr>
-                            <th>ktp</th>
-                            <td><img src="{{asset('storage/uploads/ktp/'. $isi->ktp)}}" alt="" height="100px"></td>
-                        </tr>
-                        <tr>
-                            <th>sim</th>
-                            <td><img src="{{asset('storage/uploads/sim/'. $isi->sim)}}" alt="" height="100px"></td>
-                        </tr>
-                        <tr>
-                            <th>status</th>
-                            <td class="badge btn-">{{$isi->status}}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form action="{{ route('user.destroy', $isi->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE') <!-- Menggunakan PATCH untuk update -->
-                        <button class="btn btn-danger" type="submit">hapus</button>
-                    </form>
-        
-                </div>
+            </div>
+            <div class="modal-footer">
+                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
+                <form action="{{ route('user.destroy', $isi->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit">Banned</button>
+                </form>
             </div>
         </div>
     </div>
-    <!-- End Modal Detail User -->
+</div>
 @endforeach
 @endsection
