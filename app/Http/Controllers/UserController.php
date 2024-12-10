@@ -16,23 +16,23 @@ class UserController extends Controller
         // Ambil parameter pencarian dan filter dari request
         $search = $request->input('search');
         $gender = $request->input('gender');
-    
+
         // Query untuk mendapatkan pengguna dengan peran 'user'
-        $query = User::role('user');
-    
+        $query = User::role('user')->where('status', 'accepted');
+
         // Jika ada pencarian berdasarkan email
         if ($search) {
             $query->where('email', 'LIKE', '%' . $search . '%');
         }
-    
+
         // Jika ada filter berdasarkan jenis kelamin
         if ($gender) {
             $query->where('jk', $gender);
         }
-    
+
         // Paginate hasil
         $data = $query->paginate(8);
-    
+
         return view('user.index', compact('data'));
     }
 
