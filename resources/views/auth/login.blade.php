@@ -7,12 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+
 <body class="bg-gray-100 flex items-center justify-center w-screen h-screen">
 
     <div class="bg-white rounded-lg shadow-lg w-full h-full flex overflow-hidden">
         <!-- Bagian Kiri: Ilustrasi -->
         <div class="hidden lg:flex flex-1 flex-col justify-center items-center bg-blue-100 p-8">
-            <h1 class="text-2xl font-bold text-gray-700 mt-4">Selamat Datang Di <span class="text-blue-600">HummaCar</span></h1>
+            <h3 class="text-3xl font-bold text-gray-700 mt-4">Selamat Datang Di <span class="text-blue-600">HummaCar</span></h3>
             <img src="{{asset('Car rental-pana.svg')}}" alt="Car-Rental" class="w-3/4">
         </div>
 
@@ -68,7 +69,6 @@
             </p>
         </div>
     </div>
-
 
 </body>
 </html>
