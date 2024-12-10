@@ -37,10 +37,15 @@ class AuthenticatedSessionController extends Controller
                 'login_time' => now()->setTimezone('Asia/Jakarta'),
             ]);
             return redirect()->intended(route('dashboard', absolute: false));
-        }else{
+        }elseif($user->status == 'in_process'){
             Auth::logout();
             return back()->withErrors([
                 'email' => 'Your account is not approved. Please contact support.',
+            ]);
+        }else{
+            Auth::logout();
+            return back()->withErrors([
+                'email' => 'akunmu di tolak woi',
             ]);
         }
 

@@ -235,7 +235,7 @@
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Data Sewa</span></a>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="">
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
                     <i class="fa fa-history"></i>
                       <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
