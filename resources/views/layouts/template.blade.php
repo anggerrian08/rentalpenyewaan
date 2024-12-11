@@ -208,20 +208,12 @@
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Merek Mobil</span></a>
                   </li>
-                  <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title" href="#">
-                        <i class="fa fa-shopping-bag"></i>
-                        <svg class="fill-icon">
-                            <use href=""></use>
-                        </svg>
-                        <span class="">Jenis Mobil</span>
-                    </a>
-                    <ul class="sidebar-submenu">
-                        <li><a href="{{ route('car.index') }}">List jenis mobil</a></li>
-                        <li><a href="{{ route('car.create') }}">Tambah jenis mobil</a></li>
-                    </ul>
-                </li>
-
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link" href="{{ route('car.index') }}">
+                    <i class="fa fa-shopping-bag"></i>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Jenis Mobil</span></a>
+                  </li>
                 <!-- Garis setelah Jenis Mobil -->
                 <li><hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;"></li>
 
@@ -230,23 +222,17 @@
                       <h6 class="">Transaksi</h6>
                     </div>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
                     <i class="fa fa-calendar-check"></i>
                       <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                      </svg><span class="">Data Sewa</span></a>
+                      </svg><span class="">Approval Sewa</span></a>
                   </li>
                   <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
                     <i class="fa fa-history"></i>
                       <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                      </svg><span class="">Riwayat Transaksi</span></a>
-                  </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
-                    <i class="fa fa-star"></i>
-                    <svg class="fill-icon">
-                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                      </svg><span class="">Review</span></a>
+                      </svg><span class="">Data Sewa & Riwayat</span></a>
                   </li>
 
                   <!-- Garis setelah Jenis Mobil -->
@@ -257,25 +243,26 @@
                       <h6 class="">User</h6>
                     </div>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
+                  {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
                     <i class="fa fa-user-check"></i>
                     <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Approval User</span></a>
-                  </li>
+                  </li> --}}
                   <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('user.index') }}">
                     <i class="fa fa-users"></i>
                     <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Daftar User</span></a>
                   </li>
-                </li>
-                <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('car_likes.index') }}">
-                  <i class="fa fa-users"></i>
-                  <svg class="fill-icon">
-                      <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                    </svg><span class="">car likes</span></a>
-                </li>
+
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
+                    <i class="fa fa-star"></i>
+                    <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Review</span></a>
+                  </li>
+
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </nav>

@@ -176,8 +176,8 @@
             <div class="d-flex justify-content-between align-items-start mb-3">
                 <!-- Heading "Merk Mobil" -->
                 <div>
-                    <h2 class="text-white fw-bold mb-1">Dashbord</h2>
-                    <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Dashbord</p>
+                    <h2 class="text-white fw-bold mb-1">Dashboard</h2>
+                    <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Dashboard</p>
                 </div>
             </div>
         </div>
@@ -194,7 +194,7 @@
                     <div class="card-atas">
 
                         <h2>
-                            **** **** **** 1060
+                            <img src="{{ asset('assets/images/logo/f1.png') }}" width="180" alt="">
                         </h2>
                         {{-- <div class="row">
                             <div class="col-sm-6">
@@ -214,124 +214,112 @@
                     <div class="card-atas">
 
                         <h2>
-                            **** **** **** 1060
+                            <img src="{{ asset('assets/images/logo/f2.png') }}" width="180" alt="">
                         </h2>
                     </div>
                     <div class="card-atas">
 
                         <h2>
-                            **** **** **** 1060
+                            <img src="{{ asset('assets/images/logo/f3.png') }}" width="180" alt="">
                         </h2>
                     </div>
                     <div class="card-atas">
 
                         <h2>
-                            **** **** **** 1060
+                            <img src="{{ asset('assets/images/logo/f4.png') }}" width="180" alt="">
                         </h2>
 
                     </div>
 
+{{-- laravel chart --}}
+        <div class="col-12 px-0 mb-2" style="margin-bottom: 20px;">
+            <div class="p-6 m-20 bg-white rounded shadow" style="width: 730px; height: 300px;">
+                {!! $chart->container() !!}
+            </div>
+        </div>
+{{-- end chart --}}
 
-                    <div class="col-12 px-0 mb-2">
-                        <div class="box-right">
-                            <div class="row">
-                                <div class="d-flex pb-2">
-                                    <p class="fw-bold h7"><span class="textmuted">quickpay.to/</span>Publicnote</p>
-                                    <p class="ms-auto p-blue"><span
-                                            class=" bg btn btn-primary fas fa-pencil-alt me-3"></span>
-                                        <span class=" bg btn btn-primary far fa-clone"></span>
-                                    </p>
-                                </div>
-                                <div class="bg-blue p-2">
-                                    <P class="h8 textmuted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                                        recusandae dolorem voluptas nemo, modi eos minus nesciunt.
-                                    <p class="p-blue bg btn btn-primary h8">LEARN MORE</p>
-                                    </P>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 px-0">
-                        <div class="box-right">
-                            <div class="d-flex mb-2">
-                                <p class="fw-bold">Create new invoice</p>
-                                <p class="ms-auto textmuted"><span class="fas fa-times"></span></p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <p class="h7">#AL2545</p>
-                                <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
-                                    PAYMENT LINK </p>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-2">
-                                    <p class="textmuted h8">Project / Description</p> <input class="form-control"
-                                        type="text" placeholder="Legal Consulting">
-                                </div>
-                                <div class="col-6">
-                                    <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-                                        placeholder="Oct 25, 2020">
-                                </div>
-                                <div class="col-6">
-                                    <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-                                        placeholder="Oct 25, 2020">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 px-0">
-                        <div class="box-right">
-                            <div class="d-flex mb-2">
-                                <p class="fw-bold">Create new invoice</p>
-                                <p class="ms-auto textmuted"><span class="fas fa-times"></span></p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <p class="h7">#AL2545</p>
-                                <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
-                                    PAYMENT LINK </p>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-2">
-                                    <p class="textmuted h8">Project / Description</p> <input class="form-control"
-                                        type="text" placeholder="Legal Consulting">
-                                </div>
-                                <div class="col-6">
-                                    <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-                                        placeholder="Oct 25, 2020">
-                                </div>
-                                <div class="col-6">
-                                    <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-                                        placeholder="Oct 25, 2020">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 px-0">
-                        <div class="box-right">
-                            <div class="d-flex mb-2">
-                                <p class="fw-bold">Create new invoice</p>
-                                <p class="ms-auto textmuted"><span class="fas fa-times"></span></p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <p class="h7">#AL2545</p>
-                                <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
-                                    PAYMENT LINK </p>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-2">
-                                    <p class="textmuted h8">Project / Description</p> <input class="form-control"
-                                        type="text" placeholder="Legal Consulting">
-                                </div>
-                                <div class="col-6">
-                                    <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-                                        placeholder="Oct 25, 2020">
-                                </div>
-                                <div class="col-6">
-                                    <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-                                        placeholder="Oct 25, 2020">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-4 px-0" style="margin-top: 180px;">
+            <div class="box-right">
+            <div class="d-flex mb-2">
+            <p class="textmuted">Transaksi Baru</p>
+            <p class="ms-auto textmuted"><span class=""></span></p>
+        </div>
+        <div class="d-flex mb-2">
+            <p class="h7">#AL2545</p>
+            {{-- <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
+                PAYMENT LINK </p> --}}
+        </div>
+        <div class="row">
+            <div class="col-12 mb-2">
+                <p class="textmuted h8">Project / Description</p> <input class="form-control"
+                    type="text" placeholder="Legal Consulting">
+            </div>
+            <div class="col-6">
+                <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
+                    placeholder="Oct 25, 2020">
+            </div>
+            <div class="col-6">
+                <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
+                    placeholder="Oct 25, 2020">
+            </div>
+        </div>
+        </div>
+</div>
+<div class="col-4 px-0" style="margin-top: 180px;">
+    <div class="box-right">
+    <div class="d-flex mb-2">
+    <p class="textmuted">Transaksi Baru</p>
+    <p class="ms-auto textmuted"><span class=""></span></p>
+</div>
+<div class="d-flex mb-2">
+    <p class="h7">#AL2545</p>
+    {{-- <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
+        PAYMENT LINK </p> --}}
+</div>
+<div class="row">
+    <div class="col-12 mb-2">
+        <p class="textmuted h8">Project / Description</p> <input class="form-control"
+            type="text" placeholder="Legal Consulting">
+    </div>
+    <div class="col-6">
+        <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
+            placeholder="Oct 25, 2020">
+    </div>
+    <div class="col-6">
+        <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
+            placeholder="Oct 25, 2020">
+    </div>
+</div>
+</div>
+</div>
+<div class="col-4 px-0" style="margin-top: 180px;">
+    <div class="box-right">
+    <div class="d-flex mb-2">
+    <p class="textmuted">Transaksi Baru</p>
+    <p class="ms-auto textmuted"><span class=""></span></p>
+</div>
+<div class="d-flex mb-2">
+    <p class="h7">#AL2545</p>
+    {{-- <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
+        PAYMENT LINK </p> --}}
+</div>
+<div class="row">
+    <div class="col-12 mb-2">
+        <p class="textmuted h8">Project / Description</p> <input class="form-control"
+            type="text" placeholder="Legal Consulting">
+    </div>
+    <div class="col-6">
+        <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
+            placeholder="Oct 25, 2020">
+    </div>
+    <div class="col-6">
+        <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
+            placeholder="Oct 25, 2020">
+    </div>
+</div>
+</div>
+</div>
                 </div>
             </div>
             <div class="col-md-4 col-12 ps-md-4 p-0 ">
@@ -395,4 +383,8 @@
         </div>
         </div>
     </body>
+
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
 @endsection
