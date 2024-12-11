@@ -237,15 +237,35 @@
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
+                <!-- Input Password -->
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-10" required>
+                        <button type="button" onclick="togglePassword('password')" class="absolute inset-y-0 right-0 flex items-center px-2">
+                            <svg id="password-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13.875 18.825c-3.675 0-7.05-1.95-9-5.175 1.95-3.225 5.325-5.175 9-5.175s7.05 1.95 9 5.175c-1.95 3.225-5.325 5.175-9 5.175zM12 15c1.575 0 3-1.425 3-3s-1.425-3-3-3-3 1.425-3 3 1.425 3 3 3z" />
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
+
+                <!-- Input Konfirmasi Password -->
                 <div>
                     <label for="konfirmasi_password" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
-                    <input type="password" id="konfirmasi_password" name="password_confirmation" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+                    <div class="relative">
+                        <input type="password" id="konfirmasi_password" name="password_confirmation" class="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-10" required>
+                        <button type="button" onclick="togglePassword('konfirmasi_password')" class="absolute inset-y-0 right-0 flex items-center px-2">
+                            <svg id="konfirmasi_password-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13.875 18.825c-3.675 0-7.05-1.95-9-5.175 1.95-3.225 5.325-5.175 9-5.175s7.05 1.95 9 5.175c-1.95 3.225-5.325 5.175-9 5.175zM12 15c1.575 0 3-1.425 3-3s-1.425-3-3-3-3 1.425-3 3 1.425 3 3 3z" />
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
+
             <div class="flex justify-between">
                 <button type="button" id="btn-prev-2" class="bg-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-400 mt-4">
                     ← Sebelumnya
@@ -260,6 +280,19 @@
 
 
 <script>
+function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(`${inputId}-icon`);
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.add("text-blue-500");
+        } else {
+            input.type = "password";
+            icon.classList.remove("text-blue-500");
+        }
+    }
+
 document.addEventListener("DOMContentLoaded", function () {
     const steps = ["step-1", "step-2", "step-3"];
     let currentStepIndex = 0;
