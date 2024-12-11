@@ -62,7 +62,7 @@
         </div>
         <input type="submit" hidden>
     </form>
-    
+
 
     <a href="{{ route('car.create') }}" class="btn btn-primary mb-3">Tambah Mobil</a>
 
@@ -126,6 +126,6 @@
             @endforelse
         </tbody>
     </table>
-    
+
 </div>
 @endsection
