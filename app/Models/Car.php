@@ -12,10 +12,8 @@ class Car extends Model
         return $this->belongsTo(Merek::class);
     }
 
-    
-
-    public function user(){
-        return $this->belongsToMany(User::class, 'car_likes', 'car_id', 'user_id');
+    public function carlikes(){
+        return $this->belongsToMany(CarLikes::class);
     }
 
     public function review(){
