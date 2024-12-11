@@ -79,7 +79,12 @@
                     Selanjutnya →
                 </button>
             </div>
+
         {{-- </form> --}}
+        <p class="text-center text-gray-600 mt-4">
+            Sudah punya akun?
+            <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Masuk</a>
+        </p>
     </div>
 </div>
 
@@ -174,7 +179,6 @@
 
             </div>
 
-
             <div class="flex justify-between">
                 <button type="button" id="btn-prev-1" class="bg-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-400 mt-4">
                     ← Sebelumnya
@@ -184,6 +188,10 @@
                 </button>
             </div>
         {{-- </form> --}}
+        <p class="text-center text-gray-600 mt-4">
+            Sudah punya akun?
+            <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Daftar</a>
+        </p>
     </div>
 </div>
 
@@ -228,7 +236,7 @@
             @csrf
             <div class="space mt-8 grid grid-cols-2 gap-4">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">name</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Username</label>
                     <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
                 </div>
                 <div>
@@ -242,10 +250,19 @@
                     <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                     <div class="relative">
                         <input type="password" id="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-10" required>
-                        <button type="button" onclick="togglePassword('password')" class="absolute inset-y-0 right-0 flex items-center px-2">
-                            <svg id="password-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M13.875 18.825c-3.675 0-7.05-1.95-9-5.175 1.95-3.225 5.325-5.175 9-5.175s7.05 1.95 9 5.175c-1.95 3.225-5.325 5.175-9 5.175zM12 15c1.575 0 3-1.425 3-3s-1.425-3-3-3-3 1.425-3 3 1.425 3 3 3z" />
-                                <path d="M0 0h24v24H0z" fill="none"></path>
+                        <button type="button"
+                            onclick="togglePassword('password', this)"
+                            class="absolute inset-y-0 right-0 flex items-center pr-4">
+                            <svg class="h-4 w-4 text-gray-500 transition-transform duration-300 transform" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <!-- Ikon mata tertutup -->
+                                <path class="icon-eye-closed" d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                                <path class="icon-eye-closed" d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+                                <path class="icon-eye-closed" d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                                <line class="icon-eye-closed" x1="2" x2="22" y1="2" y2="22"></line>
+                                <!-- Ikon mata terbuka -->
+                                <path class="icon-eye-open hidden" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                <circle class="icon-eye-open hidden" cx="12" cy="12" r="3"></circle>
                             </svg>
                         </button>
                     </div>
@@ -256,10 +273,19 @@
                     <label for="konfirmasi_password" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
                     <div class="relative">
                         <input type="password" id="konfirmasi_password" name="password_confirmation" class="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-10" required>
-                        <button type="button" onclick="togglePassword('konfirmasi_password')" class="absolute inset-y-0 right-0 flex items-center px-2">
-                            <svg id="konfirmasi_password-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M13.875 18.825c-3.675 0-7.05-1.95-9-5.175 1.95-3.225 5.325-5.175 9-5.175s7.05 1.95 9 5.175c-1.95 3.225-5.325 5.175-9 5.175zM12 15c1.575 0 3-1.425 3-3s-1.425-3-3-3-3 1.425-3 3 1.425 3 3 3z" />
-                                <path d="M0 0h24v24H0z" fill="none"></path>
+                        <button type="button"
+                            onclick="togglePassword('konfirmasi_password', this)"
+                            class="absolute inset-y-0 right-0 flex items-center pr-4">
+                            <svg class="h-4 w-4 text-gray-500 transition-transform duration-300 transform" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <!-- Ikon mata tertutup -->
+                                <path class="icon-eye-closed" d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+                                <path class="icon-eye-closed" d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+                                <path class="icon-eye-closed" d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+                                <line class="icon-eye-closed" x1="2" x2="22" y1="2" y2="22"></line>
+                                <!-- Ikon mata terbuka -->
+                                <path class="icon-eye-open hidden" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                <circle class="icon-eye-open hidden" cx="12" cy="12" r="3"></circle>
                             </svg>
                         </button>
                     </div>
@@ -274,24 +300,36 @@
                     Daftar
                 </button>
             </div>
+
         </form>
+        <p class="text-center text-gray-600 mt-4">
+            Sudah punya akun?
+            <a href="{{ route('login') }}" class="text-blue-500 hover:underline">Masuk</a>
+        </p>
     </div>
 </div>
 
 
 <script>
-function togglePassword(inputId) {
-        const input = document.getElementById(inputId);
-        const icon = document.getElementById(`${inputId}-icon`);
+function togglePassword(inputId, button) {
+    const input = document.getElementById(inputId);
+    const svg = button.querySelector('svg');
+    const closedIcons = svg.querySelectorAll('.icon-eye-closed');
+    const openIcons = svg.querySelectorAll('.icon-eye-open');
 
-        if (input.type === "password") {
-            input.type = "text";
-            icon.classList.add("text-blue-500");
-        } else {
-            input.type = "password";
-            icon.classList.remove("text-blue-500");
-        }
+    // Toggle password visibility
+    if (input.type === 'password') {
+        input.type = 'text';
+        closedIcons.forEach(icon => icon.classList.add('hidden'));
+        openIcons.forEach(icon => icon.classList.remove('hidden'));
+        svg.classList.add('rotate-180'); // Add rotation animation
+    } else {
+        input.type = 'password';
+        closedIcons.forEach(icon => icon.classList.remove('hidden'));
+        openIcons.forEach(icon => icon.classList.add('hidden'));
+        svg.classList.remove('rotate-180'); // Reverse rotation
     }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const steps = ["step-1", "step-2", "step-3"];
