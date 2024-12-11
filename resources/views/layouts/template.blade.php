@@ -328,7 +328,26 @@
 <script src="{{ asset('assets/js/script.js') }}"></script>
 
 {{-- sweetalert --}}
-
+<script>
+    @if(session('success'))
+        Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000
+        });
+    @endif
+    @if(session('error'))
+        Swal.fire({
+            title: "Error",
+            text: "{{ session('error') }}",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000
+        });
+    @endif
+  </script>
   </body>
 
 <!-- Mirrored from admin.pixelstrap.net/zono/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Nov 2024 14:47:43 GMT -->
