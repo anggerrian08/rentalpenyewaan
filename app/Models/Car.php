@@ -12,11 +12,17 @@ class Car extends Model
         return $this->belongsTo(Merek::class);
     }
 
+    
+
     public function user(){
         return $this->belongsToMany(User::class, 'car_likes', 'car_id', 'user_id');
     }
 
     public function review(){
         return $this->hasMany(Review::class);
+    }
+
+    public function booking(){
+        return $this->hasMany(Booking::class);
     }
 }
