@@ -196,9 +196,13 @@
                             <button class="btn btn-outline-info" type="button">Send</button>
                         </div>
                         <hr class="my-3">
-                        <div class="alert alert-light-dark light alert-dismissible fade show text-dark border-left-wrapper" role="alert"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12" y2="17"></line></svg>
-                            <p class="txt-dark"></p>
-                          </div>
+                        <div class="alert alert-success light alert-dismissible fade show text-dark border-left-wrapper" role="alert" style="background-color: rgba(40, 167, 69, 0.2);">
+                            <p class="txt-dark"><strong>Tanggal Daftar :</strong> {{ \Carbon\Carbon::parse($isi->created_at)->format('d-m-y') }}</p>
+                        </div>
+                        <div class="alert alert-info light alert-dismissible fade show text-dark border-left-wrapper" role="alert" style="background-color: rgba(23, 162, 184, 0.2);">
+                            <p class="txt-dark"><strong>Terakhir Aktif:</strong> {{ \Carbon\Carbon::parse($isi->updated_at)->format('d-m-y') }}</p>
+                        </div>
+
                     </div>
 
                     <!-- Garis Vertikal -->
