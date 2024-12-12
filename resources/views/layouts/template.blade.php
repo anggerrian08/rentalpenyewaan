@@ -255,6 +255,21 @@
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Daftar User</span></a>
                   </li>
+                </li>
+                <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('car_likes.index') }}">
+                  <i class="fa fa-users"></i>
+                  <svg class="fill-icon">
+                      <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                    </svg><span class="">car likes</span></a>
+                </li>
+=========
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
+                    <i class="fa fa-star"></i>
+                    <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Review</span></a>
+                  </li>
+>>>>>>>>> Temporary merge branch 2
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </nav>

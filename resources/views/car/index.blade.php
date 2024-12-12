@@ -87,6 +87,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 
     <form method="GET" action="{{ route('car.index') }}">
         <div class="form-check form-check-inline">
@@ -101,6 +102,114 @@
             <input class="form-check-input" type="radio" name="filter" id="tidak_tersedia" value="tidak_tersedia" {{ request('filter') === 'tidak_tersedia' ? 'checked' : '' }}>
             <label class="form-check-label" for="tidak_tersedia">Tidak tersedia</label>
         </div>
+=======
+<div class="card p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form method="GET" action="{{ route('car.index') }}" class="d-flex">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="filter" id="all" value="all" {{ request('filter') === 'all' ? 'checked' : '' }}>
+                <label class="form-check-label" for="all">All</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="filter" id="tersedia" value="tersedia" {{ request('filter') === 'tersedia' ? 'checked' : '' }}>
+                <label class="form-check-label" for="tersedia">Tersedia</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="filter" id="tidak_tersedia" value="tidak_tersedia" {{ request('filter') === 'tidak_tersedia' ? 'checked' : '' }}>
+                <label class="form-check-label" for="tidak_tersedia">Tidak tersedia</label>
+            </div>
+            <input type="submit" hidden>
+        </form>
+        <a href="{{ route('car.create') }}" class="btn btn-primary">Tambah Mobil</a>
+    </div>
+</div>
+
+
+
+
+    <!-- Form Pencarian -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <body>
+        <div class="col-md-12 project-list">
+            <div class="card">
+                <div class="row align-items-center">
+
+
+                    <!-- Kolom untuk search -->
+                    <div class="col-md-2 p-0 text-end">
+                        <form action="" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                            <span id="search-icon">
+                                <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
+                            </span>
+                            <input type="text" style="border: none;" placeholder="Cari aproval user..." aria-label="Search">
+                        </form>
+                    </div>
+
+
+
+
+                <div class="col-sm-12 mt-3">
+                    {{-- <div class="card"> --}}
+                    <div class="card-block row">
+                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                            <div class="table-responsive custom-scrollbar">
+                                <table class="table table-light">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Merek</th>
+                                            <th>Nama</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($cars as $car)
+                                        <tr>
+                                            <td>{{ $loop->iteration}}</td>
+                                            <td>{{ $car->merek->name }}</td>
+                                            <td>{{ $car->name }}</td>
+                                            <td>{{ $car->status }}</td>
+                                            <td>
+                                                <a href="{{ route('car.show', $car->id) }}" class="btn btn-info btn-sm">Show</a>
+                                                <a href="{{ route('car.edit', $car->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <form action="{{ route('car.destroy', $car->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="14" class="text-center">Tidak ada data mobil yang ditemukan.</td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                                <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
+                                </hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+>>>>>>> 3cb1252f4f7db5a6d775cfc76ea91c3e73581baa
         <input type="submit" hidden>
     </form>
 
@@ -167,6 +276,10 @@
             @endforelse
         </tbody>
     </table>
+<<<<<<< HEAD
 
+=======
+    </body>
+>>>>>>> 3cb1252f4f7db5a6d775cfc76ea91c3e73581baa
 </div>
 @endsection
