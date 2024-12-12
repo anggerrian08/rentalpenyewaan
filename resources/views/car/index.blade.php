@@ -1,6 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
+
 <div class="container mt-5">
     @if (session('success'))
         <div class="alert alert-success">
@@ -13,38 +14,78 @@
         </div>
     @endif
 
-    <h2 class="mb-4">Daftar Mobil</h2>
+    <style>
+    .kotak-biru {
+        border-radius: 10px;
+        background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
+        padding: 20px;
+        margin: 10px;
+        max-height: 85px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-    <!-- Form Pencarian -->
-    <form method="GET" action="{{ route('car.index') }}" class="mb-4">
-        <div class="row">
-            <div class="col-md-10">
-                <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nama">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary w-100">Cari</button>
-            </div>
+    .card {
+        border-radius: 10px;
+        margin: 10px;
+        box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+    }
+
+    .card-img-top {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .card-text {
+        font-size: 0.9em;
+        color: #6c757d;
+    }
+
+    .text-white {
+        color: #fff !important;
+    }
+
+    .mb-1 {
+        margin-bottom: 5px;
+    }
+
+    .mb-0 {
+        margin-bottom: 0;
+    }
+
+    .fw-bold {
+        font-weight: bold;
+    }
+
+    .alert-warning {
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px;
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+    }
+</style>
+<span></span>
+
+<!-- Card 1: Kotak Biru -->
+<div class="kotak-biru">
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <h2 class="text-white fw-bold mb-1">List Jenis Mobil</h2>
+            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | List jenis mobil</p>
         </div>
-    </form>
-
-
-    <form method="GET" action="{{ route('car.filter') }}" class="mb-4">
-        <div class="row">
-            <div class="col-md-10">
-                <select name="filter" class="form-control">
-                    <option value="" disabled selected>Pilih Merek</option>
-                    @foreach ($merek as $item)
-                        <option value="{{ $item->id }}">
-                            {{ $item->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary w-100">Filter</button>
-            </div>
-        </div>
-    </form>
+    </div>
+</div>
 
 
     <form method="GET" action="{{ route('car.index') }}">

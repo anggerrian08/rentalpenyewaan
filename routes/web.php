@@ -9,7 +9,6 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApprovalController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -42,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');
     Route::resource('/review', ReviewController::class)->only('index','show');
+
+    Route::resource('/car_likes', CarLikesController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

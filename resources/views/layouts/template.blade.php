@@ -10,6 +10,7 @@
     <meta name="keywords" content="admin template, Zono admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+
     {{-- <link rel="shortcut icon" href="{{ asset('assets/images/logo/humma.jpg') }}" type="image/x-icon"> --}}
     <title>HUMMA RENTCAR</title>
 
@@ -253,12 +254,6 @@
                     <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Daftar User</span></a>
-                  </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
-                    <i class="fa fa-star"></i>
-                    <svg class="fill-icon">
-                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                      </svg><span class="">Review</span></a>
                   </li>
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

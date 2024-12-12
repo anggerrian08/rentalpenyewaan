@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\CarLikes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CarLikesController extends Controller
 {
@@ -12,15 +15,17 @@ class CarLikesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        if(auth()->user()->hasRole('user')){
+            $data = CarLikes::where('user_id', auth()->user()->id)->with('user', 'car')->get();
+        }else{
+            $data = CarLikes::select('car_id', DB::raw('MAX(id) as id'))
+            ->groupBy('car_id')
+            ->with('car', 'user')
+            ->get();
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $likes = CarLikes::select('car_id')->selectRaw('COUNT(*) as count')->groupBy('car_id')->pluck('count', 'car_id');
+        return view('car_likes.index', compact('data', 'likes'));
     }
 
     /**
@@ -28,38 +33,33 @@ class CarLikesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(CarLikes $carLikes)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(CarLikes $carLikes)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, CarLikes $carLikes)
-    {
-        //
+        $request->validate([
+            'car_id' => 'required|integer|exists:cars,id'
+        ]);
+        if(Carlikes::where('user_id', auth()->user()->id)->where('car_id', $request->car_id)->first()){
+            session()->flash('error', 'anda sudah memberi like kepasa produk makanan ini');
+            return back()->withInput();
+        }
+        Carlikes::create([
+            'user_id' => auth()->user()->id,
+            'car_id' => $request->car_id
+        ]);
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CarLikes $carLikes)
+    public function destroy(string $id)
     {
-        //
+        $makanan = CarLikes::find($id);
+        
+        if($makanan){
+            $makanan->delete();
+        }else{
+            session()->flash('error', 'id not found ');
+        }
+        return back();
+     
     }
 }
