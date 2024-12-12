@@ -87,6 +87,22 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+
+    <form method="GET" action="{{ route('car.index') }}">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="filter" id="all" value="all" {{ request('filter') === 'all' ? 'checked' : '' }}>
+            <label class="form-check-label" for="all">All</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="filter" id="tersedia" value="tersedia" {{ request('filter') === 'tersedia' ? 'checked' : '' }}>
+            <label class="form-check-label" for="tersedia">Tersedia</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="filter" id="tidak_tersedia" value="tidak_tersedia" {{ request('filter') === 'tidak_tersedia' ? 'checked' : '' }}>
+            <label class="form-check-label" for="tidak_tersedia">Tidak tersedia</label>
+        </div>
+=======
 <div class="card p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <form method="GET" action="{{ route('car.index') }}" class="d-flex">
@@ -193,6 +209,7 @@
         </div>
         </div>
 
+>>>>>>> 3cb1252f4f7db5a6d775cfc76ea91c3e73581baa
         <input type="submit" hidden>
     </form>
 
@@ -259,6 +276,10 @@
             @endforelse
         </tbody>
     </table>
+<<<<<<< HEAD
+
+=======
     </body>
+>>>>>>> 3cb1252f4f7db5a6d775cfc76ea91c3e73581baa
 </div>
 @endsection
