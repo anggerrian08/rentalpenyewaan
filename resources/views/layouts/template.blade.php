@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 
 <!-- Mirrored from admin.pixelstrap.net/zono/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Nov 2024 14:47:34 GMT -->
 <head>
@@ -228,7 +227,7 @@
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Approval Sewa</span></a>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('bookings.index') }}">
                     <i class="fa fa-history"></i>
                       <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>

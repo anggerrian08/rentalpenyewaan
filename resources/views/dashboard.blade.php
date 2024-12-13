@@ -1,16 +1,68 @@
 @extends('layouts.template')
 @section('content')
     <style>
-        .card-atas {
-            /* position: relative; */
-            shadow: #000000;
-            background: #ffffff;
-            width: 23%;
-            margin: 6px;
-            padding: 10px;
-            margin-bottom: 15px;
-            /* border: 1px solid #e7eaec; */
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            /* Jarak antara kedua chart */
         }
+
+        .chart-card {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 300px;
+        }
+
+        .card-container {
+            display: flex;
+            /* Mengatur elemen child sejajar horizontal */
+            justify-content: space-between;
+            /* Memberi jarak antar-card
+                    flex-wrap: wrap;
+                    /* Membuat card turun ke baris berikutnya jika layar sempit */
+            /*gap: 40px; /* Jarak antar-card (opsional) */
+            margin-bottom: 10px;
+            /* Menambahkan jarak antara card dan chart */
+        }
+
+        .card-atas {
+            shadow: #000000;
+            background: rgba(255, 255, 255, 0);
+            /* Transparan sepenuhnya */
+            box-shadow: none;
+            /* Menghilangkan bayangan */
+            border: none;
+            /* Menghilangkan border */
+            padding: 0px;
+            /* Tetap beri padding agar isi tidak mepet */
+            color: #000;
+            /* Pastikan teks tetap terlihat */
+            /* width: 0px; */
+            /* margin: 6px;
+                    margin-bottom: 15px; */
+            text-align: center;
+            /* Pusatkan konten dalam card */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Tambahkan bayangan untuk efek */
+            border-radius: 20px;
+            /* Sudut melengkung */
+            /* margin-left: 40px; /* Jarak antar-card (opsional) */
+            /* margin-right: 40px; */
+            flex: 0 0 auto;
+            width: 30%;
+
+
+        }
+
+        .card-atas>img {
+            width: 100%;
+            height: auto;
+        }
+
 
         .box-right {
             margin: 4px;
@@ -156,6 +208,14 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .card-atas {
+                width: 100%;
+                /* Card akan mengambil seluruh lebar layar */
+            }
+        }
+
+
         .kotak-biru {
             border-radius: 10px;
             background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
@@ -187,204 +247,51 @@
 
         {{-- <div class="container"> --}}
         <div class="row m-2 mt-3">
-            <div class="col-md-7 col-10">
+            <div class="">
                 <div class="row">
                     {{-- <div class="col-md-4"> --}}
 
-                    <div class="card-atas">
+                    <div class="card-container row">
+                        <div class="card-atas">
+                            {{-- <h2> --}}
+                            <img src="{{ asset('assets/images/logo/1.svg') }}" alt="">
+                            {{-- </h2> --}}
+                        </div>
+                        <div class="card-atas">
+                            {{-- <h2> --}}
+                            <img src="{{ asset('assets/images/logo/2.svg') }}" alt="">
+                            {{-- </h2> --}}
+                        </div>
+                        <div class="card-atas">
+                            {{-- <h2> --}}
+                            <img src="{{ asset('assets/images/logo/3.svg') }}" alt="">
+                            {{-- </h2> --}}
+                        </div>
+                    </div>
 
-                        <h2>
-                            <img src="{{ asset('assets/images/logo/f1.png') }}" width="180" alt="">
-                        </h2>
-                        {{-- <div class="row">
-                            <div class="col-sm-6">
-                                <small>
-                                    <strong>Expiry date:</strong> 10/16
-                                </small>
+                    <div class="row m-2 mt-3">
+                        {{-- Laravel Chart --}}
+                        <div class="col-md-6 px-0 mb-2">
+                            <div style="width: 500px; height: 20px; margin: 0 auto;">
+                                {!! $chart->container() !!}
                             </div>
-                            <div class="col-sm-6 text-right">
-                                <small>
-                                    <strong>Name:</strong> David
-                                </small>
+                        </div>
+
+                        <div class="col-md-6 px-0 mb-2">
+                            <div style="width: 400px; height: 200px; margin: 0 auto;">
+                                {!! $chartDonut->container() !!}
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
-
-
-                    <div class="card-atas">
-
-                        <h2>
-                            <img src="{{ asset('assets/images/logo/f2.png') }}" width="180" alt="">
-                        </h2>
-                    </div>
-                    <div class="card-atas">
-
-                        <h2>
-                            <img src="{{ asset('assets/images/logo/f3.png') }}" width="180" alt="">
-                        </h2>
-                    </div>
-                    <div class="card-atas">
-
-                        <h2>
-                            <img src="{{ asset('assets/images/logo/f4.png') }}" width="180" alt="">
-                        </h2>
-
-                    </div>
-
-{{-- laravel chart --}}
-        <div class="col-12 px-0 mb-2" style="margin-bottom: 20px;">
-            <div class="p-6 m-20 bg-white rounded shadow" style="width: 730px; height: 300px;">
-                {!! $chart->container() !!}
-            </div>
-        </div>
-{{-- end chart --}}
-
-        <div class="col-4 px-0" style="margin-top: 180px;">
-            <div class="box-right">
-            <div class="d-flex mb-2">
-            <p class="textmuted">Transaksi Baru</p>
-            <p class="ms-auto textmuted"><span class=""></span></p>
-        </div>
-        <div class="d-flex mb-2">
-            <p class="h7">#AL2545</p>
-            {{-- <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
-                PAYMENT LINK </p> --}}
-        </div>
-        <div class="row">
-            <div class="col-12 mb-2">
-                <p class="textmuted h8">Project / Description</p> <input class="form-control"
-                    type="text" placeholder="Legal Consulting">
-            </div>
-            <div class="col-6">
-                <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-                    placeholder="Oct 25, 2020">
-            </div>
-            <div class="col-6">
-                <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-                    placeholder="Oct 25, 2020">
-            </div>
-        </div>
-        </div>
-</div>
-<div class="col-4 px-0" style="margin-top: 180px;">
-    <div class="box-right">
-    <div class="d-flex mb-2">
-    <p class="textmuted">Transaksi Baru</p>
-    <p class="ms-auto textmuted"><span class=""></span></p>
-</div>
-<div class="d-flex mb-2">
-    <p class="h7">#AL2545</p>
-    {{-- <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
-        PAYMENT LINK </p> --}}
-</div>
-<div class="row">
-    <div class="col-12 mb-2">
-        <p class="textmuted h8">Project / Description</p> <input class="form-control"
-            type="text" placeholder="Legal Consulting">
-    </div>
-    <div class="col-6">
-        <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-            placeholder="Oct 25, 2020">
-    </div>
-    <div class="col-6">
-        <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-            placeholder="Oct 25, 2020">
-    </div>
-</div>
-</div>
-</div>
-<div class="col-4 px-0" style="margin-top: 180px;">
-    <div class="box-right">
-    <div class="d-flex mb-2">
-    <p class="textmuted">Transaksi Baru</p>
-    <p class="ms-auto textmuted"><span class=""></span></p>
-</div>
-<div class="d-flex mb-2">
-    <p class="h7">#AL2545</p>
-    {{-- <p class="ms-auto bg btn btn-primary p-blue h8"><span class="far fa-clone pe-2"></span>COPY
-        PAYMENT LINK </p> --}}
-</div>
-<div class="row">
-    <div class="col-12 mb-2">
-        <p class="textmuted h8">Project / Description</p> <input class="form-control"
-            type="text" placeholder="Legal Consulting">
-    </div>
-    <div class="col-6">
-        <p class="textmuted h8">Issused on</p> <input class="form-control" type="text"
-            placeholder="Oct 25, 2020">
-    </div>
-    <div class="col-6">
-        <p class="textmuted h8">Due on</p> <input class="form-control" type="text"
-            placeholder="Oct 25, 2020">
-    </div>
-</div>
-</div>
-</div>
+                    {{-- End Charts --}}
                 </div>
-            </div>
-            <div class="col-md-4 col-12 ps-md-4 p-0 ">
-                <div class="box-left">
-                    <p class="textmuted h8">Invoice</p>
-                    <p class="fw-bold h7">Alex Parkinson</p>
-                    <p class="textmuted h8">3897 Hickroy St, salt Lake city</p>
-                    <p class="textmuted h8 mb-2">Utah, United States 84104</p>
-                    <div class="h8">
-                        <div class="row m-0 border mb-3">
-                            <div class="col-6 h8 pe-0 ps-2">
-                                <p class="textmuted py-2">Items</p> <span class="d-block py-2 border-bottom">Legal
-                                    Advising</span> <span class="d-block py-2">Expert Consulting</span>
-                            </div>
-                            <div class="col-2 text-center p-0">
-                                <p class="textmuted p-2">Qty</p> <span class="d-block p-2 border-bottom">2</span> <span
-                                    class="d-block p-2">1</span>
-                            </div>
-                            <div class="col-2 p-0 text-center h8 border-end">
-                                <p class="textmuted p-2">Price</p> <span class="d-block border-bottom py-2"><span
-                                        class="fas fa-dollar-sign"></span>500</span> <span class="d-block py-2 "><span
-                                        class="fas fa-dollar-sign"></span>400</span>
-                            </div>
-                            <div class="col-2 p-0 text-center">
-                                <p class="textmuted p-2">Total</p> <span class="d-block py-2 border-bottom"><span
-                                        class="fas fa-dollar-sign"></span>1000</span> <span class="d-block py-2"><span
-                                        class="fas fa-dollar-sign"></span>400</span>
-                            </div>
-                        </div>
-                        <div class="d-flex h7 mb-2">
-                            <p class="">Total Amount</p>
-                            <p class="ms-auto"><span class="fas fa-dollar-sign"></span>1400</p>
-                        </div>
-                        <div class="h8 mb-5">
-                            <p class="textmuted">Lorem ipsum dolor sit amet elit. Adipisci ea harum sed quaerat tenetur
-                            </p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <p class="h7 fw-bold mb-1">Pay this Invoice</p>
-                        <p class="textmuted h8 mb-2">Make payment for this invoice by filling in the details</p>
-                        <div class="form">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card border-0"> <input class="form-control ps-5" type="text"
-                                            placeholder="Card number"> <span class="far fa-credit-card"></span> </div>
-                                </div>
-                                <div class="col-6"> <input class="form-control my-3" type="text"
-                                        placeholder="MM/YY"> </div>
-                                <div class="col-6"> <input class="form-control my-3" type="text" placeholder="cvv">
-                                </div>
-                                <p class="p-blue h8 fw-bold mb-3">MORE PAYMENT METHODS</p>
-                            </div>
-                            <div class="btn btn-primary d-block h8">PAY <span
-                                    class="fas fa-dollar-sign ms-2"></span>1400<span
-                                    class="ms-3 fas fa-arrow-right"></span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
     </body>
 
     <script src="{{ $chart->cdn() }}"></script>
 
     {{ $chart->script() }}
+
+    <script src="{{ $chartDonut->cdn() }}"></script>
+
+    {{ $chartDonut->script() }}
 @endsection
