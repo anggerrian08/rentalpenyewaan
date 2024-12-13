@@ -67,16 +67,38 @@
     </style>
     <span></span>
 
-    <!-- Card 1: Kotak Biru -->
-    <div class="kotak-biru">
-        <div class="d-flex justify-content align-items-start mb-3">
-            <div>
-                <h2 class="text-white fw-bold mb-1">Edit Data Mobil</h2>
-                <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Edit data mobil</p>
-            </div>
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+<!-- Card 1: Kotak Biru -->
+<div class="kotak-biru">
+    <div class="d-flex justify-content align-items-start mb-3">
+        <div>
+            <h2 class="text-white fw-bold mb-1">Edit Data Mobil</h2>
+            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Edit data mobil</p>
         </div>
     </div>
+</div>
 
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
             <div class="row align-items-center">
 
@@ -85,7 +107,7 @@
                 <div class="col-md-12 mt">
                     <div class="card">
                         <!-- Form Edit -->
-                        <form action="{{ route('car.update', $car->id) }}" method="POST" enctype="multipart/form-data" class="container p-4 border rounded bg-white shadow text-black">
+                        <form action="{{ route("car.update", $car->id) }}" method="POST" enctype="multipart/form-data" class="container p-4 border rounded bg-white shadow text-black">
                             @csrf
                             @method('PUT')
 
@@ -94,10 +116,9 @@
                                 <div class="col-md-6">
                                     <label for="merek_id" class="form-label">Merk Mobil</label>
                                     <select name="merek_id" id="merek_id" class="form-select">
-                                        <option value="" disabled>Pilih Merk</option>
+                                        <option value="" disabled selected>Pilih Merk</option>
                                         @foreach ($data_merek as $brand)
-                                            <option value="{{ $brand->id }}" {{ $car->merek_id == $brand->id ? 'selected' : '' }}>{{ $brand->name }}</option>
-                                        @endforeach
+                                        <option value="{{ $brand->id }}" {{ $car->merek_id == $brand->id ? 'selected' : '' }}>{{ $brand->name }}</option>                                        @endforeach
                                     </select>
                                 </div>
 
@@ -111,11 +132,16 @@
                                 <div class="col-md-6">
                                     <label for="type_transmisi" class="form-label">Jenis Transmisi</label>
                                     <select name="type_transmisi" id="type_transmisi" class="form-select">
-                                        <option value="" disabled>-- Pilih --</option>
-                                        @foreach (['Manual', 'Otomatis Konvensional', 'Otomatis CVT', 'DCT', 'AMT'] as $type)
-                                            <option value="{{ $type }}" {{ old('type_transmisi', $car->type_transmisi) == $type ? 'selected' : '' }}>{{ $type }}</option>
+                                        <option value="" disabled selected>-- Pilih --</option>
+                                        @foreach (['Transmisi Manual', 'Otomatis Konvensional', 'Otomatis CVT', 'DCT', 'AMT'] as $type)
+                                        <option value="{{ $type }}" {{ old('type_transmisi', $car->type_transmisi) == $type ? 'selected' : '' }}>{{ $type }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+
+                                <div class="col md-6">
+                                    <label for="stock" class="form-label">Stock</label>
+                                    <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock', $car->stock) }}">
                                 </div>
 
                                 <!-- Tahun Pembuatan -->
@@ -124,18 +150,19 @@
                                     <input type="date" name="manufacture_year" id="manufacture_year" class="form-control" value="{{ old('manufacture_year', $car->manufacture_year) }}">
                                 </div>
 
-                                <div class="col md-6">
-                                    <label for="plat" class="form-label"> Plat</label>
+                                <!-- Plat -->
+                                <div class="col-md-6">
+                                    <label for="plat" class="form-label">Plat</label>
                                     <input type="text" name="plat" id="plat" class="form-control" value="{{ old('plat', $car->plat) }}">
                                 </div>
 
                                 <!-- Jenis Bahan Bakar -->
                                 <div class="col-md-6">
                                     <label for="fuel_type" class="form-label">Jenis Bahan Bakar</label>
-                                    <select name="fuel_type" id="fuel_type" class="form-select">
-                                        <option value="">-- Pilih --</option>
-                                        @foreach (['Bensin', 'Solar', 'Bio Solar', 'CNG', 'Kendaraan Listrik'] as $fuel)
-                                            <option value="{{ $fuel }}" {{ old('fuel_type', $car->fuel_type) == $fuel ? 'selected' : '' }}>{{ $fuel }}</option>
+                                    <select name="fuel_type" id="fuel_type" class="form-control">
+                                        <option value="" disabled selected>-- Pilih --</option>
+                                        @foreach (['bensin', 'solar', 'bio solar', 'cng', 'kendaraan listrik'] as $fuel)
+                                        <option value="{{ $fuel }}" {{ old('fuel_type', $car->fuel_type) == $fuel ? 'selected' : '' }}>{{ $fuel }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -144,31 +171,32 @@
                                 <div class="col-md-6">
                                     <label for="passenger_capacity" class="form-label">Muat Orang</label>
                                     <input type="number" name="passenger_capacity" id="passenger_capacity" class="form-control" value="{{ old('passenger_capacity', $car->passenger_capacity) }}">
+
                                 </div>
 
                                 <!-- Kapasitas Koper -->
                                 <div class="col-md-6">
                                     <label for="luggage_capacity" class="form-label">Muat Koper</label>
                                     <input type="number" name="luggage_capacity" id="luggage_capacity" class="form-control" value="{{ old('luggage_capacity', $car->luggage_capacity) }}">
+
                                 </div>
 
                                 <!-- Tarif/Harga -->
                                 <div class="col-md-6">
                                     <label for="price" class="form-label">Tarif/Harga</label>
                                     <input type="text" name="price" id="price" class="form-control" value="{{ old('price', $car->price) }}">
+
                                 </div>
 
-                                <div class="col md-6">
-                                    <label for="stock" class="form-label">Stock</label>
-                                    <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock', $car->stock) }}">
-                                </div>
 
-                                <div class="col md-6">
+                                <!-- Best Choice -->
+                                <div class="col-md-6">
                                     <label for="best_choice" class="form-label">Best Choice</label>
-                                    <select name="best_choice" id="best_choice" class="form-control">
-                                        <option value="">-- Select --</option>
+                                    <select name="best_choice" id="best_choice" class="form-select">
+                                        <option value="" disabled selected>-- Pilih --</option>
                                         <option value="1" {{ old('best_choice') == '1' ? 'selected' : '' }}>Yes</option>
                                         <option value="2" {{ old('best_choice') == '2' ? 'selected' : '' }}>No</option>
+
                                     </select>
                                 </div>
 
@@ -176,6 +204,7 @@
                                 <div class="col-12">
                                     <label for="description" class="form-label">Deskripsi</label>
                                     <textarea name="description" id="description" rows="4" class="form-control">{{ old('description', $car->description) }}</textarea>
+
                                 </div>
 
                                 <!-- Foto Mobil -->
