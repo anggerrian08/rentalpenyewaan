@@ -11,7 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApprovalController;
 
 use App\Http\Controllers\CarLikesController;
-
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,9 +22,9 @@ Route::get('/', function () {
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
 });
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
