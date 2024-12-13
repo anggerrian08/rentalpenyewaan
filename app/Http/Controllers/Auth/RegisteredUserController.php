@@ -60,7 +60,7 @@ class RegisteredUserController extends Controller
             'jk' => $request->jk,
             'address' => $request->address,
             'phone_number' => $request->phone_number,
-            'status' => 'in_process',
+            'status' => 'accepted',
             'password' => Hash::make($request->password),
         ]);
 
