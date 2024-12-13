@@ -16,30 +16,30 @@ class CarController extends Controller
             'search' => 'nullable|string',
             'filter' => 'nullable|in:tersedia,tidak_tersedia,all',
         ]);
-    
+
         $search = $request->input('search');
         $filter = $request->input('filter');
-    
+
         $cars = Car::query(); // Awal query builder
-    
+
         // Tambahkan pencarian
         if ($search) {
             $cars->where('name', 'LIKE', '%' . $search . '%');
         }
-    
+
         // Tambahkan filter
         if ($filter == 'tersedia') {
             $cars->where('stock', '>', 0);
         } elseif ($filter == 'tidak_tersedia') {
             $cars->where('stock', 0);
         }
-    
+
         // Urutkan hasil dan paginate
         $cars = $cars->orderBy('best_choice', 'ASC')->paginate(8);
-    
+
         // Ambil data merek untuk tampilan
         $merek = Merek::all();
-    
+
         return view('car.index', compact('cars', 'merek'));
     }
     public function create()
@@ -58,7 +58,7 @@ class CarController extends Controller
             'manufacture_year' => 'required|date',
             'plat' => 'required|string',
             'price' => 'required|integer|min:0',
-            'stock' => 'required|integer|min:0',
+            'stock' => 'nullable|integer|min:0',
             'best_choice' => 'required|in:1,2',
             'passenger_capacity' => 'required|integer|min:1',
             'luggage_capacity' => 'required|integer|min:0',
@@ -70,7 +70,7 @@ class CarController extends Controller
 
         if(strtotime($request->manufacture_year) > strtotime(date('Y-m-d'))){
             return back()->with('error', 'waktu tidak boleh lebih dari sekarang');
-        } 
+        }
         if($request->stock < 0){
             return back()->with('error', 'stock tidakboleh dari 0');
         }
@@ -91,7 +91,7 @@ class CarController extends Controller
             'manufacture_year' => $request->manufacture_year,
             'plat' => $request->plat,
             'price' => $request->price,
-            'stock' => $request->stock,
+            'stock' => 1,
             'best_choice' => $request->best_choice,
             'passenger_capacity' => $request->passenger_capacity,
             'luggage_capacity' => $request->luggage_capacity,
@@ -120,7 +120,7 @@ class CarController extends Controller
             'manufacture_year' => 'required|date',
             'plat' => 'required|string',
             'price' => 'required|integer|min:0',
-            'stock' => 'required|integer|min:0',
+            'stock' => 'required|integer|min:0|max:1',
             'best_choice' => 'required|in:1,2',
             'passenger_capacity' => 'required|integer|min:1',
             'luggage_capacity' => 'required|integer|min:0',
@@ -130,9 +130,12 @@ class CarController extends Controller
 
         if(strtotime($request->manufacture_year) > strtotime(date('Y-m-d'))){
             return back()->with('error', 'waktu tidak boleh lebih dari sekarang');
-        } 
+        }
         if($request->stock < 0){
             return back()->with('error', 'stock tidakboleh dari 0');
+        }
+        if($request->stock > 1){
+            return back()->with('error', 'stock tidakboleh lebih  dari 1');
         }
         if($request->price < 0){
             return back()->with('error', 'stock tidakboleh dari 0');
@@ -205,9 +208,9 @@ class CarController extends Controller
             $cars = Car::orderBy('best_choice', 'ASC')->paginate(8);
         }
         $merek = Merek::all();
-    
+
         return view('car.index', compact('cars', 'merek'));
     }
-    
-    
+
+
 }
