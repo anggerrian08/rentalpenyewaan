@@ -8,6 +8,7 @@
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
+
             </div>
         @endif
         @if (session('error'))
@@ -88,6 +89,7 @@
             </div>
         </div>
     </div>
+
 
 
     <div class="card p-3">
@@ -180,11 +182,13 @@
                                     <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                     </hr>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             </div>
 
 
@@ -195,4 +199,5 @@
 @else
  <h1>ini haalamn user</h1>
 @endif
+
 @endsection
