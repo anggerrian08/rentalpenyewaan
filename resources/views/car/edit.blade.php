@@ -124,6 +124,11 @@
                                     <input type="date" name="manufacture_year" id="manufacture_year" class="form-control" value="{{ old('manufacture_year', $car->manufacture_year) }}">
                                 </div>
 
+                                <div class="col md-6">
+                                    <label for="plat" class="form-label"> Plat</label>
+                                    <input type="text" name="plat" id="plat" class="form-control" value="{{ old('plat', $car->plat) }}">
+                                </div>
+
                                 <!-- Jenis Bahan Bakar -->
                                 <div class="col-md-6">
                                     <label for="fuel_type" class="form-label">Jenis Bahan Bakar</label>
@@ -151,6 +156,20 @@
                                 <div class="col-md-6">
                                     <label for="price" class="form-label">Tarif/Harga</label>
                                     <input type="text" name="price" id="price" class="form-control" value="{{ old('price', $car->price) }}">
+                                </div>
+
+                                <div class="col md-6">
+                                    <label for="stock" class="form-label">Stock</label>
+                                    <input type="number" name="stock" id="stock" class="form-control" value="{{ old('stock', $car->stock) }}">
+                                </div>
+
+                                <div class="col md-6">
+                                    <label for="best_choice" class="form-label">Best Choice</label>
+                                    <select name="best_choice" id="best_choice" class="form-control">
+                                        <option value="">-- Select --</option>
+                                        <option value="1" {{ old('best_choice') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="2" {{ old('best_choice') == '2' ? 'selected' : '' }}>No</option>
+                                    </select>
                                 </div>
 
                                 <!-- Deskripsi -->
