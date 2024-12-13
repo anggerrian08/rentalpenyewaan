@@ -58,7 +58,7 @@ class CarController extends Controller
             'manufacture_year' => 'required|date',
             'plat' => 'required|string',
             'price' => 'required|integer|min:0',
-            'stock' => 'required|integer|min:0',
+            'stock' => 'nullable|integer|min:0',
             'best_choice' => 'required|in:1,2',
             'passenger_capacity' => 'required|integer|min:1',
             'luggage_capacity' => 'required|integer|min:0',
