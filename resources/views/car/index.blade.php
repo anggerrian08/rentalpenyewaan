@@ -1,10 +1,10 @@
-@extends('layouts.template')
-
-@section('content')
 
 
 @if (auth()->user()->hasRole('admin'))
-    <div class="container mt-5">
+@extends('layouts.template')
+
+@section('content')
+<div class="container mt-5">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -192,7 +192,8 @@
 
         </body>
     </div>
+    @endsection
 @else
+
  <h1>ini haalamn user</h1>
 @endif
-@endsection
