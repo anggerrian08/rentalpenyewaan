@@ -10,9 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
-
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\BookingController;
 
 use Illuminate\Support\Facades\Route;
 
