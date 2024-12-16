@@ -14,8 +14,8 @@ class PromosiController extends Controller
      */
     public function index()
     {
-        $promosi = Promosi::all();
-        return view ('Promosi.index');
+        $promosi = Promosi::paginate(10);
+        return view ('promosi.index', compact('promosi'));
     }
 
     /**
@@ -30,18 +30,18 @@ class PromosiController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(PromosiRequest $request)
-    {
-        $validated = $request->validated();
+{
+    $validated = $request->validated();
 
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos', 'public');
-            $validated['photo'] = $photoPath;
-        }
-
-        Promosi::create($request);
-
-        return back()->with('succes', 'promosi berhasil di buat');
+    if ($request->hasFile('photo')) {
+        $photoPath = $request->file('photo')->store('photos', 'public');
+        $validated['photo'] = $photoPath;
     }
+
+    Promosi::create($validated);
+
+    return back()->with('success', 'Promosi berhasil dibuat');
+}
 
     /**
      * Display the specified resource.
@@ -63,24 +63,22 @@ class PromosiController extends Controller
      * Update the specified resource in storage.
      */
     public function update(PromosiRequest $request, Promosi $promosi)
-    {
-        $validated = $request->validated();
+{
+    $validated = $request->validated();
 
-        if ($request->hasFile('photo')) {
-
-            if ($promosi->photo && Storage::exists('public/' . $promosi->photo)) {
-                Storage::delete('public/' . $promosi->photo);
-            }
-
-            // Simpan file baru dan perbarui path-nya di data validasi
-            $photoPath = $request->file('photo')->store('photos', 'public');
-            $validated['photo'] = $photoPath;
+    if ($request->hasFile('photo')) {
+        if ($promosi->photo && Storage::exists('public/' . $promosi->photo)) {
+            Storage::delete('public/' . $promosi->photo);
         }
 
-        $promosi->updated($validated);
-
-        return back()->with('succes', 'promosi berhasil di update');
+        $photoPath = $request->file('photo')->store('photos', 'public');
+        $validated['photo'] = $photoPath;
     }
+
+    $promosi->update($validated);
+
+    return back()->with('success', 'Promosi berhasil diperbarui');
+}
 
     /**
      * Remove the specified resource from storage.
