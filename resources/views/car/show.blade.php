@@ -47,10 +47,23 @@
 
                     <div class="d-flex mt-3">
                         <!-- Button trigger modal -->
+                        @if ($car->stock > 0)
                         <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#pesanModal">
                             Pesan Sekarang
                         </button>
-                        <a href="#" class="btn btn-warning">Tambah ke Favorit</a>
+                        @else
+                        <button type="button" class="badge btn-danger me-2">
+                            stock habis
+                        </button>
+                        @endif
+                        
+                        <form action="{{route('car_likes.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="car_id" value="{{$car->id}}">
+                            <button type="submit"  class="badge btn-warning">
+                                suka
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
