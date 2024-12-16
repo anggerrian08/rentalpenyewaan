@@ -60,8 +60,8 @@
     <div class="d-flex justify-content-between align-items-start mb-3">
         <!-- Heading "Merk Mobil" -->
         <div>
-            <h2 class="text-white fw-bold mb-1">Aproval User</h2>
-            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Aproval User</p>
+            <h2 class="text-white fw-bold mb-1">Aproval Sewa</h2>
+            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Aproval Sewa</p>
         </div>
     </div>
 </div>
@@ -139,6 +139,9 @@
                                        @endforeach
                                     </tbody>
                                 </table>
+                                <div class="text-center">
+                                    <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                </div>
                                 <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                 </hr>
                             </div>

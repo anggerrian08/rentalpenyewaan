@@ -126,8 +126,8 @@
             </div>
         </div>
     @empty
-        <div class="alert alert-warning text-center">
-            <strong>Data tidak tersedia.</strong> Tambahkan data untuk mulai mengelola merk mobil.
+        <div class="text-center">
+            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
         </div>
     @endforelse
 </div>
