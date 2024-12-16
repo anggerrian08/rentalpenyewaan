@@ -52,7 +52,7 @@
         <!-- Kolom Kanan -->
         <div class="w-1/2 p-8 flex flex-col justify-center h-full">
             <h2 class="text-3xl font-bold text-gray-800 leading-snug text-center">Apa Saja Data Pribadimu?</h2>
-            <form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="space mt-8 grid grid-cols-2 gap-4">
                     <div>
@@ -356,7 +356,7 @@
                     class="bg-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-400 mt-4">
                     ← Sebelumnya
                 </button>
-                <button type="button" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mt-4">
+                <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 mt-4">
                     Daftar
                 </button>
             </div>
