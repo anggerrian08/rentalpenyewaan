@@ -28,14 +28,24 @@
         <tbody>
             @foreach($bookings as $booking)
                 <tr>
-                    <td>{{ $booking->id }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $booking->user->name }}</td>
                     <td>{{ $booking->car->name }}</td>
-                    <td>{{ $booking->ktp }}</td>
-                    <td>{{ $booking->sim }}</td>
+                    <td>
+                        <img src="{{asset('storage/uploads/ktp/'. $booking->user->ktp) }}" alt="" height="100px">
+                    </td>
+                    <td>
+                        <img src="{{asset('storage/uploads/sim/'. $booking->user->sim) }}" alt="" height="100px">
+                    </td>
                     <td>{{ $booking->order_date }}</td>
                     <td>{{ $booking->return_date }}</td>
-                    <td>{{ ucfirst($booking->status) }}</td>
+                    <td>
+                        <p  class="badge badge-warning">
+                            {{ $booking->status }}
+
+                        </p>
+
+                    </td>
                     <td>
                         <a href="{{ route('bookings.edit', $booking->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" class="d-inline">

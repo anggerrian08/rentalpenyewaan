@@ -49,6 +49,7 @@
             </div>
         </div>
 
+
         <!-- Kolom Kanan -->
         <div class="w-1/2 p-8 flex flex-col justify-center h-full">
             <h2 class="text-3xl font-bold text-gray-800 leading-snug text-center">Apa Saja Data Pribadimu?</h2>
@@ -72,6 +73,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>

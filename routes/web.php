@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
 
 use App\Http\Controllers\DashboardController;
@@ -40,6 +41,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
+    Route::resource('/bookings', BookingController::class);
 });
 Route::middleware('auth')->group(function () {
     // car
