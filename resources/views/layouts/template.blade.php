@@ -1,5 +1,5 @@
 @if (auth()->user()->hasRole('admin'))
-    ;
+    
 @endif
 <!DOCTYPE html>
 <html lang="en">
