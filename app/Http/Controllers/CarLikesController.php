@@ -36,12 +36,13 @@ class CarLikesController extends Controller
         $request->validate([
             'car_id' => 'required|integer|exists:cars,id'
         ]);
-        if(Carlikes::where('user_id', auth()->user()->id)->where('car_id', $request->car_id)->first()){
+        $user = Auth::user();
+        if(Carlikes::where('user_id', $user->id)->where('car_id', $request->car_id)->first()){
             session()->flash('error', 'anda sudah memberi like kepasa produk makanan ini');
             return back()->withInput();
         }
         Carlikes::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => $user->id,
             'car_id' => $request->car_id
         ]);
         return back();
