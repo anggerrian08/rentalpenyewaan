@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginLogsController;
@@ -9,10 +8,13 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BookingController;
 
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,9 +24,9 @@ Route::get('/', function () {
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
@@ -32,12 +34,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::resource('/merek', MerekController::class);
     Route::resource('/user', UserController::class);
     Route::resource('/aproval', ApprovalController::class);
+    Route::resource('/bookings', BookingController::class);
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
     Route::patch('/aproval/{id}/accept', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
     Route::patch('/aproval/{id}/rejected', [ApprovalController::class, 'rejected'])->name('aproval.rejected');
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
+    Route::resource('/bookings', BookingController::class);
 });
 Route::middleware('auth')->group(function () {
     // car

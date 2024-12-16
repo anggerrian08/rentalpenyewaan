@@ -1,5 +1,10 @@
+
+@if (auth()->user()->hasRole('admin'));
+    
+@endif
 <!DOCTYPE html>
 <html lang="en">
+
 
 <!-- Mirrored from admin.pixelstrap.net/zono/template/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 19 Nov 2024 14:47:34 GMT -->
 <head>
@@ -202,12 +207,8 @@
                       <h6 class="">Data Mobil</h6>
                     </div>
                   </li>
-                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link" href="{{ route('merek.index') }}">
-                    <i class="fa fa-car"></i>
-                      <svg class="fill-icon">
-                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                      </svg><span class="">Merek Mobil</span></a>
-                  </li>
+                  @if (auth()->user()->hasRole('user'))
+                
                   <li class="sidebar-list"><i class=""></i><a class="sidebar-link" href="{{ route('car.index') }}">
                     <i class="fa fa-shopping-bag"></i>
                       <svg class="fill-icon">
@@ -249,6 +250,68 @@
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Approval User</span></a>
                   </li> --}}
+                
+                </li>
+                <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('car_likes.index') }}">
+                  <i class="fa fa-users"></i>
+                  <svg class="fill-icon">
+                      <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                    </svg><span class="">car likes</span></a>
+                </li>
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
+                    <i class="fa fa-star"></i>
+                    <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Review</span></a>
+                  </li>
+                  @else
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link" href="{{ route('merek.index') }}">
+                    <i class="fa fa-car"></i>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Merek Mobil</span></a>
+                  </li>
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link" href="{{ route('car.index') }}">
+                    <i class="fa fa-shopping-bag"></i>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Jenis Mobil</span></a>
+                  </li>
+                <!-- Garis setelah Jenis Mobil -->
+                <li><hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;"></li>
+
+                <li class="sidebar-main-title">
+                    <div>
+                      <h6 class="">Transaksi</h6>
+                    </div>
+                  </li>
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
+                    <i class="fa fa-calendar-check"></i>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Approval Sewa</span></a>
+                  </li>
+                  <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('bookings.index') }}">
+                    <i class="fa fa-history"></i>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Data Sewa & Riwayat</span></a>
+                  </li>
+
+                  <!-- Garis setelah Jenis Mobil -->
+                <li><hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;"></li>
+
+                <li class="sidebar-main-title">
+                    <div>
+                      <h6 class="">User</h6>
+                    </div>
+                  </li>
+                  {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
+                    <i class="fa fa-user-check"></i>
+                    <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                      </svg><span class="">Approval User</span></a>
+                  </li> --}}
                   <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('user.index') }}">
                     <i class="fa fa-users"></i>
                     <svg class="fill-icon">
@@ -262,14 +325,13 @@
                       <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                     </svg><span class="">car likes</span></a>
                 </li>
-=========
                   <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="#">
                     <i class="fa fa-star"></i>
                     <svg class="fill-icon">
                         <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                       </svg><span class="">Review</span></a>
                   </li>
->>>>>>>>> Temporary merge branch 2
+                  @endif
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </nav>
