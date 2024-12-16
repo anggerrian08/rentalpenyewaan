@@ -10,10 +10,10 @@ class MonthlyUsersChart
     public function build(): OriginalBarChart
     {
         return (new OriginalBarChart)
-            ->setTitle('San Francisco vs Boston.')
-            ->setSubtitle('Wins during season 2021.')
-            ->addData('San Francisco', [6, 9, 3, 4, 10, 8])
-            ->addData('Boston', [7, 3, 8, 2, 6, 4])
-            ->setXAxisOption(new XAxisOption(['January', 'February', 'March', 'April', 'May', 'June']));
+            ->setTitle('Data Statistik Keuangan')
+            ->setSubtitle('2024')
+            ->addData('Data Penjualan', [6, 9, 3, 4, 10, 8])
+            // ->addData('', [7, 3, 8, 2, 6, 4])
+            ->setXAxisOption(new XAxisOption(['January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December']));
     }
 }

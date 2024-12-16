@@ -1,13 +1,14 @@
-@extends('layouts.template')
-
-@section('content')
 
 
 @if (auth()->user()->hasRole('admin'))
-    <div class="container mt-5">
+@extends('layouts.template')
+
+@section('content')
+<div class="container mt-5">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
+
             </div>
         @endif
         @if (session('error'))
@@ -88,6 +89,7 @@
             </div>
         </div>
     </div>
+
 
 
     <div class="card p-3">
@@ -180,11 +182,13 @@
                                     <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                     </hr>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             </div>
 
 
@@ -192,7 +196,9 @@
 
         </body>
     </div>
+    @endsection
 @else
+
 <div class="container mt-5">
     @if (session('success'))
         <div class="alert alert-success">
@@ -372,5 +378,6 @@
 
     </body>
 </div>
+
 @endif
-@endsection
+
