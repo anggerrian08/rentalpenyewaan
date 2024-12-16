@@ -81,6 +81,7 @@
             </div>
         </div>
     </head>
+
     <body>
         <div class="card">
             <div class="card-header">
@@ -90,8 +91,8 @@
                         <form class="d-flex justify-content-center">
                             <!-- Dropdown filter -->
                             <select class="form-select"
-                                    style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px; border-radius: 8px; width: 135px;"
-                                    aria-label="Filter Merk Mobil">
+                                style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px; border-radius: 8px; width: 135px;"
+                                aria-label="Filter Merk Mobil">
                                 <option value="" selected>Filter</option>
                                 <option value="a-z">A-Z</option>
                                 <option value="z-a">Z-A</option>
@@ -104,11 +105,13 @@
 
                     <!-- Kolom untuk search -->
                     <div class="col-md-2 p-0 text-end">
-                        <form action="" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                        <form action=""
+                            style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
                             <span id="search-icon">
                                 <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
                             </span>
-                            <input type="text" style="border: none;" placeholder="Cari merk mobil..." aria-label="Search">
+                            <input type="text" style="border: none;" placeholder="Cari merk mobil..."
+                                aria-label="Search">
                         </form>
                     </div>
 
