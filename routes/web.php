@@ -11,6 +11,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PromosiController;
 
 use Illuminate\Support\Facades\Route;
 
