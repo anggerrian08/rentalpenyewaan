@@ -99,11 +99,7 @@
     </ul>
 </div>
 @endif
-
             <div class="row align-items-center">
-
-
-
                 <div class="col-md-12 mt">
                     <div class="card">
                         <!-- Form Edit -->
@@ -193,11 +189,11 @@
                                 <div class="col-md-6">
                                     <label for="best_choice" class="form-label">Best Choice</label>
                                     <select name="best_choice" id="best_choice" class="form-select">
-                                        <option value="" disabled selected>-- Pilih --</option>
-                                        <option value="1" {{ old('best_choice') == '1' ? 'selected' : '' }}>Yes</option>
-                                        <option value="2" {{ old('best_choice') == '2' ? 'selected' : '' }}>No</option>
-
+                                        <option value="" disabled>-- Pilih --</option>
+                                        <option value="1" {{ (old('best_choice') ?? $car->best_choice) == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="2" {{ (old('best_choice') ?? $car->best_choice) == '2' ? 'selected' : '' }}>No</option>
                                     </select>
+                                    
                                 </div>
 
                                 <!-- Deskripsi -->

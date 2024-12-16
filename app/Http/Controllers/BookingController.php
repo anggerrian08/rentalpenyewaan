@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\User;
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -19,39 +20,47 @@ class BookingController extends Controller
         return view('bookings.index', compact('bookings'));
     }
 
-    /**
-     * Show the form for creating a new booking.
-     */
-    public function create()
-    {
-        // Ambil data user dan car untuk dropdown
-        $users = User::all();
-        $cars = Car::all();
-        return view('bookings.create', compact('users', 'cars'));
-    }
-
-    /**
-     * Store a newly created booking in storage.
-     */
     public function store(Request $request)
     {
         // Validasi data
-        $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
+        $request->validate([
             'car_id' => 'required|exists:cars,id',
-            'ktp' => 'nullable|string',
-            'sim' => 'nullable|string',
             'order_date' => 'required|date',
             'return_date' => 'required|date|after:order_date',
-            'status' => 'required|in:returned,in_process,borrowed,late',
         ]);
-
-        // Simpan data
-        Booking::create($validated);
-
+    
+        // Cek stok mobil
+        $car = Car::findOrFail($request->car_id);
+    
+        if ($car->stock <= 0) {
+            return back()->with('error', 'Mobil ini tidak tersedia untuk dipinjam saat ini.');
+        }
+    
+        // Cek tanggal manual (opsional)
+        if (strtotime($request->order_date) >= strtotime($request->return_date)) {
+            return back()->with('error', 'Tanggal kembali tidak boleh lebih kecil atau sama dengan tanggal order.');
+        }
+    
+        // Ambil user yang sedang login
+        $user = Auth::user();
+    
+        // Simpan data booking
+        Booking::create([
+            'user_id' => $user->id,
+            'car_id' => $request->car_id,
+            'order_date' => $request->order_date,
+            'return_date' => $request->return_date,
+            'status' => 'in_process', // Status default
+        ]);
+    
+        // Kurangi stok mobil
+        $car->stock -= 1;
+        $car->save();
+    
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil ditambahkan.');
     }
-
+    
+    
     /**
      * Display the specified booking.
      */

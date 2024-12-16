@@ -50,7 +50,7 @@
             <div class="space mt-8 grid grid-cols-2 gap-4">
                 <div>
                     <label for="nik" class="block text-sm font-medium text-gray-700">NIK</label>
-                    <input type="text" id="nik" name="nik" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required placeholder="Masukkan NIK">
+                    <input type="text" id="nik" name="nik" class="mt-1 block w-full border border-gray-300 rounded-md p-2"  placeholder="Masukkan NIK">
                 </div>
                 <div>
                     <label for="no_hp" class="block text-sm font-medium text-gray-700">No HP</label>
