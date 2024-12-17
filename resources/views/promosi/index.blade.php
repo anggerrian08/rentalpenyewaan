@@ -28,7 +28,7 @@
                 <span id="search-icon">
                     <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
                 </span>
-                <input type="text" style="border: none;" placeholder="Cari promosi mobil..." aria-label="Search" name="search">
+                <input type="text" style="border: none;" placeholder="Cari  mobil..." aria-label="Search" name="search">
             </form>
         </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -57,7 +57,7 @@
             @forelse ($promosi as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->photo }}</td>
                     <td>{{ $item->start_date }}</td>
                     <td>{{ $item->end_date }}</td>
                     {{-- <td>{{ number_format($item->price, 0, ',', '.') }}</td> --}}

@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-
+<br>
     <head>
         <!-- Header -->
         <div class="bg-primary py-3 rounded">

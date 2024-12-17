@@ -11,6 +11,7 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
 use App\Http\Controllers\DashboardController;
+
 use App\Http\Controllers\DetailPembayaranController;
 use App\Models\DetailPembayaran;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 
 
     Route::resource('/bookings', BookingController::class);
-    Route::resource('/promosi', PromosiController::class);
+    // Route::resource('/promosi', PromosiController::class);
 
 
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
