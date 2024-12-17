@@ -88,7 +88,7 @@
             </form>
         </div>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="bi bi-plus-circle me-1"></i> Tambah Mobil Baru
+            <i class="bi bi-plus-circle me-1"></i> Tambah Merk Baru
         </button>
     </div>
 </div>
@@ -126,8 +126,8 @@
             </div>
         </div>
     @empty
-        <div class="alert alert-warning text-center">
-            <strong>Data tidak tersedia.</strong> Tambahkan data untuk mulai mengelola merk mobil.
+        <div class="text-center">
+            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
         </div>
     @endforelse
 </div>

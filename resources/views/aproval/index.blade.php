@@ -1,3 +1,4 @@
+
     @extends('layouts.template')
     @section('content')
         <style>
@@ -118,6 +119,7 @@
                     </div>
 
 
+
                     <div class="col-sm-12 mt-3">
                         {{-- <div class="card"> --}}
                         <div class="card-block row">
@@ -178,6 +180,7 @@
                                     <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                     </hr>
                                 </div>
+
                             </div>
                         </div>
                     </div>
