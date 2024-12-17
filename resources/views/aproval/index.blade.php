@@ -1,284 +1,253 @@
-@extends('layouts.template')
-@section('content')
-<style>
+    @extends('layouts.template')
+    @section('content')
+        <style>
+            .kotak-biru {
+                border-radius: 10px;
+                background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
+                padding: 20px;
+                /* Ukuran padding lebih kecil */
+                margin: 10px;
+                /* Margin kecil */
+                max-height: 85px;
+                /* Lebar maksimum kotak */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                /* Bayangan lebih halus */
+            }
 
-    .kotak-biru {
-        border-radius: 10px;
-        background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
-        padding: 20px; /* Ukuran padding lebih kecil */
-        margin: 10px;   /* Margin kecil */
-        max-height: 85px;   /* Lebar maksimum kotak */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan lebih halus */
-    }
+            .card {
+                border-radius: 10px;
+                margin: 10px;
+                /* Menambahkan jarak antar kotak */
+                box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
+                /* Efek bayangan */
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                /* Animasi saat hover */
+            }
 
-    .card {
-        border-radius: 10px;
-        margin: 10px; /* Menambahkan jarak antar kotak */
-        box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1); /* Efek bayangan */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi saat hover */
-    }
+            .card:hover {
+                transform: translateY(-5px);
+                /* Kotak naik sedikit saat hover */
+                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                /* Bayangan lebih tegas */
+            }
 
-    .card:hover {
-        transform: translateY(-5px); /* Kotak naik sedikit saat hover */
-        box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2); /* Bayangan lebih tegas */
-    }
+            .card-img-top {
+                border-radius: 10px 10px 0 0;
+                /* Membulatkan sudut gambar atas */
+            }
 
-    .card-img-top {
-        border-radius: 10px 10px 0 0; /* Membulatkan sudut gambar atas */
-    }
+            .card-title {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
 
-    .card-title {
-        font-weight: bold;
-        font-size: 1.2em;
-    }
+            .card-text {
+                font-size: 0.9em;
+                color: #6c757d;
+            }
 
-    .card-text {
-        font-size: 0.9em;
-        color: #6c757d;
-    }
-    .text-white {
-        color: #fff !important; /* Warna putih untuk teks */
-    }
+            .text-white {
+                color: #fff !important;
+                /* Warna putih untuk teks */
+            }
 
-    .mb-1 {
-        margin-bottom: 5px; /* Margin lebih kecil untuk heading */
-    }
+            .mb-1 {
+                margin-bottom: 5px;
+                /* Margin lebih kecil untuk heading */
+            }
 
-    .mb-0 {
-        margin-bottom: 0; /* Hilangkan margin bawah */
-    }
-    .fw-bold {
-        font-weight: bold; /* Membuat teks menjadi bold */
-    }
+            .mb-0 {
+                margin-bottom: 0;
+                /* Hilangkan margin bawah */
+            }
 
-</style>
-    <span>
-    </span>
-    <head>
-        <!-- Card 1: Kotak Biru -->
-<div class="kotak-biru">
-    <div class="d-flex justify-content-between align-items-start mb-3">
-        <!-- Heading "Merk Mobil" -->
-        <div>
-            <h2 class="text-white fw-bold mb-1">Aproval User</h2>
-            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Aproval User</p>
-        </div>
-    </div>
-</div>
+            .fw-bold {
+                font-weight: bold;
+                /* Membuat teks menjadi bold */
+            }
+        </style>
+        <span>
+        </span>
 
-        <div class="col-md-12 project-list">
-            <div class="card">
-                <div class="row align-items-center">
-                    <!-- Kolom untuk filter -->
-                    <div class="col-md-2 p-0 text-end">
-                        <form class="d-flex justify-content-end">
-                            <!-- Dropdown filter -->
-                            <select class="form-select me-2" aria-label="Filter Merk Mobil">
-                                <option value="" selected>Filter</option>
-                                <option value="a-z">A-Z</option>
-                                <option value="z-a">Z-A</option>
-                                <option value="terbaru">Terbaru</option>
-                                <option value="terlama">Terlama</option>
-                            </select>
-                        </form>
-                    </div>
-
-                    <!-- Kolom untuk search -->
-                    <div class="col-md-2 p-0 text-end">
-                        <form action="" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
-                            <span id="search-icon">
-                                <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
-                            </span>
-                            <input type="text" style="border: none;" placeholder="Cari aproval user..." aria-label="Search">
-                        </form>
-                    </div>
-
-                    <!-- Kolom untuk tombol Terima -->
-                    <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
-                        <button type="button" class="btn btn-success">Terima</button>
+        <head>
+            <!-- Card 1: Kotak Biru -->
+            <div class="kotak-biru">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <!-- Heading "Merk Mobil" -->
+                    <div>
+                        <h2 class="text-white fw-bold mb-1">Aproval User</h2>
+                        <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Aproval User</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-12 project-list">
+                <div class="card">
+                    <div class="row align-items-center">
+                        <!-- Kolom untuk filter -->
+                        <div class="col-md-2 p-0 text-end">
+                            <form class="d-flex justify-content-end">
+                                <!-- Dropdown filter -->
+                                <select class="form-select me-2" aria-label="Filter Merk Mobil">
+                                    <option value="" selected>Filter</option>
+                                    <option value="a-z">A-Z</option>
+                                    <option value="z-a">Z-A</option>
+                                    <option value="terbaru">Terbaru</option>
+                                    <option value="terlama">Terlama</option>
+                                </select>
+                            </form>
+                        </div>
+
+                        <!-- Kolom untuk search -->
+                        <div class="col-md-2 p-0 text-end">
+                            <form action=""
+                                style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                                <span id="search-icon">
+                                    <i class="fa fa-search"
+                                        style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
+                                </span>
+                                <input type="text" style="border: none;" placeholder="Cari aproval user..."
+                                    aria-label="Search">
+                            </form>
+                        </div>
+
+                        <!-- Kolom untuk tombol Terima -->
+                        <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
+                            <button type="button" class="btn btn-success">Terima</button>
+                        </div>
+                    </div>
 
 
-                <div class="col-sm-12 mt-3">
-                    {{-- <div class="card"> --}}
-                    <div class="card-block row">
-                        <div class="col-sm-12 col-lg-12 col-xl-12">
-                            <div class="table-responsive custom-scrollbar">
-                                <table class="table table-light">
-                                    <thead>
-                                        <tr>
-                                            {{-- <th scope="col">Pilih</th> --}}
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">Nik</th>
-                                            <th scope="col">Umur</th>
-                                            <th scope="col">Jenis Kelamin</th>
-                                            <th scope="col">No Hp</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($user as $isi)
-                                        <tr>
-                                            <td>{{ $loop->iteration}}</td>
-                                            <td>{{ $isi->name }}</td>
-                                            <td>{{ $isi->nik }}</td>
-                                            <td>{{ $isi->birt_date }}</td>
-                                            <td>{{ $isi->jk }}</td>
-                                            <td>{{ $isi->phone_number }}</td>
-                                            <td >
-                                                <div class="d-flex justify-content-center flex item-center">
-                                                    <button style="position: relative; right:20px" type="button" class="btn btn-info btn-sm p-1" data-bs-toggle="modal" data-bs-target="#show{{ $isi->id }}">
-                                                        <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                                    </button>
+                    <div class="col-sm-12 mt-3">
+                        {{-- <div class="card"> --}}
+                        <div class="card-block row">
+                            <div class="col-sm-12 col-lg-12 col-xl-12">
+                                <div class="table-responsive custom-scrollbar">
+                                    <table class="table table-light">
+                                        <thead>
+                                            <tr>
+                                                {{-- <th scope="col">Pilih</th> --}}
+                                                <th scope="col">No</th>
+                                                <th scope="col">email</th>
+                                                <th scope="col">Nik</th>
+                                                <th scope="col">Jenis Kelamin</th>
+                                                <th scope="col">No Hp</th>
+                                                <th scope="col">status</th>
+                                                <th scope="col">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tbody>
+                                            @foreach ($data as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->user->email }}</td>
+                                                    <!-- Accessing user info from booking -->
+                                                    <td>{{ $item->user->nik }}</td>
+                                                    <td>{{ $item->user->jk }}</td>
+                                                    <td>
+                                                        @if ($item->status == "borrowed")
+                                                            <div class="badge badge-success">borrowed</div> 
+                                                        @elseif($item->status == "rejected")
+                                                            <div class="badge badge-danger">borrowed</div> 
+                                                        @elseif($item->status == "in_process")
+                                                    `       <div class="badge badge-warning">process</div> 
+                                                        @elseif($item->status == 'returned')
+                                                           <div class="badge badge-success">dikembalikan</div> 
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $item->user->phone_number }}</td>
+                                                    
+                                                    <td>
+                                                        <div class="d-flex justify-content-center">
+                                                            <button style="position: relative; right:20px" type="button"
+                                                                class="btn btn-info btn-sm p-1" data-bs-toggle="modal"
+                                                                data-bs-target="#show{{ $item->user->id }}">
+                                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                            </button>
+                                                        </div>
+                                                      
+                                                        
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                       @endforeach
-                                    </tbody>
-                                </table>
-                                <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
-                                </hr>
+                                        </tbody>
+                                    </table>
+                                    <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
+                                    </hr>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-    </body>
-    <!-- Pagination -->
-    <div class="row mt-3">
-        <div class="col-md-12 text-center">
-            <nav>
-                <ul class="pagination justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-@foreach ($user as $isi)
-<!-- Modal Detail User -->
-<div class="modal fade" id="show{{ $isi->id }}" tabindex="-1" aria-labelledby="showLabel{{ $isi->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content rounded-5">
-            <div class="modal-header">
-                <h5 class="modal-title" id="showLabel{{ $isi->id }}">
-                    <img src="{{ asset('assets/images/logo/humma.jpg') }}" alt="" width="200px">
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="d-flex align-items-stretch">
-                    <!-- Foto Profil -->
-                    <div class="me-4 text-center">
-                        <img src="{{ asset('storage/uploads/photo/' . $isi->photo) }}" alt="Foto Profil" class="rounded-circle border" width="120" height="120">
-                        <h5 class="mt-2">{{ $isi->username }}</h5>
-                        <h3 class="mt-1">{{ $isi->name }}</h3>
-                        <p class="text-muted">{{ $isi->phone_number }}</p>
-                        <div class="d-flex justify-content-center gap-2 mt-2">
-                            <button class="btn btn-outline-info" type="button">Email</button>
-                            <button class="btn btn-outline-info" type="button">Send</button>
-                        </div>
-                        <hr class="my-3">
-                        <div class="alert alert-success light alert-dismissible fade show text-dark border-left-wrapper" role="alert" style="background-color: rgba(40, 167, 69, 0.2);">
-                            <p class="txt-dark"><strong>Tanggal Daftar :</strong> {{ \Carbon\Carbon::parse($isi->created_at)->format('d-m-y') }}</p>
-                        </div>
-                        <div class="alert alert-info light alert-dismissible fade show text-dark border-left-wrapper" role="alert" style="background-color: rgba(23, 162, 184, 0.2);">
-                            <p class="txt-dark"><strong>Terakhir Aktif:</strong> {{ \Carbon\Carbon::parse($isi->updated_at)->format('d-m-y') }}</p>
-                        </div>
-
-                    </div>
-
-                    <!-- Garis Vertikal -->
-                    <div class="border-start mx-4" style="height: auto; border-left: 2px solid #7a7979;"></div>
-
-                    <!-- Detail User -->
-                    {{-- <div class="w-100">
-                        <table class="table table-borderless">
-                            <tr>
-                                <th class="text-muted">Nama</th>
-                                <td class="text-muted">{{ $isi->name }}</td>
-                                <th class="text-muted">NIK</th>
-                                <td class="text-muted">{{ $isi->nik }}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Tanggal Lahir</th>
-                                <td class="text-muted">{{ $isi->birt_date }}</td>
-                                <th class="text-muted">Jenis Kelamin</th>
-                                <td class="text-muted">{{ $isi->jk }}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Alamat</th>
-                                <td colspan="3" class="text-muted">{{ $isi->address }}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Email</th>
-                                <td class="text-muted">{{ $isi->email }}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Foto KTP</th>
-                                <td>
-                                    <img src="{{ asset('storage/uploads/ktp/' . $isi->ktp) }}" alt="KTP" width="100">
-                                </td>
-                                <th class="text-muted">Foto SIM</th>
-                                <td>
-                                    <img src="{{ asset('storage/uploads/sim/' . $isi->sim) }}" alt="SIM" width="100">
-                                </td>
-                            </tr>
-                        </table>
-                    </div> --}}
-                    <div class="row">
-                        <div class="col">
-                            <p class="text-muted m-0">Nama</p>
-                            <p class="text-muted m-0">{{ $isi->name }}</p><br>
-                            <p class="text-muted m-0">Email</p>
-                            <p class="text-muted m-0">{{ $isi->email }}</p><br>
-                            <p class="text-muted m-0">Alamat</p>
-                            <p class="text-muted m-0">{{ $isi->address }}</p><br>
-                            <p class="text-muted m-0">Foto KTP</p>
-                            <p class="text-muted m-0"><img src="{{ asset('storage/uploads/ktp/' . $isi->ktp) }}" alt="KTP" width="200"></p>
-                        </div>
-                        <div class="col">
-                            <p class="text-muted m-0">NIK</p>
-                            <p class="text-muted m-0">{{ $isi->nik }}</p><br>
-                            <p class="text-muted m-0">Tanggal lahir</p>
-                            <p class="text-muted m-0">{{ $isi->birt_date }}</p><br>
-                            <p class="text-muted m-0">Jenis Kelamin</p>
-                            <p class="text-muted m-0">{{ $isi->jk }}</p>
-                            <br><br>
-                            <p class="text-muted m-0">Foto SIM</p>
-                            <p class="text-muted m-0"><img src="{{ asset('storage/uploads/sim/' . $isi->sim) }}" alt="SIM" width="205"></p>
-                        </div>
-                    </div>
-
+            </body>
+            <!-- Pagination -->
+            <div class="row mt-3">
+                <div class="col-md-12 text-center">
+                    <nav>
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-                <form action="{{ route('user.destroy', $isi->id) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger" type="submit">Banned</button>
-                </form>
+
+
+            <!-- Modal for each user -->
+            @foreach ($data as $item)
+            <div class="modal fade" id="show{{ $item->user->id }}" tabindex="-1" aria-labelledby="showModalLabel{{ $item->user->id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="showModalLabel{{ $item->user->id }}">User Details: {{ $item->user->email }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Email:</strong> {{ $item->user->email }}</li>
+                                <li class="list-group-item"><strong>Nik:</strong> {{ $item->user->nik }}</li>
+                                <li class="list-group-item"><strong>Gender:</strong> {{ $item->user->jk }}</li>
+                                <li class="list-group-item"><strong>Phone Number:</strong> {{ $item->user->phone_number }}</li>
+                                <!-- Add more user details here as needed -->
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{route('aproval.rejected', $item->id)}}">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-danger">rejected</button>
+                            </form>
+                            <form action="{{route('aproval.accepted', $item->id)}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-success">Approve</button>
+                            </form> 
+                            <form action="{{route('aproval.returned', $item->id)}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-primary">returned</button>
+                            </form> 
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-@endforeach
-@endsection
+            @endforeach
+
+        @endsection

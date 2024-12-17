@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\User;
 use App\Models\Car;
+use App\Models\DetailPembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,21 +37,33 @@ class BookingController extends Controller
             return back()->with('error', 'Mobil ini tidak tersedia untuk dipinjam saat ini.');
         }
     
-        // Cek tanggal manual (opsional)
-        if (strtotime($request->order_date) >= strtotime($request->return_date)) {
-            return back()->with('error', 'Tanggal kembali tidak boleh lebih kecil atau sama dengan tanggal order.');
-        }
-    
         // Ambil user yang sedang login
         $user = Auth::user();
     
+        // Hitung jumlah hari pinjam
+        $orderDate = strtotime($request->order_date);
+        $returnDate = strtotime($request->return_date);
+        $days = ceil(($returnDate - $orderDate) / 86400); // Konversi ke hari
+    
+        // Hitung total harga (harga mobil * jumlah hari)
+        $totalPrice = $car->price * $days;
+    
         // Simpan data booking
-        Booking::create([
+        $booking = Booking::create([
             'user_id' => $user->id,
             'car_id' => $request->car_id,
             'order_date' => $request->order_date,
             'return_date' => $request->return_date,
             'status' => 'in_process', // Status default
+            'ktp' => $request->ktp,
+            'sim' => $request->sim,
+        ]);
+    
+        // Simpan data detail pembayaran
+        DetailPembayaran::create([
+            'booking_id' => $booking->id, // Menggunakan booking yang baru saja dibuat
+            'rental_duration_days' => $days,
+            'total_price' => $totalPrice,
         ]);
     
         // Kurangi stok mobil
@@ -61,23 +74,25 @@ class BookingController extends Controller
     }
     
     
+    
+    
     /**
      * Display the specified booking.
      */
-    public function show(Booking $booking)
-    {
-        return view('bookings.show', compact('booking'));
-    }
+    // public function show(Booking $booking)
+    // {
+    //     return view('bookings.show', compact('booking'));
+    // }
 
     /**
      * Show the form for editing the specified booking.
      */
-    public function edit(Booking $booking)
-    {
-        $users = User::all();
-        $cars = Car::all();
-        return view('bookings.edit', compact('booking', 'users', 'cars'));
-    }
+    // public function edit(Booking $booking)
+    // {
+    //     $users = User::all();
+    //     $cars = Car::all();
+    //     return view('bookings.edit', compact('booking', 'users', 'cars'));
+    // }
 
     /**
      * Update the specified booking in storage.
@@ -108,5 +123,17 @@ class BookingController extends Controller
     {
         $booking->delete();
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil dihapus.');
+    }
+
+    public function proses_pengembalian(Request $request, string $id){
+        $booking = Booking::findOrFail($id);
+
+    // Update status menjadi in_process
+    $booking->update([
+        'status' => 'in_process',
+    ]);
+
+    return back()->with('success', 'Status berhasil diperbarui menjadi in_process.');
+
     }
 }

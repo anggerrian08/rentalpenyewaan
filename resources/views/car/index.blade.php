@@ -169,7 +169,6 @@
                                                             <img src="Frame 49.svg" alt="Delete">
                                                         </a>
                                                     </form>
-
                                                 </td>
                                             </tr>
                                             @empty
@@ -329,14 +328,12 @@
                     <div class="card-block row">
                         <div class="col-sm-12 col-lg-12 col-xl-12">
                             <div class="table-responsive custom-scrollbar">
-                                <table class="table">
+                                <table class="table table-light">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Merek</th>
                                             <th>Nama</th>
-                                            <th>Plat Nomor</th>
-                                            <th>Tarif/Harga</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -347,15 +344,11 @@
                                             <td>{{ $loop->iteration}}</td>
                                             <td>{{ $car->merek->name }}</td>
                                             <td>{{ $car->name }}</td>
-                                            <td>{{ $car->plat}}</td>
-                                            <td>{{ $car->price}}</td>
-                                            <td class="">
+                                            <td class="d-flex justify-center">
                                                 @if ($car->stock > 0)
-                                                    <i class="badge badge-light-success">Tersedia</i>
+                                                    <button class="btn btn-primary">tersedia</button>
                                                 @else
-
-                                                     <i class="badge badge-light-secondary">Tidak Tersedia</i>
-
+                                                    <button class="btn btn-danger">tidak tersedia</button>
                                                 @endif
                                             </td>
                                             <td>
@@ -369,7 +362,8 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                
+                                <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
+                                </hr>
                             </div>
                         </div>
                     </div>
