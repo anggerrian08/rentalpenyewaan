@@ -251,13 +251,7 @@
                                             <h6 class="">Transaksi</h6>
                                         </div>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="{{ route('aproval.index') }}">
-                                            <i class="fa fa-calendar-check"></i>
-                                            <svg class="fill-icon">
-                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Approval Sewa</span></a>
-                                    </li>
+                                 
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="#">
                                             <i class="fa fa-history"></i>
