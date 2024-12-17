@@ -51,7 +51,7 @@ class MerekController extends Controller
 
         $merek->update($data);
         return redirect()->route('merek.index')->with('success', 'Merek updated successfully.');
-    }
+    }   
     public function destroy(Merek $merek)
     {
         try {

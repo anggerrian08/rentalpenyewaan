@@ -158,8 +158,7 @@
                                 <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
                                 <li><a href="task.html"><i data-feather="file-text"></i><span>Taskboard</span></a>
                                 </li>
-                                <li><a href="edit-profile.html"><i
-                                            data-feather="settings"></i><span>Settings</span></a></li>
+                                <li><a href="edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                         @csrf
@@ -293,7 +292,28 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Review</span></a>
                                     </li>
+                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                        href="#">
+                                        <i class="fa fa-star"></i>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                        </svg><span class="">Review</span></a>
+                                </li>
+                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                        href="{{route('bookings.index')}}">
+                                        <i class="fa fa-star"></i>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                        </svg><span class="">booking</span></a>
+                                </li>
                                 @else
+                                <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    href="{{route('bookings.index')}}">
+                                    <i class="fa fa-star"></i>
+                                    <svg class="fill-icon">
+                                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                    </svg><span class="">booking</span></a>
+                            </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
                                             href="{{ route('merek.index') }}">
                                             <i class="fa fa-car"></i>
@@ -325,13 +345,13 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Approval Sewa</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('bookings.index') }}">
                                             <i class="fa fa-history"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Data Sewa & Riwayat</span></a>
-                                    </li>
+                                    </li> --}}
 
                                     <!-- Garis setelah Jenis Mobil -->
                                     <li>
@@ -343,6 +363,14 @@
                                             <h6 class="">User</h6>
                                         </div>
                                     </li>
+                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                        href="{{ route('detail_pembayarans.index') }}">
+                                        <i class="fa fa-calendar-check"></i>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                        </svg><span class="">detail pembayaran</span></a>
+                                </li>
+                                
                                     {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
                     <i class="fa fa-user-check"></i>
                     <svg class="fill-icon">
