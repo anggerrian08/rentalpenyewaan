@@ -1,6 +1,7 @@
 @extends('layouts.template')
 @section('content')
 
+
 <style>
     .kotak-biru {
         border-radius: 10px;
@@ -78,7 +79,27 @@
                         <option value="terlama">Terlama</option>
                     </select>
                 </form>
+
             </div>
+        </div>
+
+        <div class="col-md-12 project-list">
+            <div class="card">
+                <div class="row align-items-center">
+                    <!-- Kolom untuk filter -->
+                    <div class="col-md-2 p-0 text-end">
+                        <form class="d-flex justify-content-end">
+                            <!-- Dropdown filter -->
+                            <select class="form-select me-2" aria-label="Filter Merk Mobil">
+                                <option value="" selected>Filter</option>
+                                <option value="a-z">A-Z</option>
+                                <option value="z-a">Z-A</option>
+                                <option value="terbaru">Terbaru</option>
+                                <option value="terlama">Terlama</option>
+                            </select>
+                        </form>
+                    </div>
+
 
             <!-- Search Bar -->
             <div class="col-md-2 p-0 text-end">
@@ -148,10 +169,12 @@
                                 @endforeach
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 

@@ -14,7 +14,8 @@ class PromosiController extends Controller
      */
     public function index()
     {
-        //
+        $promosi = Promosi::paginate(10);
+        return view ('promosi.index', compact('promosi'));
     }
 
     /**

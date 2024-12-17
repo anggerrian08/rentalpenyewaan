@@ -63,7 +63,51 @@ class CarController extends Controller
             'passenger_capacity' => 'required|integer|min:1',
             'luggage_capacity' => 'required|integer|min:0',
             'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'merek_id.required' => 'Merek harus diisi.',
+            'merek_id.exists' => 'Merek tidak ditemukan dalam database.',
+
+            'name.required' => 'Nama kendaraan harus diisi.',
+            'name.max' => 'Nama kendaraan maksimal 255 karakter.',
+
+            'description.required' => 'Deskripsi kendaraan harus diisi.',
+
+            'type_transmisi.required' => 'Jenis transmisi harus diisi.',
+            'type_transmisi.in' => 'Jenis transmisi tidak valid.',
+
+            'fuel_type.required' => 'Jenis bahan bakar harus diisi.',
+            'fuel_type.in' => 'Jenis bahan bakar tidak valid.',
+
+            'manufacture_year.required' => 'Tahun produksi harus diisi.',
+            'manufacture_year.date' => 'Format tahun produksi tidak valid.',
+
+            'plat.required' => 'Nomor plat harus diisi.',
+
+            'price.required' => 'Harga kendaraan harus diisi.',
+            'price.integer' => 'Harga harus berupa angka.',
+            'price.min' => 'Harga tidak boleh kurang dari 0.',
+
+            'stock.integer' => 'Stok harus berupa angka.',
+            'stock.min' => 'Stok tidak boleh kurang dari 0.',
+
+            'best_choice.required' => 'Pilihan terbaik harus diisi.',
+            'best_choice.in' => 'Pilihan terbaik harus berupa angka 1 atau 2.',
+
+            'passenger_capacity.required' => 'Kapasitas penumpang harus diisi.',
+            'passenger_capacity.integer' => 'Kapasitas penumpang harus berupa angka.',
+            'passenger_capacity.min' => 'Kapasitas penumpang minimal 1.',
+
+            'luggage_capacity.required' => 'Kapasitas bagasi harus diisi.',
+            'luggage_capacity.integer' => 'Kapasitas bagasi harus berupa angka.',
+            'luggage_capacity.min' => 'Kapasitas bagasi tidak boleh kurang dari 0.',
+            
+            'photo.required' => 'Foto kendaraan harus diunggah.',
+            'photo.image' => 'File foto harus berupa gambar.',
+            'photo.mimes' => 'Foto harus memiliki format jpeg, png, atau jpg.',
+            'photo.max' => 'Ukuran foto maksimal 2MB.',
         ]);
+
+
 
         $photo = $request->file('photo');
         $photo->storeAs('uploads/car', $photo->hashName(), 'public');

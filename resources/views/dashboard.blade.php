@@ -1,23 +1,9 @@
 @extends('layouts.template')
 @section('content')
-    <style>
-        .kotak-biru {
-            border-radius: 10px;
-            background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
-            padding: 20px;
-            /* Ukuran padding lebih kecil */
-            margin: 10px;
-            /* Margin kecil */
-            max-height: 85px;
-            /* Lebar maksimum kotak */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            /* Bayangan lebih halus */
-        }
-    </style>
-
+<br>
     <head>
         <!-- Header -->
-        <div class="bg-primary py-4">
+        <div class="bg-primary py-3 rounded">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
@@ -61,7 +47,6 @@
                         {!! $chart->container() !!}
                     </div>
                 </div>
-
                 <div class="col-12 col-md-6">
                     <div class="card border-0 shadow-sm p-3">
                         <h5 class="text-center mb-3">Chart 2</h5>

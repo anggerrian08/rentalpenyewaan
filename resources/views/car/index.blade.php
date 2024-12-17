@@ -172,12 +172,15 @@
                                                 </td>
                                             </tr>
                                             @empty
-                                            <tr>
-                                                <td colspan="14" class="text-center">Tidak ada data mobil yang ditemukan.</td>
-                                            </tr>
                                             @endforelse
                                         </tbody>
                                     </table>
+                                    @if ($cars->empty())
+                                    <div class="text-center d-flex justify-content-center " >
+                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="" style="margin-left: 50px">
+                                    </div>
+
+                                @endif
                                     <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                     </hr>
                                 </div>
@@ -362,8 +365,10 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+
                                 <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                 </hr>
+
                             </div>
                         </div>
                     </div>
