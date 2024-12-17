@@ -38,7 +38,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 
 
     Route::resource('/bookings', BookingController::class);
-    Route::resource('/promosi', PromosiController::class);
+    // Route::resource('/promosi', PromosiController::class);
 
 
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');

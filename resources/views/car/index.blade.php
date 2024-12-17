@@ -175,9 +175,12 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    <div class="text-center">
-                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                    @if ($cars->empty())
+                                    <div class="text-center d-flex justify-content-center " >
+                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="" style="margin-left: 50px">
                                     </div>
+
+                                @endif
                                     <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                     </hr>
                                 </div>
