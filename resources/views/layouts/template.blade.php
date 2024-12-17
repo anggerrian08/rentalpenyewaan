@@ -1,5 +1,5 @@
 @if (auth()->user()->hasRole('admin'))
-    
+
 @endif
 <!DOCTYPE html>
 <html lang="en">
@@ -252,7 +252,7 @@
                                             <h6 class="">Transaksi</h6>
                                         </div>
                                     </li>
-                                 
+
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="#">
                                             <i class="fa fa-history"></i>
