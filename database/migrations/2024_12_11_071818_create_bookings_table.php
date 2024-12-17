@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('sim')->nullable();
             $table->date('order_date');
             $table->date('return_date');
-            $table->enum('status', ['returned', 'in_process', 'borrowed', 'late']);
+            $table->enum('status', ['returned', 'in_process', 'borrowed', 'late', 'rejected']);
+            $table->integer('denda')->default(0);
             $table->timestamps();
         });
     }
