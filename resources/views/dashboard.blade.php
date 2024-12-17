@@ -36,16 +36,19 @@
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="card border-0 shadow-sm">
                         <img src="{{ asset('assets/images/logo/1.svg') }}" alt="Logo 1" class="card-img-top img-fluid">
+                        <h1>total merek: {{$total_merek}}</h1>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="card border-0 shadow-sm">
                         <img src="{{ asset('assets/images/logo/2.svg') }}" alt="Logo 2" class="card-img-top img-fluid">
+                        <h1>total merek: {{$total_car}}</h1>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="card border-0 shadow-sm">
                         <img src="{{ asset('assets/images/logo/3.svg') }}" alt="Logo 3" class="card-img-top img-fluid">
+                        <h1>total merek: {{$total_transaksi}}</h1>
                     </div>
                 </div>
             </div>

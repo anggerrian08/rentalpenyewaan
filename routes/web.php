@@ -43,10 +43,12 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
     Route::resource('/bookings', BookingController::class);
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
-
-    Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
+  
 });
+
+
 Route::middleware('auth')->group(function () {
+    Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');   
     // car
     Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');

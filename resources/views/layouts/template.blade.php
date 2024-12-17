@@ -254,7 +254,7 @@
                                     </li>
                                  
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="#">
+                                            href="{{route('detail_pembayarans.index')}}">
                                             <i class="fa fa-history"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
