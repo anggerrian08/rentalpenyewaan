@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,6 +56,7 @@
                     <li><a href="#about">Pemesanan</a></li>
                     <li><a href="#features">Favorit</a></li>
             </nav>
+
 
             <a class="btn-getstarted" href="index.html#about">Log in</a>
 
