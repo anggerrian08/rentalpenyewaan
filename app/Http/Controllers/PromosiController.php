@@ -14,8 +14,10 @@ class PromosiController extends Controller
      */
     public function index()
     {
+
         $promosi = Promosi::all();
         return view('promosi.index', compact('promosi'));
+
     }
 
     /**

@@ -1,5 +1,6 @@
 @extends('layouts.template')
 
+
 @section('title', 'Daftar Promosi')
 
 @section('content')
@@ -11,6 +12,7 @@
                 {{ session('success') }}
             </div>
         @endif
+
 
         <div class="mb-3">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

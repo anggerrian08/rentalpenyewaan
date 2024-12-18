@@ -1,24 +1,26 @@
 <?php
 use App\Http\Controllers\CarController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\LoginLogsController;
-use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApprovalController;
-use App\Http\Controllers\CarLikesController;
 
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BerandaController;
+
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CarLikesController;
+use App\Http\Controllers\DashboardController;
 
+use App\Http\Controllers\DetailPembayaranController;
+use App\Models\DetailPembayaran;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/beranda',  BerandaController::class);
 
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
@@ -33,15 +35,34 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::resource('/merek', MerekController::class);
     Route::resource('/user', UserController::class);
     Route::resource('/aproval', ApprovalController::class);
+
+
     Route::resource('/bookings', BookingController::class);
+    // Route::resource('/promosi', PromosiController::class);
+
+
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
     Route::patch('/aproval/{id}/accept', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
     Route::patch('/aproval/{id}/rejected', [ApprovalController::class, 'rejected'])->name('aproval.rejected');
+    Route::patch('/aproval/{id}/returned', [ApprovalController::class, 'returned'])->name('aproval.returned');
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
+
+    Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
+    
+    Route::resource('/bookings', BookingController::class);
+
+    Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
+
+    Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
+
 });
+
+
 Route::middleware('auth')->group(function () {
+    Route::resource('/bookings', BookingController::class);
+    Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');   
     // car
     Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');
@@ -54,6 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
-
+// require __DIR__. '/user.php';
 require __DIR__.'/auth.php';
 require __DIR__. '/admin.php';
+
