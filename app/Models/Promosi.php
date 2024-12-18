@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promosi extends Model
 {
-    protected $table = 'promosis';
-   protected $fillable =
-   [
+
+   protected $fillable = [
+
+
     'photo', 'start_date', 'end_date'
+    
    ];
 }

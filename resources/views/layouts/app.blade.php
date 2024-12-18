@@ -28,9 +28,11 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
-                
-            </main>
+
+            {{-- <main>
+                {{ $slot }}
+            </main> --}}
+
         </div>
     </body>
 </html>
