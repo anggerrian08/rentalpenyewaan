@@ -241,6 +241,7 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Jenis Mobil</span></a>
                                     </li>
+
                                     <!-- Garis setelah Jenis Mobil -->
                                     <li>
                                         <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
@@ -399,22 +400,14 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Review</span></a>
                                     </li>
-                                    {{-- <li>
-                                        <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
-                                    </li>
 
-                                    <li class="sidebar-main-title">
-                                        <div>
-                                            <h6 class="">Promosi</h6>
-                                        </div>
-                                    </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="{{ route('promosi.index') }}">
-                                            <i class="fa fa-calendar-check"></i>
-                                            <svg class="fill-icon">
-                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Promosi</span></a>
-                                    </li> --}}
+                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
+                                        href="{{ route('Promosi.index') }}">
+                                        <i class="fa fa-shopping-bag"></i>
+                                        <svg class="fill-icon">
+                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                        </svg><span class="">promosi</span></a>
+                                </li>
                                 @endif
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
