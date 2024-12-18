@@ -1,3 +1,4 @@
+
 @extends('layouts.navuser')
 @section('content')
     <!-- Hero Section -->
@@ -12,6 +13,7 @@
                             <i class="bi bi-gear-fill me-2"></i>
                             Working for your success
                         </div>
+
 
                         <h1 class="mb-4">
                             Perjalanan Nyaman,<br>
