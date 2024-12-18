@@ -24,8 +24,6 @@
     <link href="assets.user/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets.user/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets.user/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-    <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen"> --}}
 
     <!-- Main CSS File -->
     <link href="assets.user/css/main.css" rel="stylesheet">
@@ -56,55 +54,9 @@
                     <li><a href="#hero" class="active">Beranda</a></li>
                     <li><a href="#about">Pemesanan</a></li>
                     <li><a href="#features">Favorit</a></li>
-
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <div class="nav-right col-xl-18 col-lg-12 col-auto pull-right right-header p-0">
-                <ul class="nav-menus">
-                    <li class="serchinput">
-                        <div class="serchbox">
-                            <svg>
-                                <use href="../assets/svg/icon-sprite.svg#search"></use>
-                            </svg>
-                        </div>
-                        <div class="form-group search-form">
-                            <input type="text" placeholder="Search here...">
-                        </div>
-                    </li>
-                    <li class="profile-nav onhover-dropdown pe-0 py-0">
-                        <div class="d-flex align-items-center profile-media">
-                            <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}"
-                                alt="">
-                            <div class="flex-grow-1 user">
-                                <span>Helen Walter</span>
-                                <p class="mb-0 font-nunito">Admin
-                                    <svg>
-                                        <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
-                                    </svg>
-                                </p>
-                            </div>
-                        </div>
-                        <ul class="profile-dropdown onhover-show-div">
-                            <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
-                            </li>
-                            <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                            <li><a href="task.html"><i data-feather="file-text"></i><span>Taskboard</span></a>
-                            </li>
-                            <li><a href="edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST" id="logout-form">
-                                    @csrf
-                                    <button type="submit"
-                                        style="background: none; border: none; color: inherit; padding: 0; font: inherit; cursor: pointer;">
-                                        <i data-feather="log-in"></i><span>Log Out</span>
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <a class="btn-getstarted" href="index.html#about">Log in</a>
 
         </div>
     </header>
@@ -1285,7 +1237,7 @@
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">iLanding</span>
+                        <img src="assets.user/img/humma.png" alt="" width="200px">
                     </a>
                     <div class="footer-contact pt-3">
                         <p>A108 Adam Street</p>
