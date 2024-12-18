@@ -15,7 +15,7 @@ class PromosiController extends Controller
     public function index()
     {
         $promosi = Promosi::all();
-        return view ('Promosi.index');
+        return view('promosi.index', compact('promosi'));
     }
 
     /**
@@ -31,17 +31,18 @@ class PromosiController extends Controller
      */
     public function store(PromosiRequest $request)
     {
-        $validated = $request->validated();
-
+        $validatedRequest = $request->validated();
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('photos', 'public');
-            $validated['photo'] = $photoPath;
+
+            $validatedRequest['photo'] = $photoPath;
         }
 
-        Promosi::create($request);
+        Promosi::create($validatedRequest);
 
-        return back()->with('succes', 'promosi berhasil di buat');
+        return redirect()->route('Promosi.index')->with('success', 'Promosi berhasil dibuat');
     }
+
 
     /**
      * Display the specified resource.
@@ -62,31 +63,49 @@ class PromosiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PromosiRequest $request, Promosi $promosi)
+    public function update(PromosiRequest $request, $id)
     {
+        $promosi = Promosi::findOrFail($id);
+
+        // dd($promosi);
+
         $validated = $request->validated();
 
         if ($request->hasFile('photo')) {
-
             if ($promosi->photo && Storage::exists('public/' . $promosi->photo)) {
                 Storage::delete('public/' . $promosi->photo);
             }
 
-            // Simpan file baru dan perbarui path-nya di data validasi
             $photoPath = $request->file('photo')->store('photos', 'public');
             $validated['photo'] = $photoPath;
         }
 
-        $promosi->updated($validated);
+        $promosi->update($validated);
 
-        return back()->with('succes', 'promosi berhasil di update');
+        return back()->with('success', 'Promosi berhasil diupdate');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Promosi $promosi)
+    public function destroy(int $promosi)
     {
-        //
+        $model = Promosi::find($promosi);
+
+        $filePath = 'public/' . $model->photo;
+
+        if ($model->photo && Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        } else {
+            logger('File tidak ditemukan: ' . $filePath);
+        }
+
+        // Hapus data dari database
+        $model->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('Promosi.index')->with('success', 'Promosi berhasil dihapus.');
     }
 }
