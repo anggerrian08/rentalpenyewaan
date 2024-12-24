@@ -160,7 +160,7 @@
                         </p>
 
                         <div class="hero-buttons">
-                            <a href="#about" class="btn btn-primary me-0 me-sm-2 mx-1">Masuk</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary me-0 me-sm-2 mx-1">Masuk</a>
                         </div>
                     </div>
                 </div>

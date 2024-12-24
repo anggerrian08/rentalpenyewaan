@@ -58,8 +58,8 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/" class="active">Beranda</a></li>
-                    <li><a href="#about">Pemesanan</a></li>
-                    <li><a href="#features">Favorit</a></li>
+                    <li><a href="">Pemesanan</a></li>
+                    <li><a href="">Favorit</a></li>
             </nav>
 
             {{-- <a class="btn-getstarted" href="{{ route('login') }}">Log in</a> --}}
@@ -399,34 +399,51 @@
                 </li>
                 <li class="profile-nav onhover-dropdown pe-0 py-0">
                     <div class="d-flex align-items-center profile-media">
-                        <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}" alt="">
+                        <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}"
+                            alt="Profile Picture">
                         <div class="flex-grow-1 user">
-                            <span>Helen Walter</span>
-                            <p class="mb-0 font-nunito">Admin
-                                <svg>
-                                    <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
-                                </svg>
-                            </p>
+                            @auth
+                                <span>{{ auth()->user()->name }}</span>
+                                <p class="mb-0 font-nunito">
+                                    {{ auth()->user()->role->name ?? 'User' }}
+                                    <svg>
+                                        <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
+                                    </svg>
+                                </p>
+                            @else
+                                <span>Guest</span>
+                                <p class="mb-0 font-nunito">
+                                    Please log in
+                                    <svg>
+                                        <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
+                                    </svg>
+                                </p>
+                            @endauth
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
-                        </li>
-                        <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                        <li><a href="task.html"><i data-feather="file-text"></i><span>Taskboard</span></a>
-                        </li>
-                        <li><a href="edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
-                        <li>
-                            <form action="{{ route('logout') }}" method="POST" id="logout-form">
-                                @csrf
-                                <button type="submit"
-                                    style="background: none; border: none; color: inherit; padding: 0; font: inherit; cursor: pointer;">
-                                    <i data-feather="log-in"></i><span>Log Out</span>
-                                </button>
-                            </form>
-                        </li>
+                        @auth
+                            <li><a href="user-profile.html"><i data-feather="user"></i><span>Account</span></a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        style="background: none; border: none; color: inherit; display: flex; align-items: center; padding: 0;">
+                                        <i data-feather="log-out"></i><span>Log Out</span>
+                                    </button>
+                                </form>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('login') }}"
+                                    style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                                    <i data-feather="log-in"></i><span>Log In</span>
+                                </a>
+                            </li>
+                        @endauth
                     </ul>
                 </li>
+
             </ul>
             {{-- </div> --}}
 
