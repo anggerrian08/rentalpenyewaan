@@ -5,12 +5,11 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\MerekController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApprovalController;
-
 use App\Http\Controllers\BerandaController;
-
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PromosiController;
 
 use App\Http\Controllers\DetailPembayaranController;
 use App\Models\DetailPembayaran;
@@ -38,7 +37,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 
 
     Route::resource('/bookings', BookingController::class);
-    // Route::resource('/promosi', PromosiController::class);
+    Route::resource('/promosi', controller: PromosiController::class);
 
 
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
@@ -50,7 +49,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
-    
+
     Route::resource('/bookings', BookingController::class);
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
@@ -62,7 +61,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
 
 Route::middleware('auth')->group(function () {
     Route::resource('/bookings', BookingController::class);
-    Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');   
+    Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
     // car
     Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');

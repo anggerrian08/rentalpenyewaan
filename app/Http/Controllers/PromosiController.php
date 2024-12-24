@@ -42,7 +42,7 @@ class PromosiController extends Controller
 
         Promosi::create($validatedRequest);
 
-        return redirect()->route('Promosi.index')->with('success', 'Promosi berhasil dibuat');
+        return redirect()->route('promosi.index')->with('success', 'Promosi berhasil dibuat');
     }
 
 
@@ -108,6 +108,6 @@ class PromosiController extends Controller
         $model->delete();
 
         // Redirect dengan pesan sukses
-        return redirect()->route('Promosi.index')->with('success', 'Promosi berhasil dihapus.');
+        return redirect()->route('promosi.index')->with('success', 'Promosi berhasil dihapus.');
     }
 }

@@ -1,5 +1,4 @@
 @if (auth()->user()->hasRole('admin'))
-
 @endif
 <!DOCTYPE html>
 <html lang="en">
@@ -158,7 +157,8 @@
                                 <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
                                 <li><a href="task.html"><i data-feather="file-text"></i><span>Taskboard</span></a>
                                 </li>
-                                <li><a href="edit-profile.html"><i data-feather="settings"></i><span>Settings</span></a></li>
+                                <li><a href="edit-profile.html"><i
+                                            data-feather="settings"></i><span>Settings</span></a></li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                         @csrf
@@ -192,7 +192,7 @@
             <div class="sidebar-wrapper" data-layout="stroke-svg">
                 <div>
                     <div class="logo-wrapper"><a href="{{ route('dashboard') }}"> <img class="img-fluid for-light"
-                                src="{{ asset('assets/images/logo/humma.jpg') }}" alt=""></a>
+                                src="{{ asset('assets/images/logo/humma.jpg') }}" alt="" width="200px"></a>
                         {{-- <div class="toggle-sidebar">
                 <svg class="sidebar-toggle">
                   <use href="../assets/svg/icon-sprite.svg#toggle-icon"></use>
@@ -254,7 +254,7 @@
                                     </li>
 
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="{{route('detail_pembayarans.index')}}">
+                                            href="{{ route('detail_pembayarans.index') }}">
                                             <i class="fa fa-history"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
@@ -294,27 +294,27 @@
                                             </svg><span class="">Review</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                        href="#">
-                                        <i class="fa fa-star"></i>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                        </svg><span class="">Review</span></a>
-                                </li>
+                                            href="#">
+                                            <i class="fa fa-star"></i>
+                                            <svg class="fill-icon">
+                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                            </svg><span class="">Review</span></a>
+                                    </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                        href="{{route('bookings.index')}}">
-                                        <i class="fa fa-star"></i>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                        </svg><span class="">booking</span></a>
-                                </li>
+                                            href="{{ route('bookings.index') }}">
+                                            <i class="fa fa-star"></i>
+                                            <svg class="fill-icon">
+                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                            </svg><span class="">booking</span></a>
+                                    </li>
                                 @else
-                                <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                    href="{{route('bookings.index')}}">
-                                    <i class="fa fa-star"></i>
-                                    <svg class="fill-icon">
-                                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                    </svg><span class="">booking</span></a>
-                            </li>
+                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                            href="{{ route('bookings.index') }}">
+                                            <i class="fa fa-star"></i>
+                                            <svg class="fill-icon">
+                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                            </svg><span class="">booking</span></a>
+                                    </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
                                             href="{{ route('merek.index') }}">
                                             <i class="fa fa-car"></i>
@@ -365,13 +365,13 @@
                                         </div>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                        href="{{ route('detail_pembayarans.index') }}">
-                                        <i class="fa fa-calendar-check"></i>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                        </svg><span class="">detail pembayaran</span></a>
-                                </li>
-                                
+                                            href="{{ route('detail_pembayarans.index') }}">
+                                            <i class="fa fa-calendar-check"></i>
+                                            <svg class="fill-icon">
+                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                            </svg><span class="">detail pembayaran</span></a>
+                                    </li>
+
                                     {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
                     <i class="fa fa-user-check"></i>
                     <svg class="fill-icon">
@@ -402,12 +402,12 @@
                                     </li>
 
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
-                                        href="{{ route('Promosi.index') }}">
-                                        <i class="fa fa-shopping-bag"></i>
-                                        <svg class="fill-icon">
-                                            <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                        </svg><span class="">promosi</span></a>
-                                </li>
+                                            href="{{ route('Promosi.index') }}">
+                                            <i class="fa fa-shopping-bag"></i>
+                                            <svg class="fill-icon">
+                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
+                                            </svg><span class="">promosi</span></a>
+                                    </li>
                                 @endif
                         </div>
                         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

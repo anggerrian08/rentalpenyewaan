@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-  
+
     public function index()
     {
         // Ambil semua data booking
@@ -26,50 +26,50 @@ class BookingController extends Controller
 
         // Iterasi melalui setiap booking untuk menghitung denda dan status
         foreach ($bookings as $booking) {
-            
-     
+
+
 // Ambil tanggal pengembalian dan tanggal saat ini (tanpa waktu)
             $tanggal_pengembalian = strtotime(date('Y-m-d', strtotime($booking->return_date)));
             $tanggal_sekarang = strtotime(date('Y-m-d', strtotime(now()))); // Tanggal saat ini tanpa waktu
-            
-            
-    
+
+
+
 // Inisialisasi denda dan status
             $denda = 0;
-            
-           
+
+
 $status = $booking->status;
 
             // Cek apakah sudah terlambat
             if ($tanggal_sekarang > $tanggal_pengembalian) {
-                
-  
+
+
 // Hitung selisih hari terlambat
                 $selisih_hari = ($tanggal_sekarang - $tanggal_pengembalian) / (60 * 60 * 24); // Menghitung perbedaan hari
-                
+
                 // Tentukan denda per hari
-                
-        
+
+
 $denda_per_hari = 50000;
                 $denda = $selisih_hari * $denda_per_hari; // Denda berdasarkan jumlah hari terlambat
 
                 // Jika status bukan 'returned', ubah status menjadi 'late'
-                
-      
+
+
 if ($status !== 'returned') {
                     $status = 'late';
                 }
             } else {
                 // Jika pengembalian tidak terlambat, pastikan statusnya 'in_process'
                 if ($status !== 'returned') {
-                    
-          
+
+
 $status = 'in_process';
                 }
             }
 
-            
-               
+
+
 // Jika denda atau status berubah, simpan perubahan ke database
             if ($booking->denda != $denda || $booking->status != $status) {
                 $booking->denda = $denda;
@@ -77,9 +77,15 @@ $status = 'in_process';
                 $booking->save(); // Simpan perubahan
             }
         }
-           
+
 // Kirim data booking ke view
         return view('bookings.index', compact('bookings'));
+    }
+    public function create(){
+        $booking = Booking::all();
+        $users = User::all();
+        $cars = Car::all();
+        return view('bookings.create', compact('booking','users', 'car'));
     }
 
     public function store(Request $request)
@@ -90,25 +96,25 @@ $status = 'in_process';
             'order_date' => 'required|date',
             'return_date' => 'required|date|after:order_date',
         ]);
-    
+
         // Cek stok mobil
         $car = Car::findOrFail($request->car_id);
-    
+
         if ($car->stock <= 0) {
             return back()->with('error', 'Mobil ini tidak tersedia untuk dipinjam saat ini.');
         }
-    
+
         // Ambil user yang sedang login
         $user = Auth::user();
-    
+
         // Hitung jumlah hari pinjam
         $orderDate = strtotime($request->order_date);
         $returnDate = strtotime($request->return_date);
         $days = ceil(($returnDate - $orderDate) / 86400); // Konversi ke hari
-    
+
         // Hitung total harga (harga mobil * jumlah hari)
         $totalPrice = $car->price * $days;
-    
+
         // Simpan data booking
         $booking = Booking::create([
             'user_id' => $user->id,
@@ -119,24 +125,24 @@ $status = 'in_process';
             'ktp' => $request->ktp,
             'sim' => $request->sim,
         ]);
-    
+
         // Simpan data detail pembayaran
         DetailPembayaran::create([
             'booking_id' => $booking->id, // Menggunakan booking yang baru saja dibuat
             'rental_duration_days' => $days,
             'total_price' => $totalPrice,
         ]);
-    
+
         // Kurangi stok mobil
         $car->stock -= 1;
         $car->save();
-    
+
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil ditambahkan.');
     }
-    
-    
-    
-    
+
+
+
+
     /**
      * Display the specified booking.
      */
