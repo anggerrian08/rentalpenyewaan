@@ -65,7 +65,7 @@
     </div>
 </div>
 
-<div class="col-md-12 project-list">
+{{-- <div class="col-md-12 project-list">
     <div class="card">
         <div class="row align-items-center">
             <!-- Filter Dropdown -->
@@ -81,7 +81,7 @@
                 </form>
 
             </div>
-        </div>
+        </div> --}}
 
         <div class="col-md-12 project-list">
             <div class="card">
@@ -112,9 +112,9 @@
             </div>
 
             <!-- Approve Button -->
-            <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
+            {{-- <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
                 <button type="button" class="btn btn-success">Terima</button>
-            </div>
+            </div> --}}
         </div>
 
         <!-- Table for Showing Data -->

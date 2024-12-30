@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.navuser')
 
 @section('content')
 <div class="container mt-5">
@@ -86,16 +86,21 @@
     </div>
 </div>
 
-
-
+<div class="card p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="col-md-2 p-0 text-end">
+            <form action="{{route('merek.index')}}" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                <span id="search-icon">
+                    <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
+                </span>
+                <input type="text" style="border: none;" placeholder="Cari merk mobil..." aria-label="Search" name="search">
+            </form>
+        </div>
         <a href="{{ route('bookings.create') }}" class="btn btn-primary">Tambah Booking</a>
-        @if(session('success'))
-            <div class="alert alert-success w-50">
-                {{ session('success') }}
-            </div>
-        @endif
     </div>
+</div>
+
+
 
     <div class="col-sm-12 mt-3">
         {{-- <div class="card"> --}}
