@@ -27,6 +27,11 @@
 
     <!-- Main CSS File -->
     <link href="assets.user/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/feather-icon.css') }}">
+
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> --}}
 
     <!-- =======================================================
 
@@ -53,11 +58,395 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/" class="active">Beranda</a></li>
-                    <li><a href="#about">Pemesanan</a></li>
-                    <li><a href="#features">Favorit</a></li>
+                    <li><a href="">Pemesanan</a></li>
+                    <li><a href="">Favorit</a></li>
             </nav>
 
-            <a class="btn-getstarted" href="{{ route('login') }}">Log in</a>
+            {{-- <a class="btn-getstarted" href="{{ route('login') }}">Log in</a> --}}
+
+            <style>
+                .nav-menus {
+                    --theme-default: #01A8EF;
+                    align-items: center;
+                    display: flex;
+                    justify-content: flex-end;
+                    list-style-type: none;
+                    margin-bottom: 0;
+                    padding-left: 0;
+
+                    .profile-nav {
+                        border: none !important;
+                        margin-right: 0;
+                        cursor: pointer;
+                        display: inline-block;
+                        padding: 9px 14px;
+                        padding-top: 9px;
+                        padding-right: 14px;
+                        padding-bottom: 9px;
+                        position: relative;
+                        margin-left: auto;
+                    }
+
+                    .profile-media {
+                        align-items: center !important;
+                        display: flex !important;
+
+                    }
+
+                    .profile-dropdown {
+                        padding: 0 10px;
+                        top: 57px;
+                        width: 160px;
+                        right: 0;
+                        left: unset !important;
+                        box-shadow: 0 0 20px rgba(89, 102, 122, .1);
+                        opacity: 0;
+                        transform: translateY(30px);
+                        visibility: hidden;
+                        background-color: #fff;
+                        position: absolute;
+                        transition: all .3s linear;
+                        z-index: 8;
+                        margin-bottom: 0;
+                        list-style-type: none;
+                    }
+
+                    .b-r-25 {
+                        border-radius: 25px !important;
+                    }
+
+                    .profile-media .flex-grow-1 {
+                        margin-left: 10px;
+                    }
+
+                    .d-flex .flex-grow-1 {
+                        flex: unset;
+                        flex-grow: 1 !important;
+                        flex-grow: unset;
+                    }
+
+                    .profile-media .flex-grow-1 span {
+                        display: -webkit-box !important;
+                        font-weight: 700;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                        color: #1f2f3e;
+                        white-space: normal;
+                    }
+
+                    li i {
+                        font-size: 14px !important
+                    }
+
+                    li svg {
+                        width: 18px !important;
+                        height: 22px;
+                        vertical-align: middle;
+                        width: 22px;
+                        stroke: #1f2f3e;
+                        fill: none;
+                    }
+
+                    li svg path {
+                        color: #1f2f3e
+                    }
+
+                    .onhover-show-div {
+                        left: unset;
+                        right: 0;
+                        top: 50px;
+                        width: 330px
+                    }
+
+                    .onhover-show-div .dropdown-title {
+                        border-bottom: 1px solid hsla(256, 5%, 58%, .3);
+                        font-weight: 700;
+                        padding: 20px;
+                        text-align: center
+                    }
+
+                    .onhover-show-div ul {
+                        padding: 15px
+                    }
+
+                    .onhover-show-div ul li .d-flex {
+                        position: relative
+                    }
+
+                    .onhover-show-div ul li .d-flex .message-img {
+                        border-radius: 50%;
+                        padding: 5px
+                    }
+
+                    .onhover-show-div ul li .d-flex .message-img img {
+                        border-radius: 50%;
+                        height: auto;
+                        position: relative;
+                        width: 40px
+                    }
+
+                    .onhover-show-div ul li .d-flex .flex-grow-1 {
+                        margin-left: 15px
+                    }
+
+                    .onhover-show-div ul li .d-flex .flex-grow-1 h5 a {
+                        color: #1f2f3e;
+                        font-weight: 600
+                    }
+
+                    .onhover-show-div ul li .d-flex .flex-grow-1 p {
+                        display: -webkit-box !important;
+                        line-height: 1.4;
+                        margin-bottom: 0;
+                        opacity: .6;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                        white-space: normal
+                    }
+
+                    .onhover-show-div ul li .d-flex .notification-right svg {
+                        margin-top: 11px;
+                        vertical-align: middle;
+                        width: 18px;
+                        stroke: #848789
+                    }
+
+                    .onhover-show-div li {
+                        padding: 15px
+                    }
+
+                    .onhover-show-div li+li {
+                        border-top: 1px solid hsla(256, 5%, 58%, .3)
+                    }
+
+                    .onhover-show-div li p {
+                        font-size: 14px;
+                        letter-spacing: .3px;
+                        margin-bottom: 0
+                    }
+
+                    .onhover-show-div li a {
+                        letter-spacing: .3px
+                    }
+
+                    .onhover-show-div li:last-child {
+                        padding-bottom: 0
+                    }
+
+                    .onhover-show-div li .d-flex {
+                        position: relative
+                    }
+
+                    .onhover-show-div li .d-flex img {
+                        position: relative;
+                        width: 40px
+                    }
+
+                    .onhover-show-div li .d-flex .status-circle {
+                        left: 0
+                    }
+
+                    .onhover-show-div li .d-flex .flex-grow-1>span {
+                        display: inline-block;
+                        font-weight: 600;
+                        letter-spacing: .8px;
+                        padding-right: 10px
+                    }
+
+                    .onhover-show-div li .d-flex .flex-grow-1 p {
+                        margin-bottom: 8px
+                    }
+
+                    .onhover-show-div::before {
+                        left: unset !important;
+                        right: 10px !important;
+                    }
+
+                    .onhover-dropdown:hover .onhover-show-div::after {
+                        border-bottom: 7px solid #d7e2e9;
+                        z-index: 1;
+                    }
+
+                    .onhover-dropdown:hover .onhover-show-div::after,
+                    .onhover-dropdown:hover .onhover-show-div::before {
+                        border-left: 7px solid transparent;
+                        border-right: 7px solid transparent;
+                        content: "";
+                        height: 0;
+                        left: 10px;
+                        position: absolute;
+                        top: -7px;
+                        width: 0;
+                    }
+
+                    .onhover-dropdown:hover .onhover-show-div::before {
+                        border-bottom: 7px solid #fff;
+                        z-index: 2;
+                    }
+
+                    .onhover-show-div {
+                        left: unset;
+                        right: 0;
+                        top: 50px;
+                        width: 330px;
+                        background-color: #fff;
+                        position: absolute;
+                        transition: all .3s linear;
+                        z-index: 8;
+                    }
+
+                    .profile-dropdown {
+                        left: -12px;
+                        padding: 0 10px;
+                        top: 57px;
+                        width: 160px;
+                    }
+
+                    .onhover-dropdown:hover .onhover-show-div {
+                        border-radius: 5px;
+                        opacity: 1;
+                        transform: translateY(0);
+                        visibility: visible;
+                    }
+
+                    .onhover-show-div li::before {
+                        display: none;
+                    }
+
+                    .profile-dropdown li {
+                        padding: 10px !important;
+                    }
+
+                    .profile-dropdown li a {
+                        text-decoration: unset;
+                    }
+
+                    .onhover-show-div li a {
+                        letter-spacing: .3px;
+                    }
+
+                    .profile-dropdown li:hover a svg,
+                    .page-wrapper .page-header .header-wrapper .nav-right .profile-dropdown li:hover a svg path {
+                        stroke: var(--theme-default);
+                        transition: stroke .3s ease;
+                    }
+
+                    .profile-dropdown li svg {
+                        margin-right: 10px;
+                        vertical-align: bottom;
+                        width: 16px;
+                        stroke: #121313;
+                        fill: none;
+                        height: 22px;
+                    }
+
+                    .onhover-show-div li a svg {
+                        margin-top: 0 !important;
+                    }
+
+                    .onhover-show-div li a {
+                        color: unset;
+                        letter-spacing: .3px;
+                    }
+
+                    .profile-dropdown li:hover a span {
+                        color: var(--theme-default);
+                        transition: color .3s ease;
+                    }
+
+                    .onhover-show-div li+li {
+                        border-top: 1px solid hsla(256, 5%, 58%, .3);
+                    }
+
+                    .profile-dropdown li {
+                        padding: 10px !important;
+                    }
+
+                    a:hover {
+                        transition: all .5s ease-in;
+                    }
+
+                    a,
+                    a:hover {
+                        color: var(--theme-default);
+                    }
+
+                    a:hover {
+                        --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+                    }
+
+                    a:active,
+                    a:hover {
+                        outline-width: 0;
+                    }
+                }
+            </style>
+            {{-- <div class="nav-right col-xl-18 col-lg-12 col-auto pull-right right-header p-0"> --}}
+            <ul class="nav-menus">
+                <li class="serchinput d-none">
+                    <div class="serchbox">
+                        <svg>
+                            <use href="../assets/svg/icon-sprite.svg#search"></use>
+                        </svg>
+                    </div>
+                    <div class="form-group search-form">
+                        <input type="text" placeholder="Search here...">
+                    </div>
+                </li>
+                <li class="profile-nav onhover-dropdown pe-0 py-0">
+                    <div class="d-flex align-items-center profile-media">
+                        <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}"
+                            alt="Profile Picture">
+                        <div class="flex-grow-1 user">
+                            @auth
+                                <span>{{ auth()->user()->name }}</span>
+                                <p class="mb-0 font-nunito">
+                                    {{ auth()->user()->role->name ?? 'User' }}
+                                    <svg>
+                                        <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
+                                    </svg>
+                                </p>
+                            @else
+                                <span>Guest</span>
+                                <p class="mb-0 font-nunito">
+                                    Please log in
+                                    <svg>
+                                        <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
+                                    </svg>
+                                </p>
+                            @endauth
+                        </div>
+                    </div>
+                    <ul class="profile-dropdown onhover-show-div">
+                        @auth
+                            <li><a href="user-profile.html"><i data-feather="user"></i><span>Account</span></a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        style="background: none; border: none; color: inherit; display: flex; align-items: center; padding: 0;">
+                                        <i data-feather="log-out"></i><span>Log Out</span>
+                                    </button>
+                                </form>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('login') }}"
+                                    style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                                    <i data-feather="log-in"></i><span>Log In</span>
+                                </a>
+                            </li>
+                        @endauth
+                    </ul>
+                </li>
+
+            </ul>
+            {{-- </div> --}}
+
 
         </div>
     </header>
@@ -137,7 +526,7 @@
             </div>
         </div>
 
-        <div class="container copyright text-center mt-4">
+        {{-- <div class="container copyright text-center mt-4">
             <p>© <span>Copyright</span> <strong class="px-1 sitename">iLanding</strong> <span>All Rights
                     Reserved</span></p>
             <div class="credits">
@@ -148,7 +537,7 @@
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed By <a
                     href="https://themewagon.com">ThemeWagon</a>
             </div>
-        </div>
+        </div> --}}
 
     </footer>
 
@@ -167,7 +556,8 @@
     <!-- Main JS File -->
     <script src="assets.user/js/main.js"></script>
 
+    <script src="{{ asset('assets/js/icons/feather-icon/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/icons/feather-icon/feather-icon.js') }}"></script>
 </body>
 
 </html>
-
