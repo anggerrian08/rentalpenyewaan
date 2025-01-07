@@ -64,7 +64,7 @@
             border: 1px solid #ffeeba;
         }
     </style>
-
+    <br>
     <div class="kotak-biru">
         <div class="d-flex justify-content-between align-items-start mb-3">
             <div>
@@ -97,28 +97,36 @@
                 <div class="card">
                     <!-- Foto promosi -->
                     <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top" alt="Foto Promosi">
-                    <div class="card-footer d-flex justify-content-end">
-                        <!-- Tombol hapus -->
-                        <form action="{{ route('promosi.destroy', $item->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn-icon btn-delete btn btn-danger btn-sm me-2 p-1">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </form>
-                        <!-- Tombol edit -->
-                        <button type="button" class="btn-icon btn-edit btn btn-warning btn-sm p-1" data-bs-toggle="modal"
-                            data-bs-target="#edit{{ $item->id }}">
-                            <i class="fa fa-edit"></i>
-                        </button>
-                    </div>
+                    <!-- Tanggal di bawah foto -->
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <!-- Tanggal di sebelah kiri -->
+                        <div class="card-body">
+                            <p class="card-text text-start mb-0">
+                                {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d-M-Y') }}
+                            </p>
+                        </div>
 
+                        <div class="d-flex">
+                            <!-- Tombol hapus -->
+                            <form action="{{ route('promosi.destroy', $item->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-icon btn-delete btn btn-danger btn-sm me-2 p-1">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                            <!-- Tombol edit -->
+                            <button type="button" class="btn-icon btn-edit btn btn-warning btn-sm p-1"
+                                data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         @empty
             <div class="text-center">
                 <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
-                <p>Data tidak tersedia.</p>
             </div>
         @endforelse
     </div>

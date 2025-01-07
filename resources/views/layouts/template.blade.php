@@ -258,7 +258,7 @@
                                             <i class="fa fa-history"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Data Sewa & Riwayat</span></a>
+                                            </svg><span class=""></span></a>
                                     </li>
 
                                     <!-- Garis setelah Jenis Mobil -->
@@ -287,14 +287,14 @@
                                             </svg><span class="">car likes</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="#">
+                                            href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Review</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="#">
+                                            href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
@@ -302,7 +302,7 @@
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('bookings.index') }}">
-                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-calendar-alt "></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">booking</span></a>
@@ -310,7 +310,7 @@
                                 @else
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('bookings.index') }}">
-                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-calendar-alt "></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">booking</span></a>
@@ -346,14 +346,13 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Approval Sewa</span></a>
                                     </li>
-                                    {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="{{ route('bookings.index') }}">
-                                            <i class="fa fa-history"></i>
+                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                            href="{{ route('detail_pembayarans.index') }}">
+                                            <i class="fa fa-credit-card"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Data Sewa & Riwayat</span></a>
-                                    </li> --}}
-
+                                            </svg><span class="">Detail Pembayaran</span></a>
+                                    </li>
                                     <!-- Garis setelah Jenis Mobil -->
                                     <li>
                                         <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
@@ -364,20 +363,7 @@
                                             <h6 class="">User</h6>
                                         </div>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="{{ route('detail_pembayarans.index') }}">
-                                            <i class="fa fa-calendar-check"></i>
-                                            <svg class="fill-icon">
-                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">detail pembayaran</span></a>
-                                    </li>
 
-                                    {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
-                    <i class="fa fa-user-check"></i>
-                    <svg class="fill-icon">
-                        <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                      </svg><span class="">Approval User</span></a>
-                  </li> --}}
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('user.index') }}">
                                             <i class="fa fa-users"></i>
@@ -388,13 +374,13 @@
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('car_likes.index') }}">
-                                            <i class="fa fa-users"></i>
+                                            <i class="fa fa-heart"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">car likes</span></a>
+                                            </svg><span class="">Car Likes</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="#">
+                                            href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
@@ -403,10 +389,10 @@
 
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
                                             href="{{ route('Promosi.index') }}">
-                                            <i class="fa fa-shopping-bag"></i>
+                                            <i class="fa fa-bullhorn"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">promosi</span></a>
+                                            </svg><span class="">Promosi</span></a>
                                     </li>
                                 @endif
                         </div>
