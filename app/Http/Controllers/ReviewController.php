@@ -12,7 +12,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $data_ulasan = Review::paginate(10);
+        return view('review.index', compact('data_ulasan'));
     }
 
     /**
