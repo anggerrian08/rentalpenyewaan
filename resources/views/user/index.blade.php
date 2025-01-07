@@ -278,7 +278,7 @@
                                     <p class="text-muted m-0">{{ $isi->email }}</p><br>
                                     <p class="text-muted m-0">Alamat</p>
                                     <p class="text-muted m-0">{{ $isi->address }}</p>
-                                     <br><br>
+                                    <br><br>
                                     <p class="text-muted m-0">Foto KTP</p>
                                     <p class="text-muted m-0"><img src="{{ asset('storage/uploads/ktp/' . $isi->ktp) }}"
                                             alt="KTP" width="200"></p>

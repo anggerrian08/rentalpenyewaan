@@ -85,7 +85,7 @@ $status = 'in_process';
         $booking = Booking::all();
         $users = User::all();
         $cars = Car::all();
-        return view('bookings.create', compact('booking','users', 'car'));
+        return view('bookings.create', compact('booking','users', 'cars'));
     }
 
     public function store(Request $request)
