@@ -12,11 +12,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PromosiController;
 
 use App\Http\Controllers\DetailPembayaranController;
+use App\Models\Car;
 use App\Models\DetailPembayaran;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $cars = Car::all(); // Ambil semua data mobil dari model Car
+    return view('welcome', compact('cars')); // Kirim data ke view welcome
 })->name('halamanutama');
 
 Route::resource('/beranda',  BerandaController::class);
@@ -73,7 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-   
+
 });
 // require __DIR__. '/user.php';
 require __DIR__.'/auth.php';

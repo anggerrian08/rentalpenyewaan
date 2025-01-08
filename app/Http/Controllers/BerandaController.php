@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\beranda;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -12,7 +13,9 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        return view('beranda');
+        $cars = Car::all();
+        return view('beranda', compact('cars'));
+
     }
 
     /**

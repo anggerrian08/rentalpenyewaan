@@ -201,18 +201,12 @@
                                             </tr>
     @endforelse --}}
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
-
-
             </body>
         </div>
     @endsection
