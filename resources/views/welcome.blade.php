@@ -554,16 +554,11 @@
 
                                     <button type="submit" class="btn">Kirim Pesan</button>
                                 </div>
-
                             </div>
                         </form>
-
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </section><!-- /Contact Section -->
 @endsection
