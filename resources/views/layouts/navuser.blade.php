@@ -57,8 +57,8 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="/" class="active">Beranda</a></li>
-                    <li><a href="">Pemesanan</a></li>
+                    <li><a href="/" class="">Beranda</a></li>
+                    <li><a href="/bookings" class="">Pemesanan</a></li>
                     <li><a href="">Favorit</a></li>
             </nav>
 

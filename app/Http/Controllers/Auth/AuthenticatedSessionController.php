@@ -26,30 +26,42 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
+    
         $request->session()->regenerate();
-
+    
         $user = Auth::user();
-
-        if($user->status == 'accepted'){
+    
+        if ($user->status == 'accepted') {
             $request->session()->regenerate();
+    
             $user->update([
                 'login_time' => now()->setTimezone('Asia/Jakarta'),
             ]);
-            return redirect()->intended(route('dashboard', absolute: false));
-        }elseif($user->status == 'in_process'){
+    
+            // Cek peran user
+            if ($user->hasRole('admin')) {
+                return redirect()->intended(route('dashboard', absolute: false)); // Halaman dashboard untuk admin
+            } elseif ($user->hasRole('user')) {
+                return redirect()->intended(route('halamanutama', absolute: false)); // Halaman utama untuk user
+            } else {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Role tidak valid.',
+                ]);
+            }
+        } elseif ($user->status == 'in_process') {
             Auth::logout();
             return back()->withErrors([
                 'email' => 'Your account is not approved. Please contact support.',
             ]);
-        }else{
+        } else {
             Auth::logout();
             return back()->withErrors([
-                'email' => 'akunmu di tolak woi',
+                'email' => 'Akunmu ditolak!',
             ]);
         }
-
     }
+    
 
     /**
      * Destroy an authenticated session.

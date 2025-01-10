@@ -290,162 +290,30 @@
 
         <div class="container mt-4">
             <div class="row">
-                <div class="col-xl-3 col-lg-12">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
+                @foreach ($cars as $car)
+                    <div class="col-xl-3 col-lg-4 col-sm-12 col-md-6">
+                        <div class="card p-2">
+                            <h3>{{ $car->name }}</h3>
+                            <p class="brand">{{ $car->brand }}</p>
+                            <div class="love-icon">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <img src="{{ asset('storage/uploads/car/'. $car->photo) }}" alt="{{ $car->merek->name}}" class="car-image img-fluid">
+                            <div class="details mt-2">
+                                <span><i class="fa-solid fa-gas-pump"></i> {{ $car->fuel_type }}</span>
+                                <span><i class="fa-solid fa-gears"></i> {{ $car->type_transmisi }}</span>
+                                <span><i class="fa-solid fa-users"></i> {{ $car->passenger_capacity }} Orang</span>
+                            </div>
+                            <div class="price mt-2">
+                                <p>Rp. {{ number_format($car->price, 2, ',', '.') }}/ <span>hari</span></p>
+                            </div>
+                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">
+                                <i class=" btn-primary"></i> Show
+                            </a>
                         </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
                     </div>
-                </div>
-                <div class="col-xl-3 col-sm-12 col-lg-4">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-sm-12 ">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-sm-12 col-md-6">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <div class="row">
-                <div class="col-xl-3  col-lg-4  col-sm-12 col-md-6">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-12 col-md-6">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-12 col-md-6">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-12 col-md-6">
-                    <div class="card p-2">
-                        <h3>Avanza Veloz</h3>
-                        <p class="brand">Toyota</p>
-                        <div class="love-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <img src="assets.user/img/mobil1.png" alt="Avanza Veloz" class="car-image img-fluid">
-                        <div class="details mt-2">
-                            <span><i class="fa-solid fa-gas-pump"></i> Bensin</span>
-                            <span><i class="fa-solid fa-gears"></i> Manual</span>
-                            <span><i class="fa-solid fa-users"></i> 4 Orang</span>
-                        </div>
-                        <div class="price mt-2">
-                            <p>Rp. 100.000,00/ <span>hari</span></p>
-                        </div>
-                        <button class="pesan-btn btn btn-primary">Pesan</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
 
