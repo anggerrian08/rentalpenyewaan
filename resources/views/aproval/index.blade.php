@@ -102,7 +102,7 @@
                 <div class="card-block row">
                     <div class="col-sm-12 col-lg-12 col-xl-12">
                         <div class="table-responsive custom-scrollbar">
-                            <table class="table table-light">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
