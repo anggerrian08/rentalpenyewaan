@@ -143,8 +143,8 @@
                 <div class="col-lg-6">
                     <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
                         <div class="company-badge mb-4">
-                            <i class="bi bi-gear-fill me-2"></i>
-                            Working for your success
+                            {{-- <i class="bi bi-gear-fill me-2"></i> --}}
+                            Humma RentCar
                         </div>
 
 
@@ -155,8 +155,8 @@
                         </h1>
 
                         <p class="mb-4 mb-md-5">
-                            Kami mengutamakan kenyamanan perjalanan Anda dengan menyediakan armada mobil yang terawat dan
-                            siap digunakan kapan saja.
+                            Kenyamanan dan harga adalah dua hal yang penting bagi pelanggan. Pilihan ideal untuk perjalanan
+                            yang menyenangkan tanpa merusak anggaran!
                         </p>
 
                         <div class="hero-buttons">
@@ -176,48 +176,45 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-trophy"></i>
+                            <i class="bi bi-cart-check"></i>
                         </div>
                         <div class="stat-content">
-                            <h4>3x Won Awards</h4>
-                            <p class="mb-0">Vestibulum ante ipsum</p>
+                            <p>Pesan Cepat dan Mudah</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-briefcase"></i>
+                            <i class="bi bi-check-circle"></i>
                         </div>
                         <div class="stat-content">
-                            <h4>6.5k Faucibus</h4>
-                            <p class="mb-0">Nullam quis ante</p>
+                            <p>Lengkap dan Terawat</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-graph-up"></i>
+                            <i class="bi bi-shield-check"></i>
                         </div>
                         <div class="stat-content">
-                            <h4>80k Mauris</h4>
-                            <p class="mb-0">Etiam sit amet orci</p>
+                            <p>Perlindungan Asuransi</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
                         <div class="stat-icon">
-                            <i class="bi bi-award"></i>
+                            <i class="bi bi-graph-up-arrow"></i>
                         </div>
                         <div class="stat-content">
-                            <h4>6x Phasellus</h4>
-                            <p class="mb-0">Vestibulum ante ipsum</p>
+                            <p>Harga Kompetitif</p>
                         </div>
                     </div>
                 </div>
             </div>
+
 
         </div>
 
@@ -235,24 +232,23 @@
                         <i class="bi bi-gear-fill me-2"></i>
                         Working for your success
                     </div> --}}
-                    <h2 class="about-title">Voluptas enim suscipit temporibus</h2>
-                    <p class="about-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                        veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <h6 class="about-title">Pilihan Tepat untuk Setiap Perjalanan.</h6>
+                    <p class="about-description">Dengan berbagai pilihan kendaraan dan layanan terbaik, kami hadir sebagai
+                        solusi rental mobil yang terpercaya untuk setiap momen perjalanan Anda.</p>
 
                     <div class="row feature-list-wrapper">
                         <div class="col-md-6">
                             <ul class="feature-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Lorem ipsum dolor sit amet</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Consectetur adipiscing elit</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Sed do eiusmod tempor</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Beragam Pilihan Armada</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Harga Cukup Terjangkau</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Kendaraan dalam Kondisi Prima</li>
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <ul class="feature-list">
-                                <li><i class="bi bi-check-circle-fill"></i> Incididunt ut labore et</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Dolore magna aliqua</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Ut enim ad minim veniam</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Mudah Diakses</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Layanan Fleksibel </li>
+                                <li><i class="bi bi-check-circle-fill"></i> Pelayanan yang Profesional</li>
                             </ul>
                         </div>
                     </div>
@@ -285,11 +281,11 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit</h2>
-            <p>Lorem ipsum dolor sit amet consectetur. Ridiculus commodo nunc eleifend quam magna suspendisse arcu. Cras
-                tempor ultrices amet feugiat nam consectetur. Sed vitae molestie at a lobortis pulvinar. Pulvinar purus
-                blandit dignissim diam scelerisque ut. Laoreet rhoncus sed mi tortor pretium. Fusce scelerisque pretium
-                suscipit elementum viverra. Purus accumsan eu diam </p>
+            <h2>Pilih Mobil Sesuai Kebutuhan Anda</h2>
+            <p>Temukan berbagai pilihan mobil yang sesuai dengan kebutuhan perjalanan Anda, mulai dari mobil kompak untuk
+                perjalanan pribadi hingga kendaraan besar untuk keluarga atau rombongan. Setiap kendaraan kami dijamin dalam
+                kondisi prima dan siap menemani perjalanan Anda. Pilih mobil favorit Anda, tentukan durasi sewa, dan nikmati
+                perjalanan tanpa khawatir</p>
         </div><!-- End Section Title -->
 
         <div class="container mt-4">
@@ -371,11 +367,7 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Testimonials</h2>
-            <p>Lorem ipsum dolor sit amet consectetur. Ridiculus commodo nunc eleifend quam magna suspendisse arcu. Cras
-                tempor ultrices amet feugiat nam consectetur. Sed vitae molestie at a lobortis pulvinar. Pulvinar purus
-                blandit dignissim diam scelerisque ut. Laoreet rhoncus sed mi tortor pretium. Fusce scelerisque pretium
-                suscipit elementum viverra. Purus accumsan eu diam </p>
+            <h2>Testimoni Pelanggan</h2>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -471,78 +463,16 @@
         </div>
 
     </section><!-- /Testimonials Section -->
-    <!-- Clients Section -->
-    <section id="clients" class="clients section">
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="swiper init-swiper">
-                <script type="application/json" class="swiper-config">
-              {
-                "loop": true,
-                "speed": 600,
-                "autoplay": {
-                  "delay": 5000
-                },
-                "slidesPerView": "auto",
-                "pagination": {
-                  "el": ".swiper-pagination",
-                  "type": "bullets",
-                  "clickable": true
-                },
-                "breakpoints": {
-                  "320": {
-                    "slidesPerView": 2,
-                    "spaceBetween": 40
-                  },
-                  "480": {
-                    "slidesPerView": 3,
-                    "spaceBetween": 60
-                  },
-                  "640": {
-                    "slidesPerView": 4,
-                    "spaceBetween": 80
-                  },
-                  "992": {
-                    "slidesPerView": 6,
-                    "spaceBetween": 120
-                  }
-                }
-              }
-            </script>
-                <div class="swiper-wrapper align-items-center">
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets.user/img/brem.png" class="img-fluid" alt="">
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-        </div>
-
-    </section><!-- /Clients Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section light-background">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Contact</h2>
-            <p>Lorem ipsum dolor sit amet consectetur. Ridiculus commodo nunc eleifend quam magna suspendisse arcu. Cras
-                tempor ultrices amet feugiat </p>
+            <h2>Hubungi Kami</h2>
+            <p>Butuh bantuan? Jangan ragu untuk menghubungi kami melalui formulir di bawah ini.
+                Tim kami siap membantu Anda
+                dengan senang hati!</p>
         </div><!-- End Section Title -->
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -550,18 +480,17 @@
             <div class="row g-4 g-lg-5">
                 <div class="col-lg-5">
                     <div class="info-box" data-aos="fade-up" data-aos-delay="200">
-                        <h3>Contact Info</h3>
-                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante
-                            ipsum primis.</p>
+                        <h3>Informasi Kontak</h3>
+                        <p>Hubungi kami melalui detail kontak di bawah ini. Kami akan dengan senang hati membantu Anda!</p>
 
                         <div class="info-item" data-aos="fade-up" data-aos-delay="300">
                             <div class="icon-box">
                                 <i class="bi bi-geo-alt"></i>
                             </div>
                             <div class="content">
-                                <h4>Our Location</h4>
-                                <p>A108 Adam Street</p>
-                                <p>New York, NY 535022</p>
+                                <h4>Lokasi Kantor</h4>
+                                <p>PT Humma Teknologi Indonesia</p>
+                                <p>Malang, Jawa Timur</p>
                             </div>
                         </div>
 
@@ -570,7 +499,7 @@
                                 <i class="bi bi-telephone"></i>
                             </div>
                             <div class="content">
-                                <h4>Phone Number</h4>
+                                <h4>Nomor Telepon</h4>
                                 <p>+1 5589 55488 55</p>
                                 <p>+1 6678 254445 41</p>
                             </div>
@@ -581,9 +510,9 @@
                                 <i class="bi bi-envelope"></i>
                             </div>
                             <div class="content">
-                                <h4>Email Address</h4>
-                                <p>info@example.com</p>
-                                <p>contact@example.com</p>
+                                <h4>Alamat Email</h4>
+                                <p>hummarentcar@gmail.com</p>
+                                <p>contact@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -591,38 +520,39 @@
 
                 <div class="col-lg-7">
                     <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
-                        <h3>Get In Touch</h3>
-                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante
-                            ipsum primis.</p>
+                        <h3>Hubungi kami</h3>
+                        <p>Jika Anda memiliki pertanyaan atau butuh bantuan, jangan ragu untuk mengirimkan pesan kepada kami
+                            melalui formulir ini.</p>
 
                         <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
                             data-aos-delay="200">
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                    <input type="text" name="name" class="form-control" placeholder="Nama anda"
                                         required="">
                                 </div>
 
                                 <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                    <input type="email" class="form-control" name="email" placeholder="Email"
                                         required="">
                                 </div>
 
                                 <div class="col-12">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                    <input type="text" class="form-control" name="subject" placeholder="Judul"
                                         required="">
                                 </div>
 
                                 <div class="col-12">
-                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required=""></textarea>
                                 </div>
 
                                 <div class="col-12 text-center">
                                     <div class="loading">Loading</div>
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
-                                    <button type="submit" class="btn">Send Message</button>
+
+                                    <button type="submit" class="btn">Kirim Pesan</button>
                                 </div>
                             </div>
                         </form>

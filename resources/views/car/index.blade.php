@@ -2,7 +2,7 @@
     @extends('layouts.template')
 
     @section('content')
-        <div class="container mt-5">
+        <div class="mt-5">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -120,15 +120,14 @@
 
 
                             <!-- Kolom untuk search -->
-                            <div class="col-md-2 p-0 text-end">
-                                <form action=""
-                                    style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                            <div class="col-md-2 p-0 text-end ms-5">
+                                <form action="{{route('car.index')}}" method="GET" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
                                     <span id="search-icon">
                                         <i class="fa fa-search"
                                             style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
                                     </span>
                                     <input type="text" style="border: none;" placeholder="Cari jenis mobil..."
-                                        aria-label="Search">
+                                        aria-label="Search" name="search">
                                 </form>
                             </div>
 
@@ -140,12 +139,14 @@
                                 <div class="card-block row">
                                     <div class="col-sm-12 col-lg-12 col-xl-12">
                                         <div class="table-responsive custom-scrollbar">
-                                            <table class="table table-light">
+                                            <table class="table ">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Merek</th>
                                                         <th>Nama</th>
+                                                        <th>plat nomer</th>
+                                                        <th>tarif/harga</th>
                                                         <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -156,11 +157,13 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $car->merek->name }}</td>
                                                             <td>{{ $car->name }}</td>
-                                                            <td class="d-flex justify-center">
+                                                            <td>{{$car->plat}}</td>
+                                                            <td>Rp.{{ number_format($car->price, 0, ',', '.')}}</td>
+                                                            <td class="justify-center">
                                                                 @if ($car->stock > 0)
-                                                                    <button class="btn btn-primary">tersedia</button>
+                                                                    <button class="badge badge-primary">tersedia</button>
                                                                 @else
-                                                                    <button class="btn btn-danger">tidak tersedia</button>
+                                                                    <button class="badge badge-danger">tidak tersedia</button>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -360,9 +363,9 @@
                                                         <td>{{ $car->name }}</td>
                                                         <td class="d-flex justify-center">
                                                             @if ($car->stock > 0)
-                                                                <button class="btn btn-primary">tersedia</button>
+                                                                <button class="badge badge-primary">tersedia</button>
                                                             @else
-                                                                <button class="btn btn-danger">tidak tersedia</button>
+                                                                <button class="badge badge-danger">tidak tersedia</button>
                                                             @endif
                                                         </td>
                                                         <td>

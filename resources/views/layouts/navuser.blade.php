@@ -426,6 +426,9 @@
                                 </form>
                             </li>
                         @else
+                            <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
+                            </li>
+                            <li><a href="letter-box.html"><i data-feather="mail"></i><span>Transaksi</span></a></li>
                             <li>
                                 <a href="{{ route('login') }}"
                                     style="text-decoration: none; color: inherit; display: flex; align-items: center;">
@@ -457,61 +460,48 @@
                     <a href="index.html" class="logo d-flex align-items-center">
                         <img src="assets.user/img/humma.png" alt="" width="200px">
                     </a>
-                    <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
+                    <div class="footer-contact pt-0">
+                        Humma RentCar adalah sebuah platform berbasis web yang dirancang untuk memberikan kemudahan
+                        dalam proses penyewaan mobil. Website ini menawarkan solusi praktis bagi pengguna untuk
+                        mencari, memesan, dan mengelola penyewaan mobil secara online. Dengan antarmuka yang
+                        intuitif dan fitur-fitur yang lengkap, Humma RentCar bertujuan untuk memberikan pengalaman
+                        terbaik dalam menyewa mobil, baik untuk keperluan perjalanan pribadi, bisnis, maupun
+                        liburan.
                     </div>
-                    <div class="social-links d-flex mt-4">
+                    {{-- <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
                         <a href=""><i class="bi bi-instagram"></i></a>
                         <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
+                    <h4>Media Sosial</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="bi bi-tiktok"></i> Tik Tok</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
+                    <h4>Layanan Kami</h4>
                     <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
+                        <li><a href="#">Sewa mobil harian</a></li>
+                        <li><a href="#">Sewa mobil dan sopir</a></li>
+                        <li><a href="#">Sewa mobil tanpa supir</a></li>
+                        <li><a href="#">Fleksibel</a></li>
+                        <li><a href="#">Banyak pilihan mobil</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Hic solutasetp</h4>
+                    <h4>Hubungi Kami</h4>
                     <ul>
-                        <li><a href="#">Molestiae accusamus iure</a></li>
-                        <li><a href="#">Excepturi dignissimos</a></li>
-                        <li><a href="#">Suscipit distinctio</a></li>
-                        <li><a href="#">Dilecta</a></li>
-                        <li><a href="#">Sit quas consectetur</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Nobis illum</h4>
-                    <ul>
-                        <li><a href="#">Ipsam</a></li>
-                        <li><a href="#">Laudantium dolorum</a></li>
-                        <li><a href="#">Dinera</a></li>
-                        <li><a href="#">Trodelas</a></li>
-                        <li><a href="#">Flexo</a></li>
+                        <li><a href="#"><i class="bi bi-telephone"></i> +1 5589 55488 55</a></li>
+                        <li><a href="#"><i class="bi bi-envelope"></i> humma@gmail.com</a></li>
+                        <li><a href="#"><i class="bi bi-geo-alt"></i> Malang, Jawa Timur</a></li>
                     </ul>
                 </div>
 
