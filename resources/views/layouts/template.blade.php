@@ -294,21 +294,14 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Review</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('bookings.index') }}">
                                             <i class="fa fa-calendar-alt "></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">booking</span></a>
-                                    </li>
-                                @else
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="{{ route('bookings.index') }}">
-                                            <i class="fa fa-calendar-alt "></i>
-                                            <svg class="fill-icon">
-                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">booking</span></a>
-                                    </li>
+                                    </li> --}}
+                                @else         
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
                                             href="{{ route('merek.index') }}">
                                             <i class="fa fa-car"></i>

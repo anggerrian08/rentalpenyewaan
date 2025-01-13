@@ -160,7 +160,10 @@
                         </p>
 
                         <div class="hero-buttons">
+                            @if (Auth()->user())
+                            @else
                             <a href="{{ route('login') }}" class="btn btn-primary me-0 me-sm-2 mx-1">Masuk</a>
+                            @endif
                         </div>
                     </div>
                 </div>

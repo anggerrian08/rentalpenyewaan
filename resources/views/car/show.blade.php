@@ -53,9 +53,14 @@
 
                     <div class="d-flex mt-3">
                         @if ($car->stock > 0)
-                            <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#pesanModal">
-                                Pesan Sekarang
-                            </button>
+
+                        @if (Auth()->user()->hasRole('user'))
+                        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#pesanModal">
+                            Pesan Sekarang
+                        </button>
+                    
+                        @endif
+
                         @else
                             <button type="button" class="btn btn-danger me-3" disabled>
                                 Stok Habis
