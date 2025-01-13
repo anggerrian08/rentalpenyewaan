@@ -17,6 +17,11 @@ class ApprovalController extends Controller
         return view('aproval.index', compact('data'));
     }
 
+    public function show(string $id){
+        $aproval = Booking::findOrFail($id);
+        return view('aproval.show', compact('aproval'));
+    }
+
     // Fungsi untuk menerima (approve) booking
     public function accepted(string $id)
     {

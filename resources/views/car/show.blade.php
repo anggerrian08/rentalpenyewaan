@@ -48,9 +48,12 @@
                     <div class="d-flex mt-3">
                         <!-- Button trigger modal -->
                         @if ($car->stock > 0)
+                        @if (Auth()->user()->hasRole('user'))
                         <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#pesanModal">
                             Pesan Sekarang
                         </button>
+                    
+                        @endif
                         @else
                         <button type="button" class="badge btn-danger me-2">
                             stock habis
