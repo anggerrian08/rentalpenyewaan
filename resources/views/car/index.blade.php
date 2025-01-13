@@ -328,8 +328,6 @@
             <div class="col-md-12 project-list">
                 <div class="card">
                     <div class="row align-items-center">
-
-
                         <!-- Kolom untuk search -->
                         <div class="col-md-2 p-0 text-end">
                             <form action=""
@@ -342,10 +340,6 @@
                                     aria-label="Search">
                             </form>
                         </div>
-
-
-
-
                         <div class="col-sm-12 mt-3">
                             {{-- <div class="card"> --}}
                             <div class="card-block row">
@@ -387,10 +381,8 @@
                                                 @endforelse
                                             </tbody>
                                         </table>
-
                                         <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                         </hr>
-
                                     </div>
                                 </div>
                             </div>
