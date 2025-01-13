@@ -49,6 +49,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::patch('/aproval/{id}/returned', [ApprovalController::class, 'returned'])->name('aproval.returned');
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
+
     Route::resource('/review', ReviewController::class)->except('index', 'show');
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
