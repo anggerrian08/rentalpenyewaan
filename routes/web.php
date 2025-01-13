@@ -48,8 +48,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::get('/aproval/{id}/show', [ApprovalController::class, 'show'])->name('aproval.show');
     Route::patch('/aproval/{id}/rejected', [ApprovalController::class, 'rejected'])->name('aproval.rejected');
     Route::patch('/aproval/{id}/returned', [ApprovalController::class, 'returned'])->name('aproval.returned');
+
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
+
+
+    Route::get('/riwayat_transaksi', function(){
+        $cars = DetailPembayaran::all();
+        return view('riwayat.index', compact('cars'));
+    })->name('riwayat');
+
 
     Route::resource('/review', ReviewController::class)->except('index', 'show');
 
