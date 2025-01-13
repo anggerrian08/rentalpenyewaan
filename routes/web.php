@@ -26,7 +26,7 @@ Route::resource('/beranda',  BerandaController::class);
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
 });
-// Route::get('/dashboard', function () {
+// Route::get('/dashboard', function () {   
 //     return view('dashboard');
 // })->name('dashboard');
 
@@ -52,10 +52,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
 
+
     Route::get('/riwayat_transaksi', function(){
         $cars = DetailPembayaran::all();
         return view('riwayat.index', compact('cars'));
     })->name('riwayat');
+
 
     Route::resource('/review', ReviewController::class)->except('index', 'show');
 

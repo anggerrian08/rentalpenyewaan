@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Car;
+use App\Models\DetailPembayaran;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,7 @@ class ApprovalController extends Controller
     }
 
     public function show(string $id){
-        $aproval = Booking::findOrFail($id);
+        $aproval = DetailPembayaran::with('booking')->findOrFail($id);
         return view('aproval.show', compact('aproval'));
     }
 

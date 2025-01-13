@@ -82,7 +82,7 @@
 
                 <!-- Search Bar -->
                 <div class="col-md-2 p-0 text-end">
-                    <form action=""
+                    <form action="{{route('aproval.index')}}" method="GET"
                         style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
                         <span id="search-icon">
                             <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
@@ -112,6 +112,7 @@
                                         <th scope="col">Jenis Kelamin</th>
                                         <th scope="col">No Hp</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">denda</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -137,6 +138,7 @@
                                                     <div class="badge badge-danger">late</div>
                                                 @endif
                                             </td>
+                                            <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center">
                                                     <!-- Modal Trigger Button -->
