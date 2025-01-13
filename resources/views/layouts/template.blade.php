@@ -1,5 +1,4 @@
-@if (auth()->user()->hasRole('admin'))
-@endif
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -143,7 +142,7 @@
                                 <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}"
                                     alt="">
                                 <div class="flex-grow-1 user">
-                                    <span>Helen Walter</span>
+                                    <span>{{ Auth::user()->name }}</span>
                                     <p class="mb-0 font-nunito">Admin
                                         <svg>
                                             <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
@@ -154,12 +153,7 @@
                             <ul class="profile-dropdown onhover-show-div">
                                 <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
                                 </li>
-                                <li><a href="letter-box.html"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                                <li><a href="task.html"><i data-feather="file-text"></i><span>Taskboard</span></a>
-                                </li>
-                                <li><a href="edit-profile.html"><i
-                                            data-feather="settings"></i><span>Settings</span></a></li>
-                                <li>
+                                    <li>
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                         @csrf
                                         <button type="submit"
@@ -300,21 +294,14 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Review</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('bookings.index') }}">
                                             <i class="fa fa-calendar-alt "></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">booking</span></a>
-                                    </li>
-                                @else
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
-                                            href="{{ route('bookings.index') }}">
-                                            <i class="fa fa-calendar-alt "></i>
-                                            <svg class="fill-icon">
-                                                <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">booking</span></a>
-                                    </li>
+                                    </li> --}}
+                                @else         
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
                                             href="{{ route('merek.index') }}">
                                             <i class="fa fa-car"></i>

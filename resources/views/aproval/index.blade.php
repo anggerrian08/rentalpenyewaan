@@ -102,7 +102,7 @@
                 <div class="card-block row">
                     <div class="col-sm-12 col-lg-12 col-xl-12">
                         <div class="table-responsive custom-scrollbar">
-                            <table class="table table-light">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -140,10 +140,11 @@
                                             <td>
                                                 <div class="d-flex justify-content-center">
                                                     <!-- Modal Trigger Button -->
-                                                    <button type="button" class="btn btn-info btn-sm p-1"
+                                                    <a href="{{route('aproval.show', $item->id)}}"  class="btn btn-info btn-sm p-1">  <i class="fa fa-eye" style="font-size: 15px;"></i></a>
+                                                    {{-- <button type="button" class="btn btn-info btn-sm p-1"
                                                         data-bs-toggle="modal" data-bs-target="#show{{ $item->user->id }}">
-                                                        <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                                    </button>
+                                                        <i class="fa fa-e   ye" style="font-size: 15px;"></i>
+                                                    </button> --}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -167,25 +168,7 @@
     </div>
 
     <!-- Modal for Each Item -->
-    @foreach ($data as $item)
-        <div class="modal fade" id="show{{ $item->user->id }}" tabindex="-1" aria-labelledby="showModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="showModalLabel">Detail Booking</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Email:</strong> {{ $item->user->email }}</p>
-                        <p><strong>Mobil:</strong> {{ $item->car->name }}</p>
-                        <p><strong>Status:</strong> {{ $item->status }}</p>
-                        <!-- Add more details as necessary -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
+
 
     <!-- Pagination -->
     <div class="row mt-3">

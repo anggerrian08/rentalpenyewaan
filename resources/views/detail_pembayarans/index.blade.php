@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('content')
-    <div class="container mt-5">
+    <div class="mt-5">
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -101,11 +101,11 @@
             </div>
         </div>
 
-        <div class="col-sm-12 mt-3">
+        <div class="col-sm-12 mt-3 ms-5">
             <div class="card-block row">
                 <div class="col-sm-12 col-lg-12 col-xl-12">
                     <div class="table-responsive custom-scrollbar">
-                        <table class="table table-light">
+                        <table class="table">
                             <tr>
                                 <th>No</th>
                                 <th>Booking ID</th>
