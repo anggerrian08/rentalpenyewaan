@@ -52,6 +52,7 @@
                     <li><a href="/" class="">Beranda</a></li>
                     <li><a href="/car" class="">Pemesanan</a></li>
                     <li><a href="">Favorit</a></li>
+                    <li><a href="/riwayat">Riwayat</a></li>
             </nav>
 
             {{-- <a class="btn-getstarted" href="{{ route('login') }}">Log in</a> --}}
