@@ -14,60 +14,133 @@
         border-radius: 10px;
         margin: 10px;
         box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+    .table-custom th,
+    .table-custom td {
+        padding: 8px 15px;
+        vertical-align: top;
     }
 
-    .card-img-top {
-        border-radius: 10px 10px 0 0;
-    }
-
-    .card-title {
-        font-weight: bold;
-        font-size: 1.2em;
-    }
-
-    .card-text {
-        font-size: 0.9em;
-        color: #6c757d;
-    }
-
-    .text-white {
-        color: #fff !important;
-    }
-
-    .mb-1 {
-        margin-bottom: 5px;
-    }
-
-    .mb-0 {
-        margin-bottom: 0;
-    }
-
-    .fw-bold {
-        font-weight: bold;
+    .image-preview {
+        max-width: 150px;
+        max-height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        border: 1px solid #ddd;
     }
 </style>
 <br>
-<!-- Kotak Biru Header -->
+<!-- Header -->
 <div class="kotak-biru">
-    <div class="d-flex justify-content-between align-items-start mb-3">
+    <div class="d-flex justify-content-between align-items-center">
         <div>
             <h2 class="text-white fw-bold mb-1">Approval Sewa</h2>
-            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Traksaksi | Approval Sewa</p>
+            <p class="text-white mb-0">Transaksi | Approval Sewa</p>
         </div>
     </div>
 </div>
 
-<div class="col-md-12 project-list">
-    <div class="card">
-        <div class="row align-items-center">
-            <th>Nama penyewa</th>
+<!-- Card Konten -->
+<div class="col-md-12">
+    <div class="card p-4">
+        <div class="row">
+            <!-- Data Penyewa -->
+            <div class="col-md-6">
+                <table class="table table-borderless table-custom">
+                    <tr>
+                        <th>Nama Penyewa</th>
+                        <td>{{$aproval->booking->user->name}}</td>
+                    </tr>
+                    <tr>
+                        <th>NIK</th>
+                        <td>{{$aproval->booking->user->nik}}</td>
+                    </tr>
+                    <tr>
+                        <th>No HP</th>
+                        <td>{{$aproval->booking->user->phone_number}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Alamat</th>
+                        <td>{{$aproval->booking->user->address}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Foto KTP dan SIM -->
+            <div class="col-md-6 text-center">
+                <div class="mb-3">
+                    <strong>Foto KTP</strong>
+                    <br>
+                    <img src="{{ asset('storage/uploads/ktp/'.$aproval->booking->user->ktp) }}" class="image-preview" alt="Foto KTP">
+                </div>
+                <div>
+                    <strong>Foto SIM</strong>
+                    <br>
+                    <img src="{{ asset('storage/uploads/sim/'.$aproval->booking->user->sim) }}" class="image-preview" alt="Foto SIM">
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Pinjaman -->
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-borderless table-custom">
+                    <tr>
+                        <th>Tanggal Pinjam</th>
+                        <td>{{ $aproval->booking->order_date }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Kembali</th>
+                        <td>{{ $aproval->booking->return_date }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-borderless table-custom">
+                    <tr>
+                        <th>Total Hari</th>
+                        <td>{{ $aproval->rental_duration_days }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tarif/hari</th>
+                        <td>Rp. {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total Tarif</th>
+                        <td>Rp. {{ number_format($aproval->total_price, 0, ',', '.') }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
+</div>
+
+<!-- Tombol Aksi -->
+<div class="d-flex justify-content-end mt-3">
+    @if ($aproval->booking->status != 'late' && $aproval->booking->status != 'returned')
+    <form action="{{route('aproval.rejected', $aproval->id)}}" method="post">
+        @csrf
+        @method('PATCH')
+        <button type="submit" class="btn btn-danger me-2">Tolak</button>
+    </form>
+    <form action="{{route('aproval.accepted', $aproval->id)}}" method="post">
+        @csrf
+        @method('PATCH')
+        <button type="submit" class="btn btn-success me-2">terima</button>
+    </form>
+    @endif
+    @if ($aproval->booking->status == 'late')
+
+    <form action="{{route('aproval.returned', $aproval->id)}}" method="post">
+        @csrf
+        @method('PATCH')
+        <button type="submit" class="btn btn-success me-2">returned</button>
+    </form>
+        
+    @endif
+    <a href="" class="btn btn-secondary">kembali</a>
 </div>
 @endsection
