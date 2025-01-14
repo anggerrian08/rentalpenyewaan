@@ -121,6 +121,7 @@
                             <div class="table-responsive custom-scrollbar">
                                 <table class="table ">
                                     <thead>
+
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama</th>
@@ -131,8 +132,6 @@
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-
                                     <tbody>
                                         @foreach ($data as $isi)
                                             <tr>
@@ -152,7 +151,6 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
                                     </tbody>
                                 </table>
                                 <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
