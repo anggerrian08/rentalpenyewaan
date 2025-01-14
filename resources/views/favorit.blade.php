@@ -1,9 +1,15 @@
 @extends('layouts.navuser')
 @section('content')
+
+    <head>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+
     <style>
         /* Hero Section Styling */
         .hero-section {
-            background-color: #E8F4FD;
+            background-color: #f3f9ff;
             padding: 50px 0;
         }
 
@@ -49,6 +55,7 @@
             text-align: center;
             position: relative;
             transition: all 0.3s ease;
+
         }
 
         .card:hover {
@@ -59,7 +66,8 @@
             width: 100%;
             height: auto;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-top: 50px;
+            /* To give space for the car name and love icon */
         }
 
         h3 {
@@ -126,28 +134,85 @@
         .pesan-btn:hover {
             background-color: #0056b3;
         }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 5px 15px;
+        }
+
+        .car-name {
+            font-size: 1em;
+            /* Perkecil ukuran font */
+            font-weight: bold;
+            margin: 0;
+            position: absolute;
+            top: 5px;
+            /* Sesuaikan posisi agar lebih ke atas */
+            left: 10px;
+        }
+
+
+        .price-button-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .pesan-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .pesan-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
     <div class="hero-section">
         <div class="container text-center">
             <img src="assets.user/img/mbl.png" alt="Cars" class="hero-image">
-            <h1>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Doloer Sit</h1>
-            <p>Lorem ipsum dolor sit amet consectetur...</p>
-        </div>
-    </div>
-
-    <div class="container">
-        @foreach ($data as $car)
-            <div class="card">
-                <div class="love-icon">❤</div>
-                <img src="{{ $car->image }}" alt="{{ $car->model }}" class="car-image">
-                <h3>{{ $car->model }}</h3>
-                <p class="brand">{{ $car->brand }}</p>
-                <div class="details">
-                    <span>Seats: {{ $car->seats }}</span>
-                    <span class="price">Rp. {{ number_format($car->price, 0, ',', '.') }}</span>
-                </div>
-                <button class="pesan-btn">Pesan</button>
+            <h1>Temukan Mobil Favorit Anda</h1>
+            <p>Jelajahi koleksi mobil favorit pilihan Anda. Dengan desain elegan dan performa terbaik, mobil-mobil ini siap
+                memberikan pengalaman berkendara yang tak terlupakan. Nikmati kemudahan dalam mencari dan memilih mobil yang
+                sesuai dengan gaya dan kebutuhan Anda.</p>
+            <div class="container">
+                @foreach ($data as $car)
+                    <div class="card">
+                        <h3 style="text-align: left;">Avanza Veloz</h3>
+                        <div class="love-icon">❤</div>
+                        <img src="assets.user/img/mobil1.png" alt="" class="car-image">
+                        <h3>{{ $car->model }}</h3>
+                        <p class="brand">{{ $car->brand }}</p>
+                        <div class="details">
+                            <span class="text-muted">
+                                <i class="fas fa-gas-pump"></i> Bensin
+                            </span>
+                            <span class="text-muted">
+                                <i class="fas fa-cogs"></i> Manual
+                            </span>
+                            <span class="text-muted">
+                                <i class="fas fa-user"></i> {{ $car->seats }} Orang
+                            </span>
+                        </div>
+                        <div class="price-button-wrapper">
+                            <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
+                            <button class="pesan-btn">Pesan</button>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
+        </div>
     </div>
 @endsection
