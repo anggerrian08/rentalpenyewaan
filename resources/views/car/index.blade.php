@@ -121,7 +121,8 @@
 
                             <!-- Kolom untuk search -->
                             <div class="col-md-2 p-0 text-end ms-5">
-                                <form action="{{route('car.index')}}" method="GET" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                                <form action="{{ route('car.index') }}" method="GET"
+                                    style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
                                     <span id="search-icon">
                                         <i class="fa fa-search"
                                             style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
@@ -139,7 +140,7 @@
                                 <div class="card-block row">
                                     <div class="col-sm-12 col-lg-12 col-xl-12">
                                         <div class="table-responsive custom-scrollbar">
-                                            <table class="table ">
+                                            <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -157,13 +158,14 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $car->merek->name }}</td>
                                                             <td>{{ $car->name }}</td>
-                                                            <td>{{$car->plat}}</td>
-                                                            <td>Rp.{{ number_format($car->price, 0, ',', '.')}}</td>
+                                                            <td>{{ $car->plat }}</td>
+                                                            <td>Rp.{{ number_format($car->price, 0, ',', '.') }}</td>
                                                             <td class="justify-center">
                                                                 @if ($car->stock > 0)
                                                                     <button class="badge badge-primary">tersedia</button>
                                                                 @else
-                                                                    <button class="badge badge-danger">tidak tersedia</button>
+                                                                    <button class="badge badge-danger">tidak
+                                                                        tersedia</button>
                                                                 @endif
                                                             </td>
                                                             <td>
@@ -365,7 +367,8 @@
                                                             @if ($car->stock > 0)
                                                                 <button class="badge badge-primary">tersedia</button>
                                                             @else
-                                                                <button class="badge badge-danger">tidak tersedia</button>
+                                                                <button class="badge badge-danger">tidak
+                                                                    tersedia</button>
                                                             @endif
                                                         </td>
                                                         <td>

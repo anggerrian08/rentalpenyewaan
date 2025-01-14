@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div class="col-sm-12 mt-3 ms-5">
+        <div class="col-sm-12 mt-3">
             <div class="card-block row">
                 <div class="col-sm-12 col-lg-12 col-xl-12">
                     <div class="table-responsive custom-scrollbar">
