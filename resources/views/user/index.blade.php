@@ -121,6 +121,7 @@
                             <div class="table-responsive custom-scrollbar">
                                 <table class="table table-light">
                                     <thead>
+
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama</th>
@@ -131,8 +132,6 @@
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-
                                     <tbody>
                                         @forelse ($data as $isi)
                                             <tr>
@@ -153,13 +152,14 @@
                                                 </td>
                                             </tr>
 
+                                        @empty
+                                            <div class="text-center">
+                                                <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                                    alt="">
+                                            </div>
+                                        @endforelse
                                     </tbody>
                                 </table>
-                            @empty
-                                <div class="text-center">
-                                    <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
-                                </div>
-                                @endforelse
                                 <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                 </hr>
                             </div>

@@ -57,9 +57,9 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="/" class="">Beranda</a></li>
-                    <li><a href="/bookings" class="">Pemesanan</a></li>
-                    <li><a href="">Favorit</a></li>
+                    <li><a href="/" class="active">Beranda</a></li>
+                    <li><a href="">Pemesanan</a></li>
+                    <li><a href="favorit">Favorit</a></li>
             </nav>
 
             {{-- <a class="btn-getstarted" href="{{ route('login') }}">Log in</a> --}}

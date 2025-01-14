@@ -298,7 +298,8 @@
                             <div class="love-icon">
                                 <i class="fa-solid fa-heart"></i>
                             </div>
-                            <img src="{{ asset('storage/uploads/car/'. $car->photo) }}" alt="{{ $car->merek->name}}" class="car-image img-fluid">
+                            <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
+                                class="car-image img-fluid">
                             <div class="details mt-2">
                                 <span><i class="fa-solid fa-gas-pump"></i> {{ $car->fuel_type }}</span>
                                 <span><i class="fa-solid fa-gears"></i> {{ $car->type_transmisi }}</span>
