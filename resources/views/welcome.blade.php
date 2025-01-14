@@ -290,8 +290,12 @@
 
         <div class="container mt-4">
             <div class="row">
-                @foreach ($cars as $car)
-                    <div class="col-xl-3 col-lg-4 col-sm-12 col-md-6">
+                @foreach ($cars as $index => $car)
+                    @if ($index % 12 == 0 && $index != 0) <!-- Membatasi 12 kartu (4 kolom x 3 baris) -->
+                        </div>
+                        <div class="row mt-4">
+                    @endif
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="card p-2">
                             <h3>{{ $car->name }}</h3>
                             <p class="brand">{{ $car->brand }}</p>
@@ -307,14 +311,15 @@
                             <div class="price mt-2">
                                 <p>Rp. {{ number_format($car->price, 2, ',', '.') }}/ <span>hari</span></p>
                             </div>
-                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">
-                                <i class=" btn-primary"></i> Show
+                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn btn btn-primary mt-2">
+                                Show
                             </a>
                         </div>
                     </div>
                 @endforeach
             </div>
-    </section>
+        </div>
+            </section>
 
 
 
