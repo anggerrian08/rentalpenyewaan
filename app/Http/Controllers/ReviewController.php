@@ -63,4 +63,8 @@ class ReviewController extends Controller
     {
         //
     }
+
+    public function riwayat(){
+        return view('riwayat.riwayat');
+    }
 }

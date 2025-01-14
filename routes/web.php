@@ -28,7 +28,7 @@ Route::resource('/favorit',  FavoritController::class);
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
 });
-// Route::get('/dashboard', function () {
+// Route::get('/dashboard', function () {   
 //     return view('dashboard');
 // })->name('dashboard');
 
@@ -47,10 +47,20 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
     Route::patch('/aproval/{id}/accept', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
+    Route::get('/aproval/{id}/show', [ApprovalController::class, 'show'])->name('aproval.show');
     Route::patch('/aproval/{id}/rejected', [ApprovalController::class, 'rejected'])->name('aproval.rejected');
     Route::patch('/aproval/{id}/returned', [ApprovalController::class, 'returned'])->name('aproval.returned');
+
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
+
+
+    Route::get('/riwayat_transaksi', function(){
+        $cars = DetailPembayaran::all();
+        return view('riwayat.index', compact('cars'));
+    })->name('riwayat');
+
+
     Route::resource('/review', ReviewController::class)->except('index', 'show');
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');

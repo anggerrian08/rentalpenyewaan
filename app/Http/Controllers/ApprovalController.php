@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Car;
+use App\Models\DetailPembayaran;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,11 @@ class ApprovalController extends Controller
         // Menampilkan data booking dengan relasi ke user dan car
         $data = Booking::with('user', 'car')->paginate(10); // Menggunakan pagination
         return view('aproval.index', compact('data'));
+    }
+
+    public function show(string $id){
+        $aproval = DetailPembayaran::with('booking')->findOrFail($id);
+        return view('aproval.show', compact('aproval'));
     }
 
     // Fungsi untuk menerima (approve) booking

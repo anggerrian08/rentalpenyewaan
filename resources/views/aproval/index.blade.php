@@ -82,7 +82,7 @@
 
                 <!-- Search Bar -->
                 <div class="col-md-2 p-0 text-end">
-                    <form action=""
+                    <form action="{{route('aproval.index')}}" method="GET"
                         style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
                         <span id="search-icon">
                             <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
@@ -102,7 +102,7 @@
                 <div class="card-block row">
                     <div class="col-sm-12 col-lg-12 col-xl-12">
                         <div class="table-responsive custom-scrollbar">
-                            <table class="table table-light">
+                            <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
@@ -112,6 +112,7 @@
                                         <th scope="col">Jenis Kelamin</th>
                                         <th scope="col">No Hp</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">denda</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -137,13 +138,15 @@
                                                     <div class="badge badge-danger">late</div>
                                                 @endif
                                             </td>
+                                            <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center">
                                                     <!-- Modal Trigger Button -->
-                                                    <button type="button" class="btn btn-info btn-sm p-1"
+                                                    <a href="{{route('aproval.show', $item->id)}}"  class="btn btn-info btn-sm p-1">  <i class="fa fa-eye" style="font-size: 15px;"></i></a>
+                                                    {{-- <button type="button" class="btn btn-info btn-sm p-1"
                                                         data-bs-toggle="modal" data-bs-target="#show{{ $item->user->id }}">
-                                                        <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                                    </button>
+                                                        <i class="fa fa-e   ye" style="font-size: 15px;"></i>
+                                                    </button> --}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -167,25 +170,7 @@
     </div>
 
     <!-- Modal for Each Item -->
-    @foreach ($data as $item)
-        <div class="modal fade" id="show{{ $item->user->id }}" tabindex="-1" aria-labelledby="showModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="showModalLabel">Detail Booking</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Email:</strong> {{ $item->user->email }}</p>
-                        <p><strong>Mobil:</strong> {{ $item->car->name }}</p>
-                        <p><strong>Status:</strong> {{ $item->status }}</p>
-                        <!-- Add more details as necessary -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
+
 
     <!-- Pagination -->
     <div class="row mt-3">
