@@ -464,18 +464,13 @@
 
         <div class="container footer-top">
             <div class="row gy-4">
-                <div class="col-lg-4 col-md-6 footer-about">
+                <div class="col-lg-5 col-md-4 footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
                         <img src="assets.user/img/humma.png" alt="" width="200px">
                     </a>
-                    <div class="footer-contact pt-0">
-                        Humma RentCar adalah sebuah platform berbasis web yang dirancang untuk memberikan kemudahan
-                        dalam proses penyewaan mobil. Website ini menawarkan solusi praktis bagi pengguna untuk
-                        mencari, memesan, dan mengelola penyewaan mobil secara online. Dengan antarmuka yang
-                        intuitif dan fitur-fitur yang lengkap, Humma RentCar bertujuan untuk memberikan pengalaman
-                        terbaik dalam menyewa mobil, baik untuk keperluan perjalanan pribadi, bisnis, maupun
-                        liburan.
-                    </div>
+                    Humma RentCar adalah sebuah platform berbasis web yang dirancang untuk memberikan kemudahan
+                    dalam proses penyewaan mobil. Website ini menawarkan solusi praktis bagi pengguna untuk
+                    mencari, memesan, dan mengelola penyewaan mobil secara online.
                     {{-- <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
@@ -493,14 +488,12 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
+                <div class="col-lg-3 col-md-3 footer-links">
                     <h4>Layanan Kami</h4>
                     <ul>
                         <li><a href="#">Sewa mobil harian</a></li>
                         <li><a href="#">Sewa mobil dan sopir</a></li>
                         <li><a href="#">Sewa mobil tanpa supir</a></li>
-                        <li><a href="#">Fleksibel</a></li>
-                        <li><a href="#">Banyak pilihan mobil</a></li>
                     </ul>
                 </div>
 
