@@ -18,17 +18,18 @@ use App\Models\DetailPembayaran;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $cars = Car::all(); // Ambil semua data mobil dari model Car
+    $cars = Car::paginate(8); // Ambil semua data mobil dari model Car
     return view('welcome', compact('cars')); // Kirim data ke view welcome
 })->name('halamanutama');
 
 Route::resource('/beranda',  BerandaController::class);
 Route::resource('/favorit',  FavoritController::class);
+Route::resource('/account',  ProfileController::class);
 
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
 });
-// Route::get('/dashboard', function () {   
+// Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 

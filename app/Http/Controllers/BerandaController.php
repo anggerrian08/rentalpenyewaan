@@ -13,8 +13,8 @@ class BerandaController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-        return view('beranda', compact('cars'));
+        $cars = Car::paginate(8);
+        return view('welcome', compact('cars'));
 
     }
 

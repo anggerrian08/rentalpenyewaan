@@ -188,11 +188,12 @@
                 memberikan pengalaman berkendara yang tak terlupakan. Nikmati kemudahan dalam mencari dan memilih mobil yang
                 sesuai dengan gaya dan kebutuhan Anda.</p>
             <div class="container">
-                @foreach ($data as $car)
+                @foreach ($cars as $car)
                     <div class="card">
-                        <h3 style="text-align: left;">Avanza Veloz</h3>
+                        <h3 style="text-align: left;">{{ $car->name }}</h3>
                         <div class="love-icon">❤</div>
-                        <img src="assets.user/img/mobil1.png" alt="" class="car-image">
+                        <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
+                            class="car-image img-fluid">
                         <h3>{{ $car->model }}</h3>
                         <p class="brand">{{ $car->brand }}</p>
                         <div class="details">
@@ -212,6 +213,10 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <!-- Pagination Links -->
+            <div class="pagination-wrapper">
+                {{ $cars->links() }}
             </div>
         </div>
     </div>
