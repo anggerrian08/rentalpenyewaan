@@ -10,11 +10,22 @@ class DetailPembayaranController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DetailPembayaran::with('booking')->get(); // Mengambil data dengan relasi booking
-        return view('detail_pembayarans.index', compact('data'));
+        $search = $request->input('search'); // Ambil input pencarian
+    
+        // Ambil data dengan relasi booking dan filter berdasarkan email jika ada pencarian
+        $data = DetailPembayaran::with('booking.user')
+            ->when($search, function ($query, $search) {
+                $query->whereHas('booking.user', function ($query) use ($search) {
+                    $query->where('email', 'like', '%' . $search . '%');
+                });
+            })
+            ->get();
+    
+        return view('detail_pembayarans.index', compact('data', 'search'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
