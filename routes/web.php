@@ -10,7 +10,6 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PromosiController;
-use App\Http\Controllers\FavoritController;
 
 use App\Http\Controllers\DetailPembayaranController;
 use App\Models\Car;
@@ -23,8 +22,10 @@ Route::get('/', function () {
 })->name('halamanutama');
 
 Route::resource('/beranda',  BerandaController::class);
+
 Route::resource('/favorit',  FavoritController::class);
 Route::resource('/account',  ProfileController::class);
+
 
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
@@ -51,17 +52,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::get('/aproval/{id}/show', [ApprovalController::class, 'show'])->name('aproval.show');
     Route::patch('/aproval/{id}/rejected', [ApprovalController::class, 'rejected'])->name('aproval.rejected');
     Route::patch('/aproval/{id}/returned', [ApprovalController::class, 'returned'])->name('aproval.returned');
-
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
-
-
-    Route::get('/riwayat_transaksi', function(){
-        $cars = DetailPembayaran::all();
-        return view('riwayat.index', compact('cars'));
-    })->name('riwayat');
-
-
     Route::resource('/review', ReviewController::class)->except('index', 'show');
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');

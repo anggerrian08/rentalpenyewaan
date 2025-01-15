@@ -100,7 +100,10 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+
+
+        <div class="card p-3">
+
             <div class="col-sm-12 mt-3">
                 <div class="card-block row">
                     <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -128,11 +131,9 @@
                                             <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
                                             </td> <!-- Format tanggal kembali -->
                                             <td>{{ $item->rental_duration_days }}</td>
-                                            <td>{{ number_format($item->total_price, 0, ',', '.') }}</td>
-                                            <!-- Format harga -->
+                                            <td>{{ number_format($item->total_price, 0, ',', '.') }}</td> <!-- Format harga -->
                                             <td>
-                                                <button type="button" class="btn btn-info btn-sm"> <i
-                                                        class="bi bi-eye"></i>
+                                                <button type="button" class="btn btn-info btn-sm"> <i class="bi bi-eye"></i>
                                                     Detail</button>
                                             </td>
                                         </tr>
@@ -150,5 +151,6 @@
                     </div>
                 </div>
             </div>
+
         </div>
     @endsection
