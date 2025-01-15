@@ -10,6 +10,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarLikesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PromosiController;
+use App\Http\Controllers\FavoritController;
 
 use App\Http\Controllers\DetailPembayaranController;
 use App\Models\Car;
