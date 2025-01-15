@@ -13,10 +13,33 @@ class ApprovalController extends Controller
 {
     public function index(Request $request)
     {
-        // Menampilkan data booking dengan relasi ke user dan car
-        $data = Booking::with('user', 'car')->paginate(10); // Menggunakan pagination
-        return view('aproval.index', compact('data'));
+        // Mengambil data filter dan pencarian
+        $filter = $request->input('filter');
+        $search = $request->input('search');
+    
+        // Query dasar
+        $query = Booking::with('user', 'car');
+    
+        // Filter berdasarkan email (A-Z, Z-A)
+        if ($filter === 'a-z') {
+            $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'asc');
+        } elseif ($filter === 'z-a') {
+            $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'desc');
+        }
+    
+        // Pencarian berdasarkan email
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('email', 'like', "%{$search}%");
+            });
+        }
+    
+        // Menggunakan pagination
+        $data = $query->paginate(10);
+    
+        return view('aproval.index', compact('data', 'filter', 'search'));
     }
+    
 
     public function show(string $id){
         $aproval = DetailPembayaran::with('booking')->findOrFail($id);

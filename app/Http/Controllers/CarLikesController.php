@@ -54,13 +54,12 @@ class CarLikesController extends Controller
     public function destroy(string $id)
     {
         $makanan = CarLikes::find($id);
-        
+
         if($makanan){
             $makanan->delete();
         }else{
             session()->flash('error', 'id not found ');
         }
         return back();
-     
     }
 }

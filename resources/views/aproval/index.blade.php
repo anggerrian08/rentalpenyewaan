@@ -66,30 +66,30 @@
         <div class="card">
             <div class="row align-items-center">
                 <!-- Kolom untuk filter -->
+                <!-- Filter Dropdown -->
                 <div class="col-md-2 p-0 text-end">
-                    <form class="d-flex justify-content-end">
-                        <!-- Dropdown filter -->
-                        <select class="form-select me-2" aria-label="Filter Merk Mobil">
-                            <option value="" selected>Filter</option>
-                            <option value="a-z">A-Z</option>
-                            <option value="z-a">Z-A</option>
-                            <option value="terbaru">Terbaru</option>
-                            <option value="terlama">Terlama</option>
+                    <form action="{{ route('aproval.index') }}" method="GET" class="d-flex justify-content-end">
+                        <select class="form-select me-2" name="filter" onchange="this.form.submit()">
+                            <option value="" {{ $filter == '' ? 'selected' : '' }}>Filter</option>
+                            <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>A-Z</option>
+                            <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>Z-A</option>
                         </select>
                     </form>
                 </div>
 
-
                 <!-- Search Bar -->
                 <div class="col-md-2 p-0 text-end">
-                    <form action="{{route('aproval.index')}}" method="GET"
-                        style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
+                    <form action="{{ route('aproval.index') }}" method="GET"
+                        style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px; border-radius: 8px;">
                         <span id="search-icon">
-                            <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
+                            <i class="fa fa-search" style="padding-left: 4px; color:#00000040; padding-right: 6px;"></i>
                         </span>
-                        <input type="text" style="border: none;" placeholder="Cari approval sewa..." aria-label="Search">
+                        <input type="text" name="search" value="{{ $search }}" style="border: none;"
+                            placeholder="Cari email..." aria-label="Search">
+                        <button type="submit" style="display:none;">Search</button>
                     </form>
                 </div>
+
 
                 <!-- Approve Button -->
                 {{-- <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
@@ -142,7 +142,9 @@
                                             <td>
                                                 <div class="d-flex justify-content-center">
                                                     <!-- Modal Trigger Button -->
-                                                    <a href="{{route('aproval.show', $item->id)}}"  class="btn btn-info btn-sm p-1">  <i class="fa fa-eye" style="font-size: 15px;"></i></a>
+                                                    <a href="{{ route('aproval.show', $item->id) }}"
+                                                        class="btn btn-info btn-sm p-1"> <i class="fa fa-eye"
+                                                            style="font-size: 15px;"></i></a>
                                                     {{-- <button type="button" class="btn btn-info btn-sm p-1"
                                                         data-bs-toggle="modal" data-bs-target="#show{{ $item->user->id }}">
                                                         <i class="fa fa-e   ye" style="font-size: 15px;"></i>
