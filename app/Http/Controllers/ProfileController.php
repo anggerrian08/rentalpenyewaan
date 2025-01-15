@@ -7,10 +7,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function index(){
+        $data = User::all();
+        return view('account', compact('data'));
+    }
     /**
      * Display the user's profile form.
      */

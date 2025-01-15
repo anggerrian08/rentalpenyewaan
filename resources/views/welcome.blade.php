@@ -32,6 +32,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 15px;
             text-align: center;
+            position: relative;
             transition: all 0.3s ease;
         }
 
@@ -118,17 +119,16 @@
         }
 
         /* Card Positioning for Love Icon */
-        .card {
-            position: relative;
-            /* Menjadikan .love-icon absolute dalam card */
-            background-color: #ffffff;
-            width: 250px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
+        /* .card {
+                position: relative;
+                background-color: #ffffff;
+                width: 250px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 15px;
+                text-align: center;
+                transition: all 0.3s ease;
+            } */
 
         .card:hover {
             transform: translateY(-10px);
@@ -162,7 +162,7 @@
                         <div class="hero-buttons">
                             @if (Auth()->user())
                             @else
-                            <a href="{{ route('login') }}" class="btn btn-primary me-0 me-sm-2 mx-1">Masuk</a>
+                                <a href="{{ route('login') }}" class="btn btn-primary me-0 me-sm-2 mx-1">Masuk</a>
                             @endif
                         </div>
                     </div>
@@ -291,39 +291,38 @@
                 perjalanan tanpa khawatir</p>
         </div><!-- End Section Title -->
 
-        <div class="container mt-4">
-            <div class="row">
-                @foreach ($cars as $index => $car)
-                    @if ($index % 12 == 0 && $index != 0) <!-- Membatasi 12 kartu (4 kolom x 3 baris) -->
-                        </div>
-                        <div class="row mt-4">
-                    @endif
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="card p-2">
-                            <h3>{{ $car->name }}</h3>
-                            <p class="brand">{{ $car->brand }}</p>
-                            <div class="love-icon">
-                                <i class="fa-solid fa-heart"></i>
-                            </div>
-                            <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
-                                class="car-image img-fluid">
-                            <div class="details mt-2">
-                                <span><i class="fa-solid fa-gas-pump"></i> {{ $car->fuel_type }}</span>
-                                <span><i class="fa-solid fa-gears"></i> {{ $car->type_transmisi }}</span>
-                                <span><i class="fa-solid fa-users"></i> {{ $car->passenger_capacity }} Orang</span>
-                            </div>
-                            <div class="price mt-2">
-                                <p>Rp. {{ number_format($car->price, 2, ',', '.') }}/ <span>hari</span></p>
-                            </div>
-                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn btn btn-primary mt-2">
-                                Show
-                            </a>
-                        </div>
+        <div class="container">
+            @foreach ($cars as $car)
+                <div class="card">
+                    <h3 style="text-align: left;">{{ $car->name }}</h3>
+                    <div class="love-icon">❤</div>
+                    <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
+                        class="car-image img-fluid">
+                    <h3>{{ $car->model }}</h3>
+                    <p class="brand">{{ $car->brand }}</p>
+                    <div class="details">
+                        <span class="text-muted">
+                            <i class="fas fa-gas-pump"></i> Bensin
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-cogs"></i> Manual
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-user"></i> {{ $car->seats }} Orang
+                        </span>
                     </div>
-                @endforeach
-            </div>
+                    <div class="price-button-wrapper">
+                        <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
+                        <button class="pesan-btn">Pesan</button>
+                    </div>
+                </div>
+            @endforeach
         </div>
-            </section>
+        <!-- Pagination Links -->
+        <div class="pagination-wrapper">
+            {{ $cars->links() }}
+        </div>
+    </section>
 
 
 
