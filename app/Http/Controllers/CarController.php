@@ -100,7 +100,7 @@ class CarController extends Controller
             'luggage_capacity.required' => 'Kapasitas bagasi harus diisi.',
             'luggage_capacity.integer' => 'Kapasitas bagasi harus berupa angka.',
             'luggage_capacity.min' => 'Kapasitas bagasi tidak boleh kurang dari 0.',
-            
+
             'photo.required' => 'Foto kendaraan harus diunggah.',
             'photo.image' => 'File foto harus berupa gambar.',
             'photo.mimes' => 'Foto harus memiliki format jpeg, png, atau jpg.',

@@ -49,15 +49,22 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="/" class="">Beranda</a></li>
-                    <li><a href="/car" class="">Pemesanan</a></li>
-                    <li><a href="/favorit">Favorit</a></li>
-                    <li><a href="/riwayat">Riwayat</a></li>
+                    <li><a href="/" class="<?php echo $_SERVER['REQUEST_URI'] == '/' ? 'active' : ''; ?>">Beranda</a></li>
+                    <li><a href="/car" class="<?php echo $_SERVER['REQUEST_URI'] == '/car' ? 'active' : ''; ?>">Pemesanan</a></li>
+                    <li><a href="/favorit" class="<?php echo $_SERVER['REQUEST_URI'] == '/favorit' ? 'active' : ''; ?>">Favorit</a></li>
+                    <li><a href="/riwayat" class="<?php echo $_SERVER['REQUEST_URI'] == '/riwayat' ? 'active' : ''; ?>">Riwayat</a></li>
+                </ul>
             </nav>
+
 
             {{-- <a class="btn-getstarted" href="{{ route('login') }}">Log in</a> --}}
 
             <style>
+                .navmenu ul li a.active {
+                    --theme-default: #01A8EF;
+                    /* Tambahkan gaya lainnya jika diperlukan */
+                }
+
                 .nav-menus {
                     --theme-default: #01A8EF;
                     align-items: center;
@@ -416,7 +423,7 @@
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         @auth
-                            <li><a href="user-profile.html"><i data-feather="user"></i><span>Account</span></a></li>
+                            <li><a href="account"><i data-feather="user"></i><span>Account</span></a></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
@@ -427,9 +434,9 @@
                                 </form>
                             </li>
                         @else
-                            <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
+                            {{-- <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
                             </li>
-                            <li><a href="letter-box.html"><i data-feather="mail"></i><span>Transaksi</span></a></li>
+                            <li><a href="letter-box.html"><i data-feather="mail"></i><span>Transaksi</span></a></li> --}}
                             <li>
                                 <a href="{{ route('login') }}"
                                     style="text-decoration: none; color: inherit; display: flex; align-items: center;">
