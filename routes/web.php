@@ -26,7 +26,12 @@ Route::resource('/beranda',  BerandaController::class);
 Route::get('/jenis mobil', function () {
     return view('list_jenis_mobil.index');
 });
-// Route::get('/dashboard', function () {   
+
+
+Route::get('/riwayat', function () {
+    return view('riwayat.index');
+});
+// Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 

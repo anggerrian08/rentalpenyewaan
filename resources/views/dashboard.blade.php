@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-    <br>
+    <br></br>
 
     <head>
         <!-- Header -->
@@ -21,7 +21,7 @@
             <div class="row g-4 text-center">
                 <!-- Card 1 -->
                 <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card bg-overlay text-white border-0 shadow-sm">
+                    <div class="card  text-white border-0 shadow-sm">
                         <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
                             <h5 class="card-title">Total Merek</h5>
                             <p class="card-text">{{ $total_merek }}</p>
@@ -32,7 +32,7 @@
 
                 <!-- Card 2 -->
                 <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card bg-overlay text-white border-0 shadow-sm">
+                    <div class="card text-white border-0 shadow-sm">
                         <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
                             <h5 class="card-title">Total Mobil</h5>
                             <p class="card-text">{{ $total_car }}</p>
@@ -43,7 +43,7 @@
 
                 <!-- Card 3 -->
                 <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="card bg-overlay text-white border-0 shadow-sm">
+                    <div class="card  text-white border-0 shadow-sm">
                         <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
                             <h5 class="card-title">Total Transaksi</h5>
                             <p class="card-text">{{ $total_transaksi }}</p>

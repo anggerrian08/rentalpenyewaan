@@ -134,7 +134,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($data as $isi)
-                                                <tr>
+                                                <tr >
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $isi->name }}</td>
                                                     <td>{{ $isi->nik }}</td>
@@ -216,7 +216,7 @@
                                     <p class="txt-dark"><strong>Terakhir Aktif:</strong>
                                         {{ \Carbon\Carbon::parse($isi->updated_at)->format('d-m-y') }}</p>
                                 </div>
-                                
+
                             </div>
 
                             <!-- Garis Vertikal -->
