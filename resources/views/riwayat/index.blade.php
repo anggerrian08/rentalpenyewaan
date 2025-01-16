@@ -105,10 +105,11 @@
                         margin-bottom: 20px;
                     }
 
+
                     .filter {
                         display: flex;
                         gap: 20px;
-                        margin-bottom: 30px;
+                        margin-bottom: 10px;
                     }
 
                     .filter button {
@@ -116,7 +117,7 @@
                         /* Ukuran lebar tetap untuk tombol */
                         padding: 10px;
                         /* Padding dalam tombol */
-                        border: 2px solid #a2a3a5;
+                        border: 2px solid #d6d7da;
                         /* Border tombol */
                         border-radius: 25px;
                         /* Sudut melengkung */
@@ -209,6 +210,121 @@
                     .transaction-link a:hover {
                         text-decoration: underline;
                     }
+
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #f9f9f9;
+                        padding: 10px;
+                    }
+
+                    .order-card {
+                        background-color: #ffffff;
+                        border-radius: 10px;
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                        padding: 20px;
+                        margin: 20px auto;
+                        max-width: 800px;
+                    }
+
+                    .order-header {
+                        display: -webkit-box;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 5px;
+                        gap: 10px;
+                    }
+
+                    .order-title {
+                        font-size: 15px;
+                        color: #333333;
+                        font-weight: bold;
+                        /* gap: 20px; */
+                    }
+
+                    .order-date {
+                        font-size: 14px;
+                        color: #888888;
+                    }
+
+                    .order-status {
+                        padding: 5px 10px;
+                        background-color: #e0f7ff;
+                        color: #007bff;
+                        font-size: 12px;
+                        border-radius: 20px;
+                    }
+
+                    .order-body {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+
+                    .car-details {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .car-details img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 0px;
+                        object-fit: cover;
+                        margin-right: 20px;
+                    }
+
+                    .car-info {
+                        line-height: 1.6;
+                    }
+
+                    .car-brand {
+                        font-size: 14px;
+                        color: #555555;
+                    }
+
+                    .car-name {
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #333333;
+                        margin: 5px 0;
+                    }
+
+                    .car-price {
+                        font-size: 14px;
+                        color: #888888;
+                    }
+
+                    .rent-period {
+                        font-size: 12px;
+                        color: #bbbbbb;
+                    }
+
+                    .price-details {
+                        text-align: left;
+                    }
+
+                    .price-details h4 {
+                        font-size: 16px;
+                        color: #333333;
+                        margin-bottom: 10px;
+                    }
+
+                    .total-price {
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: #000000;
+                        margin-bottom: 15px;
+                    }
+
+                    .detail-link {
+                        font-size: 14px;
+                        color: #007bff;
+                        text-decoration: none;
+                    }
+
+                    .detail-link:hover {
+                        text-decoration: underline;
+                    }
                 </style>
             </head>
 
@@ -228,44 +344,58 @@
                                 <li>Pesanan Dibatalkan</li>
                             </ul>
                         </div>
-
-
-
-                        <div class="main-content">
+                        <div class="grid text-left" style="--bs-gap: .25rem 1rem;">
                             <h3>Riwayat Transaksi</h3>
-                            <div class="filter">
-                                <button> Cari</button>
-                            </div>
-                            <div class="filter">
-                                <button>Semua</button>
-                                <button>Diproses</button>
-                                <button>Berlangsung</button>
-                                <button>Terkirim</button>
-                                <button>Dibatalkan</button>
-                                <button>Selesai</button>
-                            </div>
+                            <div class="main-content">
+                                <div class="search" style="display: flex; justify-content: center; margin-top: 2px;">
+                                    <input type="search" id="searchInput" placeholder="Cari sesuatu..."
+                                        style="
+                                        padding: 10px 15px;
+                                        width: 820px;
+                                        border: 1px solid #ddd;
+                                        border-radius: 25px;
+                                        outline: none;
+                                        font-size: 16px;
+                                        margin-bottom: 10px;
+                                    "
+                                        oninput="searchFunction()">
+                                </div>
+                                <div class="filter">
+                                    <button>Semua</button>
+                                    <button>Diproses</button>
+                                    <button>Berlangsung</button>
+                                    <button>Terlambat</button>
+                                    <button>Dibatalkan</button>
+                                    <button>Selesai</button>
+                                </div>
 
-                            <div class="transaction-list">
-                                <div class="transaction-card">
-                                    <img src="https://via.placeholder.com/80" alt="Car">
-                                    <div class="transaction-details">
-                                        <h4>Avanza Velix</h4>
-                                        <p>1 Apr 2024</p>
-                                        <span class="transaction-status">Diproses</span>
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <p class="order-title">Pesanan</p>
+                                        <p class="order-date">11 Apr 2024</p>
+                                        <span class="order-status">Berlangsung</span>
                                     </div>
-                                    <div class="transaction-total">
-                                        <p>Total: <span>Rp 100.000,00</span></p>
-                                        <div class="transaction-link">
-                                            <a href="#">Lihat Detail</a>
+                                    <div class="order-body">
+                                        <div class="car-details">
+                                            <img src="https://via.placeholder.com/80x50" alt="Car Image">
+                                            <div class="car-info">
+                                                <p class="car-brand">Toyota</p>
+                                                <h4 class="car-name">Avanza Veloz</h4>
+                                                <p class="car-price">Rp. 100.000,00 / hari</p>
+                                                <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-details">
+                                            <h4>Total Tarif</h4>
+                                            <p class="total-price">Rp 100.000,00</p>
+                                            <a href="#" class="detail-link">Lihat Detail Sewa</a>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Repeat this card for other transactions -->
                             </div>
-
-                            <!-- Repeat this card for other transactions -->
                         </div>
                     </div>
-                </div>
             </body>
         </div>
     @endsection
