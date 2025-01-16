@@ -52,6 +52,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::get('/aproval/{id}/show', [ApprovalController::class, 'show'])->name('aproval.show');
     Route::patch('/aproval/{id}/rejected', [ApprovalController::class, 'rejected'])->name('aproval.rejected');
     Route::patch('/aproval/{id}/returned', [ApprovalController::class, 'returned'])->name('aproval.returned');
+    Route::post('/aproval/pay/{id}', [ApprovalController::class, 'pay'])->name('aproval.pay');
+
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');

@@ -53,7 +53,8 @@
         }
     </style>
     <br>
-    <!-- Kotak Biru Header -->
+
+    <!-- Header -->
     <div class="kotak-biru">
         <div class="d-flex justify-content-between align-items-start mb-3">
             <div>
@@ -62,11 +63,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Filter dan Search -->
     <div class="col-md-12 project-list">
         <div class="card">
             <div class="row align-items-center">
-                <!-- Kolom untuk filter -->
-                <!-- Filter Dropdown -->
                 <div class="col-md-2 p-0 text-end">
                     <form action="{{ route('aproval.index') }}" method="GET" class="d-flex justify-content-end">
                         <select class="form-select me-2" name="filter" onchange="this.form.submit()">
@@ -77,111 +78,116 @@
                     </form>
                 </div>
 
-                <!-- Search Bar -->
                 <div class="col-md-2 p-0 text-end">
-                    <form action="{{ route('aproval.index') }}" method="GET"
-                        style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px; border-radius: 8px;">
-                        <span id="search-icon">
-                            <i class="fa fa-search" style="padding-left: 4px; color:#00000040; padding-right: 6px;"></i>
-                        </span>
-                        <input type="text" name="search" value="{{ $search }}" style="border: none;"
-                            placeholder="Cari email..." aria-label="Search">
-                        <button type="submit" style="display:none;">Search</button>
+                    <form action="{{ route('aproval.index') }}" method="GET" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px; border-radius: 8px;">
+                        <i class="fa fa-search" style="padding-left: 4px; color:#00000040; padding-right: 6px;"></i>
+                        <input type="text" name="search" value="{{ $search }}" style="border: none;" placeholder="Cari email..." aria-label="Search">
                     </form>
                 </div>
-
-
-                <!-- Approve Button -->
-                {{-- <div class="col-md-2 p-0 text-end" style="margin-left:570px;">
-                <button type="button" class="btn btn-success">Terima</button>
-            </div> --}}
             </div>
 
-            <!-- Table for Showing Data -->
+            <!-- Tabel Data -->
             <div class="col-sm-12 mt-3">
-                <div class="card-block row">
-                    <div class="col-sm-12 col-lg-12 col-xl-12">
-                        <div class="table-responsive custom-scrollbar">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Email</th>
-                                        <th>Mobil</th>
-                                        <th scope="col">Nik</th>
-                                        <th scope="col">Jenis Kelamin</th>
-                                        <th scope="col">No Hp</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">denda</th>
-                                        <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($data as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->user->email }}</td>
-                                            <th>{{ $item->car->name }}</th>
-                                            <td>{{ $item->user->nik }}</td>
-                                            <td>{{ $item->user->jk }}</td>
-                                            <td>{{ $item->user->phone_number }}</td>
-                                            <td>
-                                                @if ($item->status == 'borrowed')
-                                                    <div class="badge badge-success">borrowed</div>
-                                                @elseif($item->status == 'rejected')
-                                                    <div class="badge badge-danger">ditolak</div>
-                                                @elseif($item->status == 'in_process')
-                                                    <div class="badge badge-warning">process</div>
-                                                @elseif($item->status == 'returned')
-                                                    <div class="badge badge-success">dikembalikan</div>
-                                                @elseif($item->status == 'late')
-                                                    <div class="badge badge-danger">late</div>
-                                                @endif
-                                            </td>
-                                            <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
-                                            <td>
-                                                <div class="d-flex justify-content-center">
-                                                    <!-- Modal Trigger Button -->
-                                                    <a href="{{ route('aproval.show', $item->id) }}"
-                                                        class="btn btn-info btn-sm p-1"> <i class="fa fa-eye"
-                                                            style="font-size: 15px;"></i></a>
-                                                    {{-- <button type="button" class="btn btn-info btn-sm p-1"
-                                                        data-bs-toggle="modal" data-bs-target="#show{{ $item->user->id }}">
-                                                        <i class="fa fa-e   ye" style="font-size: 15px;"></i>
-                                                    </button> --}}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="8" class="text-center">
-                                                <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
-                                                    alt="">
-                                            </td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
+                <div class="table-responsive custom-scrollbar p-3">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Email</th>
+                                <th>Mobil</th>
+                                <th>NIK</th>
+                                <th>Jenis Kelamin</th>
+                                <th>No HP</th>
+                                <th>Status</th>
+                                <th>Denda</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($data as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->user->email }}</td>
+                                    <td>{{ $item->car->name }}</td>
+                                    <td>{{ $item->user->nik }}</td>
+                                    <td>{{ $item->user->jk }}</td>
+                                    <td>{{ $item->user->phone_number }}</td>
+                                    <td>
+                                        @php
+                                            $statusClass = [
+                                                'borrowed' => 'success',
+                                                'rejected' => 'danger',
+                                                'in_process' => 'warning',
+                                                'returned' => 'success',
+                                                'late' => 'danger'
+                                            ];
+                                        @endphp
+                                        <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
+                                            {{ ucfirst(str_replace('_', ' ', $item->status)) }}
+                                        </div>
+                                    </td>
+                                    <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{ route('aproval.show', $item->id) }}" class="btn btn-info btn-sm p-1">
+                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                            </a>
+                                            {{-- <button type="button" class="btn btn-primary btn-sm p-1" data-bs-toggle="modal" data-bs-target="#payModal{{ $item->id }}">
+                                                <i class="fa fa-credit-card" style="font-size: 15px;"></i>
+                                            </button> --}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">
+                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    <!-- Modal for Each Item -->
-
-
-    <!-- Pagination -->
-    <div class="row mt-3">
-        <div class="col-md-12 text-center">
-            <nav>
-                <ul class="pagination justify-content-end">
+            <!-- Pagination -->
+            <div class="row mt-3">
+                <div class="col-md-12 text-center">
                     {{ $data->links() }}
-                </ul>
-            </nav>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Modal Pembayaran -->
+    {{-- @foreach ($data as $item)
+        <div class="modal fade" id="payModal{{ $item->id }}" tabindex="-1" aria-labelledby="payModalLabel{{ $item->id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form action="{{ route('aproval.pay', $item->id) }}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="payModalLabel{{ $item->id }}">Pembayaran Denda</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Detail Pembayaran untuk <strong>{{ $item->user->email }}</strong></p>
+                            <div class="mb-3">
+                                <label class="form-label">Total Denda</label>
+                                <input type="text" class="form-control" value="Rp. {{ number_format($item->denda, 0, ',', '.') }}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="amount{{ $item->id }}" class="form-label">Jumlah yang Dibayarkan</label>
+                                <input type="number" class="form-control" id="amount{{ $item->id }}" name="amount" placeholder="Masukkan jumlah pembayaran" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">Bayar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach --}}
 @endsection
