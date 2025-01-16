@@ -1,4 +1,4 @@
-@extends('layouts.navuser')
+@extends(auth()->user()->hasRole('user') ? 'layouts.navuser' : 'layouts.template')
 
 @section('content')
 <div class="container mt-5">

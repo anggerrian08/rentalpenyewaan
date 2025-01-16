@@ -12,8 +12,8 @@ class FavoritController extends Controller
      */
     public function index()
     {
-        $data = Car::all();
-        return view('favorit',compact('data'));
+        $cars = Car::paginate(8);
+        return view('favorit',compact('cars'));
     }
 
     /**
