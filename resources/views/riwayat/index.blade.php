@@ -39,6 +39,7 @@
                     }
 
                     .navbar {
+                        border-bottom: 2px solid #d1d5db;
                         background-color: #fff;
                         padding: 20px;
                         border-radius: 10px;
@@ -47,6 +48,8 @@
                     }
 
                     .navbar .profile {
+                        padding-left: 60px;
+                        padding-right: 60px;
                         text-align: center;
                         margin-bottom: 20px;
                     }
@@ -74,23 +77,35 @@
                     }
 
                     .navbar .menu li:nth-child(1) {
-                        background-color: #d1ecf1;
-                        color: #0c5460;
+                        background-color: #48f5a499;
+                        color: #000000;
                     }
 
                     .navbar .menu li:nth-child(2) {
-                        background-color: #c3e6cb;
-                        color: #155724;
+                        background-color: #85dcff91;
+                        color: #000000;
                     }
 
                     .navbar .menu li:nth-child(3) {
                         background-color: #ffeeba;
-                        color: #856404;
+                        color: #000000;
                     }
 
                     .navbar .menu li:nth-child(4) {
-                        background-color: #f8d7da;
-                        color: #721c24;
+                        background-color: #fff2caa8;
+                        color: #000000;
+                    }
+                    .navbar .menu li:nth-child(5) {
+                        background-color: #85dcff91;
+                        color: #000000;
+                    }
+                    .navbar .menu li:nth-child(6) {
+                        background-color: #ffcec4a8;
+                        color: #000000;
+                    }
+                    .navbar .menu li:nth-child(7) {
+                        background-color: #48f5a499;
+                        color: #000000;
                     }
 
                     .main-content {
@@ -334,14 +349,17 @@
                     <div class="container">
                         <div class="navbar">
                             <div class="profile">
-                                <img src="https://via.placeholder.com/80" alt="User">
+                                <img src="{{ asset('assets/images/dashboard/profile.png') }}" alt="User">
                                 <h3>Username User</h3>
                             </div>
                             <ul class="menu">
-                                <li>Tanggal Order: 1 Apr 2024</li>
+                                <li>Tanggal Daftar: 1 Apr 2024</li>
                                 <li>Total Transaksi: 5</li>
-                                <li>Pesanan Diproses</li>
-                                <li>Pesanan Dibatalkan</li>
+                               <hr>
+                                <li>Pesanan DiProses</li>
+                                <li>Pesanan Berlangsung</li>
+                                <li>Pesanan Ditolak</li>
+                                <li>Pesanan Selesai</li>
                             </ul>
                         </div>
                         <div class="grid text-left" style="--bs-gap: .25rem 1rem;">
