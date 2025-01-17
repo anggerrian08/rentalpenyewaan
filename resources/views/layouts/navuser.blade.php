@@ -424,7 +424,7 @@
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         @auth
-                            <li><a href="account"><i data-feather="user"></i><span>Account</span></a></li>
+                            <li><a href="{{route('account.index')}}"><i data-feather="user"></i><span>Account</span></a></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
@@ -524,11 +524,12 @@
         </div> --}}
 
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
-
     <!-- Vendor JS Files -->
     <script src="assets.user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets.user/vendor/php-email-form/validate.js"></script>
@@ -542,6 +543,27 @@
 
     <script src="{{ asset('assets/js/icons/feather-icon/feather.min.js') }}"></script>
     <script src="{{ asset('assets/js/icons/feather-icon/feather-icon.js') }}"></script>
+
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: "Success",
+                text: "{{ session('success') }}",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+        @if (session('error'))
+            Swal.fire({
+                title: "Error",
+                text: "{{ session('error') }}",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+    </script>
 </body>
 
 </html>

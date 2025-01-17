@@ -13,7 +13,7 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     public function index(){
-        $data = User::all();
+        $data = Auth::user();
         return view('account', compact('data'));
     }
     /**

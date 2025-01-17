@@ -42,6 +42,11 @@ Route::get('/riwayat', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 
+use App\Http\Controllers\ChangePassword;
+
+Route::middleware('auth')->group(function () {
+    Route::put('/password/update', [ChangePassword::class, 'update'])->name('password.update');
+});
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
