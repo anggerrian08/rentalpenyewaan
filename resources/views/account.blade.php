@@ -9,9 +9,28 @@
         <title>User Profile</title>
         <!-- Other head content -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+        {{-- <link rel="stylesheet" href="path/to/icofont.min.css"> --}}
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/icofont.css') }}">
         {{-- <link rel="stylesheet" href="styles.css"> --}}
     </head>
     <style>
+        .jam {
+            position: relative;
+            bottom: 40px;
+            left: 40px;
+            padding: 10px;
+            background-color: #ffffff; /* Background color */
+            border-radius: 50%; /* Make it circular */
+            color: #01A8EF; /* Icon color */
+            font-size: 15px; /* Icon size */
+            cursor: pointer;
+        }
+        .icofont-pencil-alt-5::before {
+            content: "\13ac4";
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -32,7 +51,7 @@
 
         .profile-info {
             position: absolute;
-            bottom: -150px;
+            bottom: -140px;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
@@ -84,6 +103,7 @@
         button:hover {
             background-color: #0056b3;
         }
+
     </style>
 
     <body>
@@ -93,6 +113,10 @@
                 <img src="assets.user/img/sampulbor.png" alt="Background" class="background-image">
                 <div class="profile-info">
                     <img src="assets.user/img/avatar-3.webp" alt="User Photo" class="profile-photo">
+                    <div class="icon-wrapper">
+                        <i class="bi bi-pencil jam" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                    </div>
+
                     <h2>User RentCar</h2>
                     <p>0821-0000-000</p>
 
@@ -150,6 +174,40 @@
             </div>
 
         </div>
+        <!-- Modal Edit Data -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                            <img src="{{ asset('assets.user/img/car.png') }}" alt="" width="50px"> <strong style="font-size: 1em">Ganti Password</strong>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="password_lama" class="form-label">Password lama</label>
+                                <input type="password" class="form-control" id="password_lama" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password_baru" class="form-label">Password baru</label>
+                                <input type="password" class="form-control" id="password_baru" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="konfirmasi_password" class="form-label">Konfirmasi password</label>
+                                <input type="password" class="form-control" id="konfirmasi_password" value="">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 
     </html>
