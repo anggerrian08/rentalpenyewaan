@@ -63,10 +63,10 @@
         }
 
         .car-image {
-            width: 100%;
-            height: auto;
+            width: 500px;
+            height: 190px;
             border-radius: 5px;
-            margin-top: 50px;
+            margin-top: 5px;
             /* To give space for the car name and love icon */
         }
 

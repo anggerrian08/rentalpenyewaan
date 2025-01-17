@@ -14,6 +14,7 @@ class BookingController extends Controller
 
     public function index()
     {
+        $cars = Car::paginate(8);
         // Ambil semua data booking
 
         if (Auth::user()->hasRole('admin')) {
@@ -28,35 +29,35 @@ class BookingController extends Controller
         foreach ($bookings as $booking) {
 
 
-// Ambil tanggal pengembalian dan tanggal saat ini (tanpa waktu)
+            // Ambil tanggal pengembalian dan tanggal saat ini (tanpa waktu)
             $tanggal_pengembalian = strtotime(date('Y-m-d', strtotime($booking->return_date)));
             $tanggal_sekarang = strtotime(date('Y-m-d', strtotime(now()))); // Tanggal saat ini tanpa waktu
 
 
 
-// Inisialisasi denda dan status
+            // Inisialisasi denda dan status
             $denda = 0;
 
 
-$status = $booking->status;
+            $status = $booking->status;
 
             // Cek apakah sudah terlambat
             if ($tanggal_sekarang > $tanggal_pengembalian) {
 
 
-// Hitung selisih hari terlambat
+                // Hitung selisih hari terlambat
                 $selisih_hari = ($tanggal_sekarang - $tanggal_pengembalian) / (60 * 60 * 24); // Menghitung perbedaan hari
 
                 // Tentukan denda per hari
 
 
-$denda_per_hari = 50000;
+                $denda_per_hari = 50000;
                 $denda = $selisih_hari * $denda_per_hari; // Denda berdasarkan jumlah hari terlambat
 
                 // Jika status bukan 'returned', ubah status menjadi 'late'
 
 
-if ($status !== 'returned') {
+                if ($status !== 'returned') {
                     $status = 'late';
                 }
             } else {
@@ -64,13 +65,13 @@ if ($status !== 'returned') {
                 if ($status !== 'returned') {
 
 
-$status = 'in_process';
+                    $status = 'in_process';
                 }
             }
 
 
 
-// Jika denda atau status berubah, simpan perubahan ke database
+            // Jika denda atau status berubah, simpan perubahan ke database
             if ($booking->denda != $denda || $booking->status != $status) {
                 $booking->denda = $denda;
                 $booking->status = $status;
@@ -78,14 +79,15 @@ $status = 'in_process';
             }
         }
 
-// Kirim data booking ke view
-        return view('bookings.index', compact('bookings'));
+        // Kirim data booking ke view
+        return view('bookings.index', compact('bookings','cars'));
     }
-    public function create(){
+    public function create()
+    {
         $booking = Booking::all();
         $users = User::all();
         $cars = Car::all();
-        return view('bookings.create', compact('booking','users', 'cars'));
+        return view('bookings.create', compact('booking', 'users', 'cars'));
     }
 
     public function store(Request $request)
@@ -136,6 +138,7 @@ $status = 'in_process';
         // Kurangi stok mobil
         $car->stock -= 1;
         $car->save();
+
 
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil ditambahkan.');
     }
@@ -192,15 +195,15 @@ $status = 'in_process';
         return redirect()->route('bookings.index')->with('success', 'Booking berhasil dihapus.');
     }
 
-    public function proses_pengembalian(Request $request, string $id){
+    public function proses_pengembalian(Request $request, string $id)
+    {
         $booking = Booking::findOrFail($id);
 
-    // Update status menjadi in_process
-    $booking->update([
-        'status' => 'in_process',
-    ]);
+        // Update status menjadi in_process
+        $booking->update([
+            'status' => 'in_process',
+        ]);
 
-    return back()->with('success', 'Status berhasil diperbarui menjadi in_process.');
-
+        return back()->with('success', 'Status berhasil diperbarui menjadi in_process.');
     }
 }
