@@ -107,7 +107,6 @@
     </style>
 
     <body>
-
         <div class="card">
             <div class="profile-header"><br><br><br><br>
                 <img src="assets.user/img/sampulbor.png" alt="Background" class="background-image">
@@ -117,8 +116,8 @@
                         <i class="bi bi-pencil jam" data-bs-toggle="modal" data-bs-target="#editModal"></i>
                     </div>
 
-                    <h2>User RentCar</h2>
-                    <p>0821-0000-000</p>
+                    <h2>{{$data->name}}</h2>
+                    <p>{{$data->phone_number}}</p>
 
                 </div>
             </div>
@@ -128,26 +127,26 @@
                     <p class="text-muted m-0">
                         <i class="fas fa-envelope"></i> Email <br>
                     </p>
-                    <p>email@gmail.com</p>
+                    <p>{{$data->email}}</p>
                 </div>
                 <div class="col-3">
                     <p class="text-muted m-0">
                         <i class="fas fa-user"></i> Nama lengkap <br>
                     </p>
-                    <p>evvamaulani</p>
+                    <p>{{$data->name}}</p>
                 </div>
 
                 <div class="col-2 ms-auto">
                     <p class="text-muted m-0">
                         <i class="fas fa-id-card"></i> Nik <br>
                     </p>
-                    <p>000000000000</p>
+                    <p>{{$data->nik}}</p>
                 </div>
                 <div class="col-2">
                     <p class="text-muted m-0">
                         <i class="fas fa-venus-mars"></i> Jenis kelamin <br>
                     </p>
-                    <p>Perempuan</p>
+                    <p>{{$data->jk}}</p>
                 </div>
             </div><br>
             <div class="row ms-2 p-4 justify-content-end">
@@ -156,7 +155,7 @@
                         <p class="text-muted m-0">
                             Foto KTP <br>
                         </p>
-                        <img src="assets.user/img/ktp.jpg" alt="Foto KTP" class="img-fluid"
+                        <img src="{{asset('storage/uploads/ktp/'. $data->ktp)}}" alt="Foto KTP" class="img-fluid"
                             style="border-radius: 10px;"><br>
                         <button style="border-radius: 10px; background-color: #6c757d; color: white;">Download</button>
                     </div>
@@ -166,7 +165,7 @@
                         <p class="text-muted m-0">
                             Foto SIM <br>
                         </p>
-                        <img src="assets.user/img/sim.jpg" alt="Foto SIM" class="img-fluid"
+                        <img src="{{asset('storage/uploads/sim/'. $data->sim)}}" alt="Foto SIM" class="img-fluid"
                             style="border-radius: 10px;"><br>
                         <button style="border-radius: 10px; background-color: #6c757d; color: white;">Download</button>
                     </div>
@@ -180,28 +179,29 @@
                 <div class="modal-content">
                     <div class="modal-header">
                             <img src="{{ asset('assets.user/img/car.png') }}" alt="" width="50px"> <strong style="font-size: 1em">Ganti Password</strong>
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="POST">
+                        <form action="{{ route('password.update') }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="mb-3">
-                                <label for="password_lama" class="form-label">Password lama</label>
-                                <input type="password" class="form-control" id="password_lama" value="">
+                                <label for="password_lama" class="form-label">Password Lama</label>
+                                <input type="password" class="form-control" id="password_lama" name="current_password" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password_baru" class="form-label">Password baru</label>
-                                <input type="password" class="form-control" id="password_baru" value="">
+                                <label for="password_baru" class="form-label">Password Baru</label>
+                                <input type="password" class="form-control" id="password_baru" name="password" required>
                             </div>
                             <div class="mb-3">
-                                <label for="konfirmasi_password" class="form-label">Konfirmasi password</label>
-                                <input type="password" class="form-control" id="konfirmasi_password" value="">
+                                <label for="konfirmasi_password" class="form-label">Konfirmasi Password</label>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
