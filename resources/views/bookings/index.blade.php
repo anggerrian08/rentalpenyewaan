@@ -1,139 +1,223 @@
 @extends('layouts.navuser')
-
 @section('content')
-    <div class="container mt-5">
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+    <head>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+
+    <style>
+        /* Hero Section Styling */
+        .hero-section {
+            background-color: #f3f9ff;
+            padding: 50px 0;
+        }
+
+        .hero-section .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            width: 1125px;
+            height: auto;
+
+        }
+
+        h1 {
+            color: #212529;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #6c757d;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Card Styling */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .card {
+            background-color: #ffffff;
+            width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .car-image {
+            width: 500px;
+            height: 190px;
+            border-radius: 5px;
+            margin-top: 5px;
+            /* To give space for the car name and love icon */
+        }
+
+        h3 {
+            color: #212529;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .brand {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            color: #2D465E;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2D465E;
+        }
+
+        /* Love Icon Styling */
+        .love-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #e74c3c;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .love-icon:hover {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        /* Pesan Button Styling */
+        .pesan-btn {
+            background-color: #0D83FD;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 14px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .pesan-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 5px 15px;
+        }
+
+        .car-name {
+            font-size: 1em;
+            /* Perkecil ukuran font */
+            font-weight: bold;
+            margin: 0;
+            position: absolute;
+            top: 5px;
+            /* Sesuaikan posisi agar lebih ke atas */
+            left: 10px;
+        }
+
+
+        .price-button-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .pesan-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .pesan-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <div class="hero-section">
+        <div class="container text-center">
+            <img src="assets.user/img/mbl.png" alt="Cars" class="hero-image">
+            <h1>Temukan Mobil Favorit Anda</h1>
+            <p>Jelajahi koleksi mobil favorit pilihan Anda. Dengan desain elegan dan performa terbaik, mobil-mobil ini siap
+                memberikan pengalaman berkendara yang tak terlupakan. Nikmati kemudahan dalam mencari dan memilih mobil yang
+                sesuai dengan gaya dan kebutuhan Anda.</p>
+            <div class="container">
+                @foreach ($cars as $car)
+                    <div class="card">
+                        <h3 style="text-align: left;">{{ $car->name }}</h3>
+                        <div class="love-icon">❤</div>
+                        <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
+                            class="car-image img-fluid">
+                        <h3>{{ $car->model }}</h3>
+                        <p class="brand">{{ $car->brand }}</p>
+                        <div class="details">
+                            <span class="text-muted">
+                                <i class="fas fa-gas-pump"></i> Bensin
+                            </span>
+                            <span class="text-muted">
+                                <i class="fas fa-cogs"></i> Manual
+                            </span>
+                            <span class="text-muted">
+                                <i class="fas fa-user"></i> {{ $car->seats }} Orang
+                            </span>
+                        </div>
+                        <div class="price-button-wrapper">
+                            <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
+                            <button class="pesan-btn">Pesan</button>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-
-        <style>
-            .kotak-biru {
-                border-radius: 10px;
-                background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
-                padding: 20px;
-                margin: 10px;
-                max-height: 85px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            }
-
-            .search-container {
-                display: flex;
-                
-                justify-content: center;
-                margin-top: 20px;
-            }
-
-            .search-form {
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-
-            .form-group {
-                display: flex;
-                flex-direction: column;
-                margin-right: 10px;
-            }
-
-            .form-control {
-                padding: 8px;
-                font-size: 14px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-            }
-
-            .Fbtn-primary {
-                padding: 10px 20px;
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            .btn-primary:hover {
-                background-color: #0056b3;
-            }
-        </style>
-
-        <br><br>
-        <h1>hello</h1>
-        <div class="kotak-biru">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-                <div>
-                    <h2 class="text-white fw-bold mb-1">Approval Sewa</h2>
-                    <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Approval Sewa</p>
-                </div>
+            <!-- Pagination Links -->
+            <div class="pagination-wrapper">
+                {{ $cars->links() }}
             </div>
         </div>
-        <div class="search-container">
-            <form action="/search" method="GET" class="search-form">
-                <div class="form-group">
-                    <label for="pinjam">Pinjam</label>
-                    <input type="date" id="pinjam" name="pinjam" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="kembali">Kembali</label>
-                    <input type="date" id="kembali" name="kembali" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="merk">Filter Merk</label>
-                    <select id="merk" name="merk" class="form-control">
-                        <option value="">Pilih Merk</option>
-                        <option value="merk1">Merk 1</option>
-                        <option value="merk2">Merk 2</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="jenis">Filter Jenis</label>
-                    <select id="jenis" name="jenis" class="form-control">
-                        <option value="">Pilih Jenis</option>
-                        <option value="jenis1">Jenis 1</option>
-                        <option value="jenis2">Jenis 2</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="cari">Cari</label>
-                    <input type="text" id="cari" name="cari" placeholder="Cari" class="form-control">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Cari</button>
-                </div>
-            </form>
-        </div>
-        {{-- <div class="container mt-4">
-    <div class="row">
-        @foreach ($cars as $car)
-            <div class="col-xl-3 col-lg-4 col-sm-12 col-md-6">
-                <div class="card p-2">
-                    <h3>{{ $car->name }}</h3>
-                    <p class="brand">{{ $car->brand }}</p>
-                    <div class="love-icon">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <img src="{{ asset('storage/uploads/car/'. $car->photo) }}" alt="{{ $car->merek->name}}" class="car-image img-fluid">
-                    <div class="details mt-2">
-                        <span><i class="fa-solid fa-gas-pump"></i> {{ $car->fuel_type }}</span>
-                        <span><i class="fa-solid fa-gears"></i> {{ $car->type_transmisi }}</span>
-                        <span><i class="fa-solid fa-users"></i> {{ $car->passenger_capacity }} Orang</span>
-                    </div>
-                    <div class="price mt-2">
-                        <p>Rp. {{ number_format($car->price, 2, ',', '.') }}/ <span>hari</span></p>
-                    </div>
-                    <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">
-                        <i class=" btn-primary"></i> Show
-                    </a>
-                </div>
-            </div>
-        @endforeach
-    </div> --}}
-    @endsection
+    </div>
+@endsection
