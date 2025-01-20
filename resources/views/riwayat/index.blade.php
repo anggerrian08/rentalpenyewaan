@@ -44,6 +44,9 @@
                         padding: 20px;
                         border-radius: 10px;
                         width: 300px;
+                        /* Tetapkan lebar tetap */
+                        height: 600px;
+                        /* Tetapkan tinggi tetap */
                         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                     }
 
@@ -95,14 +98,17 @@
                         background-color: #fff2caa8;
                         color: #000000;
                     }
+
                     .navbar .menu li:nth-child(5) {
                         background-color: #85dcff91;
                         color: #000000;
                     }
+
                     .navbar .menu li:nth-child(6) {
                         background-color: #ffcec4a8;
                         color: #000000;
                     }
+
                     .navbar .menu li:nth-child(7) {
                         background-color: #48f5a499;
                         color: #000000;
@@ -249,6 +255,14 @@
                         gap: 10px;
                     }
 
+                    .status-rejected {
+                        padding: 5px 10px;
+                        background-color: #fde1e1;
+                        color: #ff0000;
+                        font-size: 12px;
+                        border-radius: 20px;
+                    }
+
                     .order-title {
                         font-size: 15px;
                         color: #333333;
@@ -265,6 +279,22 @@
                         padding: 5px 10px;
                         background-color: #e0f7ff;
                         color: #007bff;
+                        font-size: 12px;
+                        border-radius: 20px;
+                    }
+
+                    .status-done {
+                        padding: 5px 10px;
+                        background-color: #cbfae4;
+                        color: #198754;
+                        font-size: 12px;
+                        border-radius: 20px;
+                    }
+
+                    .status-diproses {
+                        padding: 5px 10px;
+                        background-color: #fdeebf;
+                        color: #FFC107;
                         font-size: 12px;
                         border-radius: 20px;
                     }
@@ -315,7 +345,7 @@
                     }
 
                     .price-details {
-                        text-align: left;
+                        text-align: right;
                     }
 
                     .price-details h4 {
@@ -340,6 +370,18 @@
                     .detail-link:hover {
                         text-decoration: underline;
                     }
+
+                    .rent-again {
+                        font-size: 15px;
+    color: #fff;
+    background-color: #01A8EF;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    padding: 10px 20px; /* Tambahkan ruang dalam */
+    border: none;
+    text-align: center;
+    cursor: pointer;}
                 </style>
             </head>
 
@@ -355,7 +397,7 @@
                             <ul class="menu">
                                 <li>Tanggal Daftar: 1 Apr 2024</li>
                                 <li>Total Transaksi: 5</li>
-                               <hr>
+                                <hr>
                                 <li>Pesanan DiProses</li>
                                 <li>Pesanan Berlangsung</li>
                                 <li>Pesanan Ditolak</li>
@@ -392,6 +434,75 @@
                                         <p class="order-title">Pesanan</p>
                                         <p class="order-date">11 Apr 2024</p>
                                         <span class="order-status">Berlangsung</span>
+                                    </div>
+                                    <div class="order-body">
+                                        <div class="car-details">
+                                            <img src="https://via.placeholder.com/80x50" alt="Car Image">
+                                            <div class="car-info">
+                                                <p class="car-brand">Toyota</p>
+                                                <h4 class="car-name">Avanza Veloz</h4>
+                                                <p class="car-price">Rp. 100.000,00 / hari</p>
+                                                <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-details">
+                                            <h4>Total Tarif</h4>
+                                            <p class="total-price">Rp 100.000,00</p>
+                                            <a href="#" class="detail-link">Lihat Detail Sewa</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <p class="order-title">Pesanan</p>
+                                        <p class="order-date">11 Apr 2024</p>
+                                        <span class="status-rejected">Di Tolak</span>
+                                    </div>
+                                    <div class="order-body">
+                                        <div class="car-details">
+                                            <img src="https://via.placeholder.com/80x50" alt="Car Image">
+                                            <div class="car-info">
+                                                <p class="car-brand">Toyota</p>
+                                                <h4 class="car-name">Avanza Veloz</h4>
+                                                <p class="car-price">Rp. 100.000,00 / hari</p>
+                                                <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-details">
+                                            <h4>Total Tarif</h4>
+                                            <p class="total-price">Rp 100.000,00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <p class="order-title">Pesanan</p>
+                                        <p class="order-date">11 Apr 2024</p>
+                                        <span class="status-done">Selesai</span>
+                                    </div>
+                                    <div class="order-body">
+                                        <div class="car-details">
+                                            <img src="https://via.placeholder.com/80x50" alt="Car Image">
+                                            <div class="car-info">
+                                                <p class="car-brand">Toyota</p>
+                                                <h4 class="car-name">Avanza Veloz</h4>
+                                                <p class="car-price">Rp. 100.000,00 / hari</p>
+                                                <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
+                                            </div>
+                                        </div>
+                                        <div class="price-details">
+                                            <h4>Total Tarif</h4>
+                                            <p class="total-price">Rp 100.000,00</p>
+                                            <a href="#" class="review-link">Buat Ulasan</a>
+                                            <a href="#" class="rent-again">Sewa Lagi</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-card">
+                                    <div class="order-header">
+                                        <p class="order-title">Pesanan</p>
+                                        <p class="order-date">11 Apr 2024</p>
+                                        <span class="status-diproses">Berlangsung</span>
                                     </div>
                                     <div class="order-body">
                                         <div class="car-details">
