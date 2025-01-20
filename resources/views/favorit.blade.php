@@ -191,7 +191,12 @@
                 @foreach ($cars as $car)
                     <div class="card">
                         <h3 style="text-align: left;">{{ $car->name }}</h3>
-                        <div class="love-icon">❤</div>
+                        <form action="{{route('car_likes.store')}}" method="post">
+                            @csrf
+                            <button type="submit">
+                                <div class="love-icon">❤</div>
+                            </button>
+                        </form>
                         <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
                             class="car-image img-fluid">
                         <h3>{{ $car->model }}</h3>
