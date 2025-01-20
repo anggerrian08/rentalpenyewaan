@@ -31,12 +31,12 @@ class MerekController extends Controller
         ]);
 
         if (Merek::where('name', $data['name'])->exists()) {
-            return back()->with('error', 'Failed to add Merek because it already exists.');
+            return back()->with('error', 'Gagal menambahkan Merek karena Nama Sudah di Gunakan.');
         }
 
         Merek::create($data);
         Alert::success('Berhasil', 'Data berhasil ditambahkan');
-        return redirect()->route('merek.index')->with('success', 'Merek added successfully.');
+        return redirect()->route('merek.index')->with('success', 'Merek Berhasil di Tambahkan.');
     }
 
     public function update(Request $request, Merek $merek)
@@ -46,19 +46,19 @@ class MerekController extends Controller
         ]);
 
         if (Merek::where('name', $data['name'])->where('id', '!=', $merek->id)->exists()) {
-            return back()->with('error', 'Failed to update Merek because the name already exists.');
+            return back()->with('error', 'Nama Merek Sudah Di Guanakan.');
         }
 
         $merek->update($data);
-        return redirect()->route('merek.index')->with('success', 'Merek updated successfully.');
-    }   
+        return redirect()->route('merek.index')->with('success', 'Berhasil Menambahkan Merek.');
+    }
     public function destroy(Merek $merek)
     {
         try {
             $merek->delete();
-            return redirect()->route('merek.index')->with('success', 'Merek deleted successfully.');
+            return redirect()->route('merek.index')->with('success', 'Merek Berhasil Di Hapus.');
         } catch (\Throwable $th) {
-            return back()->with('error', 'gagal hapus karena relasi dengan car');
+            return back()->with('error', 'Gagal Menghapus Karena Merek Masih Di Gunakan');
         }
     }
 }
