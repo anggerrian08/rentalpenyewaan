@@ -538,7 +538,7 @@
                                                 <img src="https://via.placeholder.com/80x50" alt="Car Image">
                                                 <div class="car-info">
                                                     <p class="car-brand">Toyota</p>
-                                                    <h4 class="car-name">Avanza Veloz</h4>
+                                                    <h4 class="car-name">Opo Wes    </h4>
                                                     <p class="car-price">Rp. 100.000,00 / hari</p>
                                                     <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
                                                 </div>

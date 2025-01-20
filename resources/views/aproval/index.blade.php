@@ -17,10 +17,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover {
+        /* .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-        }
+        } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;

@@ -15,16 +15,16 @@
     }
 
     .card {
-        border-radius: 10px;
+        border-radius: 20px;
         margin: 10px;
         box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card:hover {
+    /* .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-    }
+    } */
 
     .card-img-top {
         border-radius: 10px 10px 0 0;
@@ -77,6 +77,7 @@
 </div>
 
 <!-- Card 2: Input dan Tombol -->
+
 <div class="card p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="col-md-2 p-0 text-end">
