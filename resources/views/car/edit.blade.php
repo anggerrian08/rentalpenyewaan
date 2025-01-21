@@ -90,7 +90,7 @@
         </div>
 
 
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -98,7 +98,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif --}}
         <div class="row align-items-center">
             <div class="col-md-12 mt">
                 <div class="card">
@@ -120,6 +120,9 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @error('merek_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Nama Mobil -->
@@ -127,6 +130,9 @@
                                 <label for="name" class="form-label">Nama Mobil</label>
                                 <input type="text" name="name" id="name" class="form-control"
                                     value="{{ old('name', $car->name) }}">
+                                @error('name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Jenis Transmisi -->
@@ -140,6 +146,9 @@
                                             {{ $type }}</option>
                                     @endforeach
                                 </select>
+                                @error('type_transmisi')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col md-6">
@@ -153,6 +162,9 @@
                                 <label for="manufacture_year" class="form-label">Tahun Pembuatan</label>
                                 <input type="date" name="manufacture_year" id="manufacture_year" class="form-control"
                                     value="{{ old('manufacture_year', $car->manufacture_year) }}">
+                                    @error('manufacture_year')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Plat -->
@@ -160,6 +172,9 @@
                                 <label for="plat" class="form-label">Plat</label>
                                 <input type="text" name="plat" id="plat" class="form-control"
                                     value="{{ old('plat', $car->plat) }}">
+                                @error('plat')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Jenis Bahan Bakar -->
@@ -173,6 +188,9 @@
                                             {{ $fuel }}</option>
                                     @endforeach
                                 </select>
+                                @error('fuel_type')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Kapasitas Penumpang -->
@@ -180,7 +198,9 @@
                                 <label for="passenger_capacity" class="form-label">Muat Orang</label>
                                 <input type="number" name="passenger_capacity" id="passenger_capacity" class="form-control"
                                     value="{{ old('passenger_capacity', $car->passenger_capacity) }}">
-
+                                @error('passenger_capacity')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Kapasitas Koper -->
@@ -188,7 +208,9 @@
                                 <label for="luggage_capacity" class="form-label">Muat Koper</label>
                                 <input type="number" name="luggage_capacity" id="luggage_capacity" class="form-control"
                                     value="{{ old('luggage_capacity', $car->luggage_capacity) }}">
-
+                                @error('luggage_capacity')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Tarif/Harga -->
@@ -196,23 +218,27 @@
                                 <label for="price" class="form-label">Tarif/Harga</label>
                                 <input type="text" name="price" id="price" class="form-control"
                                     value="{{ old('price', $car->price) }}">
-
+                                @error('price')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
 
                             <!-- Best Choice -->
                             <div class="col-md-6">
-                                <label for="best_choice" class="form-label">Best Choice</label>
+                                <label for="best_choice" class="form-label">Pilihan Terbaik</label>
                                 <select name="best_choice" id="best_choice" class="form-select">
                                     <option value="" disabled>-- Pilih --</option>
                                     <option value="1"
-                                        {{ (old('best_choice') ?? $car->best_choice) == '1' ? 'selected' : '' }}>Yes
+                                        {{ (old('best_choice') ?? $car->best_choice) == '1' ? 'selected' : '' }}>Iya
                                     </option>
                                     <option value="2"
-                                        {{ (old('best_choice') ?? $car->best_choice) == '2' ? 'selected' : '' }}>No
+                                        {{ (old('best_choice') ?? $car->best_choice) == '2' ? 'selected' : '' }}>Tidak
                                     </option>
                                 </select>
-
+                                @error('best_choice')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
 
                             <!-- Deskripsi -->

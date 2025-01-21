@@ -28,6 +28,10 @@ class MerekController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255'
+        ],[
+            'name.required' => 'Nama merk wajib diisi.',
+            'name.string' => 'Nama merk harus berupa teks.',
+            'name.max' => 'Nama merk tidak boleh lebih dari 255 karakter.',
         ]);
 
         if (Merek::where('name', $data['name'])->exists()) {
@@ -43,6 +47,10 @@ class MerekController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255'
+        ],[
+            'name.required' => 'Nama merk wajib diisi.',
+            'name.string' => 'Nama merk harus berupa teks.',
+            'name.max' => 'Nama merk tidak boleh lebih dari 255 karakter.',
         ]);
 
         if (Merek::where('name', $data['name'])->where('id', '!=', $merek->id)->exists()) {
@@ -50,7 +58,9 @@ class MerekController extends Controller
         }
 
         $merek->update($data);
+
         return redirect()->route('merek.index')->with('success', 'Berhasil Menambahkan Merek.');
+
     }
     public function destroy(Merek $merek)
     {
