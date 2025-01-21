@@ -23,6 +23,8 @@
 
         <!-- Bagian Kanan: Form Login -->
         <div class="flex-1 p-8 lg:p-12">
+        <div class="card">
+        <div class="flex-1 p-8 lg:p-12">
             @if ($errors->any())
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             @foreach ($errors->all() as $error)
@@ -89,6 +91,7 @@
                 Tidak punya akun?
                 <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Daftar</a>
             </p>
+        </div>
         </div>
     </div>
     <script>

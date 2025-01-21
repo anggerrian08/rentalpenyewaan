@@ -397,7 +397,6 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
                                 </div>
                             </div>
                         </div>
