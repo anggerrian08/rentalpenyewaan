@@ -95,7 +95,7 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="filter" id="all" value="all"
                                 {{ request('filter') === 'all' ? 'checked' : '' }}>
-                            <label class="form-check-label" for="all">All</label>
+                            <label class="form-check-label" for="all">Semua</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="filter" id="tersedia" value="tersedia"
@@ -147,7 +147,7 @@
                                                         <th>Merek</th>
                                                         <th>Nama</th>
                                                         <th>plat nomer</th>
-                                                        <th>tarif/harga</th>
+                                                        <th>Tarif/harga</th>
                                                         <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>

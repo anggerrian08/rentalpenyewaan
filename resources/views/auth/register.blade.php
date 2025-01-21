@@ -173,7 +173,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 16v-4a4 4 0 014-4h10a4 4 0 014 4v4M7 16v4h10v-4M7 8h10m-5 12h.01" />
                             </svg>
-                            <span id="file-name-pas_foto" class="block text-sm text-gray-500">Choose File</span>
+                            <span id="file-name-pas_foto" class="block text-sm text-gray-500">Pilih File</span>
                         </label>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 16v-4a4 4 0 014-4h10a4 4 0 014 4v4M7 16v4h10v-4M7 8h10m-5 12h.01" />
                             </svg>
-                            <span id="file-name-ktp" class="block text-sm text-gray-500">Choose File</span>
+                            <span id="file-name-ktp" class="block text-sm text-gray-500">Pilih File</span>
                         </label>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 16v-4a4 4 0 014-4h10a4 4 0 014 4v4M7 16v4h10v-4M7 8h10m-5 12h.01" />
                                 </svg>
-                                <span id="file-name-sim" class="block text-sm text-gray-500">Choose File</span>
+                                <span id="file-name-sim" class="block text-sm text-gray-500">Pilih File</span>
                             </label>
                         </div>
                     </div>
@@ -282,7 +282,7 @@
             @csrf
             <div class="space mt-8 grid grid-cols-2 gap-4">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Username</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nama Pengguna</label>
                     <input type="text" id="name" name="name"
                         class="mt-1 block w-full border border-gray-300 rounded-md p-2">
                 </div>
@@ -295,7 +295,7 @@
             <div class="grid grid-cols-2 gap-4">
                 <!-- Input Password -->
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Kata Sandi</label>
                     <div class="relative">
                         <input type="password" id="password" name="password"
                             class="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-10">
@@ -325,7 +325,7 @@
                 <!-- Input Konfirmasi Password -->
                 <div>
                     <label for="konfirmasi_password" class="block text-sm font-medium text-gray-700">Konfirmasi
-                        Password</label>
+                        Kata Sandi</label>
                     <div class="relative">
                         <input type="password" id="konfirmasi_password" name="password_confirmation"
                             class="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-10">

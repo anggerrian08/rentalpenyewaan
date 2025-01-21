@@ -108,8 +108,8 @@
                         <table class="table">
                             <tr>
                                 <th>No</th>
-                                <th>Booking ID</th>
-                                <th>Email User</th>
+                                <th>Id Pemesanan</th>
+                                <th>Email Pengguna</th>
                                 <th>Tanggal Pinjam</th>
                                 <th>Tanggal Kembali</th>
                                 <th>Durasi Rental (Hari)</th>

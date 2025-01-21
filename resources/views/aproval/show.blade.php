@@ -35,8 +35,8 @@
     <div class="kotak-biru">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <h2 class="text-white fw-bold mb-1">Approval Sewa</h2>
-                <p class="text-white mb-0">Transaksi | Approval Sewa</p>
+                <h2 class="text-white fw-bold mb-1">Persetujuan Sewa</h2>
+                <p class="text-white mb-0">Transaksi | Persetujuan Sewa</p>
             </div>
         </div>
     </div>

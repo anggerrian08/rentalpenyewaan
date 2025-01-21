@@ -151,14 +151,14 @@
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="user-profile.html"><i data-feather="user"></i><span>Account </span></a>
+                                <li><a href="user-profile.html"><i data-feather="user"></i><span>Akun</span></a>
                                 </li>
                                     <li>
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                         @csrf
                                         <button type="submit"
                                             style="background: none; border: none; color: inherit; padding: 0; font: inherit; cursor: pointer;">
-                                            <i data-feather="log-in"></i><span>Log Out</span>
+                                            <i data-feather="log-in"></i><span>Keluar</span>
                                         </button>
                                     </form>
                                 </li>
@@ -201,17 +201,17 @@
                             <ul class="sidebar-links" id="simple-bar">
                                 <li class="back-btn"><a href="index.html"><img class="img-fluid"
                                             src="../assets/images/logo/logo-icon.png" alt=""></a>
-                                    <div class="mobile-back text-end"><span>Back</span><i
+                                    <div class="mobile-back text-end"><span>Kembali</span><i
                                             class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                 </li>
                                 <li class="pin-title sidebar-main-title">
                                     <div>
-                                        <h6>Pinned</h6>
+                                        <h6 class="">Disematkan</h6>
                                     </div>
                                 </li>
                                 <li class="sidebar-main-title">
                                     <div>
-                                        <h6 class="lan-1">General</h6>
+                                        <h6 class="">Umum</h6>
                                     </div>
                                 </li>
                                 <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
@@ -262,7 +262,7 @@
 
                                     <li class="sidebar-main-title">
                                         <div>
-                                            <h6 class="">User</h6>
+                                            <h6 class="">Pengguna</h6>
                                         </div>
                                     </li>
                                     {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link " href="{{ route('aproval.index') }}">
@@ -278,21 +278,21 @@
                                             <i class="fa fa-users"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">car likes</span></a>
+                                            </svg><span class="">Mobil Favorit</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Review</span></a>
+                                            </svg><span class="">Tinjauan</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Review</span></a>
+                                            </svg><span class="">Tinjauan</span></a>
                                     </li>
                                     {{-- <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('bookings.index') }}">
@@ -301,7 +301,7 @@
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">booking</span></a>
                                     </li> --}}
-                                @else         
+                                @else
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
                                             href="{{ route('merek.index') }}">
                                             <i class="fa fa-car"></i>
@@ -331,7 +331,7 @@
                                             <i class="fa fa-calendar-check"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Approval Sewa</span></a>
+                                            </svg><span class="">Persetujuan Sewa</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('detail_pembayarans.index') }}">
@@ -347,7 +347,7 @@
 
                                     <li class="sidebar-main-title">
                                         <div>
-                                            <h6 class="">User</h6>
+                                            <h6 class="">Pengguna</h6>
                                         </div>
                                     </li>
 
@@ -356,7 +356,7 @@
                                             <i class="fa fa-users"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Daftar User</span></a>
+                                            </svg><span class="">Daftar Pengguna</span></a>
                                     </li>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
@@ -364,14 +364,14 @@
                                             <i class="fa fa-heart"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Car Likes</span></a>
+                                            </svg><span class="">Favorit Mobil</span></a>
                                     </li>
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
                                             href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
-                                            </svg><span class="">Review</span></a>
+                                            </svg><span class="">Tinjauan</span></a>
                                     </li>
 
                                     <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
