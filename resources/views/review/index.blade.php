@@ -9,9 +9,9 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-xl-2">
                             @if (auth()->user()->usertype != 'admin')
-                                <h5 class="fw-bold">Page Reviews You</h5>
+                                <h5 class="fw-bold">Halaman Ulasan Anda</h5>
                             @else
-                                <h5 class="fw-bold">This Page Reviews User</h5>
+                                <h5 class="fw-bold">Halaman ini mengulas pengguna</h5>
                             @endif
                         </div>
                         <div class="col-lg-9 col-xl-10">
@@ -77,7 +77,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Edit Review -
+                        <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Edit Tinjauan -
                             {{ $item->car->name }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -86,11 +86,11 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label for="review{{ $item->id }}" class="form-label">Review</label>
+                                <label for="review{{ $item->id }}" class="form-label">Tinjauan</label>
                                 <textarea name="review" id="review{{ $item->id }}" class="form-control" rows="3">{{ $item->review }}</textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="rating{{ $item->id }}" class="form-label">Berikan Rating</label>
+                                <label for="rating{{ $item->id }}" class="form-label">Berikan Penilaian</label>
                                 <select name="rating" id="rating{{ $item->id }}" class="form-select">
                                     <option value="" disabled>Pilih Rating</option>
                                     @for ($i = 1; $i <= 5; $i++)
@@ -120,7 +120,7 @@
             <div class="modal-dialog modal-lg" aria-modal="true">
                 <div class="modal-content rounded-3 shadow">
                     <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="showModalLabel{{ $item->id }}">Detail Review -
+                        <h5 class="modal-title" id="showModalLabel{{ $item->id }}">Detail Tinjauan -
                             {{ $item->car->name }}</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -130,7 +130,7 @@
                             <img src="{{ asset('storage/uploads/' . $item->car->photo) }}" alt="{{ $item->car->name }}"
                                 class="img-fluid rounded">
                         </div>
-                        <p class="fw-bold">Reviewer:</p>
+                        <p class="fw-bold">Peninjau:</p>
                         <p>{{ $item->user->name }} ({{ $item->user->email }})</p>
                         <p class="fw-bold">Review:</p>
                         <p>{{ $item->review }}</p>
@@ -149,7 +149,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="fa-solid fa-times me-1"></i> Close
+                            <i class="fa-solid fa-times me-1"></i> Tutup
                         </button>
                     </div>
                 </div>

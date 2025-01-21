@@ -32,11 +32,11 @@
             @endforeach
         </div>
         @endif
-            <h2 class="text-3xl font-bold text-gray-800 text-center">Login</h2>
+            <h2 class="text-3xl font-bold text-gray-800 text-center">Masuk</h2>
             <form method="POST" action="{{ route('login') }}" class="mt-6">
                 @csrf
                 <div class="mb-4">
-                    <label for="email" class="block text-gray-600 font-medium mb-2">Email Address</label>
+                    <label for="email" class="block text-gray-600 font-medium mb-2">Alamat Email</label>
                     <input
                         type="email"
                         id="email"
@@ -46,7 +46,7 @@
                         required>
                 </div>
                 <div class="mb-4 relative">
-                    <label for="password" class="block text-gray-600 font-medium mb-2">Password</label>
+                    <label for="password" class="block text-gray-600 font-medium mb-2">Kata Sandi</label>
                     <div class="relative">
                         <input
                             type="password"
@@ -79,12 +79,12 @@
                         <input type="checkbox" class="form-checkbox text-blue-500">
                         <span class="ml-2">Ingat saya</span>
                     </label>
-                    <a href="#" class="text-blue-500 hover:underline">Lupa Password?</a>
+                    <a href="#" class="text-blue-500 hover:underline">Lupa Kata Sandi?</a>
                 </div>
                 <button
                     type="submit"
                     class="w-full bg-blue-500 text-white py-3 rounded-lg font-medium hover:bg-blue-600 transition duration-300">
-                    Login
+                    Masuk
                 </button>
             </form>
             <p class="text-center text-gray-600 mt-4">

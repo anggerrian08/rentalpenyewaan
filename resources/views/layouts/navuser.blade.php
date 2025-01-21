@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    
+
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
@@ -415,9 +415,9 @@
                                     </svg>
                                 </p>
                             @else
-                                <span>Guest</span>
+                                <span>Tamu</span>
                                 <p class="mb-0 font-nunito">
-                                    Please log in
+                                    Silahkan Masuk
                                     <svg>
                                         <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
                                     </svg>
@@ -427,13 +427,13 @@
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         @auth
-                            <li><a href="{{route('account.index')}}"><i data-feather="user"></i><span>Account</span></a></li>
+                            <li><a href="{{route('account.index')}}"><i data-feather="user"></i><span>Akun</span></a></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit"
                                         style="background: none; border: none; color: inherit; display: flex; align-items: center; padding: 0;">
-                                        <i data-feather="log-out"></i><span>Log Out</span>
+                                        <i data-feather="log-out"></i><span>Keluar</span>
                                     </button>
                                 </form>
                             </li>
@@ -444,7 +444,7 @@
                             <li>
                                 <a href="{{ route('login') }}"
                                     style="text-decoration: none; color: inherit; display: flex; align-items: center;">
-                                    <i data-feather="log-in"></i><span>Log In</span>
+                                    <i data-feather="log-in"></i><span>Masuk</span>
                                 </a>
                             </li>
                         @endauth

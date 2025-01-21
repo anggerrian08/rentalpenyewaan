@@ -16,8 +16,8 @@
     <div class="kotak-biru">
         <div class="d-flex justify-content-between align-items-start mb-3">
             <div>
-                <h2 class="text-white fw-bold mb-1">Car Likes</h2>
-                <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Car Likes</p>
+                <h2 class="text-white fw-bold mb-1">Mobil Favorit</h2>
+                <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Mobil Favorit</p>
             </div>
         </div>
     </div>
@@ -36,17 +36,17 @@
 
                     <div class="card-body">
                         <h5 class="card-title">{{ $like->car->name }}</h5>
-                        <p class="card-text text-muted">Price: ${{ number_format($like->car->price, 2) }}</p>
+                        <p class="card-text text-muted">Harga: Rp.{{ number_format($like->car->price, 2) }}</p>
 
                         <p class="card-text">
-                            <strong>{{ $likes[$like->car_id] ?? 0 }} Likes</strong>
+                            <strong>{{ $likes[$like->car_id] ?? 0 }} Suka</strong>
                         </p>
 
                         @if (auth()->user()->hasRole('user'))
                             <form action="{{ route('car_likes.destroy', $like->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Unlike</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Tidak Suka</button>
                             </form>
                         @endif
                     </div>

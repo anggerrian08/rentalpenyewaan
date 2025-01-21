@@ -75,8 +75,8 @@
                 <div class="d-flex justify-content-between align-items-start mb-3">
                     <!-- Heading "Merk Mobil" -->
                     <div>
-                        <h2 class="text-white fw-bold mb-1">Daftar User</h2>
-                        <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">User | Daftar User</p>
+                        <h2 class="text-white fw-bold mb-1">Daftar Pengguna</h2>
+                        <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Pengguna | Daftar Pengguna</p>
                     </div>
                 </div>
             </div>
@@ -205,7 +205,7 @@
                                 <p class="text-muted">{{ $isi->phone_number }}</p>
                                 <div class="d-flex justify-content-center gap-2 mt-2">
                                     <button class="btn btn-outline-info" type="button">Email</button>
-                                    <button class="btn btn-outline-info" type="button">Send</button>
+                                    <button class="btn btn-outline-info" type="button">Kirim</button>
                                 </div>
                                 <hr class="my-3">
                                 <div class="alert alert-success light text-dark" role="alert" style="background-color: rgba(40, 167, 69, 0.2);">
@@ -257,7 +257,7 @@
                         <form action="{{ route('user.destroy', $isi->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Banned</button>
+                            <button class="btn btn-danger" type="submit">Dilarang</button>
                         </form>
                     </div>
                 </div>

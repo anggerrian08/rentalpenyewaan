@@ -70,8 +70,8 @@
 <div class="kotak-biru">
     <div class="d-flex justify-content-between align-items-start mb-3">
         <div>
-            <h2 class="text-white fw-bold mb-1">Merk Mobil</h2>
-            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | List merk mobil</p>
+            <h2 class="text-white fw-bold mb-1">Merek Mobil</h2>
+            <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | List merek mobil</p>
         </div>
     </div>
 </div>
@@ -85,12 +85,12 @@
                 <span id="search-icon" style="cursor: pointer;">
                     <i class="fa fa-search" style="padding-left: 4px; color: #999; padding-right: 8px; transition: color 0.3s;"></i>
                 </span>
-                <input type="text" style="border: none; outline: none; background-color: transparent; flex-grow: 1;" placeholder="Cari merk mobil..." aria-label="Search" name="search">
+                <input type="text" style="border: none; outline: none; background-color: transparent; flex-grow: 1;" placeholder="Cari merek mobil..." aria-label="Search" name="search">
             </form>
         </div>
 
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="bi bi-plus-circle me-1"></i> Tambah Merk Baru
+            <i class="bi bi-plus-circle me-1"></i> Tambah Merek Baru
         </button>
     </div>
 </div>

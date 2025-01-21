@@ -58,8 +58,8 @@
     <div class="kotak-biru">
         <div class="d-flex justify-content-between align-items-start mb-3">
             <div>
-                <h2 class="text-white fw-bold mb-1">Approval Sewa</h2>
-                <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Approval Sewa</p>
+                <h2 class="text-white fw-bold mb-1">Persetujuan Sewa</h2>
+                <p class="text-white fw-bold mb-0" style="font-size: 0.9rem;">Menu | Persetujuan Sewa</p>
             </div>
         </div>
     </div>
