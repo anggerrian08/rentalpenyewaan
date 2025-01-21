@@ -32,10 +32,10 @@
                     transition: transform 0.3s ease, box-shadow 0.3s ease;
                 }
 
-                .card:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-                }
+                    /* .card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                    } */
 
                 .card-img-top {
                     border-radius: 10px 10px 0 0;
@@ -328,65 +328,75 @@
 
         <body>
             <div class="col-md-12 project-list">
-                <div class="card">
+                <div class="card shadow-lg" style="border-radius: 10px; background-color: #f8f9fa;">
                     <div class="row align-items-center">
                         <!-- Kolom untuk search -->
-                        <div class="col-md-2 p-0 text-end">
-                            <form action=""
-                                style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
-                                <span id="search-icon">
-                                    <i class="fa fa-search"
-                                        style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
+                        <div class="col-md-2 p-0 text-end ms-5">
+                            <form action="{{ route('car.index') }}" method="GET" style="border: 1px solid #ddd; display: flex; flex-direction: row; padding: 8px; border-radius: 8px;">
+                                <span id="search-icon" class="d-flex align-items-center">
+                                    <i class="fa fa-search" style="padding-left: 4px;color:#888; padding-right: 6px;"></i>
                                 </span>
-                                <input type="text" style="border: none;" placeholder="Cari aproval user..."
-                                    aria-label="Search">
+                                <input type="text" style="border: none; outline: none; flex-grow: 1;" placeholder="Cari jenis mobil..." aria-label="Search" name="search">
                             </form>
                         </div>
-                        <div class="col-sm-12 mt-3">
-                            {{-- <div class="card"> --}}
-                            <div class="card-block row">
-                                <div class="col-sm-12 col-lg-12 col-xl-12">
-                                    <div class="table-responsive custom-scrollbar">
-                                        <table class="table table-light">
-                                            <thead>
+                    </div>
+
+                    <div class="col-sm-12 mt-3">
+                        <div class="card-block row">
+                            <div class="col-sm-12 col-lg-12 col-xl-12">
+                                <div class="table-responsive custom-scrollbar">
+                                    <table class="table table-bordered" style="border-collapse: collapse;">
+                                        <thead class="bg-primary text-white">
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Merek</th>
+                                                <th>Nama</th>
+                                                <th>Plat Nomor</th>
+                                                <th>Tarif/Harga</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($cars as $car)
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Merek</th>
-                                                    <th>Nama</th>
-                                                    <th>Status</th>
-                                                    <th>Aksi</th>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $car->merek->name }}</td>
+                                                    <td>{{ $car->name }}</td>
+                                                    <td>{{ $car->plat }}</td>
+                                                    <td>Rp.{{ number_format($car->price, 0, ',', '.') }}</td>
+                                                    <td class="text-center">
+                                                        @if ($car->stock > 0)
+                                                            <button class="badge badge-primary">Tersedia</button>
+                                                        @else
+                                                            <button class="badge badge-danger">Tidak Tersedia</button>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{ route('car.show', $car->id) }}" class="btn btn-info btn-sm" style="padding: 5px 10px;">
+                                                            <i class="fa fa-eye"></i> Show
+                                                        </a>
+                                                        <a href="{{ route('car.edit', $car->id) }}" class="btn btn-warning btn-sm" style="padding: 5px 10px;">
+                                                            <i class="fa fa-edit"></i> Edit
+                                                        </a>
+                                                        <form id="delete-form-{{ $car->id }}" action="{{ route('car.destroy', $car->id) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="btn btn-danger btn-sm" style="padding: 5px 10px;" onclick="if(confirm('Apakah Anda yakin ingin menghapus data ini?')) { document.getElementById('delete-form-{{ $car->id }}').submit(); }">
+                                                                <i class="fa fa-trash"></i> Delete
+                                                            </button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($cars as $car)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $car->merek->name }}</td>
-                                                        <td>{{ $car->name }}</td>
-                                                        <td class="d-flex justify-center">
-                                                            @if ($car->stock > 0)
-                                                                <button class="badge badge-primary">tersedia</button>
-                                                            @else
-                                                                <button class="badge badge-danger">tidak
-                                                                    tersedia</button>
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            <a href="{{ route('car.show', $car->id) }}"><img
-                                                                    src="Frame 48.svg" alt="Show"></a>
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="14" class="text-center">Tidak ada data mobil
-                                                            yang ditemukan.</td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                        <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
-                                        </hr>
-                                    </div>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="7" class="text-center">
+                                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="No Cars">
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -394,5 +404,6 @@
                 </div>
             </div>
         </body>
+
     </div>
 @endif

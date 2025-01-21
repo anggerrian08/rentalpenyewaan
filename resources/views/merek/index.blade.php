@@ -21,10 +21,10 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card:hover {
+    /* .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-    }
+    } */
 
     .card-img-top {
         border-radius: 10px 10px 0 0;
@@ -77,16 +77,18 @@
 </div>
 
 <!-- Card 2: Input dan Tombol -->
+
 <div class="card p-3">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="col-md-2 p-0 text-end">
-            <form action="{{route('merek.index')}}" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
-                <span id="search-icon">
-                    <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
+        <div class="search">
+            <form action="{{route('merek.index')}}" style="border: 0.2px solid #ddd; display:flex; flex-direction:row; align-items: center; padding:8px 8px; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <span id="search-icon" style="cursor: pointer;">
+                    <i class="fa fa-search" style="padding-left: 4px; color: #999; padding-right: 8px; transition: color 0.3s;"></i>
                 </span>
-                <input type="text" style="border: none;" placeholder="Cari merk mobil..." aria-label="Search" name="search">
+                <input type="text" style="border: none; outline: none; background-color: transparent; flex-grow: 1;" placeholder="Cari merk mobil..." aria-label="Search" name="search">
             </form>
         </div>
+
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="bi bi-plus-circle me-1"></i> Tambah Merk Baru
         </button>
@@ -94,14 +96,14 @@
 </div>
 
 <!-- Daftar Merk Mobil -->
-<div class="row">
+<div class="row mb-3">
     @forelse($data as $merk)
-        <div class="col-md-3 mb-3">
+        <div class="col-md-3 mb-1">
             <div class="card">
                 <img src="{{ asset('uploads/mobil/'.$merk->logo) }}" class="card-img-top" alt="{{ $merk->nama }}">
-                <div class="card-body">
+                <div class="card-body" style="border-radius: 10px">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/images/logo/merek.jpg') }}" alt="" height="45px" class="me-2">
+                        <img src="{{ asset('assets/images/logo/merek.jpg') }}" alt="" height="45px">
                         <h4 class="card-title m-0">{{ $merk->name }}</h4>
                     </div>
                     <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">

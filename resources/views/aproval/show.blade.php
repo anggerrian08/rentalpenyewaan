@@ -43,82 +43,81 @@
 
     <!-- Card Konten -->
     <div class="col-md-12">
-        <div class="card p-4">
+        <div class="card p-4 shadow-lg" style="border-radius: 10px; background-color: #f8f9fa;">
             <div class="row">
                 <!-- Data Penyewa -->
                 <div class="col-md-6">
                     <table class="table table-borderless table-custom">
                         <tr>
-                            <th>Nama Penyewa</th>
-                            <td>{{ $aproval->booking->user->name }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">Nama Penyewa</th>
+                            <td class="text-muted">{{ $aproval->booking->user->name }}</td>
                         </tr>
                         <tr>
-                            <th>NIK</th>
-                            <td>{{ $aproval->booking->user->nik }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">NIK</th>
+                            <td class="text-muted">{{ $aproval->booking->user->nik }}</td>
                         </tr>
                         <tr>
-                            <th>No HP</th>
-                            <td>{{ $aproval->booking->user->phone_number }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">No HP</th>
+                            <td class="text-muted">{{ $aproval->booking->user->phone_number }}</td>
                         </tr>
-
                         <tr>
-                            <th>Alamat</th>
-                            <td>{{ $aproval->booking->user->address }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">Alamat</th>
+                            <td class="text-muted">{{ $aproval->booking->user->address }}</td>
                         </tr>
                     </table>
                 </div>
 
                 <!-- Foto KTP dan SIM -->
                 <div class="col-md-6 text-center">
-                    <div class="mb-3">
-                        <strong>Foto KTP</strong>
-                        <br>
-                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->booking->user->ktp) }}" class="image-preview"
-                            alt="Foto KTP">
+                    <div class="mb-4">
+                        <strong class="d-block mb-2" style="font-size: 1.1rem; color: #495057;">Foto KTP</strong>
+                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->booking->user->ktp) }}" class="img-fluid mb-3" alt="Foto KTP"
+                            style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     <div>
-                        <strong>Foto SIM</strong>
-                        <br>
-                        <img src="{{ asset('storage/uploads/sim/' . $aproval->booking->user->sim) }}" class="image-preview"
-                            alt="Foto SIM">
+                        <strong class="d-block mb-2" style="font-size: 1.1rem; color: #495057;">Foto SIM</strong>
+                        <img src="{{ asset('storage/uploads/sim/' . $aproval->booking->user->sim) }}" class="img-fluid"
+                            alt="Foto SIM" style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                 </div>
             </div>
 
             <!-- Data Pinjaman -->
-            <hr>
+            <hr style="border-top: 2px solid #e0e0e0;">
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-borderless table-custom">
                         <tr>
-                            <th>Tanggal Pinjam</th>
-                            <td>{{ $aproval->booking->order_date }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">Tanggal Pinjam</th>
+                            <td class="text-muted">{{ $aproval->booking->order_date }}</td>
                         </tr>
                         <tr>
-                            <th>Tanggal Kembali</th>
-                            <td>{{ $aproval->booking->return_date }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">Tanggal Kembali</th>
+                            <td class="text-muted">{{ $aproval->booking->return_date }}</td>
                         </tr>
                     </table>
                 </div>
+
                 <div class="col-md-6">
                     <table class="table table-borderless table-custom">
                         <tr>
-                            <th>Total Hari</th>
-                            <td>{{ $aproval->rental_duration_days }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">Total Hari</th>
+                            <td class="text-muted">{{ $aproval->rental_duration_days }}</td>
                         </tr>
                         <tr>
-                            <th>Tarif/hari</th>
-                            <td>Rp. {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">Tarif/hari</th>
+                            <td class="text-muted">Rp. {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</td>
                         </tr>
                         <tr>
-                            <th>Total Tarif</th>
-                            <td>Rp. {{ number_format($aproval->total_price, 0, ',', '.') }}</td>
+                            <th class="font-weight-bold" style="color: #6c757d;">Total Tarif</th>
+                            <td class="text-muted">Rp. {{ number_format($aproval->total_price, 0, ',', '.') }}</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Tombol Aksi -->
     <div class="d-flex justify-content-end mt-3">
