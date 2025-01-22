@@ -53,7 +53,7 @@
 
                     <li><a href="/" class="<?php echo $_SERVER['REQUEST_URI'] == '/' ? 'active' : ''; ?>">Beranda</a></li>
                     @if(Auth::user())
-                        <li><a href="/car" class="<?php echo $_SERVER['REQUEST_URI'] == '/car' ? 'active' : ''; ?>">Pemesanan</a></li>
+                        <li><a href="/pemesanan" class="<?php echo $_SERVER['REQUEST_URI'] == '/pemesanan' ? 'active' : ''; ?>">Pemesanan</a></li>
                         <li><a href="/favorit" class="<?php echo $_SERVER['REQUEST_URI'] == '/favorit' ? 'active' : ''; ?>">Favorit</a></li>
                         <li><a href="/riwayat" class="<?php echo $_SERVER['REQUEST_URI'] == '/riwayat' ? 'active' : ''; ?>">Riwayat</a></li>
                     @endcan

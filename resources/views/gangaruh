@@ -1,0 +1,435 @@
+@extends('layouts.navuser')
+@section('content')
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zono admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Zono admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <title>Zono - Premium Admin Template</title>
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('../assets/css/font-awesome.css') }}">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+    <!-- Plugins css start-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/owlcarousel.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/rating.css">
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+  </head>
+  <body>
+    <!-- loader starts-->
+    <div class="loader-wrapper">
+      <div class="theme-loader">
+        <div class="loader-p"></div>
+      </div>
+    </div>
+    <!-- loader ends-->
+    <!-- tap on top starts-->
+    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+    <!-- tap on tap ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <!-- Page Header Start-->
+      <div class="page-header">
+        <div class="header-wrapper row m-0">
+
+          <form class="col-sm-4 form-inline search-full d-none d-xl-block" action="#" method="get">
+            <div class="form-group">
+              <div class="Typeahead Typeahead--twitterUsers">
+                <div class="u-posRelative">
+                  <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text" placeholder="Type to Search .." name="q" title="" autofocus>
+                  <svg class="search-bg svg-color">
+                    <use href="../assets/svg/icon-sprite.svg#search"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="nav-right col-xl-8 col-lg-12 col-auto pull-right right-header p-0">
+            <ul class="nav-menus">
+              <li class="serchinput">
+                <div class="serchbox">
+                  <svg>
+                    <use href="../assets/svg/icon-sprite.svg#search"></use>
+                  </svg>
+                </div>
+                <div class="form-group search-form">
+                  <input type="text" placeholder="Search here...">
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="notification-box">
+                  <svg>
+                    <use href="../assets/svg/icon-sprite.svg#Bell"></use>
+                  </svg>
+                </div>
+                <div class="onhover-show-div notification-dropdown">
+                  <h6 class="f-18 mb-0 dropdown-title">Notifications</h6>
+                  <div class="notification-card">
+                    <ul>
+                      <li>
+                        <div class="user-notification">
+                          <div><img src="../assets/images/avtar/2.jpg" alt="avatar"></div>
+                          <div class="user-description"><a href="letter-box.html">
+                              <h4>You have new finical page design.</h4></a><span>Today 11:45pm</span></div>
+                        </div>
+                        <div class="notification-btn">
+                          <button class="btn btn-pill btn-primary" type="button" title="btn btn-pill btn-primary">Accpet</button>
+                          <button class="btn btn-pill btn-secondary" type="button" title="btn btn-pill btn-primary">Decline</button>
+                        </div>
+                        <div class="show-btn"><a href="index.html"> <span>Show</span></a></div>
+                      </li>
+                      <li>
+                        <div class="user-notification">
+                          <div><img src="../assets/images/avtar/17.jpg" alt="avatar"></div>
+                          <div class="user-description"><a href="letter-box.html">
+                              <h4>Congrats! you all task for today.</h4></a><span>Today 01:05pm</span></div>
+                        </div>
+                        <div class="notification-btn">
+                          <button class="btn btn-pill btn-primary" type="button" title="btn btn-pill btn-primary">Accpet</button>
+                          <button class="btn btn-pill btn-secondary" type="button" title="btn btn-pill btn-primary">Decline</button>
+                        </div>
+                        <div class="show-btn"><a href="index.html"> <span>Show</span></a></div>
+                      </li>
+                      <li>
+                        <div class="user-notification">
+                          <div> <img src="../assets/images/avtar/18.jpg" alt="avatar"></div>
+                          <div class="user-description"><a href="letter-box.html">
+                              <h4>You have new in landing page design.</h4></a><span>Today 06:55pm</span></div>
+                        </div>
+                        <div class="notification-btn">
+                          <button class="btn btn-pill btn-primary" type="button" title="btn btn-pill btn-primary">Accpet</button>
+                          <button class="btn btn-pill btn-secondary" type="button" title="btn btn-pill btn-primary">Decline</button>
+                        </div>
+                        <div class="show-btn"><a href="index.html"> <span>Show</span></a></div>
+                      </li>
+                      <li>
+                        <div class="user-notification">
+                          <div><img src="../assets/images/avtar/19.jpg" alt="avatar"></div>
+                          <div class="user-description"><a href="letter-box.html">
+                              <h4>Congrats! you all task for today.</h4></a><span>Today 06:55pm</span></div>
+                        </div>
+                        <div class="notification-btn">
+                          <button class="btn btn-pill btn-primary" type="button" title="btn btn-pill btn-primary">Accpet</button>
+                          <button class="btn btn-pill btn-secondary" type="button" title="btn btn-pill btn-primary">Decline</button>
+                        </div>
+                        <div class="show-btn"> <a href="index.html"> <span>Show</span></a></div>
+                      </li>
+                      <li> <a class="f-w-700" href="letter-box.html">Check all </a></li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <svg>
+                  <use href="../assets/svg/icon-sprite.svg#Bookmark"></use>
+                </svg>
+                <div class="onhover-show-div bookmark-flip">
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="front">
+                        <h6 class="f-18 mb-0 dropdown-title">Bookmark</h6>
+                        <ul class="bookmark-dropdown">
+                          <li>
+                            <div class="row">
+                              <div class="col-4 text-center"><a href="form-validation.html">
+                                  <div class="bookmark-content">
+                                    <div class="bookmark-icon bg-light-primary"><i data-feather="file-text"></i></div><span>Forms</span>
+                                  </div></a></div>
+                              <div class="col-4 text-center"><a href="user-profile.html">
+                                  <div class="bookmark-content">
+                                    <div class="bookmark-icon bg-light-secondary"><i data-feather="user"></i></div><span>Profile</span>
+                                  </div></a></div>
+                              <div class="col-4 text-center"><a href="bootstrap-basic-table.html">
+                                  <div class="bookmark-content">
+                                    <div class="bookmark-icon bg-light-warning"> <i data-feather="server"> </i></div><span>Tables </span>
+                                  </div></a></div>
+                            </div>
+                          </li>
+                          <li class="text-centermedia-body"> <a class="flip-btn f-w-700" id="flip-btn" href="javascript:void(0)">Add New Bookmark</a></li>
+                        </ul>
+                      </div>
+                      <div class="back">
+                        <ul>
+                          <li>
+                            <div class="bookmark-dropdown flip-back-content">
+                              <input type="text" placeholder="search...">
+                            </div>
+                          </li>
+                          <li><a class="f-w-700 d-block flip-back" id="flip-back" href="javascript:void(0)">Back</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="onhover-dropdown">
+                <div class="message position-relative">
+                  <svg>
+                    <use href="../assets/svg/icon-sprite.svg#Message"></use>
+                  </svg><span class="rounded-pill badge-danger"></span>
+                </div>
+                <div class="onhover-show-div message-dropdown">
+                  <h6 class="f-18 mb-0 dropdown-title">Message                               </h6>
+                  <ul>
+                    <li>
+                      <div class="d-flex align-items-start">
+                        <div class="message-img bg-light-primary"><img src="../assets/images/user/3.jpg" alt=""></div>
+                        <div class="flex-grow-1">
+                          <h5><a href="letter-box.html">Emay Walter</a></h5>
+                          <p>Do you want to go see movie?</p>
+                        </div>
+                        <div class="notification-right"><i data-feather="x"></i></div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex align-items-start">
+                        <div class="message-img bg-light-primary"><img src="../assets/images/user/6.jpg" alt=""></div>
+                        <div class="flex-grow-1">
+                          <h5> <a href="letter-box.html">Jason Borne</a></h5>
+                          <p>Thank you for rating us.</p>
+                        </div>
+                        <div class="notification-right"><i data-feather="x"></i></div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="d-flex align-items-start">
+                        <div class="message-img bg-light-primary"><img src="../assets/images/user/10.jpg" alt=""></div>
+                        <div class="flex-grow-1">
+                          <h5> <a href="letter-box.html">Sarah Loren</a></h5>
+                          <p>What`s the project report update?</p>
+                        </div>
+                        <div class="notification-right"><i data-feather="x"></i></div>
+                      </div>
+                    </li>
+                    <li> <a class="f-w-700" href="private-chat.html">Check all</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="cart-nav onhover-dropdown">
+                <div class="cart-box">
+                  <svg>
+                    <use href="../assets/svg/icon-sprite.svg#Buy"></use>
+                  </svg>
+                </div>
+                <div class="cart-dropdown onhover-show-div">
+                  <h6 class="f-18 mb-0 dropdown-title">Cart</h6>
+                  <ul>
+                    <li>
+                      <div class="d-flex"><img class="img-fluid b-r-5 img-50" src="../assets/images/ecommerce/05.jpg" alt="">
+                        <div class="flex-grow-1"> <span>Women's Track Suit</span>
+                          <h6 class="font-primary">8 x $65.00</h6>
+                        </div>
+                        <div class="close-circle"><a class="bg-primary" href="#"><i data-feather="x"></i></a></div>
+                      </div>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
+
+
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <!-- Page Header Ends-->
+      <!-- Page Body Start-->
+        <!-- Page Sidebar Start-->
+        {{-- <div class="container"> --}}
+
+        <!-- Page Sidebar Ends-->
+        <div class="page-body">
+          <div class="container-fluid">
+            <div class="page-title">
+
+            </div>
+          </div>
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <div>
+              <div class="row product-page-main p-0">
+                <div class="col-xxl-4 col-md-6 box-col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="product-slider owl-carousel owl-theme" id="sync1">
+                        <div class="item"><img src="../assets/images/ecommerce/01.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/02.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/03.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/04.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/05.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/06.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/07.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/08.jpg" alt=""></div>
+                      </div>
+                      <div class="owl-carousel owl-theme" id="sync2">
+                        <div class="item"><img src="../assets/images/ecommerce/01.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/02.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/03.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/04.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/05.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/06.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/07.jpg" alt=""></div>
+                        <div class="item"><img src="../assets/images/ecommerce/08.jpg" alt=""></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-5 box-col-6 order-xxl-0 order-1">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="product-page-details">
+                        <h3>Women Pink shirt.</h3>
+                      </div>
+                      <div class="product-price">$26.00
+                        <del>$350.00 </del>
+                      </div>
+                      <ul class="product-color">
+                        <li class="bg-primary"></li>
+                        <li class="bg-secondary"></li>
+                        <li class="bg-success"></li>
+                        <li class="bg-info"></li>
+                        <li class="bg-warning"></li>
+                      </ul>
+                      <hr>
+                      <p>Rock Paper Scissors Various Dots Half Sleeves Girl’s Regular Fit T-Shirt I 100% Cotton T Shirt with Half Sleeve Round Neck I Regular Wear Solid Kids Tees and Black Sleeve.</p>
+                      <hr>
+                      <div>
+                        <table class="product-page-width">
+                          <tbody>
+                            <tr>
+                              <td> <b>Brand &nbsp;&nbsp;&nbsp;:</b></td>
+                              <td>Pixelstrap</td>
+                            </tr>
+                            <tr>
+                              <td> <b>Availability &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                              <td class="txt-success">In stock</td>
+                            </tr>
+                            <tr>
+                              <td> <b>Seller &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                              <td>ABC</td>
+                            </tr>
+                            <tr>
+                              <td> <b>Fabric &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;</b></td>
+                              <td>Cotton</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h4 class="product-title">share it</h4>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="product-icon">
+                            <ul class="product-social">
+                              <li class="d-inline-block"><a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                              <li class="d-inline-block"><a href="https://accounts.google.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                              <li class="d-inline-block"><a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                              <li class="d-inline-block"><a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                              <li class="d-inline-block"><a href="https://rss.app/" target="_blank"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                            <form class="d-inline-block f-right"></form>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h4 class="product-title">Rate Now</h4>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="d-flex">
+                            <div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></div><span>(250 review)</span>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="m-t-15 btn-showcase"><a class="btn btn-primary" href="cart.html" title=""> <i class="fa fa-shopping-basket me-1"></i>Add To Cart</a><a class="btn btn-success" href="checkout.html" title=""> <i class="fa fa-shopping-cart me-1"></i>Buy Now</a><a class="btn btn-secondary" href="list-wish.html"> <i class="fa fa-heart me-1"></i>Add To WishList</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xxl-3 col-md-6 box-col-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <!-- side-bar colleps block stat-->
+                      <div class="filter-block">
+                        <h3>Brand</h3>
+                        <ul><a href="product.html">
+                            <li>Clothing</li></a><a href="product.html">
+                            <li>Bags</li></a><a href="product.html">
+                            <li>Footwear</li></a><a href="product.html">
+                            <li>Watches</li></a><a href="product.html">
+                            <li>ACCESSORIES</li></a></ul>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          <!-- Container-fluid Ends-->
+        </div>
+        <!-- footer start-->
+
+    </div>
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- scrollbar js-->
+    <script src="../assets/js/scrollbar/simplebar.js"></script>
+    <script src="../assets/js/scrollbar/custom.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../assets/js/config.js"></script>
+    <!-- Plugins JS start-->
+    <script src="../assets/js/sidebar-menu.js"></script>
+    <script src="../assets/js/sidebar-pin.js"></script>
+    <script src="../assets/js/slick/slick.min.js"></script>
+    <script src="../assets/js/slick/slick.js"></script>
+    <script src="../assets/js/header-slick.js"></script>
+    <script src="../assets/js/rating/jquery.barrating.js"></script>
+    <script src="../assets/js/rating/rating-script.js"></script>
+    <script src="../assets/js/owlcarousel/owl.carousel.js"></script>
+    <script src="../assets/js/ecommerce.js"></script>
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/theme-customizer/customizer.js"></script>
+    <!-- Plugin used-->
+  </body>
+</html>
+@endsection
