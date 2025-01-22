@@ -11,6 +11,7 @@ use App\Http\Controllers\CarLikesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PromosiController;
 use App\Http\Controllers\FavoritController;
+use App\Http\Controllers\PemesananController;
 
 use App\Http\Controllers\DetailPembayaranController;
 use App\Models\Car;
@@ -23,7 +24,7 @@ Route::get('/', function () {
 })->name('halamanutama');
 
 Route::resource('/beranda',  BerandaController::class);
-
+Route::resource('/pemesanan',  PemesananController::class);
 Route::resource('/favorit',  FavoritController::class);
 Route::resource('/account',  ProfileController::class);
 
