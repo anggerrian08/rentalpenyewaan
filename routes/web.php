@@ -13,6 +13,7 @@ use App\Http\Controllers\PromosiController;
 use App\Http\Controllers\FavoritController;
 
 use App\Http\Controllers\DetailPembayaranController;
+use App\Http\Controllers\RiwayatController;
 use App\Models\Car;
 use App\Models\DetailPembayaran;
 use Illuminate\Support\Facades\Route;
@@ -34,9 +35,7 @@ Route::get('/jenis mobil', function () {
 
 
 
-Route::get('/riwayat', function () {
-    return view('riwayat.index');
-});
+Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

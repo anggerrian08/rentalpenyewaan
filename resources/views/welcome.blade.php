@@ -314,7 +314,12 @@
                     </div>
                     <div class="price-button-wrapper">
                         <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
-                        <button class="pesan-btn">Pesan</button>
+                        @if (!Auth::user())
+                            <a href="{{route('login')}}" class="pesan-btn">Masuk</a>
+                        @else
+                            <a href="">pesan</a>
+                        @endif
+                        {{-- <button class="pesan-btn">Pesan</button> --}}
                     </div>
                 </div>
             @endforeach
