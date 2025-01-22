@@ -394,16 +394,16 @@
                         <div class="navbar">
                             <div class="profile">
                                 <img src="{{ asset('assets/images/dashboard/profile.png') }}" alt="User">
-                                <h3>Username User</h3>
+                                <h3>{{Auth::user()->name}}</h3>
                             </div>
                             <ul class="menu">
-                                <li>Tanggal Daftar: 1 Apr 2024</li>
-                                <li>Total Transaksi: 5</li>
+                                <li>Tanggal Daftar: {{ Auth::user()->created_at->translatedFormat('j F Y') }}</li>
+                                <li>Total Transaksi: {{$count_transaksi}}</li>
                                 <hr>
-                                <li>Pesanan DiProses</li>
-                                <li>Pesanan Berlangsung</li>
-                                <li>Pesanan Ditolak</li>
-                                <li>Pesanan Selesai</li>
+                                <li>Pesanan DiProses {{$pesanan_diprocess}}</li>
+                                <li>Pesanan Berlangsung {{$pesanan_berlangsung}}</li>
+                                <li>Pesanan Ditolak {{$pesanan_ditolak}}</li>
+                                <li>Pesanan Selesai {{$pesanan_selesai}}</li>
                             </ul>
                         </div>
                         <div class="grid text-left" style="--bs-gap: .25rem 1rem;">
@@ -426,39 +426,42 @@
                                 {{-- filter  --}}
                                 <div class="filter">
                                     <button onclick="filterOrders('all')">Semua</button>
-                                    <button onclick="filterOrders('diproses')">Diproses</button>
-                                    <button onclick="filterOrders('berlangsung')">Berlangsung</button>
-                                    <button onclick="filterOrders('terlambat')">Terlambat</button>
-                                    <button onclick="filterOrders('dibatalkan')">Dibatalkan</button>
-                                    <button onclick="filterOrders('selesai')">Selesai</button>
+                                    <button onclick="filterOrders('in_process')">Diproses</button>
+                                    <button onclick="filterOrders('borrowed')">Berlangsung</button>
+                                    <button onclick="filterOrders('late')">Terlambat</button>
+                                    <button onclick="filterOrders('rejected')">DiTolak</button>
+                                    <button onclick="filterOrders('returned')">Selesai</button>
                                 </div>
                                 {{-- card isi --}}
-                                <div id="orderList">
+                                  <div id="orderList">
                                     <!-- Your order cards go here -->
-                                    <div class="order-card" data-status="berlangsung">
+                                    @foreach ($data_all as $item)
+                                    <div class="order-card" data-status="{{ $item->booking->status }}">
                                         <div class="order-header">
                                             <p class="order-title">Pesanan</p>
-                                            <p class="order-date">11 Apr 2024</p>
-                                            <span class="order-status">Berlangsung</span>
+                                            <p class="order-date">{{ $item->created_at->translatedFormat('d M Y') }}</p>
+                                            <span class="order-status">{{ $item->booking->status }}</span>
                                         </div>
                                         <div class="order-body">
                                             <div class="car-details">
-                                                <img src="https://via.placeholder.com/80x50" alt="Car Image">
+                                                <img src="{{ asset('storage/uploads/car/' . $item->booking->car->photo) }}" alt="Car Image">
                                                 <div class="car-info">
-                                                    <p class="car-brand">Toyota</p>
-                                                    <h4 class="car-name">Avanza Veloz</h4>
-                                                    <p class="car-price">Rp. 100.000,00 / hari</p>
-                                                    <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
+                                                    <p class="car-brand">{{ $item->booking->car->merek->name }}</p>
+                                                    <h4 class="car-name">{{ $item->booking->car->name }}</h4>
+                                                    <p class="car-price">Rp. {{ number_format($item->booking->car->price, 2, ',', '.') }} / hari</p>
+                                                    <p class="rent-period">{{ $item->booking->order_date }} / {{ $item->booking->return_date }}</p>
                                                 </div>
                                             </div>
                                             <div class="price-details">
                                                 <h4>Total Tarif</h4>
-                                                <p class="total-price">Rp 100.000,00</p>
+                                                <p class="total-price">Rp {{ number_format($item->total_price, 2, ',', '.') }}</p>
                                                 <a href="#" class="detail-link">Lihat Detail Sewa</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="order-card" data-status="diproses">
+                                @endforeach
+                                
+                                    {{-- <div class="order-card" data-status="diproses">
                                         <div class="order-header">
                                             <p class="order-title">Pesanan</p>
                                             <p class="order-date">11 Apr 2024</p>
@@ -505,7 +508,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="order-card" data-status="dibatalkan">
+                                    <div class="order-card" data-status="ditolak">
                                         <div class="order-header">
                                             <p class="order-title">Pesanan</p>
                                             <p class="order-date">11 Apr 2024</p>
@@ -548,7 +551,7 @@
                                                 <p class="total-price">Rp 100.000,00</p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- Repeat for other orders with appropriate data-status -->
                                 </div>
                             </div>
