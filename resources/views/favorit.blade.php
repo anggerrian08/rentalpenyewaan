@@ -188,40 +188,40 @@
                 memberikan pengalaman berkendara yang tak terlupakan. Nikmati kemudahan dalam mencari dan memilih mobil yang
                 sesuai dengan gaya dan kebutuhan Anda.</p>
             <div class="container">
-                @foreach ($cars as $car)
+                @foreach ($data as $car)
                     <div class="card">
-                        <h3 style="text-align: left;">{{ $car->name }}</h3>
+                        <h3 style="text-align: left;">{{ $car->car->name }}</h3>
                         <form action="{{route('car_likes.store')}}" method="post">
                             @csrf
                             <button type="submit">
                                 <div class="love-icon">❤</div>
                             </button>
                         </form>
-                        <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
+                        <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" 
                             class="car-image img-fluid">
-                        <h3>{{ $car->model }}</h3>
-                        <p class="brand">{{ $car->brand }}</p>
+                        <h3>{{ $car->car->model }}</h3>
+                        <p class="brand">{{ $car->car->brand }}</p>
                         <div class="details">
                             <span class="text-muted">
-                                <i class="fas fa-gas-pump"></i> Bensin
+                                <i class="fas fa-gas-pump"></i> {{$car->car->fuel_type}}
                             </span>
                             <span class="text-muted">
-                                <i class="fas fa-cogs"></i> Manual
+                                <i class="fas fa-cogs"></i> {{$car->car->type_transmisi}}
                             </span>
                             <span class="text-muted">
-                                <i class="fas fa-user"></i> {{ $car->seats }} Orang
+                                <i class="fas fa-user"></i> {{ $car->car->passanger_capacity }} Orang
                             </span>
                         </div>
                         <div class="price-button-wrapper">
-                            <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
-                            <button class="pesan-btn">Pesan</button>
+                            <p class="price text-muted">Rp. {{ number_format($car->car->price, 0, ',', '.') }}</p>
+                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
                         </div>
                     </div>
                 @endforeach
             </div>
             <!-- Pagination Links -->
             <div class="pagination-wrapper">
-                {{ $cars->links() }}
+                {{ $data->links() }}
             </div>
         </div>
     </div>
