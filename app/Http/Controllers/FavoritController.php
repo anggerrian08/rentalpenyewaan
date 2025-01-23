@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\CarLikes;
+use Illuminate\Support\Facades\Auth;
 
 class FavoritController extends Controller
 {
@@ -12,8 +14,9 @@ class FavoritController extends Controller
      */
     public function index()
     {
-        $cars = Car::paginate(8);
-        return view('favorit',compact('cars'));
+        
+        $data = CarLikes::with('user', 'car')->where('user_id', Auth::user()->id)->paginate(8);
+        return view('favorit',compact('data'));
     }
 
     /**

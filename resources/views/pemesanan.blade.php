@@ -306,7 +306,7 @@
                         </div>
                         <div class="price-button-wrapper">
                             <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
-                            <button class="pesan-btn">Pesan</button>
+                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
                         </div>
                     </div>
                 @endforeach
