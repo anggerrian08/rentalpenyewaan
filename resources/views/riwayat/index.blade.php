@@ -460,7 +460,9 @@
                                         </div>
                                     </div>
                                 @endforeach
-                                
+                                <div class="pagination-wrapper" style="display: flex; justify-content: center; margin-top: 20px;">
+                                    {{ $data_all->links('pagination::bootstrap-5') }}
+                                </div>
                                     {{-- <div class="order-card" data-status="diproses">
                                         <div class="order-header">
                                             <p class="order-title">Pesanan</p>
