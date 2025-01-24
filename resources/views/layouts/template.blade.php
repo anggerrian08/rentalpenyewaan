@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +19,21 @@
     <title>HUMMA RENTCAR</title>
 
     <style>
+        /* Styling untuk elemen sidebar aktif */
+        /* .sidebar-list.active {
+            background-color: #01A8EF;
+            color: #fff;
+        }
+
+        .sidebar-list.active a {
+            color: #fff;
+        }
+
+        .sidebar-list.active .fa,
+        .sidebar-list.active .fill-icon {
+            color: #fff;
+        } */
+
         .logo-wrapper {
             border-bottom: 1px solid #ddd;
             /* Garis tipis */
@@ -153,7 +167,7 @@
                             <ul class="profile-dropdown onhover-show-div">
                                 <li><a href="user-profile.html"><i data-feather="user"></i><span>Akun</span></a>
                                 </li>
-                                    <li>
+                                <li>
                                     <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                         @csrf
                                         <button type="submit"
@@ -214,7 +228,8 @@
                                         <h6 class="">Umum</h6>
                                     </div>
                                 </li>
-                                <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
+                                <li class="sidebar-list"><i class=""></i><a
+                                        class="sidebar-link {{ request()->routeIs('dashboard') ? 'bg-primary' : '' }} "
                                         href="{{ route('dashboard') }}">
                                         <i class="fa fa-home " style="font-size: 20px"></i>
                                         <svg class="fill-icon">
@@ -228,7 +243,8 @@
                                     </div>
                                 </li>
                                 @if (auth()->user()->hasRole('user'))
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('car.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('car.index') }}">
                                             <i class="fa fa-shopping-bag"></i>
                                             <svg class="fill-icon">
@@ -247,7 +263,9 @@
                                         </div>
                                     </li>
 
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list">
+                                        <i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('detail_pembayarans.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('detail_pembayarans.index') }}">
                                             <i class="fa fa-history"></i>
                                             <svg class="fill-icon">
@@ -273,21 +291,23 @@
                   </li> --}}
 
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('car_likes.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('car_likes.index') }}">
                                             <i class="fa fa-users"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Mobil Favorit</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list "><i class=""></i><a class="sidebar-link"
                                             href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Tinjauan</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('review.index') ? 'bg-primary' : '' }} 
                                             href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
@@ -302,14 +322,16 @@
                                             </svg><span class="">booking</span></a>
                                     </li> --}}
                                 @else
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('merek.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('merek.index') }}">
                                             <i class="fa fa-car"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Merek Mobil</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('car.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('car.index') }}">
                                             <i class="fa fa-shopping-bag"></i>
                                             <svg class="fill-icon">
@@ -326,14 +348,17 @@
                                             <h6 class="">Transaksi</h6>
                                         </div>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list  "><i class=""></i><a
+                                            class="sidebar-link  {{ request()->routeIs('aproval.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('aproval.index') }}">
-                                            <i class="fa fa-calendar-check"></i>
+                                            <i class="fa fa-calendar-check "></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Persetujuan Sewa</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list">
+                                        <i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('detail_pembayarans.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('detail_pembayarans.index') }}">
                                             <i class="fa fa-credit-card"></i>
                                             <svg class="fill-icon">
@@ -351,7 +376,8 @@
                                         </div>
                                     </li>
 
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('user.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('user.index') }}">
                                             <i class="fa fa-users"></i>
                                             <svg class="fill-icon">
@@ -359,14 +385,16 @@
                                             </svg><span class="">Daftar Pengguna</span></a>
                                     </li>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('car_likes.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('car_likes.index') }}">
                                             <i class="fa fa-heart"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Favorit Mobil</span></a>
                                     </li>
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link "
+                                    <li class="sidebar-list"><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('review.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
                                             <svg class="fill-icon">
@@ -374,8 +402,9 @@
                                             </svg><span class="">Tinjauan</span></a>
                                     </li>
 
-                                    <li class="sidebar-list"><i class=""></i><a class="sidebar-link"
-                                            href="{{ route('Promosi.index') }}">
+                                    <li class="sidebar-list "><i class=""></i><a
+                                            class="sidebar-link {{ request()->routeIs('promosi.index') ? 'bg-primary' : '' }} "
+                                            href="{{ route('promosi.index') }}">
                                             <i class="fa fa-bullhorn"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
