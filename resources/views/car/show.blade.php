@@ -55,7 +55,7 @@
                         @if ($car->stock > 0)
 
                         @if (Auth()->user()->hasRole('user'))
-                            <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#pesanModal">
+                            <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#pesanModal{{$car->id}}">
                                 Pesan Sekarang
                             </button>
                     
@@ -103,7 +103,7 @@
 
 
 <!-- Modal for Booking -->
-<div class="modal fade" id="pesanModal" tabindex="-1" aria-labelledby="pesanModalLabel" aria-hidden="true">
+<div class="modal fade" id="pesanModal{{$car->id}}" tabindex="-1" aria-labelledby="pesanModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -116,7 +116,7 @@
             <div class="modal-body">
                 <form action="{{ route('bookings.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf <!-- CSRF Token untuk keamanan -->
-
+                    @method('POST')
                     <!-- Car ID (Hidden Input) -->
                     <input type="hidden" name="car_id" value="{{ $car->id }}">
 
@@ -125,7 +125,6 @@
                         <label for="order_date" class="form-label"><strong>Tanggal Pesanan</strong></label>
                         <input type="date" class="form-control @error('order_date') is-invalid @enderror" 
                                id="order_date" name="order_date" 
-                               value="{{ old('order_date') }}" required>
                         @error('order_date')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -136,55 +135,10 @@
                         <label for="return_date" class="form-label"><strong>Tanggal Pengembalian</strong></label>
                         <input type="date" class="form-control @error('return_date') is-invalid @enderror" 
                                id="return_date" name="return_date" 
-                               value="{{ old('return_date') }}" required>
                         @error('return_date')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <!-- Upload KTP -->
-                    {{-- <div class="mb-3">
-                        <label for="ktp" class="form-label"><strong>Upload KTP</strong></label>
-                        <input type="file" class="form-control @error('ktp') is-invalid @enderror" 
-                               id="ktp" name="ktp" required>
-                        @error('ktp')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
-                    <!-- Upload SIM -->
-                    {{-- <div class="mb-3">
-                        <label for="sim" class="form-label"><strong>Upload SIM</strong></label>
-                        <input type="file" class="form-control @error('sim') is-invalid @enderror" 
-                               id="sim" name="sim" required>
-                        @error('sim')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
-                    <!-- Payment Method -->
-                    {{-- <div class="mb-3">
-                        <label for="payment_method" class="form-label"><strong>Metode Pembayaran</strong></label>
-                        <select name="payment_method" id="payment_method" 
-                                class="form-select @error('payment_method') is-invalid @enderror" required>
-                            <option value="" disabled selected>Pilih Metode Pembayaran</option>
-                            <option value="transfer_bank">Transfer Bank</option>
-                            <option value="kartu_kredit">Kartu Kredit</option>
-                            <option value="e_wallet">E-Wallet</option>
-                        </select>
-                        @error('payment_method')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
-                    <!-- Agreement -->
-                    {{-- <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="agreement" required>
-                        <label class="form-check-label" for="agreement">
-                            Saya setuju dengan <a href="#" class="text-decoration-underline">syarat dan ketentuan</a>.
-                        </label>
-                    </div> --}}
-
                     <!-- Submit Button -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
