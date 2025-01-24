@@ -18,9 +18,9 @@
         }
 
         /* .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-        } */
+                transform: translateY(-5px);
+                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+            } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
@@ -51,6 +51,51 @@
         .fw-bold {
             font-weight: bold;
         }
+
+        .search-container {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 4px 8px;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%; /* Agar container menyesuaikan */
+        max-width: 250px; /* Membatasi lebar maksimal */
+    }
+        .search-container:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-container i {
+            color: rgba(0, 0, 0, 0.4);
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            background: transparent;
+            padding: 4px;
+        }
+
+        .search-container input {
+        border: none;
+        outline: none;
+        flex: 1;
+        font-size: 14px;
+        color: #333;
+        background: transparent;
+        padding: 4px;
+        max-width: 120px; /* Membatasi input agar tidak melampaui box */
+        overflow: hidden; /* Menyembunyikan teks yang melebihi box */
+        text-overflow: ellipsis; /* Memberikan efek "..." jika teks terlalu panjang */
+        white-space: nowrap; /* Mencegah teks menjadi multiline */
+    }
     </style>
     <br>
 
@@ -79,88 +124,105 @@
                 </div>
 
                 <div class="col-md-2 p-0 text-end">
-                    <form action="{{ route('aproval.index') }}" method="GET" style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px; border-radius: 8px;">
-                        <i class="fa fa-search" style="padding-left: 4px; color:#00000040; padding-right: 6px;"></i>
-                        <input type="text" name="search" value="{{ $search }}" style="border: none;" placeholder="Cari email..." aria-label="Search">
+                    <form action="{{ route('aproval.index') }}" method="GET" class="search-container">
+                        <i class="fa fa-search"></i>
+                        <input type="text" name="search" value="{{ $search }}" placeholder="Cari email..."
+                            aria-label="Search">
                     </form>
                 </div>
-            </div>
 
-            <!-- Tabel Data -->
-            <div class="col-sm-12 mt-3">
-                <div class="table-responsive custom-scrollbar p-3">
-                    <table class="table ">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Email</th>
-                                <th>Mobil</th>
-                                <th>NIK</th>
-                                <th>Jenis Kelamin</th>
-                                <th>No HP</th>
-                                <th>Status</th>
-                                <th>Denda</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($data as $item)
+                {{-- <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="search">
+                        <form action="{{ route('aproval.index') }}"
+                            style=" border: 0.2px solid #fffefe; display:flex; flex-direction:row; align-items: center; padding:8px 8px; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                            <span id="search-icon" style="cursor: pointer;">
+                                <i class="fa fa-search"
+                                    style="padding-left: 4px; color: #999; padding-right: 8px; transition: color 0.3s;"></i>
+                            </span>
+                            <input type="text"
+                                style="border: none; outline: none; background-color: transparent; flex-grow: 1;"
+                                placeholder="Cari merek mobil..." aria-label="Search" name="search">
+                        </form>
+                    </div>
+                </div> --}}
+
+                <!-- Tabel Data -->
+                <div class="col-sm-12 mt-3">
+                    <div class="table-responsive custom-scrollbar p-3">
+                        <table class="table ">
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->email }}</td>
-                                    <td>{{ $item->car->name }}</td>
-                                    <td>{{ $item->user->nik }}</td>
-                                    <td>{{ $item->user->jk }}</td>
-                                    <td>{{ $item->user->phone_number }}</td>
-                                    <td>
-                                        @php
-                                            $statusClass = [
-                                                'borrowed' => 'success',
-                                                'rejected' => 'danger',
-                                                'in_process' => 'warning',
-                                                'returned' => 'success',
-                                                'late' => 'danger'
-                                            ];
-                                        @endphp
-                                        <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
-                                            {{ ucfirst(str_replace('_', ' ', $item->status)) }}
-                                        </div>
-                                    </td>
-                                    <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
-                                    <td>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ route('aproval.show', $item->id) }}" class="btn btn-info btn-sm p-1">
-                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                            </a>
-                                            {{-- <button type="button" class="btn btn-primary btn-sm p-1" data-bs-toggle="modal" data-bs-target="#payModal{{ $item->id }}">
+                                    <th>No</th>
+                                    <th>Email</th>
+                                    <th>Mobil</th>
+                                    <th>NIK</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>No HP</th>
+                                    <th>Status</th>
+                                    <th>Denda</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->car->name }}</td>
+                                        <td>{{ $item->user->nik }}</td>
+                                        <td>{{ $item->user->jk }}</td>
+                                        <td>{{ $item->user->phone_number }}</td>
+                                        <td>
+                                            @php
+                                                $statusClass = [
+                                                    'borrowed' => 'success',
+                                                    'rejected' => 'danger',
+                                                    'in_process' => 'warning',
+                                                    'returned' => 'success',
+                                                    'late' => 'danger',
+                                                ];
+                                            @endphp
+                                            <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
+                                                {{ ucfirst(str_replace('_', ' ', $item->status)) }}
+                                            </div>
+                                        </td>
+                                        <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('aproval.show', $item->id) }}"
+                                                    class="btn btn-info btn-sm p-1">
+                                                    <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                </a>
+                                                {{-- <button type="button" class="btn btn-primary btn-sm p-1" data-bs-toggle="modal" data-bs-target="#payModal{{ $item->id }}">
                                                 <i class="fa fa-credit-card" style="font-size: 15px;"></i>
                                             </button> --}}
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">
-                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center">
+                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                                alt="">
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Pagination -->
-            <div class="row mt-3">
-                <div class="col-md-12 text-center">
-                    {{ $data->links() }}
+                <!-- Pagination -->
+                <div class="row mt-3">
+                    <div class="col-md-12 text-center">
+                        {{ $data->links() }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Modal Pembayaran -->
-    {{-- @foreach ($data as $item)
+        <!-- Modal Pembayaran -->
+        {{-- @foreach ($data as $item)
         <div class="modal fade" id="payModal{{ $item->id }}" tabindex="-1" aria-labelledby="payModalLabel{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -190,4 +252,4 @@
             </div>
         </div>
     @endforeach --}}
-@endsection
+    @endsection
