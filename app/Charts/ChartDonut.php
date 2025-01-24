@@ -15,7 +15,7 @@ class ChartDonut
         $borrowedCount = Booking::where('status', 'borrowed')->count();  // Menambahkan status 'borrowed'
 
         return (new OriginalDonutChart)
-            ->setTitle('Status Booking')
+            ->setTitle('Status Pemesanan')
             ->setSubtitle('Jumlah berdasarkan status')
             ->addData([$lateCount, $returnedCount, $borrowedCount])  // Menambahkan data borrowed
             ->setLabels(['Terlambat', 'Dikembalikan', 'Dipinjam'])  // Menambahkan label Dipinjam
