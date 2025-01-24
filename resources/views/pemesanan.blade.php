@@ -251,7 +251,7 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="GET" action="{{ route('pemesanan.search') }}">
                         @csrf
                         <div class="form-row">
                             <div class="form-group">
@@ -260,20 +260,21 @@
                                     <span class="input-group-text"><i class="fas fa-calendar-alt"
                                             style="color: #01A8EF;"></i></span>
                                     <input type="date" class="form-control text-muted" id="tanggal-pinjam"
-                                        name="tanggal_pinjam">
+                                        name="order_date" value="{{ request('order_date') }}" required>
                                     <i class="bi bi-arrow-left-right mt-2 ms-3 text-muted"></i>
                                 </div>
                             </div>
-                            <div class="form-group ">
+                            <div class="form-group">
                                 <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
                                 <div class="input-group d-flex">
                                     <span class="input-group-text"><i class="fas fa-calendar-alt"
                                             style="color: #01A8EF;"></i></span>
                                     <input type="date" class="form-control text-muted" id="tanggal-kembali"
-                                        name="tanggal_kembali">
-                                    <button type="submit" class="boton ms-3 rounded">Simpan</button>
+                                        name="return_date" value="{{ request('return_date') }}" required>
+                                    <button type="submit" class="boton ms-3 rounded">Cari</button>
                                 </div>
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -318,3 +319,16 @@
         </div>
     </div>
 @endsection
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif

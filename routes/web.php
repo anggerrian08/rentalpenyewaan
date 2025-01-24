@@ -27,6 +27,8 @@ Route::resource('/beranda',  BerandaController::class);
 Route::resource('/pemesanan',  PemesananController::class);
 Route::resource('/favorit',  FavoritController::class);
 Route::resource('/account',  ProfileController::class);
+Route::get('/pemesanan/search', [PemesananController::class, 'search'])->name('pemesanan.search');
+
 
 
 Route::get('/jenis mobil', function () {
