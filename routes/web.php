@@ -43,6 +43,7 @@ Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index
 // })->name('dashboard');
 
 use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\ReviewController2;
 
 Route::middleware('auth')->group(function () {
     Route::put('/password/update', [ChangePassword::class, 'update'])->name('password.update');
@@ -56,7 +57,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::resource('/aproval', ApprovalController::class);
 
 
-    Route::resource('/bookings', BookingController::class);
+    // Route::resource('/bookings', BookingController::class);
     Route::resource('/promosi', controller: PromosiController::class);
 
 
@@ -73,12 +74,12 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
 
-    Route::resource('/bookings', BookingController::class);
+    // Route::resource('/bookings', BookingController::class);
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
 
     Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
-
+    Route::post('/review2', [ReviewController2::class, 'store'])->name('review2.store');
 });
 
 
@@ -95,6 +96,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
 });
 // require __DIR__. '/user.php';

@@ -101,45 +101,45 @@
             </div>
         </div>
 
-        <div class="col-sm-12 mt-3 ms-5">
-            <div class="card-block row">
+        <div class="card p-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="col-sm-12 col-lg-12 col-xl-12">
                     <div class="table-responsive custom-scrollbar">
                         <table class="table">
-                            <tr>
-                                <th>No</th>
-                                <th>Id Pemesanan</th>
-                                <th>Email Pengguna</th>
-                                <th>Tanggal Pinjam</th>
-                                <th>Tanggal Kembali</th>
-                                <th>Durasi Rental (Hari)</th>
-                                <th>Total Harga</th>
-                                <th>Aksi</th>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Id Pemesanan</th>
+                                    <th>Email Pengguna</th>
+                                    <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Kembali</th>
+                                    <th>Durasi Rental (Hari)</th>
+                                    <th>Total Harga</th>
+                                    <th>Status Pembayaran</th> <!-- Added a new column -->
+                                    <th>Aksi</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 @forelse ($data as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->booking_id }}</td>
-                                        <td>{{ $item->booking->user->email ?? '-' }}</td> <!-- Email user -->
-                                        <td>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}
-                                        </td>
-                                        <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
-                                        </td> <!-- Format tanggal kembali -->
+                                        <td>{{ $item->booking->user->email ?? '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}</td>
                                         <td>{{ $item->rental_duration_days }}</td>
-                                        <td>{{ number_format($item->total_price, 0, ',', '.') }}</td> <!-- Format harga -->
+                                        <td>{{ number_format($item->total_price, 0, ',', '.') }}</td>
+                                        <td>{{ $item->payment_status ?? 'Belum Dibayar' }}</td> <!-- Display payment status -->
                                         <td>
-                                            <button type="button" class="" data-bs-target="#detailPembayaran" style="border: none"
-                                                data-bs-toggle="modal">
-                                                <img src="Frame 48.svg" alt="Show"></button>
+                                            <button type="button" class="" data-bs-target="#detailPembayaran" style="border: none" data-bs-toggle="modal">
+                                                <img src="Frame 48.svg" alt="Show">
+                                            </button>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center">
-                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
-                                                alt="">
+                                        <td colspan="9" class="text-center">
+                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
                                         </td>
                                     </tr>
                                 @endforelse
@@ -149,6 +149,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="modal fade" id="detailPembayaran" tabindex="-1" aria-labelledby="detailPembayaran" aria-hidden="true" style="align-content: center">
             <div class="modal-dialog">
                 <div class="modal-content">
