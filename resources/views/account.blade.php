@@ -21,12 +21,17 @@
             bottom: 40px;
             left: 40px;
             padding: 10px;
-            background-color: #ffffff; /* Background color */
-            border-radius: 50%; /* Make it circular */
-            color: #01A8EF; /* Icon color */
-            font-size: 15px; /* Icon size */
+            background-color: #ffffff;
+            /* Background color */
+            border-radius: 50%;
+            /* Make it circular */
+            color: #01A8EF;
+            /* Icon color */
+            font-size: 15px;
+            /* Icon size */
             cursor: pointer;
         }
+
         .icofont-pencil-alt-5::before {
             content: "\13ac4";
         }
@@ -103,7 +108,6 @@
         button:hover {
             background-color: #0056b3;
         }
-
     </style>
 
     <body>
@@ -116,8 +120,8 @@
                         <i class="bi bi-pencil jam" data-bs-toggle="modal" data-bs-target="#editModal"></i>
                     </div>
 
-                    <h2>{{$data->name}}</h2>
-                    <p>{{$data->phone_number}}</p>
+                    <h2>{{ $data->name }}</h2>
+                    <p>{{ $data->phone_number }}</p>
 
                 </div>
             </div>
@@ -127,26 +131,26 @@
                     <p class="text-muted m-0">
                         <i class="fas fa-envelope"></i> Email <br>
                     </p>
-                    <p>{{$data->email}}</p>
+                    <p>{{ $data->email }}</p>
                 </div>
                 <div class="col-3">
                     <p class="text-muted m-0">
                         <i class="fas fa-user"></i> Nama lengkap <br>
                     </p>
-                    <p>{{$data->name}}</p>
+                    <p>{{ $data->name }}</p>
                 </div>
 
                 <div class="col-2 ms-auto">
                     <p class="text-muted m-0">
                         <i class="fas fa-id-card"></i> Nik <br>
                     </p>
-                    <p>{{$data->nik}}</p>
+                    <p>{{ $data->nik }}</p>
                 </div>
                 <div class="col-2">
                     <p class="text-muted m-0">
                         <i class="fas fa-venus-mars"></i> Jenis kelamin <br>
                     </p>
-                    <p>{{$data->jk}}</p>
+                    <p>{{ $data->jk }}</p>
                 </div>
             </div><br>
             <div class="row ms-2 p-4 justify-content-end">
@@ -155,9 +159,10 @@
                         <p class="text-muted m-0">
                             Foto KTP <br>
                         </p>
-                        <img src="{{asset('storage/uploads/ktp/'. $data->ktp)}}" alt="Foto KTP" class="img-fluid"
+                        <img src="{{ asset('storage/uploads/ktp/' . $data->ktp) }}" alt="Foto KTP" class="img-fluid"
                             style="border-radius: 10px;"><br>
-                        <button style="border-radius: 10px; background-color: #6c757d; color: white;">Download</button>
+                        <a href="{{ asset('storage/uploads/ktp/' . $data->ktp) }}" download class="btn"
+                            style="border-radius: 10px; background-color: #6c757d; color: white;">Download</a>
                     </div>
                 </div>
                 <div class="col-2">
@@ -165,9 +170,10 @@
                         <p class="text-muted m-0">
                             Foto SIM <br>
                         </p>
-                        <img src="{{asset('storage/uploads/sim/'. $data->sim)}}" alt="Foto SIM" class="img-fluid"
+                        <img src="{{ asset('storage/uploads/sim/' . $data->sim) }}" alt="Foto SIM" class="img-fluid"
                             style="border-radius: 10px;"><br>
-                        <button style="border-radius: 10px; background-color: #6c757d; color: white;">Download</button>
+                        <a href="{{ asset('storage/uploads/sim/' . $data->sim) }}" download class="btn"
+                            style="border-radius: 10px; background-color: #6c757d; color: white;">Download</a>
                     </div>
                 </div>
             </div>
@@ -178,8 +184,9 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                            <img src="{{ asset('assets.user/img/car.png') }}" alt="" width="50px"> <strong style="font-size: 1em">Ganti Password</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <img src="{{ asset('assets.user/img/car.png') }}" alt="" width="50px"> <strong
+                            style="font-size: 1em">Ganti Password</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('password.update') }}" method="POST">
@@ -187,7 +194,8 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label for="password_lama" class="form-label">Password Lama</label>
-                                <input type="password" class="form-control" id="password_lama" name="current_password" required>
+                                <input type="password" class="form-control" id="password_lama" name="current_password"
+                                    required>
                             </div>
                             <div class="mb-3">
                                 <label for="password_baru" class="form-label">Password Baru</label>
@@ -195,7 +203,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="konfirmasi_password" class="form-label">Konfirmasi Password</label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                                <input type="password" class="form-control" id="password_confirmation"
+                                    name="password_confirmation" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>

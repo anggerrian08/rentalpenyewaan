@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Booking;
 class PemesananController extends Controller
 {
     /**
@@ -62,4 +63,30 @@ class PemesananController extends Controller
     {
         //
     }
+    public function search(Request $request)
+{
+    // Validasi input
+    $request->validate([
+        'order_date' => 'nullable|date',
+        'return_date' => 'nullable|date|after_or_equal:order_date',
+    ]);
+
+    // Query filter
+    $query = Booking::query();
+
+    if ($request->order_date) {
+        $query->where('order_date', '>=', $request->order_date);
+    }
+
+    if ($request->return_date) {
+        $query->where('return_date', '<=', $request->return_date);
+    }
+
+    // Ambil hasil filter
+    $bookings = $query->get();
+
+    // Return hasil ke view
+    return view('pemesanan.index', compact('bookings'));
+}
+
 }
