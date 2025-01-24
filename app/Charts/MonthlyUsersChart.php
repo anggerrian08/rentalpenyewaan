@@ -14,7 +14,7 @@ class MonthlyUsersChart
         ->whereIn('status', ['borrowed', 'returned', 'late']) // Menggunakan whereIn untuk banyak kondisi
         ->selectRaw('MONTH(order_date) as month, car_id, DATEDIFF(return_date, order_date) as duration')
         ->get();
-    
+
 
         // Inisialisasi data total harga per bulan
         $monthlyTotals = array_fill(1, 12, 0); // 12 bulan dengan nilai awal 0
@@ -39,7 +39,7 @@ class MonthlyUsersChart
         // Kembalikan chart dengan data yang sudah diproses
         return (new OriginalBarChart)
             ->setTitle('Data Statistik Keuangan')
-            ->setSubtitle('2024 - Status: Borrowed & Returned')
+            ->setSubtitle('2024 - Status: Di Pinjam & Di Kembalikan')
             ->addData('Total Harga Booking per Bulan', $chartData) // Total harga per bulan
             ->setLabels($xAxis); // Label bulan menggunakan setLabels
     }
