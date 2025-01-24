@@ -317,7 +317,7 @@
                         @if (!Auth::user())
                             <a href="{{route('login')}}" class="pesan-btn">Masuk</a>
                         @else
-                            <a href="">pesan</a>
+                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
                         @endif
                         {{-- <button class="pesan-btn">Pesan</button> --}}
                     </div>
