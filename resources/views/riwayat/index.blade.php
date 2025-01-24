@@ -455,7 +455,11 @@
                                             <div class="price-details">
                                                 <h4>Total Tarif</h4>
                                                 <p class="total-price">Rp {{ number_format($item->total_price, 2, ',', '.') }}</p>
-                                                <a href="#" class="detail-link">Lihat Detail Sewa</a>
+                                                @if ($item->booking->status == 'returned')
+                                                      <button type="button" data-bs-toggle="modal"  data-bs-target="#review{{$item->booking->car->id}}" style="border: none; background-color: #ffffff; color: blue;">beri ulasan</button>
+                                        
+                                                @endif
+                                                <a href="#" class="text-light btn btn-info">Lihat Detail Sewa</a>
                                             </div>
                                         </div>
                                     </div>
@@ -597,4 +601,44 @@
                 </script>
             </body>
         </div>
+
+        @foreach ($data_all as $item)
+<div class="modal fade" id="review{{$item->booking->car->id}}" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="review">Beri Ulasan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('review2.store') }}" method="POST">
+                @csrf
+                @method('POST')
+                <input type="hidden" name="car_id" value="{{$item->booking->car->id}}">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="rating{{$item->booking->car->name}}" class="form-label">Rating</label>
+                        <select class="form-select" id="rating" name="rating" required>
+                            <option value="5">5 - Sangat Baik</option>
+                            <option value="4">4 - Baik</option>
+                            <option value="3">3 - Cukup</option>
+                            <option value="2">2 - Kurang</option>
+                            <option value="1">1 - Sangat Buruk</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="review" class="form-label">Ulasan</label>
+                        <textarea class="form-control" id="review" name="review" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Kirim Ulasan</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
     @endsection

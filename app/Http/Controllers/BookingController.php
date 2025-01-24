@@ -117,7 +117,8 @@ class BookingController extends Controller
         // Hitung total harga (harga mobil * jumlah hari)
         $totalPrice = $car->price * $days;
 
-        // Simpan data booking
+        // Simpan data bookingPwebP
+
         $booking = Booking::create([
             'user_id' => $user->id,
             'car_id' => $request->car_id,
