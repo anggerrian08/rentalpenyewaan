@@ -113,23 +113,52 @@
     <div class="col-md-12 project-list">
         <div class="card">
             <div class="row align-items-center">
-                <div class="col-md-2 p-0 text-end">
-                    <form action="{{ route('aproval.index') }}" method="GET" class="d-flex justify-content-end">
-                        <select class="form-select me-2" name="filter" onchange="this.form.submit()">
-                            <option value="" {{ $filter == '' ? 'selected' : '' }}>Filter</option>
-                            <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>A-Z</option>
-                            <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>Z-A</option>
-                        </select>
-                    </form>
+                <div class="row align-items-center mb-3">
+                    <!-- Filter Email -->
+                    <div class="col-md-3">
+                        <form action="{{ route('aproval.index') }}" method="GET">
+                            <select class="form-select" name="filter" onchange="this.form.submit()">
+                                <option value="" {{ $filter == '' ? 'selected' : '' }}>Filter Email</option>
+                                <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>A-Z</option>
+                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>Z-A</option>
+                            </select>
+                        </form>
+                    </div>
+                
+                    <!-- Search Email -->
+                    <div class="col-md-3">
+                        <form action="{{ route('aproval.index') }}" method="GET" class="d-flex">
+                            <input type="text" class="form-control" name="search" placeholder="Cari email..." value="{{ $search }}">
+                            <button type="submit" class="btn btn-primary ms-2">Cari</button>
+                        </form>
+                    </div>
+                
+                    <!-- Filter Nomor Telepon -->
+                    <div class="col-md-3">
+                        <form action="{{ route('aproval.index') }}" method="GET">
+                            <input type="text" class="form-control" name="filter_no_telpon" placeholder="Cari no telepon..."
+                                value="{{ $filter_no_telpon }}">
+                        </form>
+                    </div>
+                
+                    <!-- Filter Status -->
+                    <div class="col-md-3">
+                        <form action="{{ route('aproval.index') }}" method="GET">
+                            <select class="form-select" name="filter_status" onchange="this.form.submit()">
+                                <option value="" {{ $filter_status == '' ? 'selected' : '' }}>Filter Status</option>
+                                <option value="borrowed" {{ $filter_status == 'borrowed' ? 'selected' : '' }}>Borrowed</option>
+                                <option value="returned" {{ $filter_status == 'returned' ? 'selected' : '' }}>Returned</option>
+                                <option value="late" {{ $filter_status == 'late' ? 'selected' : '' }}>Late</option>
+                                <option value="in_process" {{ $filter_status == 'in_process' ? 'selected' : '' }}>In Process</option>
+                                <option value="rejected" {{ $filter_status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
+                
 
-                <div class="col-md-2 p-0 text-end">
-                    <form action="{{ route('aproval.index') }}" method="GET" class="search-container">
-                        <i class="fa fa-search"></i>
-                        <input type="text" name="search" value="{{ $search }}" placeholder="Cari email..."
-                            aria-label="Search">
-                    </form>
-                </div>
+
+                
 
                 {{-- <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="search">
