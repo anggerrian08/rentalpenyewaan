@@ -10,6 +10,7 @@ class RiwayatController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
+        
 
         // Ambil semua data `DetailPembayaran` milik user
         $data_all = DetailPembayaran::with('booking')->whereHas('booking', function ($query) use ($user_id) {

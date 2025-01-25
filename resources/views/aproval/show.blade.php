@@ -115,31 +115,32 @@
                     </table>
                 </div>
             </div>
+            <div class="d-flex justify-content-end mt-3">
+                @if ($aproval->booking->status != 'late' && $aproval->booking->status != 'returned')
+                    <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-danger me-2">Tolak</button>
+                    </form>
+                    <form action="{{ route('aproval.accepted', $aproval->id) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-success me-2">terima</button>
+                    </form>
+                @endif
+                @if ($aproval->booking->status == 'late')
+                    <form action="{{ route('aproval.returned', $aproval->id) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-success me-2">returned</button>
+                    </form>
+                @endif
+                <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
+            </div>
         </div>
     </div>
 
 
     <!-- Tombol Aksi -->
-    <div class="d-flex justify-content-end mt-3">
-        @if ($aproval->booking->status != 'late' && $aproval->booking->status != 'returned')
-            <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="btn btn-danger me-2">Tolak</button>
-            </form>
-            <form action="{{ route('aproval.accepted', $aproval->id) }}" method="post">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="btn btn-success me-2">terima</button>
-            </form>
-        @endif
-        @if ($aproval->booking->status == 'late')
-            <form action="{{ route('aproval.returned', $aproval->id) }}" method="post">
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="btn btn-success me-2">returned</button>
-            </form>
-        @endif
-        <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
-    </div>
+  
 @endsection

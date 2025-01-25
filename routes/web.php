@@ -38,7 +38,7 @@ Route::get('/jenis mobil', function () {
 
 
 
-Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -88,6 +88,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
 Route::middleware('auth')->group(function () {
     Route::resource('/bookings', BookingController::class);
     Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
     // car
     Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');

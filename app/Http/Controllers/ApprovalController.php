@@ -16,27 +16,41 @@ class ApprovalController extends Controller
         // Mengambil data filter dan pencarian
         $filter = $request->input('filter');
         $search = $request->input('search');
-        
+        $filter_no_telpon = $request->input('filter_no_telpon');
+        $filter_status = $request->input('filter_status');
+    
         // Query dasar
         $query = Booking::with('user', 'car');
-        
+    
         // Filter berdasarkan email (A-Z, Z-A)
         if ($filter === 'a-z') {
             $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'asc');
         } elseif ($filter === 'z-a') {
             $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'desc');
         }
-        
+    
+        // Filter berdasarkan nomor telepon
+        if ($filter_no_telpon) {
+            $query->whereHas('user', function ($q) use ($filter_no_telpon) {
+                $q->where('phone_number', 'like', "%{$filter_no_telpon}%");
+            });
+        }
+    
+        // Filter berdasarkan status
+        if ($filter_status) {
+            $query->where('status', $filter_status);
+        }
+    
         // Pencarian berdasarkan email
         if ($search) {
             $query->whereHas('user', function ($q) use ($search) {
                 $q->where('email', 'like', "%{$search}%");
             });
         }
-        
+    
         // Ambil data booking dengan pagination
         $bookings = $query->paginate(10);
-        
+    
         // Iterasi melalui setiap booking untuk menghitung denda dan status
         foreach ($bookings as $booking) {
             $tanggal_pengembalian = strtotime(date('Y-m-d', strtotime($booking->return_date)));
@@ -51,7 +65,7 @@ class ApprovalController extends Controller
                     $selisih_hari = ($tanggal_sekarang - $tanggal_pengembalian) / (60 * 60 * 24);
                     $denda_per_hari = 50000;
                     $denda = $selisih_hari * $denda_per_hari;
-                    
+    
                     // Ubah status menjadi "late" jika terlambat
                     if ($status !== 'returned') {
                         $status = 'late';
@@ -68,7 +82,13 @@ class ApprovalController extends Controller
         }
     
         // Kirim data booking ke view
-        return view('aproval.index', ['data' => $bookings, 'filter' => $filter, 'search' => $search]);
+        return view('aproval.index', [
+            'data' => $bookings,
+            'filter' => $filter,
+            'search' => $search,
+            'filter_no_telpon' => $filter_no_telpon,
+            'filter_status' => $filter_status,
+        ]);
     }
     
     
