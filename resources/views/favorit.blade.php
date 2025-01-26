@@ -179,10 +179,105 @@
         .pesan-btn:hover {
             background-color: #0056b3;
         }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            /* Memberikan jarak antara input fields */
+        }
+
+        .form-group {
+            flex: 1;
+            /* Memastikan setiap input memiliki ukuran yang sama */
+            text-align: left;
+        }
+
+        .card {
+            max-width: 2000px;
+            margin: auto;
+            position: relative;
+            bottom: 65px;
+        }
+
+        .boton {
+            background-color: #01A8EF;
+            /* Warna biru */
+            color: white;
+            /* Warna teks putih */
+            border: none;
+            /* Menghapus border */
+            padding: 10px 20px;
+            /* Memberikan jarak di dalam tombol */
+            font-size: 16px;
+            /* Ukuran font */
+            cursor: pointer;
+            /* Menunjukkan cursor pointer saat hover */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            /* Animasi transisi */
+        }
+
+        .boton:hover {
+            background-color: #0056b3;
+            /* Warna biru yang lebih gelap saat hover */
+            transform: scale(1.05);
+            /* Membesarkan tombol sedikit saat hover */
+        }
+
+        .boton:focus {
+            outline: none;
+            /* Menghapus outline saat tombol difokuskan */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            /* Memberikan efek glow biru */
+        }
+
+        .boton:active {
+            background-color: #004085;
+            /* Warna biru lebih gelap saat tombol ditekan */
+            transform: scale(0.98);
+            /* Memberikan efek mengecilkan sedikit saat tombol ditekan */
+        }
     </style>
     <div class="hero-section">
         <div class="container text-center">
             <img src="assets.user/img/mbl.png" alt="Cars" class="hero-image">
+            <!-- Card Add Merk -->
+            <div class="card" style="width: 2000px;">
+                <div class="card-header">
+                    <img src="{{ asset('assets.user/img/humma.png') }}" alt="" width="200px"> <a href="/account">
+                        <p style="color: #01A8EF;">Profil Saya ></p>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <form method="GET" action="{{ route('pemesanan.search') }}">
+                        @csrf
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tanggal-pinjam" class="form-label"><b>Tanggal Pinjam</b></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
+                                            style="color: #01A8EF;"></i></span>
+                                    <input type="date" class="form-control text-muted" id="tanggal-pinjam"
+                                        name="order_date" value="{{ request('order_date') }}" required>
+                                    <i class="bi bi-arrow-left-right mt-2 ms-3 text-muted"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
+                                <div class="input-group d-flex">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
+                                            style="color: #01A8EF;"></i></span>
+                                    <input type="date" class="form-control text-muted" id="tanggal-kembali"
+                                        name="return_date" value="{{ request('return_date') }}" required>
+                                    <button type="submit" class="boton ms-3 rounded">Cari</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <h1>Temukan Mobil Favorit Anda</h1>
             <p>Jelajahi koleksi mobil favorit pilihan Anda. Dengan desain elegan dan performa terbaik, mobil-mobil ini siap
                 memberikan pengalaman berkendara yang tak terlupakan. Nikmati kemudahan dalam mencari dan memilih mobil yang
@@ -191,22 +286,21 @@
                 @foreach ($data as $car)
                     <div class="card">
                         <h3 style="text-align: left;">{{ $car->car->name }}</h3>
-                        <form action="{{route('car_likes.store')}}" method="post">
+                        <form action="{{ route('car_likes.store') }}" method="post">
                             @csrf
                             <button type="submit">
                                 <div class="love-icon">❤</div>
                             </button>
                         </form>
-                        <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" 
-                            class="car-image img-fluid">
+                        <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" class="car-image img-fluid">
                         <h3>{{ $car->car->model }}</h3>
                         <p class="brand">{{ $car->car->brand }}</p>
                         <div class="details">
                             <span class="text-muted">
-                                <i class="fas fa-gas-pump"></i> {{$car->car->fuel_type}}
+                                <i class="fas fa-gas-pump"></i> {{ $car->car->fuel_type }}
                             </span>
                             <span class="text-muted">
-                                <i class="fas fa-cogs"></i> {{$car->car->type_transmisi}}
+                                <i class="fas fa-cogs"></i> {{ $car->car->type_transmisi }}
                             </span>
                             <span class="text-muted">
                                 <i class="fas fa-user"></i> {{ $car->car->passanger_capacity }} Orang
