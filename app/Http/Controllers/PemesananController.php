@@ -10,11 +10,32 @@ class PemesananController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cars = Car::paginate(8);
-        return view('pemesanan',compact('cars'));
+        // Ambil filter dari input (GET parameters)
+        $orderDate = $request->input('order_date'); // Tanggal pinjam
+        $returnDate = $request->input('return_date'); // Tanggal kembali
+    
+        // Query dasar
+        $query = Booking::with('car', 'user')
+            ->whereIn('status', ['borrowed', 'late'])
+            ->whereHas('user', function ($query) {
+                $query->where('id', auth()->id());
+            });
+    
+        // Tambahkan filter berdasarkan rentang tanggal jika input ada
+        if ($orderDate && $returnDate) {
+            $query->whereBetween('order_date', [$orderDate, $returnDate])
+                  ->orWhereBetween('return_date', [$orderDate, $returnDate]);
+        }
+    
+        // Eksekusi query dengan pagination
+        $cars = $query->paginate(8);
+    
+        return view('pemesanan', compact('cars'));
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -63,30 +84,7 @@ class PemesananController extends Controller
     {
         //
     }
-    public function search(Request $request)
-{
-    // Validasi input
-    $request->validate([
-        'order_date' => 'nullable|date',
-        'return_date' => 'nullable|date|after_or_equal:order_date',
-    ]);
-
-    // Query filter
-    $query = Booking::query();
-
-    if ($request->order_date) {
-        $query->where('order_date', '>=', $request->order_date);
-    }
-
-    if ($request->return_date) {
-        $query->where('return_date', '<=', $request->return_date);
-    }
-
-    // Ambil hasil filter
-    $bookings = $query->get();
-
-    // Return hasil ke view
-    return view('pemesanan.index', compact('bookings'));
-}
+  
+    
 
 }

@@ -51,35 +51,41 @@ class ApprovalController extends Controller
         // Ambil data booking dengan pagination
         $bookings = $query->paginate(10);
     
-        // Iterasi melalui setiap booking untuk menghitung denda dan status
+        // Iterasi melalui setiap booking untuk menghitung denda, status, dan auto-reject
         foreach ($bookings as $booking) {
-            $tanggal_pengembalian = strtotime(date('Y-m-d', strtotime($booking->return_date)));
-            $tanggal_sekarang = strtotime(date('Y-m-d', strtotime(now())));
-    
-            $denda = 0;
-            $status = $booking->status;
-    
-            // Jika status bukan "returned", kita hitung denda
-            if ($status == 'late') {
-                if ($tanggal_sekarang > $tanggal_pengembalian) {
-                    $selisih_hari = ($tanggal_sekarang - $tanggal_pengembalian) / (60 * 60 * 24);
-                    $denda_per_hari = 50000;
-                    $denda = $selisih_hari * $denda_per_hari;
-    
-                    // Ubah status menjadi "late" jika terlambat
-                    if ($status !== 'returned') {
-                        $status = 'late';
-                    }
-                }
-            }
-    
-            // Jika ada perubahan pada denda atau status, update
-            if ($booking->denda != $denda || $booking->status != $status) {
-                $booking->denda = $denda;
-                $booking->status = $status;
+            $currentDate = now();
+        
+            // Ensure order_date is not null and properly formatted
+            $orderDate = $booking->order_date ? strtotime($booking->order_date) : 0;
+        
+            // Hitung selisih hari antara order_date dan sekarang
+            $daysDifference = $orderDate ? (strtotime($currentDate) - $orderDate) / (60 * 60 * 24) : 0;
+        
+            // Jika status "in_process" dan lebih dari 2 hari, ubah menjadi "rejected"
+            if ($booking->status === 'in_process' && $daysDifference > 2) {
+                $booking->status = 'rejected';
                 $booking->save();
             }
+        
+            // Hitung denda jika diperlukan (contoh: untuk status 'late')
+            if ($booking->status === 'late') {
+                $returnDate = strtotime($booking->return_date);
+                $currentTimestamp = strtotime(now());
+                $denda = 0;
+        
+                if ($currentTimestamp > $returnDate) {
+                    $selisihHari = ($currentTimestamp - $returnDate) / (60 * 60 * 24);
+                    $dendaPerHari = 50000;
+                    $denda = $selisihHari * $dendaPerHari;
+                }
+        
+                if ($booking->denda != $denda) {
+                    $booking->denda = $denda;
+                    $booking->save();
+                }
+            }
         }
+        
     
         // Kirim data booking ke view
         return view('aproval.index', [
@@ -101,21 +107,44 @@ class ApprovalController extends Controller
     }
 
     // Fungsi untuk menerima (approve) booking
-    public function accepted(string $id)
+    public function accepted(Request $request, string $id)
     {
-        $booking = Booking::find($id);
-
-        if (!$booking) {
-            return redirect()->back()->with('error', 'Data booking tidak ditemukan.');
+        // Cari booking berdasarkan ID
+        $booking = Booking::findOrFail($id);
+        
+        // Cari mobil terkait
+        $car = Car::findOrFail($booking->car_id);
+    
+        // Jika booking tidak ditemukan atau mobil tidak ditemukan
+        if (!$booking || !$car) {
+            return redirect()->back()->with('error', 'Data booking atau mobil tidak ditemukan.');
         }
-
+    
+        // Ubah status booking menjadi "borrowed"
         $booking->update([
-            'status' => 'borrowed',  // Ubah status menjadi borrowed
+            'status' => 'borrowed',
         ]);
-
-        $booking->save(); // Simpan perubahan
-        return redirect()->route('aproval.index')->with('success', 'Status booking berhasil diubah menjadi borrowed.');
+    
+        // Kurangi stok mobil
+        $car->stock -= 1;
+        $car->save();
+    
+        // Cari semua booking lain untuk mobil yang sama dengan status "proses"
+        $otherBookings = Booking::where('car_id', $booking->car_id)
+            ->where('status', 'in_process') // Status "proses" adalah status awal sebelum disetujui
+            ->where('id', '!=', $id)   // Jangan termasuk booking yang disetujui
+            ->get();
+    
+        // Ubah status booking lain menjadi "rejected"
+        foreach ($otherBookings as $otherBooking) {
+            $otherBooking->update([
+                'status' => 'rejected',
+            ]);
+        }
+    
+        return redirect()->route('aproval.index')->with('success', 'Booking berhasil disetujui dan booking lain untuk mobil ini telah ditolak.');
     }
+    
 
     // Fungsi untuk menolak (reject) booking
     public function rejected(Request $request, $id)
@@ -133,9 +162,9 @@ class ApprovalController extends Controller
         $car = Car::findOrFail($booking->car_id);
         
         // Tambahkan stok mobil yang dikembalikan
-        $car->update([
-            'stock' => $car->stock + 1,
-        ]);
+        // $car->update([
+        //     'stock' => $car->stock + 1,
+        // ]);
 
         $booking->save(); // Simpan perubahan
         return redirect()->route('aproval.index')->with('success', 'Status booking berhasil diubah menjadi rejected.');
