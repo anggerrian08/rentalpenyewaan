@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\CarLikes;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,7 @@ class CarLikesController extends Controller
         ]);
         $user = Auth::user();
         if(Carlikes::where('user_id', $user->id)->where('car_id', $request->car_id)->first()){
-            session()->flash('error', 'anda sudah memberi like kepasa produk makanan ini');
+            session()->flash('error', 'anda sudah memberi like kepada produk makanan ini');
             return back()->withInput();
         }
         Carlikes::create([
@@ -53,13 +54,12 @@ class CarLikesController extends Controller
      */
     public function destroy(string $id)
     {
-        $makanan = CarLikes::find($id);
 
-        if($makanan){
-            $makanan->delete();
-        }else{
-            session()->flash('error', 'id not found ');
+            $favorite = CarLikes::findOrFail($id);
+            $favorite->delete();
+
+            return redirect()->back()->with('success', 'Favorit berhasil dihapus.');
         }
-        return back();
+
     }
-}
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Favorite;
 use App\Models\CarLikes;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class FavoritController extends Controller
      */
     public function index()
     {
-        
+
         $data = CarLikes::with('user', 'car')->where('user_id', Auth::user()->id)->paginate(8);
         return view('favorit',compact('data'));
     }
@@ -32,7 +33,27 @@ class FavoritController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Validasi input
+         $request->validate([
+            'car_id' => 'required|exists:cars,id',
+        ]);
+
+        // Cek apakah mobil sudah ada di favorit pengguna
+        $exists = Favorite::where('user_id', Auth::id())
+                          ->where('car_id', $request->car_id)
+                          ->exists();
+
+        if ($exists) {
+            return redirect()->back()->with('error', 'Mobil sudah ada di favorit Anda!');
+        }
+
+        // Tambahkan ke favorit
+        Favorite::create([
+            'user_id' => Auth::id(),
+            'car_id' => $request->car_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Mobil berhasil ditambahkan ke favorit!');
     }
 
     /**

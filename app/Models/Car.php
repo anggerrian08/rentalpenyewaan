@@ -23,4 +23,8 @@ class Car extends Model
     public function booking(){
         return $this->hasMany(Booking::class);
     }
+
+    public function favorite(){
+        return $this->hasMany(Favorite::class);
+    }
 }

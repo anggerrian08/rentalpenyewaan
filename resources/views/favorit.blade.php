@@ -10,7 +10,7 @@
         /* Hero Section Styling */
         .hero-section {
             background-color: #f3f9ff;
-            padding: 50px 0;
+            padding: 0;
         }
 
         .hero-section .container {
@@ -28,6 +28,7 @@
             color: #212529;
             font-size: 32px;
             margin-bottom: 20px;
+
         }
 
         p {
@@ -100,8 +101,8 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #e74c3c;
+            background-color: #e74c3c;
+            color: #fff;
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -114,8 +115,8 @@
         }
 
         .love-icon:hover {
-            background-color: #e74c3c;
-            color: #fff;
+            background-color: #fff;
+            color: #e74c3c;
         }
 
         /* Pesan Button Styling */
@@ -195,7 +196,7 @@
 
         .card {
             max-width: 2000px;
-            margin: auto;
+            margin: 0;
             position: relative;
             bottom: 65px;
         }
@@ -237,6 +238,27 @@
             transform: scale(0.98);
             /* Memberikan efek mengecilkan sedikit saat tombol ditekan */
         }
+
+        section,
+        .section {
+            color: var(--default-color);
+            background-color: var(--background-color);
+            padding: 60px 0;
+            scroll-margin-top: 90px;
+            overflow: clip;
+            background-color: #f3f9ff;
+        }
+
+        h1 {
+            color: #212529;
+            font-size: 32px;
+            margin-bottom: 10px;
+            margin-top: 0px;
+        }
+
+        .po {
+            margin-bottom: 5rem;
+        }
     </style>
     <div class="hero-section">
         <div class="container text-center">
@@ -277,46 +299,47 @@
                     </form>
                 </div>
             </div>
-
             <h1>Temukan Mobil Favorit Anda</h1>
-            <p>Jelajahi koleksi mobil favorit pilihan Anda. Dengan desain elegan dan performa terbaik, mobil-mobil ini siap
+            <p class="po">Jelajahi koleksi mobil favorit pilihan Anda. Dengan desain elegan dan performa terbaik,
+                mobil-mobil ini siap
                 memberikan pengalaman berkendara yang tak terlupakan. Nikmati kemudahan dalam mencari dan memilih mobil yang
                 sesuai dengan gaya dan kebutuhan Anda.</p>
-            <div class="container">
-                @foreach ($data as $car)
-                    <div class="card">
-                        <h3 style="text-align: left;">{{ $car->car->name }}</h3>
-                        <form action="{{ route('car_likes.store') }}" method="post">
-                            @csrf
-                            <button type="submit">
-                                <div class="love-icon">❤</div>
-                            </button>
-                        </form>
-                        <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" class="car-image img-fluid">
-                        <h3>{{ $car->car->model }}</h3>
-                        <p class="brand">{{ $car->car->brand }}</p>
-                        <div class="details">
-                            <span class="text-muted">
-                                <i class="fas fa-gas-pump"></i> {{ $car->car->fuel_type }}
-                            </span>
-                            <span class="text-muted">
-                                <i class="fas fa-cogs"></i> {{ $car->car->type_transmisi }}
-                            </span>
-                            <span class="text-muted">
-                                <i class="fas fa-user"></i> {{ $car->car->passanger_capacity }} Orang
-                            </span>
-                        </div>
-                        <div class="price-button-wrapper">
-                            <p class="price text-muted">Rp. {{ number_format($car->car->price, 0, ',', '.') }}</p>
-                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <!-- Pagination Links -->
-            <div class="pagination-wrapper">
-                {{ $data->links() }}
-            </div>
         </div>
     </div>
+
+    <section id="features" class="features section">
+
+        <div class="container">
+            @foreach ($data as $car)
+                <div class="card">
+                    <h3 style="text-align: left;">{{ $car->car->name }}</h3>
+                    <form action="{{ route('car_likes.destroy', $car->id) }}" method="post" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">
+                            <div class="love-icon">❤</div>
+                        </button>
+                    </form>
+                    <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" class="car-image img-fluid">
+                    <h3>{{ $car->car->model }}</h3>
+                    <p class="brand">{{ $car->car->brand }}</p>
+                    <div class="details">
+                        <span class="text-muted">
+                            <i class="fas fa-gas-pump"></i> {{ $car->car->fuel_type }}
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-cogs"></i> {{ $car->car->type_transmisi }}
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-user"></i> {{ $car->car->passanger_capacity }} Orang
+                        </span>
+                    </div>
+                    <div class="price-button-wrapper">
+                        <p class="price text-muted">Rp. {{ number_format($car->car->price, 0, ',', '.') }}</p>
+                        <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </section>
 @endsection
