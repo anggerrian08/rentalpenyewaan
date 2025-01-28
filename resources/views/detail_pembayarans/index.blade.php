@@ -115,7 +115,6 @@
                                     <th>Tanggal Kembali</th>
                                     <th>Durasi Rental (Hari)</th>
                                     <th>Total Harga</th>
-                                    <th>Status Pembayaran</th> <!-- Added a new column -->
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -129,9 +128,8 @@
                                         <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}</td>
                                         <td>{{ $item->rental_duration_days }}</td>
                                         <td>{{ number_format($item->total_price, 0, ',', '.') }}</td>
-                                        <td>{{ $item->payment_status ?? 'Belum Dibayar' }}</td> <!-- Display payment status -->
                                         <td>
-                                            <button type="button" class="" data-bs-target="#detailPembayaran" style="border: none" data-bs-toggle="modal">
+                                            <button type="button" class="" data-bs-target="#detailPembayaran{{$item->id}}" style="border: none" data-bs-toggle="modal">
                                                 <img src="Frame 48.svg" alt="Show">
                                             </button>
                                         </td>
@@ -150,44 +148,40 @@
             </div>
         </div>
         
-        <div class="modal fade" id="detailPembayaran" tabindex="-1" aria-labelledby="detailPembayaran" aria-hidden="true" style="align-content: center">
+        @foreach ($data as $item)
+        <div class="modal fade" id="detailPembayaran{{ $item->id }}" tabindex="-1" aria-labelledby="detailPembayaranLabel-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pembayaran</h1>
+                        <h1 class="modal-title fs-5" id="detailPembayaranLabel-{{ $item->id }}">Detail Pembayaran</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        @foreach ($data as $item)
-                            <div>
-                                <div>
-                                    <h6>Booking ID</h6>
-                                    <p>{{ $item->booking_id }}</p>
-                                </div>
-                                <div>
-                                    <h6>Email User</h6>
-                                    <p>{{ $item->booking->user->email ?? '-' }}</p>
-                                </div>
-                                <div>
-                                    <h6>Tanggal Pinjam</h6>
-                                    <p>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}
-                                    </p>
-                                </div>
-                                <div>
-                                    <h6>Tanggal Kembali</h6>
-                                    <p>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
-                                    </p>
-                                </div>
-                                <div>
-                                    <h6>Durasi Rental (Hari)</h6>
-                                    <p>{{ $item->rental_duration_days }}</p>
-                                </div>
-                                <div>
-                                    <h6>Total Kontol</h6>
-                                    <p>{{ number_format($item->total_price, 0, ',', '.') }}</p>
-                                </div>
-                            </div>
-                        @endforeach
+                        <div>
+                            <h6>Booking ID</h6>
+                            <p>{{ $item->booking_id }}</p>
+                        </div>
+                        <div>
+                            <h6>Email User</h6>
+                            <p>{{ $item->booking->user->email ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <h6>Tanggal Pinjam</h6>
+                            <p>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}</p>
+                        </div>
+                        <div>
+                            <h6>Tanggal Kembali</h6>
+                            <p>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}</p>
+                        </div>
+                        <div>
+                            <h6>Durasi Rental (Hari)</h6>
+                            <p>{{ $item->rental_duration_days }}</p>
+                        </div>
+                        <div>
+                            <h6>Total Harga</h6>
+                            <p>{{ number_format($item->total_price, 0, ',', '.') }}</p>
+                        </div>
+                    
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -195,4 +189,7 @@
                 </div>
             </div>
         </div>
+    @endforeach
+    
     @endsection
+        

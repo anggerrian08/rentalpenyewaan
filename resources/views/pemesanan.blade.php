@@ -271,32 +271,51 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form method="GET" action="{{ route('pemesanan.search') }}">
-                        @csrf
+                    <form method="GET" action="{{ route('pemesanan.index') }}">
                         <div class="form-row">
+                            <!-- Form Group: Tanggal Pinjam -->
                             <div class="form-group">
                                 <label for="tanggal-pinjam" class="form-label"><b>Tanggal Pinjam</b></label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
-                                            style="color: #01A8EF;"></i></span>
-                                    <input type="date" class="form-control text-muted" id="tanggal-pinjam"
-                                        name="order_date" value="{{ request('order_date') }}" required>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
+                                    </span>
+                                    <input 
+                                        type="date" 
+                                        class="form-control text-muted" 
+                                        id="tanggal-pinjam" 
+                                        name="order_date" 
+                                        value="{{ request('order_date') }}" 
+                                    >
                                     <i class="bi bi-arrow-left-right mt-2 ms-3 text-muted"></i>
                                 </div>
                             </div>
+                            
+                            <!-- Form Group: Tanggal Kembali -->
                             <div class="form-group">
                                 <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
                                 <div class="input-group d-flex">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
-                                            style="color: #01A8EF;"></i></span>
-                                    <input type="date" class="form-control text-muted" id="tanggal-kembali"
-                                        name="return_date" value="{{ request('return_date') }}" required>
-                                    <button type="submit" class="boton ms-3 rounded">Cari</button>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
+                                    </span>
+                                    <input 
+                                        type="date" 
+                                        class="form-control text-muted" 
+                                        id="tanggal-kembali" 
+                                        name="return_date" 
+                                        value="{{ request('return_date') }}" 
+                                    >
+                                    <button 
+                                        type="submit" 
+                                        class="boton ms-3 rounded"
+                                    >
+                                        Cari
+                                    </button>
                                 </div>
                             </div>
-
                         </div>
                     </form>
+                    
                 </div>
 
             </div>
@@ -312,7 +331,7 @@
         <div class="container">
             @foreach ($cars as $car)
                 <div class="card">
-                    <h3 style="text-align: left;">{{ $car->name }}</h3>
+                    <h3 style="text-align: left;">{{ $car->car->name }}</h3>
                     {{-- <form action="{{ route('car_likes.store') }}" method="post">
                         @csrf
                         <button type="submit">
@@ -322,13 +341,14 @@
                     <div class="love-icon">
                         <form action="{{ route('car_likes.store') }}" method="POST" style="display: inline;">
                             @csrf
-                            <input type="hidden" name="car_id" value="{{ $car->id }}">
+                            @method('post')
+                            <input type="hidden" name="car_id" value="{{ $car->car->id }}">
                             <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">
                                 ❤
                             </button>
                         </form>
                     </div>
-                    <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
+                    <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" alt="{{ $car->car->name }}"
                         class="car-image img-fluid">
                     <h3>{{ $car->model }}</h3>
                     <p class="brand">{{ $car->brand }}</p>
@@ -340,12 +360,12 @@
                             <i class="fas fa-cogs"></i> Manual
                         </span>
                         <span class="text-muted">
-                            <i class="fas fa-user"></i> {{ $car->seats }} Orang
+                            <i class="fas fa-user"></i> {{ $car->car->seats }} Orang
                         </span>
                     </div>
                     <div class="price-button-wrapper">
-                        <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
-                        <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
+                        <p class="price text-muted">Rp. {{ number_format($car->car->price, 0, ',', '.') }}</p>
+                        <a href="{{ route('car.show', $car->car->id) }}" class="pesan-btn">pesan</a>
                     </div>
                 </div>
             @endforeach
