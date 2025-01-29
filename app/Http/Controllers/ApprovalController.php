@@ -72,18 +72,19 @@ class ApprovalController extends Controller
                 $returnDate = strtotime($booking->return_date);
                 $currentTimestamp = strtotime(now());
                 $denda = 0;
-        
+            
                 if ($currentTimestamp > $returnDate) {
-                    $selisihHari = ($currentTimestamp - $returnDate) / (60 * 60 * 24);
+                    $selisihHari = floor(($currentTimestamp - $returnDate) / (60 * 60 * 24)); // Dibulatkan ke bawah
                     $dendaPerHari = 50000;
                     $denda = $selisihHari * $dendaPerHari;
                 }
-        
+            
                 if ($booking->denda != $denda) {
                     $booking->denda = $denda;
                     $booking->save();
                 }
             }
+            
         }
         
     
