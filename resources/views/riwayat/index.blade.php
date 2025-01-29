@@ -3,16 +3,6 @@
 @section('content')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <div class="mt-5">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
         <div>
 
             <head>
@@ -496,7 +486,7 @@
                                                             {{ number_format($item->total_price, 2, ',', '.') }}</p>
                                                         @if ($item->booking->status == 'returned')
                                                             <button type="button" data-bs-toggle="modal"
-                                                                dafta-bs-target="#review{{ $item->booking->car->id }}"
+                                                                data-bs-target="#review{{ $item->booking->car->id }}"
                                                                 style="
                                                                 padding: 10px 15px;
                                                                 border: none;
@@ -511,19 +501,19 @@
                                                                 <i class="fas fa-star" style="margin-right: 5px;"></i>
                                                                 Beri Ulasan</button>
                                                         @endif
-                                                        <a href="#"
-                                                            style="
-                                                        padding: 10px 15px;
-                                                        border: none;
-                                                        background-color: #28a745;
-                                                        color: white;
-                                                        border-radius: 50px;
-                                                        font-size: 14px;
-                                                        margin-left: 10px;
-
-                                                    ">
-                                                            <i class="fas fa-eye" style="margin-right: 5px;"></i>
-                                                            Lihat Detail Sewa</a>
+                                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#detail{{$item->id}}"
+                                                        style="
+                                                            padding: 10px 15px;
+                                                            border: none;
+                                                            background-color: #28a745;
+                                                            color: white;
+                                                            border-radius: 50px;
+                                                            font-size: 14px;
+                                                            margin-left: 10px;
+                                                        ">
+                                                        <i class="fas fa-eye" style="margin-right: 5px;"></i>
+                                                        Lihat Detail Sewa
+                                                    </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -532,98 +522,6 @@
                                             style="display: flex; justify-content: center; margin-top: 20px;">
                                             {{ $data_all->links('pagination::bootstrap-5') }}
                                         </div>
-                                        {{-- <div class="order-card" data-status="diproses">
-                        <div class="order-header">
-                            <p class="order-title">Pesanan</p>
-                            <p class="order-date">11 Apr 2024</p>
-                            <span class="status-diproses">Diproses</span>
-                        </div>
-                        <div class="order-body">
-                            <div class="car-details">
-                                <img src="https://via.placeholder.com/80x50" alt="Car Image">
-                                <div class="car-info">
-                                    <p class="car-brand">Toyota</p>
-                                    <h4 class="car-name">Avanza Veloz</h4>
-                                    <p class="car-price">Rp. 100.000,00 / hari</p>
-                                    <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
-                                </div>
-                            </div>
-                            <div class="price-details">
-                                <h4>Total Tarif</h4>
-                                <p class="total-price">Rp 100.000,00</p>
-                                <a href="#" class="detail-link">Lihat Detail Sewa</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-card" data-status="selesai">
-                        <div class="order-header">
-                            <p class="order-title">Pesanan</p>
-                            <p class="order-date">11 Apr 2024</p>
-                            <span class="status-done">Selesai</span>
-                        </div>
-                        <div class="order-body">
-                            <div class="car-details">
-                                <img src="https://via.placeholder.com/80x50" alt="Car Image">
-                                <div class="car-info">
-                                    <p class="car-brand">Toyota</p>
-                                    <h4 class="car-name">Avanza Veloz</h4>
-                                    <p class="car-price">Rp. 100.000,00 / hari</p>
-                                    <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
-                                </div>
-                            </div>
-                            <div class="price-details">
-                                <h4>Total Tarif</h4>
-                                <p class="total-price">Rp 100.000,00</p>
-                                <a href="#" class="review-link">Buat Ulasan</a>
-                                <a href="#" class="rent-again">Sewa Lagi</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-card" data-status="ditolak">
-                        <div class="order-header">
-                            <p class="order-title">Pesanan</p>
-                            <p class="order-date">11 Apr 2024</p>
-                            <span class="status-rejected">Di Batalkan</span>
-                        </div>
-                        <div class="order-body">
-                            <div class="car-details">
-                                <img src="https://via.placeholder.com/80x50" alt="Car Image">
-                                <div class="car-info">
-                                    <p class="car-brand">Toyota</p>
-                                    <h4 class="car-name">Avanza Veloz</h4>
-                                    <p class="car-price">Rp. 100.000,00 / hari</p>
-                                    <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
-                                </div>
-                            </div>
-                            <div class="price-details">
-                                <h4>Total Tarif</h4>
-                                <p class="total-price">Rp 100.000,00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-card" data-status="terlambat">
-                        <div class="order-header">
-                            <p class="order-title">Pesanan</p>
-                            <p class="order-date">11 Apr 2024</p>
-                            <span class="status-rejected">Terlambat</span>
-                        </div>
-                        <div class="order-body">
-                            <div class="car-details">
-                                <img src="https://via.placeholder.com/80x50" alt="Car Image">
-                                <div class="car-info">
-                                    <p class="car-brand">Toyota</p>
-                                    <h4 class="car-name">Opo Wes    </h4>
-                                    <p class="car-price">Rp. 100.000,00 / hari</p>
-                                    <p class="rent-period">dd-mm-yy / dd-mm-yy</p>
-                                </div>
-                            </div>
-                            <div class="price-details">
-                                <h4>Total Tarif</h4>
-                                <p class="total-price">Rp 100.000,00</p>
-                            </div>
-                        </div>
-                    </div> --}}
-                                        <!-- Repeat for other orders with appropriate data-status -->
                                     </div>
                                 </div>
                             </div>
@@ -678,7 +576,7 @@
                             <h5 class="modal-title" id="review">Beri Ulasan</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="{{ route('review2.store') }}" method="POST">
+                        <form action="{{ route('review.store') }}" method="POST">
                             @csrf
                             @method('POST')
                             <input type="hidden" name="car_id" value="{{ $item->booking->car->id }}">
@@ -728,3 +626,73 @@
             filterByDate(); // Panggil fungsi filter tanggal
         }
     </script>
+
+@foreach ($data_all as $item)
+<div class="modal fade" id="review{{ $item->booking->car->id }}" tabindex="-1" aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewLabel{{ $item->booking->car->id }}">Beri Ulasan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('review2.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="car_id" value="{{ $item->booking->car->id }}">
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <select name="rating" id="rating" class="form-control" required>
+                            <option value="5">★★★★★</option>
+                            <option value="4">★★★★☆</option>
+                            <option value="3">★★★☆☆</option>
+                            <option value="2">★★☆☆☆</option>
+                            <option value="1">★☆☆☆☆</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="review" class="form-label">Ulasan</label>
+                        <textarea name="review" id="review" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Kirim Ulasan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+@foreach ($data_all as $item)
+<div class="modal fade" id="detail{{ $item->id }}" tabindex="-1" aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewLabel{{ $item->booking->car->id }}">Detail Ulasan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <strong>Email:</strong>
+                    <p class="text-muted mb-1">{{$item->booking->user->email}}</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Mobil:</strong>
+                    <p class="text-muted mb-1">{{$item->booking->car->name}}</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Durasi Sewa:</strong>
+                    <p class="text-muted mb-1">{{$item->rental_duration_days}} hari</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Total Harga:</strong>
+                    <p class="fw-bold text-primary">Rp {{ number_format($item->total_price, 0, ',', '.') }}</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Total Denda:</strong>
+                    <p class="fw-bold text-danger">Rp {{ number_format($item->booking->denda, 0, ',', '.') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
