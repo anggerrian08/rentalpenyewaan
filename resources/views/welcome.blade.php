@@ -28,7 +28,6 @@
         .card {
             background-color: #ffffff;
             width: 250px;
-            height: 400px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 15px;
@@ -42,10 +41,15 @@
         }
 
         .car-image {
-            width: 100%;
-            height: 450px;
+            width: 500px;
+            height: 190px;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            /* height: auto; */
         }
 
         h3 {
@@ -68,9 +72,17 @@
             margin-bottom: 15px;
         }
 
+        .price-button-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .price {
             font-weight: bold;
             color: #2D465E;
+            margin: 0;
+            font-size: 1em;
         }
 
         .price span {
@@ -103,16 +115,13 @@
 
         /* Pesan Button - Radius & Style */
         .pesan-btn {
-            background-color: #0D83FD;
+            padding: 10px 20px;
+            background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 20px;
-            /* Tambahkan radius */
-            padding: 5px 15px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s;
             font-size: 14px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
         .pesan-btn:hover {
@@ -121,15 +130,15 @@
 
         /* Card Positioning for Love Icon */
         /* .card {
-                position: relative;
-                background-color: #ffffff;
-                width: 250px;
-                border-radius: 10px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                padding: 15px;
-                text-align: center;
-                transition: all 0.3s ease;
-            } */
+                                        position: relative;
+                                        background-color: #ffffff;
+                                        width: 250px;
+                                        border-radius: 10px;
+                                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                        padding: 15px;
+                                        text-align: center;
+                                        transition: all 0.3s ease;
+                                    } */
 
         .card:hover {
             transform: translateY(-10px);
@@ -296,7 +305,16 @@
             @foreach ($cars as $car)
                 <div class="card">
                     <h3 style="text-align: left;">{{ $car->name }}</h3>
-                    <div class="love-icon">❤</div>
+                    <div class="love-icon">
+                        <form action="{{ route('car_likes.store') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <input type="hidden" name="car_id" value="{{ $car->id }}">
+                            <button type="submit"
+                                style="background: none; border: none; color: inherit; cursor: pointer;">
+                                ❤
+                            </button>
+                        </form>
+                    </div>
                     <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
                         class="car-image img-fluid">
                     <h3>{{ $car->model }}</h3>
@@ -315,7 +333,7 @@
                     <div class="price-button-wrapper">
                         <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
                         @if (!Auth::user())
-                            <a href="{{route('login')}}" class="pesan-btn">Masuk</a>
+                            <a href="{{ route('login') }}" class="pesan-btn">Masuk</a>
                         @else
                             <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
                         @endif
@@ -576,3 +594,15 @@
         </div>
     </section><!-- /Contact Section -->
 @endsection
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif

@@ -27,7 +27,7 @@
         @foreach ($data_ulasan as $item)
             <div class="col">
                 <div class="card h-100 shadow-sm border-0">
-                    <img src="{{ asset('storage/uploads/' . $item->car->photo) }}" class="card-img-top" alt="Car Image"
+                    <img src="{{ asset('storage/uploads/car/' . $item->car->photo) }}" class="card-img-top" alt="Car Image"
                         style="width: 100%; height: 200px; object-fit: cover;">
                     <div class="card-body">
                         <h6 class="card-title text-primary fw-bold">Judul: {{ $item->car->name }}</h6>

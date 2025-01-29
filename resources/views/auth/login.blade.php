@@ -32,7 +32,7 @@
             @endforeach
         </div>
         @endif
-            <h2 class="text-3xl font-bold text-gray-800 text-center">Masuk</h2>
+            <h2 class="text-3xl font-bold text-gray-800 text-center " style="margin-top: 90px">Masuk</h2>
             <form method="POST" action="{{ route('login') }}" class="mt-6">
                 @csrf
                 <div class="mb-4">

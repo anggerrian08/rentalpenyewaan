@@ -137,11 +137,11 @@ class BookingController extends Controller
         ]);
 
         // Kurangi stok mobil
-        $car->stock -= 1;
-        $car->save();
+        // $car->stock -= 1;
+        // $car->save();
 
 
-        return redirect()->route('bookings.index')->with('success', 'Booking berhasil ditambahkan.');
+        return back()->with('success', 'Booking berhasil ditambahkan.');
     }
 
 

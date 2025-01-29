@@ -2,17 +2,16 @@
 @section('content')
 
     <head>
-        <!-- Tambahkan link ke Font Awesome untuk ikon -->
+        <!-- Single Font Awesome Link -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     </head>
 
     <style>
         /* Hero Section Styling */
         .hero-section {
             background-color: #f3f9ff;
-            padding: 50px 0;
+            padding: 0;
         }
 
         .hero-section .container {
@@ -123,7 +122,7 @@
         /* Pesan Button Styling */
         .pesan-btn {
             background-color: #0D83FD;
-            color: #fff;
+            v color: #fff;
             border: none;
             border-radius: 20px;
             padding: 5px 15px;
@@ -197,7 +196,7 @@
 
         .card {
             max-width: 2000px;
-            margin: auto;
+            margin: 0;
             position: relative;
             bottom: 65px;
         }
@@ -239,6 +238,27 @@
             transform: scale(0.98);
             /* Memberikan efek mengecilkan sedikit saat tombol ditekan */
         }
+
+        section,
+        .section {
+            color: var(--default-color);
+            background-color: var(--background-color);
+            padding: 60px 0;
+            scroll-margin-top: 90px;
+            overflow: clip;
+            background-color: #f3f9ff;
+        }
+
+        h1 {
+            color: #212529;
+            font-size: 32px;
+            margin-bottom: 10px;
+            margin-top: 0px;
+        }
+
+        .po {
+            margin-bottom: 5rem;
+        }
     </style>
     <div class="hero-section">
         <div class="container text-center">
@@ -251,73 +271,106 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <form method="GET" action="{{ route('pemesanan.search') }}">
-                        @csrf
+                    <form method="GET" action="{{ route('pemesanan.index') }}">
                         <div class="form-row">
+                            <!-- Form Group: Tanggal Pinjam -->
                             <div class="form-group">
                                 <label for="tanggal-pinjam" class="form-label"><b>Tanggal Pinjam</b></label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
-                                            style="color: #01A8EF;"></i></span>
-                                    <input type="date" class="form-control text-muted" id="tanggal-pinjam"
-                                        name="order_date" value="{{ request('order_date') }}" required>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
+                                    </span>
+                                    <input 
+                                        type="date" 
+                                        class="form-control text-muted" 
+                                        id="tanggal-pinjam" 
+                                        name="order_date" 
+                                        value="{{ request('order_date') }}" 
+                                    >
                                     <i class="bi bi-arrow-left-right mt-2 ms-3 text-muted"></i>
                                 </div>
                             </div>
+                            
+                            <!-- Form Group: Tanggal Kembali -->
                             <div class="form-group">
                                 <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
                                 <div class="input-group d-flex">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
-                                            style="color: #01A8EF;"></i></span>
-                                    <input type="date" class="form-control text-muted" id="tanggal-kembali"
-                                        name="return_date" value="{{ request('return_date') }}" required>
-                                    <button type="submit" class="boton ms-3 rounded">Cari</button>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
+                                    </span>
+                                    <input 
+                                        type="date" 
+                                        class="form-control text-muted" 
+                                        id="tanggal-kembali" 
+                                        name="return_date" 
+                                        value="{{ request('return_date') }}" 
+                                    >
+                                    <button 
+                                        type="submit" 
+                                        class="boton ms-3 rounded"
+                                    >
+                                        Cari
+                                    </button>
                                 </div>
                             </div>
-
                         </div>
                     </form>
+                    
                 </div>
-            </div>
 
-            <div class="container">
-                @foreach ($cars as $car)
-                    <div class="card">
-                        <h3 style="text-align: left;">{{ $car->name }}</h3>
-                        <form action="{{ route('car_likes.store') }}" method="post">
-                            @csrf
-                            <button type="submit">
-                                <div class="love-icon">❤</div>
-                            </button>
-                        </form>
-                        <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->merek->name }}"
-                            class="car-image img-fluid">
-                        <h3>{{ $car->model }}</h3>
-                        <p class="brand">{{ $car->brand }}</p>
-                        <div class="details">
-                            <span class="text-muted">
-                                <i class="fas fa-gas-pump"></i> Bensin
-                            </span>
-                            <span class="text-muted">
-                                <i class="fas fa-cogs"></i> Manual
-                            </span>
-                            <span class="text-muted">
-                                <i class="fas fa-user"></i> {{ $car->seats }} Orang
-                            </span>
-                        </div>
-                        <div class="price-button-wrapper">
-                            <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
-                            <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
-                        </div>
-                    </div>
-                @endforeach
             </div>
-            <!-- Pagination Links -->
-            <div class="pagination-wrapper">
-                {{ $cars->links() }}
-            </div>
+            <h1>Pilih Mobil Sesuai Kebutuhan Anda</h1>
+            <p class="po">Temukan berbagai pilihan mobil yang sesuai dengan kebutuhan perjalanan Anda, mulai dari mobil
+                kompak untuk perjalanan pribadi hingga kendaraan besar untuk keluarga atau rombongan. Setiap kendaraan kami
+                dijamin dalam kondisi prima dan siap menemani perjalanan Anda.</p>
         </div>
     </div>
+
+    <section id="features" class="features section">
+
+        <div class="container">
+            @foreach ($cars as $car)
+                <div class="card">
+                    <h3 style="text-align: left;">{{ $car->car->name }}</h3>
+                    {{-- <form action="{{ route('car_likes.store') }}" method="post">
+                        @csrf
+                        <button type="submit">
+                            <div class="love-icon">❤</div>
+                        </button>
+                    </form> --}}
+                    <div class="love-icon">
+                        <form action="{{ route('car_likes.store') }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('post')
+                            <input type="hidden" name="car_id" value="{{ $car->car->id }}">
+                            <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">
+                                ❤
+                            </button>
+                        </form>
+                    </div>
+                    <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" alt="{{ $car->car->name }}"
+                        class="car-image img-fluid">
+                    <h3>{{ $car->model }}</h3>
+                    <p class="brand">{{ $car->brand }}</p>
+                    <div class="details">
+                        <span class="text-muted">
+                            <i class="fas fa-gas-pump"></i> Bensin
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-cogs"></i> Manual
+                        </span>
+                        <span class="text-muted">
+                            <i class="fas fa-user"></i> {{ $car->car->seats }} Orang
+                        </span>
+                    </div>
+                    <div class="price-button-wrapper">
+                        <p class="price text-muted">Rp. {{ number_format($car->car->price, 0, ',', '.') }}</p>
+                        <a href="{{ route('car.show', $car->car->id) }}" class="pesan-btn">pesan</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </section>
 @endsection
 
 @if (session('success'))

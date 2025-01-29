@@ -69,11 +69,12 @@
 
                         <form action="{{route('car_likes.store')}}" method="post">
                             @csrf
+                            @method('post')
                             <input type="hidden" name="car_id" value="{{$car->id}}">
                             <button type="submit" class="btn btn-outline-warning">
                                 <i class="fas fa-heart"></i> Suka
                             </button>
-                        </  form>
+                        </form>
                     </div>
                 </div>
             </div>
