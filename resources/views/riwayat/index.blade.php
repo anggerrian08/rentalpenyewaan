@@ -428,32 +428,34 @@
                                                 margin-bottom: 10px;
                                             "
                                         oninput="searchFunction()">
-                                    <input type="date" id="filterDate"
-                                        style="
-                                                padding: 10px 15px;
-                                                border: 1px solid #ddd;
-                                                border-radius: 25px;
-                                                outline: none;
-                                                font-size: 16px;
-                                                margin-bottom: 10px;
-                                                margin-left: 10px;
-                                                 color: #6b6e70;
-                                            "
-                                        onchange="filterByDate()">
-                                    <button type="button" onclick="applyFilters()"
-                                        style="
-                                                padding: 10px 15px;
-                                                border: none;
-                                                background-color: #01A8EF;
-                                                color: white;
-                                                border-radius: 50px;
-                                                font-size: 14px;
-                                                margin-left: 10px;
-                                                width: 85px;
-                                                height: 40px;
-                                            ">
-                                        Terapkan
-                                    </button>
+                                        <form action="{{route('riwayat.index')}}" method="GET">
+                                            <input type="date" id="filterDate"
+                                                style="
+                                                        padding: 10px 15px;
+                                                        border: 1px solid #ddd;
+                                                        border-radius: 25px;
+                                                        outline: none;
+                                                        font-size: 16px;
+                                                        margin-bottom: 10px;
+                                                        margin-left: 10px;
+                                                         color: #6b6e70;
+                                                    " name="order_date">
+
+                                                <button type="submit"
+                                                style="
+                                                        padding: 10px 15px;
+                                                        border: none;
+                                                        background-color: #01A8EF;
+                                                        color: white;
+                                                        border-radius: 50px;
+                                                        font-size: 14px;
+                                                        margin-left: 10px;
+                                                        width: 85px;
+                                                        height: 40px;
+                                                    ">
+                                                Terapkan
+                                                </button>
+                                        </form>
                                 </div>
 
                                 {{-- filter  --}}
