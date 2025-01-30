@@ -393,7 +393,6 @@
         </head>
 
         <body>
-            <br></br>
             <div>
                 <div class="row align-items-center">
                     <div class="container">
@@ -428,9 +427,9 @@
                                                 margin-bottom: 10px;
                                             "
                                         oninput="searchFunction()">
-                                        <form action="{{route('riwayat.index')}}" method="GET">
-                                            <input type="date" id="filterDate"
-                                                style="
+                                    <form action="{{ route('riwayat.index') }}" method="GET">
+                                        <input type="date" id="filterDate"
+                                            style="
                                                         padding: 10px 15px;
                                                         border: 1px solid #ddd;
                                                         border-radius: 25px;
@@ -439,10 +438,11 @@
                                                         margin-bottom: 10px;
                                                         margin-left: 10px;
                                                          color: #6b6e70;
-                                                    " name="order_date">
+                                                    "
+                                            name="order_date">
 
-                                                <button type="submit"
-                                                style="
+                                        <button type="submit"
+                                            style="
                                                         padding: 10px 15px;
                                                         border: none;
                                                         background-color: #01A8EF;
@@ -453,9 +453,9 @@
                                                         width: 85px;
                                                         height: 40px;
                                                     ">
-                                                Terapkan
-                                                </button>
-                                        </form>
+                                            Terapkan
+                                        </button>
+                                    </form>
                                 </div>
 
                                 {{-- filter  --}}
