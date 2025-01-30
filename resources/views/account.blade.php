@@ -1,5 +1,5 @@
-@extends('layouts.navuser')
-@section('content')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <title>User Profile</title>
         <style>
             body {
@@ -134,8 +134,7 @@
     </head>
 
     <body>
-        <br></br>
-        <br></br>
+    
 
         <div class="container">
 
@@ -178,6 +177,19 @@
                     <!-- Detail User -->
                     <div class="col-12 col-md-7">
                         <div class="row">
+                            <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="profile-tab" href="{{ ('account') }}" role="tab" aria-controls="profile" aria-selected="true">
+                                        Profil
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="history-tab" href="{{ route('riwayat.index') }}" role="tab" aria-controls="history" aria-selected="false">
+                                        Riwayat
+                                    </a>
+                                </li>
+                            </ul>
+
                             <div class="col-12 col-sm-6 mb-3">
                                 <p class="text-muted m-0">Nama</p>
                                 <p class="text-muted m-0">{{ auth()->user()->name }}</p><br>
@@ -225,4 +237,4 @@
                     }
                 </script>
     </body>
-@endsection
+
