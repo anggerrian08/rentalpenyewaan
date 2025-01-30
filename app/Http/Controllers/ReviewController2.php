@@ -16,7 +16,7 @@ class ReviewController2 extends Controller
         ]);
 
         if(Review::where('user_id' , auth()->user()->id)->where('car_id', $request->car_id)->first()){
-            session()->flash('error', 'tidak bisa reviews buku yang sama 2 kali');
+            session()->flash('error', 'tidak bisa reviews car yang sama 2 kali');
             return back()->withInput();
         }
 
