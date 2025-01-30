@@ -147,42 +147,61 @@
                     <input type="search" id="searchInput" placeholder="Cari sesuatu..." oninput="searchFunction()">
                 </div> --}}
                 <hr>
-                <div class="row">
-                    <div class="navbar">
-                        <!-- Foto Profil -->
-                        <div class="profile">
-                        <img src="{{ asset('assets/images/dashboard/profile.png') }}" alt="User">
+                <div class="row align-items-stretch">
+                    <!-- Foto Profil -->
+                    <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
+                        <img src="{{ asset('storage/uploads/photo/' . auth()->user()->photo) }}" alt="Foto Profil"
+                            class="rounded-circle border" style="width: 120px; height: 120px; object-fit: cover;">
+                        <h3 class="mt-1">{{auth()->user()->name}}</h3>
+                        <p class="text-muted">{{ auth()->user()->phone_number }}</p>
+                        <div class="d-flex justify-content-center gap-2 mt-2">
+                            <button class="btn btn-outline-info" type="button">Email</button>
+                            <button class="btn btn-outline-info" type="button">Kirim</button>
+                        </div>
+                        <hr class="my-3">
+                        <div class="alert alert-success light text-dark" role="alert" style="background-color: rgba(40, 167, 69, 0.2);">
+                            <p class="txt-dark"><strong>Tanggal Daftar :</strong>
+                                {{ \Carbon\Carbon::parse(auth()->user()->created_at)->format('d-m-y') }}</p>
+                        </div>
+                        <div class="alert alert-info light text-dark" role="alert" style="background-color: rgba(23, 162, 184, 0.2);">
+                            <p class="txt-dark"><strong>Terakhir Aktif:</strong>
+                                {{ \Carbon\Carbon::parse(auth()->user()->updated_at)->format('d-m-y') }}</p>
+                        </div>
 
-                        <h3 style="margin: 5px 0; color: #333; font-family: 'Arial', sans-serif;">
-                            {{ Auth::user()->name }}
-                        </h3>
                     </div>
-                        <!-- Informasi Pengguna -->
-                        <div>
-                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
-                                <strong>Email:</strong> {{ Auth::user()->email }}
-                            </p>
-                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
-                                <strong>Nama Lengkap:</strong> {{ Auth::user()->full_name }}
-                            </p>
-                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
-                                <strong>NIK:</strong> {{ Auth::user()->nik }}
-                            </p>
-                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
-                                <strong>Jenis Kelamin:</strong> {{ Auth::user()->gender }}
-                            </p>
+
+                    <!-- Garis Vertikal -->
+                    <div class="col-12 col-md-1 d-none d-md-block">
+                        <div class="border-start mx-auto" style="height: 100%; border-left: 2px solid #7a7979;"></div>
+                    </div>
+
+                    <!-- Detail User -->
+                    <div class="col-12 col-md-7">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 mb-3">
+                                <p class="text-muted m-0">Nama</p>
+                                <p class="text-muted m-0">{{ auth()->user()->name }}</p><br>
+                                <p class="text-muted m-0">Email</p>
+                                <p class="text-muted m-0">{{ auth()->user()->email }}</p><br>
+                                <p class="text-muted m-0">Alamat</p>
+                                <p class="text-muted m-0">{{ auth()->user()->address }}</p><br><br>
+                                <p class="text-muted m-0">Foto KTP</p>
+                                <img src="{{ asset('storage/uploads/ktp/' . auth()->user()->ktp) }}" alt="KTP"
+                                    class="rounded border" style="width: 100%; height: 120px; object-fit: cover;">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <p class="text-muted m-0">NIK</p>
+                                <p class="text-muted m-0">{{ auth()->user()->nik }}</p><br>
+                                <p class="text-muted m-0">Tanggal Lahir</p>
+                                <p class="text-muted m-0">{{ auth()->user()->birt_date }}</p><br>
+                                <p class="text-muted m-0">Jenis Kelamin</p>
+                                <p class="text-muted m-0">{{ auth()->user()->jk }}</p><br><br>
+                                <p class="text-muted m-0">Foto SIM</p>
+                                <img src="{{ asset('storage/uploads/sim/' . auth()->user()->sim) }}" alt="SIM"
+                                    class="rounded border"  style="width: 100%; height: 120px; object-fit: cover;">
+                            </div>
                         </div>
                     </div>
-
-
-                    <ul class="menuprofile">
-                        <li>Tanggal Daftar:</li>
-                        <li>Total Transaksi:</li>
-                        <li>Pesanan DiProses</li>
-                        <li>Pesanan Berlangsung</li>
-                        <li>Pesanan Ditolak</li>
-                        <li>Pesanan Selesai</li>
-                    </ul>
                 </div>
 
 
