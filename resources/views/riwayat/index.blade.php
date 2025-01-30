@@ -397,6 +397,10 @@
                 <div class="row align-items-center">
                     <div class="container">
                         <div class="navbar">
+                            <a href="http://localhost:8000/" style=" text-decoration: none;">
+                                <i class="fa fa-arrow-left"></i> Kembali
+                            </a>
+                            
                             <div class="profile">
                                 <img src="{{ asset('assets/images/dashboard/profile.png') }}" alt="User">
                                 <h3>{{ Auth::user()->name }}</h3>
@@ -592,7 +596,7 @@
                         <h5 class="modal-title" id="review">Beri Ulasan</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('review.store') }}" method="POST">
+                    <form action="{{ route('review2.store') }}" method="POST">
                         @csrf
                         @method('POST')
                         <input type="hidden" name="car_id" value="{{ $item->booking->car->id }}">
@@ -718,3 +722,29 @@
             </div>
         </div>
     @endforeach
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    @if (session('success'))
+        Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000
+        });
+    @endif
+    @if (session('error'))
+        Swal.fire({
+            title: "Error",
+            text: "{{ session('error') }}",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000
+        });
+    @endif
+</script>
