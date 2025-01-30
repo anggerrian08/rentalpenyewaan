@@ -7,15 +7,22 @@ use Illuminate\Support\Facades\Auth;
 
 class RiwayatController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user_id = Auth::user()->id;
         
+        $order_date = $request->input('order_date');
 
-        // Ambil semua data `DetailPembayaran` milik user
-        $data_all = DetailPembayaran::with('booking')->whereHas('booking', function ($query) use ($user_id) {
-            $query->where('user_id', $user_id);
-        })->paginate(5);
+        // Query untuk mengambil data dengan filter order_date (jika ada)
+        $data_all = DetailPembayaran::with('booking')
+            ->whereHas('booking', function ($query) use ($user_id, $order_date) {
+                $query->where('user_id', $user_id);
+                if ($order_date) {
+                    $query->whereDate('order_date', $order_date);
+                }
+            })
+            ->paginate(5);
+
 
         // Hitung jumlah transaksi
         $count_transaksi = DetailPembayaran::whereHas('booking', function ($query) use ($user_id) {
