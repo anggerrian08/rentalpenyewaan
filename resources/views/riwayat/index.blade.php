@@ -1,6 +1,6 @@
-@extends('layouts.navuser')
+{{-- @extends('layouts.navuser')
 
-@section('content')
+@section('content') --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <div class="mt-5">
         <div>
@@ -42,7 +42,7 @@
                     }
 
                     .navbar .profile {
-                        padding-left: 60px;
+                        padding-left: 50px;
                         padding-right: 60px;
                         text-align: center;
                         margin-bottom: 20px;
@@ -61,6 +61,12 @@
 
                     .navbar .menu {
                         list-style: none;
+                    }
+
+                    ul {
+                        margin-top: 0;
+                        margin-bottom: 1rem;
+                        padding-left: 0px;
                     }
 
                     .navbar .menu li {
@@ -408,7 +414,7 @@
                                         <input type="search" id="searchInput" placeholder="Cari sesuatu..."
                                             style="
                                                 padding: 10px 15px;
-                                                width: 600px;
+                                                width: 550px;
                                                 border: 1px solid #ddd;
                                                 border-radius: 25px;
                                                 outline: none;
@@ -605,7 +611,7 @@
                 </div>
             </div>
         @endforeach
-    @endsection
+    {{-- @endsection --}}
     <script>
         function filterByDate() {
             const dateValue = document.getElementById('filterDate').value;
