@@ -1,223 +1,209 @@
 @extends('layouts.navuser')
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>User Profile</title>
-        <!-- Other head content -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+        <style>
+            body {
+                background-color: #f4f8ff;
+                color: #333;
+            }
 
-        {{-- <link rel="stylesheet" href="path/to/icofont.min.css"> --}}
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/icofont.css') }}">
-        {{-- <link rel="stylesheet" href="styles.css"> --}}
+            .container {
+                display: flex;
+                max-width: 950px;
+                margin: 20px auto;
+                gap: 20px;
+            }
+
+            .navbar {
+                margin-left: 20px;
+                align-items: center;
+                justify-content: center;
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 12px;
+                height: 600px;
+                width: 280px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                flex-wrap: wrap;
+                align-content: flex-start;
+                flex-direction: row;
+            }
+
+
+            /* .profile {
+                text-align: center;
+                margin-bottom: 20px;
+            } */
+
+            .profile img {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+            }
+
+            .menuprofile {
+                list-style: none;
+                padding: 10px;
+            }
+
+            .menuprofile li {
+                padding: 15px;
+                /* margin: 20px; */
+                border-radius: 10px;
+                font-size: 14px;
+                width: 580px;
+            }
+
+            .menuprofile li:nth-child(1) {
+                background-color: #48f5a499;
+                color: #000;
+            }
+
+            .menuprofile li:nth-child(2) {
+                background-color: #85dcff91;
+                color: #000;
+            }
+
+            .menuprofile li:nth-child(3) {
+                background-color: #ffeeba;
+                color: #000;
+            }
+
+            .menuprofile li:nth-child(4) {
+                background-color: #fff2caa8;
+                color: #000;
+            }
+
+            .menuprofile li:nth-child(5) {
+                background-color: #85dcff91;
+                color: #000;
+            }
+
+            .menuprofile li:nth-child(6) {
+                background-color: #ffcec4a8;
+                color: #000;
+            }
+
+            .menuprofile li:nth-child(7) {
+                background-color: #48f5a499;
+                color: #000;
+            }
+
+            .main-content {
+                flex: 1;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .search {
+                display: flex;
+                justify-content: center;
+                margin: 10px 0;
+            }
+
+            .search input {
+                padding: 10px 15px;
+                width: 820px;
+                border: 1px solid #ddd;
+                border-radius: 25px;
+                font-size: 16px;
+                outline: none;
+            }
+
+            .row {
+                display: flex;
+                align-items: flex-start;
+                /* Supaya sejajar di bagian atas */
+            }
+
+
+            .menuprofile {
+                width: 10%;
+                list-style: none;
+                padding-left: 2px;
+                margin-left: 10px;
+                /* background-color: #eaeaea; */
+            }
+
+            .menuprofile li {
+                margin: 10px;
+            }
+        </style>
     </head>
-    <style>
-        .jam {
-            position: relative;
-            bottom: 40px;
-            left: 40px;
-            padding: 10px;
-            background-color: #ffffff;
-            /* Background color */
-            border-radius: 50%;
-            /* Make it circular */
-            color: #01A8EF;
-            /* Icon color */
-            font-size: 15px;
-            /* Icon size */
-            cursor: pointer;
-        }
-
-        .icofont-pencil-alt-5::before {
-            content: "\13ac4";
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .profile-header {
-            position: relative;
-            text-align: center;
-            color: #2d465e;
-        }
-
-        .background-image {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-        }
-
-        .profile-info {
-            position: absolute;
-            bottom: -140px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-        }
-
-        .profile-photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid white;
-        }
-
-        .profile-details {
-            margin: 80px 20px 20px;
-        }
-
-        .detail-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .profile-docs {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px;
-        }
-
-        .doc-item {
-            text-align: center;
-        }
-
-        .doc-item img {
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
-            margin-bottom: 10px;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
 
     <body>
-        <div class="card">
-            <div class="profile-header"><br><br><br><br>
-                <img src="assets.user/img/sampulbor.png" alt="Background" class="background-image">
-                <div class="profile-info">
-                    <img src="assets.user/img/avatar-3.webp" alt="User Photo" class="profile-photo">
-                    <div class="icon-wrapper">
-                        <i class="bi bi-pencil jam" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+        <br></br>
+        <br></br>
+
+        <div class="container">
+
+
+            <div class="main-content">
+                <h3>Profile</h3>
+
+                {{-- <div class="search">
+                    <input type="search" id="searchInput" placeholder="Cari sesuatu..." oninput="searchFunction()">
+                </div> --}}
+                <hr>
+                <div class="row">
+                    <div class="navbar">
+                        <!-- Foto Profil -->
+                        <div class="profile">
+                        <img src="{{ asset('assets/images/dashboard/profile.png') }}" alt="User">
+
+                        <h3 style="margin: 5px 0; color: #333; font-family: 'Arial', sans-serif;">
+                            {{ Auth::user()->name }}
+                        </h3>
+                    </div>
+                        <!-- Informasi Pengguna -->
+                        <div>
+                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
+                                <strong>Email:</strong> {{ Auth::user()->email }}
+                            </p>
+                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
+                                <strong>Nama Lengkap:</strong> {{ Auth::user()->full_name }}
+                            </p>
+                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
+                                <strong>NIK:</strong> {{ Auth::user()->nik }}
+                            </p>
+                            <p style="margin: 10px 0; color: #666; font-family: 'Arial', sans-serif;">
+                                <strong>Jenis Kelamin:</strong> {{ Auth::user()->gender }}
+                            </p>
+                        </div>
                     </div>
 
-                    <h2>{{ $data->name }}</h2>
-                    <p>{{ $data->phone_number }}</p>
 
-                </div>
-            </div>
-            <br>
-            <div class="row ms-2 p-4 justify-content-between">
-                <div class="col-2">
-                    <p class="text-muted m-0">
-                        <i class="fas fa-envelope"></i> Email <br>
-                    </p>
-                    <p>{{ $data->email }}</p>
-                </div>
-                <div class="col-3">
-                    <p class="text-muted m-0">
-                        <i class="fas fa-user"></i> Nama lengkap <br>
-                    </p>
-                    <p>{{ $data->name }}</p>
+                    <ul class="menuprofile">
+                        <li>Tanggal Daftar:</li>
+                        <li>Total Transaksi:</li>
+                        <li>Pesanan DiProses</li>
+                        <li>Pesanan Berlangsung</li>
+                        <li>Pesanan Ditolak</li>
+                        <li>Pesanan Selesai</li>
+                    </ul>
                 </div>
 
-                <div class="col-2 ms-auto">
-                    <p class="text-muted m-0">
-                        <i class="fas fa-id-card"></i> Nik <br>
-                    </p>
-                    <p>{{ $data->nik }}</p>
-                </div>
-                <div class="col-2">
-                    <p class="text-muted m-0">
-                        <i class="fas fa-venus-mars"></i> Jenis kelamin <br>
-                    </p>
-                    <p>{{ $data->jk }}</p>
-                </div>
-            </div><br>
-            <div class="row ms-2 p-4 justify-content-end">
-                <div class="col-2">
-                    <div class="doc-item text-center">
-                        <p class="text-muted m-0">
-                            Foto KTP <br>
-                        </p>
-                        <img src="{{ asset('storage/uploads/ktp/' . $data->ktp) }}" alt="Foto KTP" class="img-fluid"
-                            style="border-radius: 10px;"><br>
-                        <a href="{{ asset('storage/uploads/ktp/' . $data->ktp) }}" download class="btn"
-                            style="border-radius: 10px; background-color: #6c757d; color: white;">Download</a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="doc-item text-center">
-                        <p class="text-muted m-0">
-                            Foto SIM <br>
-                        </p>
-                        <img src="{{ asset('storage/uploads/sim/' . $data->sim) }}" alt="Foto SIM" class="img-fluid"
-                            style="border-radius: 10px;"><br>
-                        <a href="{{ asset('storage/uploads/sim/' . $data->sim) }}" download class="btn"
-                            style="border-radius: 10px; background-color: #6c757d; color: white;">Download</a>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-        <!-- Modal Edit Data -->
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <img src="{{ asset('assets.user/img/car.png') }}" alt="" width="50px"> <strong
-                            style="font-size: 1em">Ganti Password</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('password.update') }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-3">
-                                <label for="password_lama" class="form-label">Password Lama</label>
-                                <input type="password" class="form-control" id="password_lama" name="current_password"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password_baru" class="form-label">Password Baru</label>
-                                <input type="password" class="form-control" id="password_baru" name="password" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="konfirmasi_password" class="form-label">Konfirmasi Password</label>
-                                <input type="password" class="form-control" id="password_confirmation"
-                                    name="password_confirmation" required>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
+                <script>
+                    function searchFunction() {
+                        const input = document.getElementById('searchInput').value.toLowerCase();
+                        const orderCards = document.querySelectorAll('.order-card');
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                        orderCards.forEach(card => {
+                            const cardText = card.textContent.toLowerCase();
+                            card.style.display = cardText.includes(input) ? '' : 'none';
+                        });
+                    }
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+                    function filterOrders(status) {
+                        const orderCards = document.querySelectorAll('.order-card');
+
+                        orderCards.forEach(card => {
+                            card.style.display = (status === 'all' || card.dataset.status === status) ? '' : 'none';
+                        });
+                    }
+                </script>
     </body>
-
-    </html>
 @endsection
