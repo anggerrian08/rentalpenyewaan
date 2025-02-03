@@ -48,7 +48,7 @@ use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\ReviewController2;
 
 Route::middleware('auth')->group(function () {
-    Route::put('/password/update', [ChangePassword::class, 'update'])->name('password.update');
+    // Route::put('/password/update', [ChangePassword::class, 'update'])->name('password.update');
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
@@ -65,7 +65,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
     Route::patch('/aproval/{id}/accept', [ApprovalController::class, 'accepted'])->name('aproval.accepted');
-    Route::get('/aproval/{id}/show', [ApprovalController::class, 'show'])->name('aproval.show');
+    // Route::get('/aproval/{id}/show', [ApprovalController::class, 'show'])->name('aproval.show');
     Route::patch('/aproval/{id}/rejected', [ApprovalController::class, 'rejected'])->name('aproval.rejected');
     Route::patch('/aproval/{id}/returned', [ApprovalController::class, 'returned'])->name('aproval.returned');
     Route::post('/aproval/pay/{id}', [ApprovalController::class, 'pay'])->name('aproval.pay');
@@ -80,7 +80,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
 
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
 
-    Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
+    // Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
     Route::post('/review2', [ReviewController2::class, 'store'])->name('review2.store');
 });
 
