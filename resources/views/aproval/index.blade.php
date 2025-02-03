@@ -205,49 +205,46 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->user->email }}</td>
-                                        <td>{{ $item->car->name }}</td>
-                                        <td>{{ $item->user->nik }}</td>
-                                        <td>{{ $item->user->jk }}</td>
-                                        <td>{{ $item->user->phone_number }}</td>
-                                        <td>
-                                            @php
-                                                $statusClass = [
-                                                    'borrowed' => 'success',
-                                                    'rejected' => 'danger',
-                                                    'in_process' => 'warning',
-                                                    'returned' => 'success',
-                                                    'late' => 'danger',
-                                                ];
-                                            @endphp
-                                            <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
-                                                {{ ucfirst(str_replace('_', ' ', $item->status)) }}
-                                            </div>
-                                        </td>
-                                        <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <a href="{{ route('aproval.show', $item->id) }}"
-                                                    class="btn btn-info btn-sm p-1">
-                                                    <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                                </a>
-                                                {{-- <button type="button" class="btn btn-primary btn-sm p-1" data-bs-toggle="modal" data-bs-target="#payModal{{ $item->id }}">
-                                                <i class="fa fa-credit-card" style="font-size: 15px;"></i>
-                                            </button> --}}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="9" class="text-center">
-                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
-                                                alt="">
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @forelse ($bookings as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->user->email }}</td>
+                                    <td>{{ $item->car->name }}</td>
+                                    <td>{{ $item->user->nik }}</td>
+                                    <td>{{ $item->user->jk }}</td>
+                                    <td>{{ $item->user->phone_number }}</td>
+                                    <td>
+                                        @php
+                                            $statusClass = [
+                                                'borrowed' => 'success',
+                                                'rejected' => 'danger',
+                                                'in_process' => 'warning',
+                                                'returned' => 'success',
+                                                'late' => 'danger',
+                                            ];
+                                        @endphp
+                                        <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
+                                            {{ ucfirst(str_replace('_', ' ', $item->status)) }}
+                                        </div>
+                                    </td>
+                                    <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{ route('aproval.show', $item->id) }}"
+                                                class="btn btn-info btn-sm p-1">
+                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">
+                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                    </td>
+                                </tr>
+                            @endforelse
+                            
                             </tbody>
                         </table>
                     </div>
@@ -256,7 +253,7 @@
                 <!-- Pagination -->
                 <div class="row mt-3">
                     <div class="col-md-12 text-center">
-                        {{ $data->links() }}
+                        {{ $bookings->links() }}
                     </div>
                 </div>
             </div>

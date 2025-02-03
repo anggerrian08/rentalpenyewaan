@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\DetailPembayaran;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ApprovalController extends Controller
@@ -20,82 +21,54 @@ class ApprovalController extends Controller
         $filter_status = $request->input('filter_status');
 
         // Query dasar
-        $query = Booking::with('user', 'car');
 
-        // Filter berdasarkan email (A-Z, Z-A)
+        $query = Booking::query()
+            ->select('bookings.*')
+            ->with('user', 'car')
+            ->leftJoin('users', 'users.id', '=', 'bookings.user_id');
+    
+        // Filter berdasarkan email (A-Z, Z-A) tanpa subquery
+
         if ($filter === 'a-z') {
-            $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'asc');
+            $query->orderBy('users.email', 'asc');
         } elseif ($filter === 'z-a') {
-            $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'desc');
+            $query->orderBy('users.email', 'desc');
         }
 
         // Filter berdasarkan nomor telepon
         if ($filter_no_telpon) {
-            $query->whereHas('user', function ($q) use ($filter_no_telpon) {
-                $q->where('phone_number', 'like', "%{$filter_no_telpon}%");
-            });
+            $query->where('users.phone_number', 'like', "%{$filter_no_telpon}%");
         }
 
         // Filter berdasarkan status
         if ($filter_status) {
-            $query->where('status', $filter_status);
+            $query->where('bookings.status', $filter_status);
         }
 
         // Pencarian berdasarkan email
         if ($search) {
-            $query->whereHas('user', function ($q) use ($search) {
-                $q->where('email', 'like', "%{$search}%");
-            });
+            $query->where('users.email', 'like', "%{$search}%");
         }
 
+    
+        // Update status langsung di database untuk "auto-reject"
+        Booking::where('status', 'in_process')
+            ->whereRaw('DATEDIFF(NOW(), order_date) > 2')
+            ->update(['status' => 'rejected']);
+    
+        // Hitung denda langsung di database
+        Booking::where('status', 'late')
+            ->whereRaw('NOW() > return_date')
+            ->update([
+                'denda' => DB::raw('FLOOR(TIMESTAMPDIFF(DAY, return_date, NOW()) * 50000)')
+            ]);
+    
         // Ambil data booking dengan pagination
         $bookings = $query->paginate(10);
-
-        // Iterasi melalui setiap booking untuk menghitung denda, status, dan auto-reject
-        foreach ($bookings as $booking) {
-            $currentDate = now();
-
-            // Ensure order_date is not null and properly formatted
-            $orderDate = $booking->order_date ? strtotime($booking->order_date) : 0;
-
-            // Hitung selisih hari antara order_date dan sekarang
-            $daysDifference = $orderDate ? (strtotime($currentDate) - $orderDate) / (60 * 60 * 24) : 0;
-
-            // Jika status "in_process" dan lebih dari 2 hari, ubah menjadi "rejected"
-            if ($booking->status === 'in_process' && $daysDifference > 2) {
-                $booking->status = 'rejected';
-                $booking->save();
-            }
-
-            // Hitung denda jika diperlukan (contoh: untuk status 'late')
-            if ($booking->status === 'late') {
-                $returnDate = strtotime($booking->return_date);
-                $currentTimestamp = strtotime(now());
-                $denda = 0;
-
-                if ($currentTimestamp > $returnDate) {
-                    $selisihHari = floor(($currentTimestamp - $returnDate) / (60 * 60 * 24)); // Dibulatkan ke bawah
-                    $dendaPerHari = 50000;
-                    $denda = $selisihHari * $dendaPerHari;
-                }
-
-                if ($booking->denda != $denda) {
-                    $booking->denda = $denda;
-                    $booking->save();
-                }
-            }
-
-        }
-
-
-        // Kirim data booking ke view
-        return view('aproval.index', [
-            'data' => $bookings,
-            'filter' => $filter,
-            'search' => $search,
-            'filter_no_telpon' => $filter_no_telpon,
-            'filter_status' => $filter_status,
-        ]);
+    
+        return view('aproval.index', compact(
+            'bookings', 'filter', 'search', 'filter_no_telpon', 'filter_status'
+        ));
     }
 
 
