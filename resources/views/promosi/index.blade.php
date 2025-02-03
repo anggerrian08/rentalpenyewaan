@@ -125,8 +125,8 @@
                 </div>
             </div>
         @empty
-            <div class="text-center">
-                <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+            <div class="text-center" style="margin-top: 70px;">
+                <img src="{{ asset('assets/images/logo/notdata.png') }}" width="200px" alt="">
             </div>
         @endforelse
     </div>

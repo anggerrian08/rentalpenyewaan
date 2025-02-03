@@ -280,17 +280,12 @@
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
                                     </span>
-                                    <input 
-                                        type="date" 
-                                        class="form-control text-muted" 
-                                        id="tanggal-pinjam" 
-                                        name="order_date" 
-                                        value="{{ request('order_date') }}" 
-                                    >
+                                    <input type="date" class="form-control text-muted" id="tanggal-pinjam"
+                                        name="order_date" value="{{ request('order_date') }}">
                                     <i class="bi bi-arrow-left-right mt-2 ms-3 text-muted"></i>
                                 </div>
                             </div>
-                            
+
                             <!-- Form Group: Tanggal Kembali -->
                             <div class="form-group">
                                 <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
@@ -298,24 +293,16 @@
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
                                     </span>
-                                    <input 
-                                        type="date" 
-                                        class="form-control text-muted" 
-                                        id="tanggal-kembali" 
-                                        name="return_date" 
-                                        value="{{ request('return_date') }}" 
-                                    >
-                                    <button 
-                                        type="submit" 
-                                        class="boton ms-3 rounded"
-                                    >
+                                    <input type="date" class="form-control text-muted" id="tanggal-kembali"
+                                        name="return_date" value="{{ request('return_date') }}">
+                                    <button type="submit" class="boton ms-3 rounded">
                                         Cari
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    
+
                 </div>
 
             </div>

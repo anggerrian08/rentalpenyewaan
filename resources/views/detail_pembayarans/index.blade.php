@@ -109,7 +109,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Id Pemesanan</th>
+                                    {{-- <th>Id Pemesanan</th> --}}
                                     <th>Email Pengguna</th>
                                     <th>Tanggal Pinjam</th>
                                     <th>Tanggal Kembali</th>
@@ -122,14 +122,18 @@
                                 @forelse ($data as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->booking_id }}</td>
+                                        {{-- <td>{{ $item->booking_id }}</td> --}}
                                         <td>{{ $item->booking->user->email ?? '-' }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}
+                                        </td>
+                                        <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
+                                        </td>
                                         <td>{{ $item->rental_duration_days }}</td>
                                         <td>{{ number_format($item->total_price, 0, ',', '.') }}</td>
                                         <td>
-                                            <button type="button" class="" data-bs-target="#detailPembayaran{{$item->id}}" style="border: none" data-bs-toggle="modal">
+                                            <button type="button" class=""
+                                                data-bs-target="#detailPembayaran{{ $item->id }}" style="border: none"
+                                                data-bs-toggle="modal">
                                                 <img src="Frame 48.svg" alt="Show">
                                             </button>
                                         </td>
@@ -137,7 +141,9 @@
                                 @empty
                                     <tr>
                                         <td colspan="9" class="text-center">
-                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                            <br><br><br>
+                                            <img src="{{ asset('assets/images/logo/notdata.png') }}" width="200px"
+                                                alt="">
                                         </td>
                                     </tr>
                                 @endforelse
@@ -147,49 +153,50 @@
                 </div>
             </div>
         </div>
-        
+
         @foreach ($data as $item)
-        <div class="modal fade" id="detailPembayaran{{ $item->id }}" tabindex="-1" aria-labelledby="detailPembayaranLabel-{{ $item->id }}" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="detailPembayaranLabel-{{ $item->id }}">Detail Pembayaran</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <h6>Booking ID</h6>
-                            <p>{{ $item->booking_id }}</p>
+            <div class="modal fade" id="detailPembayaran{{ $item->id }}" tabindex="-1"
+                aria-labelledby="detailPembayaranLabel-{{ $item->id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="detailPembayaranLabel-{{ $item->id }}">Detail Pembayaran
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div>
-                            <h6>Email User</h6>
-                            <p>{{ $item->booking->user->email ?? '-' }}</p>
+                        <div class="modal-body">
+                            <div>
+                                <h6>Booking ID</h6>
+                                <p>{{ $item->booking_id }}</p>
+                            </div>
+                            <div>
+                                <h6>Email User</h6>
+                                <p>{{ $item->booking->user->email ?? '-' }}</p>
+                            </div>
+                            <div>
+                                <h6>Tanggal Pinjam</h6>
+                                <p>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}</p>
+                            </div>
+                            <div>
+                                <h6>Tanggal Kembali</h6>
+                                <p>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
+                                </p>
+                            </div>
+                            <div>
+                                <h6>Durasi Rental (Hari)</h6>
+                                <p>{{ $item->rental_duration_days }}</p>
+                            </div>
+                            <div>
+                                <h6>Total Harga</h6>
+                                <p>{{ number_format($item->total_price, 0, ',', '.') }}</p>
+                            </div>
+
                         </div>
-                        <div>
-                            <h6>Tanggal Pinjam</h6>
-                            <p>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}</p>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
-                        <div>
-                            <h6>Tanggal Kembali</h6>
-                            <p>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}</p>
-                        </div>
-                        <div>
-                            <h6>Durasi Rental (Hari)</h6>
-                            <p>{{ $item->rental_duration_days }}</p>
-                        </div>
-                        <div>
-                            <h6>Total Harga</h6>
-                            <p>{{ number_format($item->total_price, 0, ',', '.') }}</p>
-                        </div>
-                    
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
-    
+        @endforeach
     @endsection
-        
