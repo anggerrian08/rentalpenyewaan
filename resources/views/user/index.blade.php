@@ -134,7 +134,7 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($data as $isi)
-                                                <tr >
+                                                <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $isi->name }}</td>
                                                     <td>{{ $isi->nik }}</td>
@@ -160,9 +160,9 @@
                                 </div>
                             </div>
                             @if ($data->isEmpty())
-                            <div class="text-center">
-                                <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
-                            </div>
+                                <div class="text-center" style= "margin-top: 70px;">
+                                    <img src="{{ asset('assets/images/logo/notdata.png') }}" width="200px" alt="">
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -184,85 +184,90 @@
         @endif
 
         @foreach ($data as $isi)
-        <!-- Modal Detail User -->
-        <div class="modal fade" id="show{{ $isi->id }}" tabindex="-1" aria-labelledby="showLabel{{ $isi->id }}"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content rounded-5">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="showLabel{{ $isi->id }}">
-                            <img src="{{ asset('assets/images/logo/humma.jpg') }}" alt="" width="200px">
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row align-items-stretch">
-                            <!-- Foto Profil -->
-                            <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
-                                <img src="{{ asset('storage/uploads/photo/' . $isi->photo) }}" alt="Foto Profil"
-                                    class="rounded-circle border" style="width: 120px; height: 120px; object-fit: cover;">
-                                <h3 class="mt-1">{{$isi->name}}</h3>
-                                <p class="text-muted">{{ $isi->phone_number }}</p>
-                                <div class="d-flex justify-content-center gap-2 mt-2">
-                                    <button class="btn btn-outline-info" type="button">Email</button>
-                                    <button class="btn btn-outline-info" type="button">Kirim</button>
-                                </div>
-                                <hr class="my-3">
-                                <div class="alert alert-success light text-dark" role="alert" style="background-color: rgba(40, 167, 69, 0.2);">
-                                    <p class="txt-dark"><strong>Tanggal Daftar :</strong>
-                                        {{ \Carbon\Carbon::parse($isi->created_at)->format('d-m-y') }}</p>
-                                </div>
-                                <div class="alert alert-info light text-dark" role="alert" style="background-color: rgba(23, 162, 184, 0.2);">
-                                    <p class="txt-dark"><strong>Terakhir Aktif:</strong>
-                                        {{ \Carbon\Carbon::parse($isi->updated_at)->format('d-m-y') }}</p>
-                                </div>
-
-                            </div>
-
-                            <!-- Garis Vertikal -->
-                            <div class="col-12 col-md-1 d-none d-md-block">
-                                <div class="border-start mx-auto" style="height: 100%; border-left: 2px solid #7a7979;"></div>
-                            </div>
-
-                            <!-- Detail User -->
-                            <div class="col-12 col-md-7">
-                                <div class="row">
-                                    <div class="col-12 col-sm-6 mb-3">
-                                        <p class="text-muted m-0">Nama</p>
-                                        <p class="text-muted m-0">{{ $isi->name }}</p><br>
-                                        <p class="text-muted m-0">Email</p>
-                                        <p class="text-muted m-0">{{ $isi->email }}</p><br>
-                                        <p class="text-muted m-0">Alamat</p>
-                                        <p class="text-muted m-0">{{ $isi->address }}</p><br><br>
-                                        <p class="text-muted m-0">Foto KTP</p>
-                                        <img src="{{ asset('storage/uploads/ktp/' . $isi->ktp) }}" alt="KTP"
-                                            class="rounded border" style="width: 100%; height: 120px; object-fit: cover;">
+            <!-- Modal Detail User -->
+            <div class="modal fade" id="show{{ $isi->id }}" tabindex="-1"
+                aria-labelledby="showLabel{{ $isi->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content rounded-5">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="showLabel{{ $isi->id }}">
+                                <img src="{{ asset('assets/images/logo/humma.jpg') }}" alt="" width="200px">
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row align-items-stretch">
+                                <!-- Foto Profil -->
+                                <div class="col-12 col-md-4 text-center mb-4 mb-md-0">
+                                    <img src="{{ asset('storage/uploads/photo/' . $isi->photo) }}" alt="Foto Profil"
+                                        class="rounded-circle border"
+                                        style="width: 120px; height: 120px; object-fit: cover;">
+                                    <h3 class="mt-1">{{ $isi->name }}</h3>
+                                    <p class="text-muted">{{ $isi->phone_number }}</p>
+                                    <div class="d-flex justify-content-center gap-2 mt-2">
+                                        <button class="btn btn-outline-info" type="button">Email</button>
+                                        <button class="btn btn-outline-info" type="button">Kirim</button>
                                     </div>
-                                    <div class="col-12 col-sm-6">
-                                        <p class="text-muted m-0">NIK</p>
-                                        <p class="text-muted m-0">{{ $isi->nik }}</p><br>
-                                        <p class="text-muted m-0">Tanggal Lahir</p>
-                                        <p class="text-muted m-0">{{ $isi->birt_date }}</p><br>
-                                        <p class="text-muted m-0">Jenis Kelamin</p>
-                                        <p class="text-muted m-0">{{ $isi->jk }}</p><br><br>
-                                        <p class="text-muted m-0">Foto SIM</p>
-                                        <img src="{{ asset('storage/uploads/sim/' . $isi->sim) }}" alt="SIM"
-                                            class="rounded border"  style="width: 100%; height: 120px; object-fit: cover;">
+                                    <hr class="my-3">
+                                    <div class="alert alert-success light text-dark" role="alert"
+                                        style="background-color: rgba(40, 167, 69, 0.2);">
+                                        <p class="txt-dark"><strong>Tanggal Daftar :</strong>
+                                            {{ \Carbon\Carbon::parse($isi->created_at)->format('d-m-y') }}</p>
+                                    </div>
+                                    <div class="alert alert-info light text-dark" role="alert"
+                                        style="background-color: rgba(23, 162, 184, 0.2);">
+                                        <p class="txt-dark"><strong>Terakhir Aktif:</strong>
+                                            {{ \Carbon\Carbon::parse($isi->updated_at)->format('d-m-y') }}</p>
+                                    </div>
+
+                                </div>
+
+                                <!-- Garis Vertikal -->
+                                <div class="col-12 col-md-1 d-none d-md-block">
+                                    <div class="border-start mx-auto"
+                                        style="height: 100%; border-left: 2px solid #7a7979;"></div>
+                                </div>
+
+                                <!-- Detail User -->
+                                <div class="col-12 col-md-7">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 mb-3">
+                                            <p class="text-muted m-0">Nama</p>
+                                            <p class="text-muted m-0">{{ $isi->name }}</p><br>
+                                            <p class="text-muted m-0">Email</p>
+                                            <p class="text-muted m-0">{{ $isi->email }}</p><br>
+                                            <p class="text-muted m-0">Alamat</p>
+                                            <p class="text-muted m-0">{{ $isi->address }}</p><br><br>
+                                            <p class="text-muted m-0">Foto KTP</p>
+                                            <img src="{{ asset('storage/uploads/ktp/' . $isi->ktp) }}" alt="KTP"
+                                                class="rounded border"
+                                                style="width: 100%; height: 120px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <p class="text-muted m-0">NIK</p>
+                                            <p class="text-muted m-0">{{ $isi->nik }}</p><br>
+                                            <p class="text-muted m-0">Tanggal Lahir</p>
+                                            <p class="text-muted m-0">{{ $isi->birt_date }}</p><br>
+                                            <p class="text-muted m-0">Jenis Kelamin</p>
+                                            <p class="text-muted m-0">{{ $isi->jk }}</p><br><br>
+                                            <p class="text-muted m-0">Foto SIM</p>
+                                            <img src="{{ asset('storage/uploads/sim/' . $isi->sim) }}" alt="SIM"
+                                                class="rounded border"
+                                                style="width: 100%; height: 120px; object-fit: cover;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{ route('user.destroy', $isi->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Dilarang</button>
-                        </form>
+                        <div class="modal-footer">
+                            <form action="{{ route('user.destroy', $isi->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Dilarang</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endforeach
-
     @endsection
