@@ -21,10 +21,16 @@ class DetailPembayaranController extends Controller
                     $query->where('email', 'like', '%' . $search . '%');
                 });
             })
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                // Tambahkan total pembayaran dengan denda
+                $item->total_pembayaran = $item->total_price + ($item->booking->denda ?? 0);
+                return $item;
+            });
     
         return view('detail_pembayarans.index', compact('data', 'search'));
     }
+    
     
 
     /**

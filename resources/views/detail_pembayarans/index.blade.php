@@ -191,6 +191,20 @@
                                 <p>{{ number_format($item->total_price, 0, ',', '.') }}</p>
                             </div>
 
+                            <div>
+                                <h6>Total Harga</h6>
+                                <p>{{ number_format($item->total_price, 0, ',', '.') }}</p>
+                            </div>
+                            <div>
+                                <h6>Denda</h6>
+                                <p>{{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}</p>
+                            </div>
+                            <div>
+                                <h6>Total Pembayaran</h6>
+                                <p>{{ number_format($item->total_pembayaran, 0, ',', '.') }}</p>
+                            </div>
+                            
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

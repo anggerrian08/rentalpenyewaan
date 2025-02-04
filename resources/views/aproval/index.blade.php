@@ -125,9 +125,8 @@
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <select class="form-select" name="filter" onchange="this.form.submit()">
-                                <option value="" {{ $filter == '' ? 'selected' : '' }}>Filter Email</option>
-                                <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>A-Z</option>
-                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>Z-A</option>
+                                <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>Terbaru</option>
+                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>terlama</option>
                             </select>
                         </form>
                     </div>

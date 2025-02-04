@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end mt-3">
-                @if ($aproval->booking->status != 'late' && $aproval->booking->status != 'returned')
+                @if ($aproval->booking->status == 'in_process'||  $aproval->booking->status == 'rejected')
                     <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
                         @csrf
                         @method('PATCH')
@@ -128,7 +128,7 @@
                         <button type="submit" class="btn btn-success me-2">terima</button>
                     </form>
                 @endif
-                @if ($aproval->booking->status == 'late')
+                @if ($aproval->booking->status == 'borrowed' )
                     <form action="{{ route('aproval.returned', $aproval->id) }}" method="post">
                         @csrf
                         @method('PATCH')
