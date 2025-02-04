@@ -25,10 +25,9 @@ class ApprovalController extends Controller
             ->select('bookings.*')
             ->with('user', 'car')
             ->leftJoin('users', 'users.id', '=', 'bookings.user_id')
-            // Menampilkan 'in_process' di bagian atas
             ->orderByRaw("CASE WHEN bookings.status = 'in_process' THEN 1 ELSE 2 END");
     
-        // Filter berdasarkan email (A-Z, Z-A) tanpa subquery
+        // Filter berdasarkan email (A-Z, Z-A)
         if ($filter === 'a-z') {
             $query->orderBy('users.email', 'asc');
         } elseif ($filter === 'z-a') {
@@ -50,14 +49,19 @@ class ApprovalController extends Controller
             $query->where('users.email', 'like', "%{$search}%");
         }
     
-        // Update status langsung di database untuk "auto-reject"
+        // Auto-reject jika "in_process" lebih dari 2 hari
         Booking::where('status', 'in_process')
             ->whereRaw('DATEDIFF(NOW(), order_date) > 2')
             ->update(['status' => 'rejected']);
     
-        // Hitung denda langsung di database
+        // Ubah status ke "late" hanya jika sudah lewat 1 hari penuh dari return_date
+        Booking::where('status', 'borrowed')
+            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
+            ->update(['status' => 'late']);
+    
+        // Hitung denda jika status sudah "late" dan lebih dari 1 hari dari return_date
         Booking::where('status', 'late')
-            ->whereRaw('NOW() > return_date')
+            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
             ->update([
                 'denda' => DB::raw('FLOOR(TIMESTAMPDIFF(DAY, return_date, NOW()) * 50000)')
             ]);
@@ -69,11 +73,6 @@ class ApprovalController extends Controller
             'bookings', 'filter', 'search', 'filter_no_telpon', 'filter_status'
         ));
     }
-    
-
-    
-    
-    
     
 
     public function show(string $id){
