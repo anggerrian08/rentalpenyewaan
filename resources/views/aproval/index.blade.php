@@ -18,9 +18,9 @@
         }
 
         /* .card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-            } */
+                        transform: translateY(-5px);
+                        box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                    } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
@@ -53,16 +53,19 @@
         }
 
         .search-container {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        padding: 4px 8px;
-        border-radius: 6px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        width: 100%; /* Agar container menyesuaikan */
-        max-width: 250px; /* Membatasi lebar maksimal */
-    }
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            /* Agar container menyesuaikan */
+            max-width: 250px;
+            /* Membatasi lebar maksimal */
+        }
+
         .search-container:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -84,18 +87,22 @@
         }
 
         .search-container input {
-        border: none;
-        outline: none;
-        flex: 1;
-        font-size: 14px;
-        color: #333;
-        background: transparent;
-        padding: 4px;
-        max-width: 120px; /* Membatasi input agar tidak melampaui box */
-        overflow: hidden; /* Menyembunyikan teks yang melebihi box */
-        text-overflow: ellipsis; /* Memberikan efek "..." jika teks terlalu panjang */
-        white-space: nowrap; /* Mencegah teks menjadi multiline */
-    }
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            background: transparent;
+            padding: 4px;
+            max-width: 120px;
+            /* Membatasi input agar tidak melampaui box */
+            overflow: hidden;
+            /* Menyembunyikan teks yang melebihi box */
+            text-overflow: ellipsis;
+            /* Memberikan efek "..." jika teks terlalu panjang */
+            white-space: nowrap;
+            /* Mencegah teks menjadi multiline */
+        }
     </style>
     <br>
 
@@ -118,47 +125,51 @@
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <select class="form-select" name="filter" onchange="this.form.submit()">
-                                <option value="" {{ $filter == '' ? 'selected' : '' }}>Filter Email</option>
-                                <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>A-Z</option>
-                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>Z-A</option>
+                                <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>Terbaru</option>
+                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>terlama</option>
                             </select>
                         </form>
                     </div>
-                
+
                     <!-- Search Email -->
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET" class="d-flex">
-                            <input type="text" class="form-control" name="search" placeholder="Cari email..." value="{{ $search }}">
+                            <input type="text" class="form-control" name="search" placeholder="Cari email..."
+                                value="{{ $search }}">
                             <button type="submit" class="btn btn-primary ms-2">Cari</button>
                         </form>
                     </div>
-                
+
                     <!-- Filter Nomor Telepon -->
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
-                            <input type="text" class="form-control" name="filter_no_telpon" placeholder="Cari no telepon..."
-                                value="{{ $filter_no_telpon }}">
+                            <input type="text" class="form-control" name="filter_no_telpon"
+                                placeholder="Cari no telepon..." value="{{ $filter_no_telpon }}">
                         </form>
                     </div>
-                
+
                     <!-- Filter Status -->
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <select class="form-select" name="filter_status" onchange="this.form.submit()">
                                 <option value="" {{ $filter_status == '' ? 'selected' : '' }}>Filter Status</option>
-                                <option value="borrowed" {{ $filter_status == 'borrowed' ? 'selected' : '' }}>Borrowed</option>
-                                <option value="returned" {{ $filter_status == 'returned' ? 'selected' : '' }}>Returned</option>
+                                <option value="borrowed" {{ $filter_status == 'borrowed' ? 'selected' : '' }}>Borrowed
+                                </option>
+                                <option value="returned" {{ $filter_status == 'returned' ? 'selected' : '' }}>Returned
+                                </option>
                                 <option value="late" {{ $filter_status == 'late' ? 'selected' : '' }}>Late</option>
-                                <option value="in_process" {{ $filter_status == 'in_process' ? 'selected' : '' }}>In Process</option>
-                                <option value="rejected" {{ $filter_status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                <option value="in_process" {{ $filter_status == 'in_process' ? 'selected' : '' }}>In
+                                    Process</option>
+                                <option value="rejected" {{ $filter_status == 'rejected' ? 'selected' : '' }}>Rejected
+                                </option>
                             </select>
                         </form>
                     </div>
                 </div>
-                
 
 
-                
+
+
 
                 {{-- <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="search">
@@ -193,49 +204,46 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->user->email }}</td>
-                                        <td>{{ $item->car->name }}</td>
-                                        <td>{{ $item->user->nik }}</td>
-                                        <td>{{ $item->user->jk }}</td>
-                                        <td>{{ $item->user->phone_number }}</td>
-                                        <td>
-                                            @php
-                                                $statusClass = [
-                                                    'borrowed' => 'success',
-                                                    'rejected' => 'danger',
-                                                    'in_process' => 'warning',
-                                                    'returned' => 'success',
-                                                    'late' => 'danger',
-                                                ];
-                                            @endphp
-                                            <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
-                                                {{ ucfirst(str_replace('_', ' ', $item->status)) }}
-                                            </div>
-                                        </td>
-                                        <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <a href="{{ route('aproval.show', $item->id) }}"
-                                                    class="btn btn-info btn-sm p-1">
-                                                    <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                                </a>
-                                                {{-- <button type="button" class="btn btn-primary btn-sm p-1" data-bs-toggle="modal" data-bs-target="#payModal{{ $item->id }}">
-                                                <i class="fa fa-credit-card" style="font-size: 15px;"></i>
-                                            </button> --}}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="9" class="text-center">
-                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
-                                                alt="">
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @forelse ($bookings as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->user->email }}</td>
+                                    <td>{{ $item->car->name }}</td>
+                                    <td>{{ $item->user->nik }}</td>
+                                    <td>{{ $item->user->jk }}</td>
+                                    <td>{{ $item->user->phone_number }}</td>
+                                    <td>
+                                        @php
+                                            $statusClass = [
+                                                'borrowed' => 'success',
+                                                'rejected' => 'danger',
+                                                'in_process' => 'warning',
+                                                'returned' => 'success',
+                                                'late' => 'danger',
+                                            ];
+                                        @endphp
+                                        <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
+                                            {{ ucfirst(str_replace('_', ' ', $item->status)) }}
+                                        </div>
+                                    </td>
+                                    <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{ route('aproval.show', $item->id) }}"
+                                                class="btn btn-info btn-sm p-1">
+                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center">
+                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                    </td>
+                                </tr>
+                            @endforelse
+                            
                             </tbody>
                         </table>
                     </div>
@@ -244,7 +252,7 @@
                 <!-- Pagination -->
                 <div class="row mt-3">
                     <div class="col-md-12 text-center">
-                        {{ $data->links() }}
+                        {{ $bookings->links() }}
                     </div>
                 </div>
             </div>

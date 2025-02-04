@@ -88,19 +88,44 @@
 
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="col-md-2 p-0 text-end">
-                    <form action="{{ route('detail_pembayarans.index') }}"
-                        style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
-                        <span id="search-icon">
-                            <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
-                        </span>
-                        <input type="text" style="border: none;" placeholder="Cari detail pembayaran..."
-                            aria-label="Search" name="search">
+                <div class="w-100">
+                    <form action="{{ route('detail_pembayarans.index') }}" >
+                        <div class="row g-2 align-items-center">
+                            <!-- Input Pencarian -->
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0">
+                                        <i class="fa fa-search" style="color:#00000040;"></i>
+                                    </span>
+                                    <input type="text" class="form-control border-start-0" placeholder="Cari detail pembayaran..." 
+                                        aria-label="Search" name="search" >
+                                </div>
+                            </div>
+                            
+                            <!-- Input Harga Min -->
+                            <div class="col-md-3">
+                                <input type="number" name="min_price" class="form-control" placeholder="Harga min" 
+                                  >
+                            </div>
+        
+                            <!-- Input Harga Max -->
+                            <div class="col-md-3">
+                                <input type="number" name="max_price" class="form-control" placeholder="Harga max" 
+                                    value="{{ request('max_price') }}">
+                            </div>
+        
+                            <!-- Tombol Cari -->
+                            <div class="col-md-2 text-end">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fa fa-search me-1"></i> Cari
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-
+        
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -109,7 +134,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Id Pemesanan</th>
+                                    {{-- <th>Id Pemesanan</th> --}}
                                     <th>Email Pengguna</th>
                                     <th>Tanggal Pinjam</th>
                                     <th>Tanggal Kembali</th>
@@ -122,14 +147,18 @@
                                 @forelse ($data as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->booking_id }}</td>
+                                        {{-- <td>{{ $item->booking_id }}</td> --}}
                                         <td>{{ $item->booking->user->email ?? '-' }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}
+                                        </td>
+                                        <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
+                                        </td>
                                         <td>{{ $item->rental_duration_days }}</td>
                                         <td>{{ number_format($item->total_price, 0, ',', '.') }}</td>
                                         <td>
-                                            <button type="button" class="" data-bs-target="#detailPembayaran{{$item->id}}" style="border: none" data-bs-toggle="modal">
+                                            <button type="button" class=""
+                                                data-bs-target="#detailPembayaran{{ $item->id }}" style="border: none"
+                                                data-bs-toggle="modal">
                                                 <img src="Frame 48.svg" alt="Show">
                                             </button>
                                         </td>
@@ -137,7 +166,9 @@
                                 @empty
                                     <tr>
                                         <td colspan="9" class="text-center">
-                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                            <br><br><br>
+                                            <img src="{{ asset('assets/images/logo/notdata.png') }}" width="200px"
+                                                alt="">
                                         </td>
                                     </tr>
                                 @endforelse
@@ -147,49 +178,68 @@
                 </div>
             </div>
         </div>
-        
+
         @foreach ($data as $item)
-        <div class="modal fade" id="detailPembayaran{{ $item->id }}" tabindex="-1" aria-labelledby="detailPembayaranLabel-{{ $item->id }}" aria-hidden="true">
+        <div class="modal fade" id="detailPembayaran{{ $item->id }}" tabindex="-1"
+            aria-labelledby="detailPembayaranLabel-{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="detailPembayaranLabel-{{ $item->id }}">Detail Pembayaran</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="detailPembayaranLabel-{{ $item->id }}">
+                            Detail Pembayaran
+                        </h5>
+                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <h6>Booking ID</h6>
-                            <p>{{ $item->booking_id }}</p>
+                        <div class="container">
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Email User</div>
+                                <div class="col-6 text-end">{{ $item->booking->user->email ?? '-' }}</div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Tanggal Pinjam</div>
+                                <div class="col-6 text-end">
+                                    {{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Tanggal Kembali</div>
+                                <div class="col-6 text-end">
+                                    {{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Durasi Rental (Hari)</div>
+                                <div class="col-6 text-end">{{ $item->rental_duration_days }}</div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Total Harga</div>
+                                <div class="col-6 text-end text-success">
+                                    Rp {{ number_format($item->total_price, 0, ',', '.') }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Denda</div>
+                                <div class="col-6 text-end text-danger">
+                                    Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom py-2 bg-light fw-bold">
+                                <div class="col-6 " style="color: black">Total Pembayaran</div>
+                                <div class="col-6 text-end text-primary">
+                                    Rp {{ number_format($item->total_pembayaran, 0, ',', '.') }}
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h6>Email User</h6>
-                            <p>{{ $item->booking->user->email ?? '-' }}</p>
-                        </div>
-                        <div>
-                            <h6>Tanggal Pinjam</h6>
-                            <p>{{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}</p>
-                        </div>
-                        <div>
-                            <h6>Tanggal Kembali</h6>
-                            <p>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}</p>
-                        </div>
-                        <div>
-                            <h6>Durasi Rental (Hari)</h6>
-                            <p>{{ $item->rental_duration_days }}</p>
-                        </div>
-                        <div>
-                            <h6>Total Harga</h6>
-                            <p>{{ number_format($item->total_price, 0, ',', '.') }}</p>
-                        </div>
-                    
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    @endforeach
-    
-    @endsection
         
+        @endforeach
+    @endsection

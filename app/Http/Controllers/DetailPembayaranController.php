@@ -12,19 +12,30 @@ class DetailPembayaranController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search'); // Ambil input pencarian
+        $search = $request->input('search'); // Pencarian berdasarkan email
+        $min_price = $request->input('min_price'); // Harga minimal
+        $max_price = $request->input('max_price'); // Harga maksimal
     
-        // Ambil data dengan relasi booking dan filter berdasarkan email jika ada pencarian
+        // Ambil data dengan relasi booking dan filter berdasarkan email serta rentang harga
         $data = DetailPembayaran::with('booking.user')
             ->when($search, function ($query, $search) {
                 $query->whereHas('booking.user', function ($query) use ($search) {
                     $query->where('email', 'like', '%' . $search . '%');
                 });
             })
-            ->get();
+            ->when($min_price && $max_price, function ($query) use ($min_price, $max_price) {
+                $query->whereBetween('total_price', [$min_price, $max_price]);
+            })
+            ->get()
+            ->map(function ($item) {
+                // Tambahkan total pembayaran dengan denda
+                $item->total_pembayaran = $item->total_price + ($item->booking->denda ?? 0);
+                return $item;
+            });
     
-        return view('detail_pembayarans.index', compact('data', 'search'));
+        return view('detail_pembayarans.index', compact('data', 'search', 'min_price', 'max_price'));
     }
+    
     
 
     /**

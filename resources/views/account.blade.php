@@ -1,3 +1,4 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <title>User Profile</title>
@@ -9,7 +10,7 @@
 
             .container {
                 display: flex;
-                max-width: 950px;
+                max-width: 1200px;
                 margin: 20px auto;
                 gap: 20px;
             }
@@ -141,6 +142,9 @@
 
             <div class="main-content">
                 <h3>Profile</h3>
+                <a href="http://localhost:8000/" style=" text-decoration: none;">
+                    <i class="fa fa-arrow-left"></i> Kembali
+                </a>
 
                 {{-- <div class="search">
                     <input type="search" id="searchInput" placeholder="Cari sesuatu..." oninput="searchFunction()">

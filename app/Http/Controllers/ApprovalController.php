@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\DetailPembayaran;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ApprovalController extends Controller
@@ -20,86 +21,58 @@ class ApprovalController extends Controller
         $filter_status = $request->input('filter_status');
     
         // Query dasar
-        $query = Booking::with('user', 'car');
+        $query = Booking::query()
+            ->select('bookings.*')
+            ->with('user', 'car')
+            ->leftJoin('users', 'users.id', '=', 'bookings.user_id')
+            ->orderByRaw("CASE WHEN bookings.status = 'in_process' THEN 1 ELSE 2 END");
     
         // Filter berdasarkan email (A-Z, Z-A)
         if ($filter === 'a-z') {
-            $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'asc');
+            $query->orderBy('users.email', 'asc');
         } elseif ($filter === 'z-a') {
-            $query->orderBy(User::select('email')->whereColumn('users.id', 'bookings.user_id'), 'desc');
+            $query->orderBy('users.email', 'desc');
         }
     
         // Filter berdasarkan nomor telepon
         if ($filter_no_telpon) {
-            $query->whereHas('user', function ($q) use ($filter_no_telpon) {
-                $q->where('phone_number', 'like', "%{$filter_no_telpon}%");
-            });
+            $query->where('users.phone_number', 'like', "%{$filter_no_telpon}%");
         }
     
         // Filter berdasarkan status
         if ($filter_status) {
-            $query->where('status', $filter_status);
+            $query->where('bookings.status', $filter_status);
         }
     
         // Pencarian berdasarkan email
         if ($search) {
-            $query->whereHas('user', function ($q) use ($search) {
-                $q->where('email', 'like', "%{$search}%");
-            });
+            $query->where('users.email', 'like', "%{$search}%");
         }
+    
+        // Auto-reject jika "in_process" lebih dari 2 hari
+        Booking::where('status', 'in_process')
+            ->whereRaw('DATEDIFF(NOW(), order_date) > 2')
+            ->update(['status' => 'rejected']);
+    
+        // Ubah status ke "late" hanya jika sudah lewat 1 hari penuh dari return_date
+        Booking::where('status', 'borrowed')
+            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
+            ->update(['status' => 'late']);
+    
+        // Hitung denda jika status sudah "late" dan lebih dari 1 hari dari return_date
+        Booking::where('status', 'late')
+            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
+            ->update([
+                'denda' => DB::raw('FLOOR(TIMESTAMPDIFF(DAY, return_date, NOW()) * 50000)')
+            ]);
     
         // Ambil data booking dengan pagination
         $bookings = $query->paginate(10);
     
-        // Iterasi melalui setiap booking untuk menghitung denda, status, dan auto-reject
-        foreach ($bookings as $booking) {
-            $currentDate = now();
-        
-            // Ensure order_date is not null and properly formatted
-            $orderDate = $booking->order_date ? strtotime($booking->order_date) : 0;
-        
-            // Hitung selisih hari antara order_date dan sekarang
-            $daysDifference = $orderDate ? (strtotime($currentDate) - $orderDate) / (60 * 60 * 24) : 0;
-        
-            // Jika status "in_process" dan lebih dari 2 hari, ubah menjadi "rejected"
-            if ($booking->status === 'in_process' && $daysDifference > 2) {
-                $booking->status = 'rejected';
-                $booking->save();
-            }
-        
-            // Hitung denda jika diperlukan (contoh: untuk status 'late')
-            if ($booking->status === 'late') {
-                $returnDate = strtotime($booking->return_date);
-                $currentTimestamp = strtotime(now());
-                $denda = 0;
-            
-                if ($currentTimestamp > $returnDate) {
-                    $selisihHari = floor(($currentTimestamp - $returnDate) / (60 * 60 * 24)); // Dibulatkan ke bawah
-                    $dendaPerHari = 50000;
-                    $denda = $selisihHari * $dendaPerHari;
-                }
-            
-                if ($booking->denda != $denda) {
-                    $booking->denda = $denda;
-                    $booking->save();
-                }
-            }
-            
-        }
-        
-    
-        // Kirim data booking ke view
-        return view('aproval.index', [
-            'data' => $bookings,
-            'filter' => $filter,
-            'search' => $search,
-            'filter_no_telpon' => $filter_no_telpon,
-            'filter_status' => $filter_status,
-        ]);
+        return view('aproval.index', compact(
+            'bookings', 'filter', 'search', 'filter_no_telpon', 'filter_status'
+        ));
     }
-    
-    
-    
     
 
     public function show(string $id){
@@ -175,15 +148,21 @@ class ApprovalController extends Controller
     public function returned(Request $request, string $id)
     {
         $booking = Booking::findOrFail($id);
+        $car = Car::findOrFail($booking->car_id);
     
         // Jika booking sudah dikembalikan, tidak bisa diubah lagi
         if ($booking->status == 'returned') {
             return redirect()->route('aproval.index')->with('error', 'Booking sudah dikembalikan.');
         }
+
     
         // Reset denda ketika status diubah ke 'returned'
         $booking->denda = 0;  // Reset denda ke 0
         $booking->status = 'returned';  // Ubah status menjadi 'returned'
+
+          $car->update([
+            'stock' => $car->stock + 1,
+        ]);
         
         $booking->save();  // Simpan perubahan
         
