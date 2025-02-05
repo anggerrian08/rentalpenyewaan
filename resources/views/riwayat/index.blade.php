@@ -48,9 +48,10 @@
                 }
 
                 .navbar .profile {
-                    padding-left: 50px;
+                    padding-left: 30px;
                     padding-right: 60px;
                     text-align: center;
+                    margin-top: 20px;
                     margin-bottom: 20px;
                 }
 
@@ -400,9 +401,13 @@
                             <a href="http://localhost:8000/" style=" text-decoration: none;">
                                 <i class="fa fa-arrow-left"></i> Kembali
                             </a>
-                            
+
                             <div class="profile">
-                                <img src="{{ asset('assets/images/dashboard/profile.png') }}" alt="User">
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ asset('storage/uploads/photo/' . auth()->user()->photo) }}"
+                                        alt="Foto Profil" class="rounded-circle border"
+                                        style="width: 120px; height: 120px; object-fit: cover;">
+                                </div>
                                 <h3>{{ Auth::user()->name }}</h3>
                             </div>
                             <ul class="menu">
@@ -416,9 +421,8 @@
                             </ul>
                         </div>
                         <div class="grid text-left" style="--bs-gap: .25rem 1rem;">
-                            <h3>Riwayat Transaksi</h3>
                             <div class="main-content">
-                                {{-- search --}}
+                                <h3 class="text-muted mb-3">Riwayat Transaksi</h3>
                                 <div class="search" style="display: flex; justify-content: center; margin-top: 2px;">
                                     <input type="search" id="searchInput" placeholder="Cari sesuatu..."
                                         style="
@@ -724,27 +728,27 @@
     @endforeach
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-    integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">
-</script>
+        integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    @if (session('success'))
-        Swal.fire({
-            title: "Success",
-            text: "{{ session('success') }}",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000
-        });
-    @endif
-    @if (session('error'))
-        Swal.fire({
-            title: "Error",
-            text: "{{ session('error') }}",
-            icon: "error",
-            showConfirmButton: false,
-            timer: 3000
-        });
-    @endif
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: "Success",
+                text: "{{ session('success') }}",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+        @if (session('error'))
+            Swal.fire({
+                title: "Error",
+                text: "{{ session('error') }}",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+    </script>
