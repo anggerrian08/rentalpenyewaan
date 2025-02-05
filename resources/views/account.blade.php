@@ -291,12 +291,15 @@
                                     Profil
                                 </a>
                             </li>
+                            @if (auth()->user()->hasRole('user'))
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="history-tab" href="{{ route('riwayat.index') }}"
                                     role="tab" aria-controls="history" aria-selected="false">
                                     Riwayat
                                 </a>
                             </li>
+                            
+                            @endif
                         </ul>
 
                         <div class="col-12 col-sm-6 mb-3">
