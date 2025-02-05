@@ -16,7 +16,7 @@
 
     .container {
         display: flex;
-        max-width: 970px;
+        max-width: 1000px;
         margin: 20px auto;
         gap: 20px;
     }
@@ -149,7 +149,7 @@
         <div class="main-content">
 
             <img src="{{ asset('assets/images/logo/humma.jpg') }}" alt="" width="220px"><br>
-            <div style="position: absolute; right: 187px; top: 40px;">
+            <div style="position: absolute; right: 174px; top: 40px;">
                 <a href="http://localhost:8000/" class="btn btn-outline-secondary">
                     <i class="fa fa-arrow-left"></i> Kembali
                 </a>
