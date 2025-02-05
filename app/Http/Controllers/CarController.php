@@ -268,7 +268,7 @@ class CarController extends Controller
                 'luggage_capacity' => $request->luggage_capacity,
             ]);
         }
-        return redirect()->route('car.index');
+        return redirect()->route('car.index')->with('success','Berhasil Mengupdate jenis mobil');
     }
 
     public function destroy(Car $car)
@@ -276,7 +276,7 @@ class CarController extends Controller
         try {
             $car->delete();
             Storage::disk('public')->delete('uploads/car/'. $car->photo);
-            return redirect()->route('car.index')->with('success', 'jenis mobil berhasil dihapus.');
+            return redirect()->route('car.index')->with('success', 'Jenis mobil berhasil dihapus.');
         } catch (\Throwable $th) {
             // Tangani error jika mobil terkait dengan entitas lain
             return back()->with('error', 'Gagal menghapus mobil karena terkait dengan data lain.');

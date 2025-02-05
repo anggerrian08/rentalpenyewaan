@@ -59,7 +59,7 @@ class MerekController extends Controller
 
         $merek->update($data);
 
-        return redirect()->route('merek.index')->with('success', 'Berhasil Menambahkan Merek.');
+        return redirect()->route('merek.index')->with('success', 'Berhasil Mengupdate Merek.');
 
     }
     public function destroy(Merek $merek)

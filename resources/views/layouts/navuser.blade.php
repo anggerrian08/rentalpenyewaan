@@ -401,8 +401,10 @@
                 </li>
                 <li class="profile-nav onhover-dropdown pe-0 py-0">
                     <div class="d-flex align-items-center profile-media">
-                        <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}"
-                            alt="Profile Picture">
+                        <img src="{{ auth()->check() && auth()->user()->photo ? asset('storage/uploads/photo/' . auth()->user()->photo) : asset('assets/images/dashboard/profile.png') }}"
+                            alt="Foto Profil" class="rounded-circle border"
+                            style="width: 50px; height: 48px; object-fit: cover;">
+
                         <div class="flex-grow-1 user">
                             @auth
                                 <span>{{ auth()->user()->name }}</span>

@@ -89,7 +89,7 @@
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="w-100">
-                    <form action="{{ route('detail_pembayarans.index') }}" >
+                    <form action="{{ route('detail_pembayarans.index') }}">
                         <div class="row g-2 align-items-center">
                             <!-- Input Pencarian -->
                             <div class="col-md-4">
@@ -97,23 +97,22 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="fa fa-search" style="color:#00000040;"></i>
                                     </span>
-                                    <input type="text" class="form-control border-start-0" placeholder="Cari detail pembayaran..." 
-                                        aria-label="Search" name="search" >
+                                    <input type="text" class="form-control border-start-0"
+                                        placeholder="Cari detail pembayaran..." aria-label="Search" name="search">
                                 </div>
                             </div>
-                            
+
                             <!-- Input Harga Min -->
                             <div class="col-md-3">
-                                <input type="number" name="min_price" class="form-control" placeholder="Harga min" 
-                                  >
+                                <input type="number" name="min_price" class="form-control" placeholder="Harga min">
                             </div>
-        
+
                             <!-- Input Harga Max -->
                             <div class="col-md-3">
-                                <input type="number" name="max_price" class="form-control" placeholder="Harga max" 
+                                <input type="number" name="max_price" class="form-control" placeholder="Harga max"
                                     value="{{ request('max_price') }}">
                             </div>
-        
+
                             <!-- Tombol Cari -->
                             <div class="col-md-2 text-end">
                                 <button type="submit" class="btn btn-primary w-100">
@@ -125,7 +124,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -180,66 +179,66 @@
         </div>
 
         @foreach ($data as $item)
-        <div class="modal fade" id="detailPembayaran{{ $item->id }}" tabindex="-1"
-            aria-labelledby="detailPembayaranLabel-{{ $item->id }}" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="detailPembayaranLabel-{{ $item->id }}">
-                            Detail Pembayaran
-                        </h5>
-                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row border-bottom py-2">
-                                <div class="col-6 fw-bold">Email User</div>
-                                <div class="col-6 text-end">{{ $item->booking->user->email ?? '-' }}</div>
-                            </div>
-                            <div class="row border-bottom py-2">
-                                <div class="col-6 fw-bold">Tanggal Pinjam</div>
-                                <div class="col-6 text-end">
-                                    {{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}
+            <div class="modal fade" id="detailPembayaran{{ $item->id }}" tabindex="-1"
+                aria-labelledby="detailPembayaranLabel-{{ $item->id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #01A8EF;">
+                            <h5 class="modal-title" id="detailPembayaranLabel-{{ $item->id }}" style="color: #fff;">
+                                Detail Pembayaran
+                            </h5>
+                            <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row border-bottom py-2">
+                                    <div class="col-6 fw-bold">Email User</div>
+                                    <div class="col-6 text-end">{{ $item->booking->user->email ?? '-' }}</div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom py-2">
-                                <div class="col-6 fw-bold">Tanggal Kembali</div>
-                                <div class="col-6 text-end">
-                                    {{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
+                                <div class="row border-bottom py-2">
+                                    <div class="col-6 fw-bold">Tanggal Pinjam</div>
+                                    <div class="col-6 text-end">
+                                        {{ \Carbon\Carbon::parse($item->booking->order_date)->translatedFormat('d-M-Y') }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom py-2">
-                                <div class="col-6 fw-bold">Durasi Rental (Hari)</div>
-                                <div class="col-6 text-end">{{ $item->rental_duration_days }}</div>
-                            </div>
-                            <div class="row border-bottom py-2">
-                                <div class="col-6 fw-bold">Total Harga</div>
-                                <div class="col-6 text-end text-success">
-                                    Rp {{ number_format($item->total_price, 0, ',', '.') }}
+                                <div class="row border-bottom py-2">
+                                    <div class="col-6 fw-bold">Tanggal Kembali</div>
+                                    <div class="col-6 text-end">
+                                        {{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom py-2">
-                                <div class="col-6 fw-bold">Denda</div>
-                                <div class="col-6 text-end text-danger">
-                                    Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                                <div class="row border-bottom py-2">
+                                    <div class="col-6 fw-bold">Durasi Rental (Hari)</div>
+                                    <div class="col-6 text-end">{{ $item->rental_duration_days }}</div>
                                 </div>
-                            </div>
-                            <div class="row border-bottom py-2 bg-light fw-bold">
-                                <div class="col-6 " style="color: black">Total Pembayaran</div>
-                                <div class="col-6 text-end text-primary">
-                                    Rp {{ number_format($item->total_pembayaran, 0, ',', '.') }}
+                                <div class="row border-bottom py-2">
+                                    <div class="col-6 fw-bold">Total Harga</div>
+                                    <div class="col-6 text-end text-success">
+                                        Rp {{ number_format($item->total_price, 0, ',', '.') }}
+                                    </div>
+                                </div>
+                                <div class="row border-bottom py-2">
+                                    <div class="col-6 fw-bold">Denda</div>
+                                    <div class="col-6 text-end text-danger">
+                                        Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                                    </div>
+                                </div>
+                                <div class="row border-bottom py-2 bg-light fw-bold">
+                                    <div class="col-6 " style="color: black">Total Pembayaran</div>
+                                    <div class="col-6 text-end text-primary">
+                                        Rp {{ number_format($item->total_pembayaran, 0, ',', '.') }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-end">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
         @endforeach
     @endsection
