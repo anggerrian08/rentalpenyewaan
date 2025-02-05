@@ -1,7 +1,13 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <title>User Profile</title>
+
+
+
 <style>
     body {
         background-color: #f4f8ff;
@@ -167,7 +173,7 @@
                         <!-- Tombol Edit Profile -->
                         <button class="btn btn-outline-info" type="button" data-bs-toggle="modal"
                             data-bs-target="#editProfileModal">
-                            Edit Profile
+                            Edit password
                         </button>
 
                     </div>
@@ -197,48 +203,72 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('profile.update') }}" method="POST">
+                                <form method="post" action="{{ route('password.update') }}" class="mt-6">
                                     @csrf
-                                    @method('PUT')
-
-                                    <!-- Password Lama -->
+                                    @method('put')
+                                
+                                    <!-- Current Password -->
                                     <div class="mb-3">
-                                        <label for="old_password" class="form-label">Password Lama</label>
-                                        <input type="password" class="form-control" id="old_password"
-                                            name="old_password" required>
+                                        <label for="update_password_current_password" class="form-label">Current Password</label>
+                                        <div class="input-group">
+                                            <input id="update_password_current_password" name="current_password" type="password" 
+                                                   class="form-control @if($errors->updatePassword->has('current_password')) is-invalid @endif" 
+                                                   autocomplete="current-password" placeholder="Enter current password">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('update_password_current_password')">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        @if($errors->updatePassword->has('current_password'))
+                                            <div class="invalid-feedback">
+                                                {{ $errors->updatePassword->first('current_password') }}
+                                            </div>
+                                        @endif
                                     </div>
-
-                                    <!-- Password Baru -->
+                                
+                                    <!-- New Password -->
                                     <div class="mb-3">
-                                        <label for="new_password" class="form-label">Password Baru</label>
-                                        <input type="password" class="form-control" id="new_password"
-                                            name="new_password" required>
+                                        <label for="update_password_password" class="form-label">New Password</label>
+                                        <div class="input-group">
+                                            <input id="update_password_password" name="password" type="password" 
+                                                   class="form-control @if($errors->updatePassword->has('password')) is-invalid @endif" 
+                                                   autocomplete="new-password" placeholder="Enter new password">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('update_password_password')">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        @if($errors->updatePassword->has('password'))
+                                            <div class="invalid-feedback">
+                                                {{ $errors->updatePassword->first('password') }}
+                                            </div>
+                                        @endif
                                     </div>
-
-                                    <!-- Konfirmasi Password Baru -->
+                                
+                                    <!-- Confirm Password -->
                                     <div class="mb-3">
-                                        <label for="confirm_password" class="form-label">Konfirmasi Password
-                                            Baru</label>
-                                        <input type="password" class="form-control" id="confirm_password"
-                                            name="confirm_password" required>
+                                        <label for="update_password_password_confirmation" class="form-label">Confirm Password</label>
+                                        <div class="input-group">
+                                            <input id="update_password_password_confirmation" name="password_confirmation" type="password" 
+                                                   class="form-control @if($errors->updatePassword->has('password_confirmation')) is-invalid @endif" 
+                                                   autocomplete="new-password" placeholder="Confirm new password">
+                                            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('update_password_password_confirmation')">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </div>
+                                        @if($errors->updatePassword->has('password_confirmation'))
+                                            <div class="invalid-feedback">
+                                                {{ $errors->updatePassword->first('password_confirmation') }}
+                                            </div>
+                                        @endif
                                     </div>
-
-                                    <!-- Tombol Simpan -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Batal</button>
-                                        <button type="submit"
-                                            style="
-                                        padding: 10px 15px;
-                                        border: none;
-                                        background-color: #01A8EF;
-                                        border-radius: 5px;
-                                        font-size: 14px;
-                                        margin-left: 10px;
-
-
-                                    ">Simpan
-                                            Perubahan</button>
+                                
+                                    <!-- Submit Button and Status Message -->
+                                    <div class="d-flex align-items-center gap-3">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        @if (session('status') === 'password-updated')
+                                            <div class="alert alert-success mb-0" role="alert">
+                                                Saved.
+                                            </div>
+                                        @endif
                                     </div>
                                 </form>
                             </div>
@@ -317,5 +347,50 @@
             </script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-            </script>
+            </script>   <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: "Success",
+                text: "{{ session('success') }}",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+        @if (session('error'))
+            Swal.fire({
+                title: "Error",
+                text: "{{ session('error') }}",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+    </script>
+
+<script>
+    function togglePassword(inputId) {
+        var input = document.getElementById(inputId);
+        // 'event.currentTarget' akan merujuk ke tombol yang diklik
+        var button = event.currentTarget;
+        var icon = button.querySelector('i');
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+
 </body>
