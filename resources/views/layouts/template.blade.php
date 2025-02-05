@@ -153,30 +153,33 @@
                         </li>
                         <li class="profile-nav onhover-dropdown pe-0 py-0">
                             <div class="d-flex align-items-center profile-media">
-                                <img class="b-r-25" src="{{ asset('assets/images/dashboard/profile.png') }}"
-                                    alt="">
-                                <div class="flex-grow-1 user">
-                                    <span>{{ Auth::user()->name }}</span>
-                                    <p class="mb-0 font-nunito">Admin
-                                        <svg>
-                                            <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
-                                        </svg>
-                                    </p>
+                                <div class="d-flex align-items-center profile-media">
+                                    <img src="{{ auth()->check() && auth()->user()->photo ? asset('storage/uploads/photo/' . auth()->user()->photo) : asset('assets/images/dashboard/profile.png') }}"
+                                        alt="Foto Profil" class="rounded-circle border"
+                                        style="width: 50px; height: 48px; object-fit: cover;">
+                                    <div class="flex-grow-1 user">
+                                        <span>{{ Auth::user()->name }}</span>
+                                        <p class="mb-0 font-nunito">Admin
+                                            <svg>
+                                                <use href="../assets/svg/icon-sprite.svg#header-arrow-down"></use>
+                                            </svg>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="user-profile.html"><i data-feather="user"></i><span>Akun</span></a>
-                                </li>
-                                <li>
-                                    <form action="{{ route('logout') }}" method="POST" id="logout-form">
-                                        @csrf
-                                        <button type="submit"
-                                            style="background: none; border: none; color: inherit; padding: 0; font: inherit; cursor: pointer;">
-                                            <i data-feather="log-in"></i><span>Keluar</span>
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
+                                <ul class="profile-dropdown onhover-show-div">
+                                    <li><a href="{{ route('account.index') }}"><i data-feather="user"></i><span>Akun</span></a>
+                                    </li>
+                                    
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                                            @csrf
+                                            <button type="submit"
+                                                style="background: none; border: none; color: inherit; padding: 0; font: inherit; cursor: pointer;">
+                                                <i data-feather="log-in"></i><span>Keluar</span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
                         </li>
                     </ul>
                 </div>
