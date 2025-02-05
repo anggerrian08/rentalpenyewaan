@@ -18,9 +18,9 @@
         }
 
         /* .card:hover {
-                        transform: translateY(-5px);
-                        box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-                    } */
+                                transform: translateY(-5px);
+                                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                            } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
@@ -126,19 +126,12 @@
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <select class="form-select" name="filter" onchange="this.form.submit()">
                                 <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>Terbaru</option>
-                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>terlama</option>
+                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>Terlama</option>
                             </select>
                         </form>
                     </div>
 
-                    <!-- Search Email -->
-                    <div class="col-md-3">
-                        <form action="{{ route('aproval.index') }}" method="GET" class="d-flex">
-                            <input type="text" class="form-control" name="search" placeholder="Cari email..."
-                                value="{{ $search }}">
-                            <button type="submit" class="btn btn-primary ms-2">Cari</button>
-                        </form>
-                    </div>
+
 
                     <!-- Filter Nomor Telepon -->
                     <div class="col-md-3">
@@ -163,6 +156,15 @@
                                 <option value="rejected" {{ $filter_status == 'rejected' ? 'selected' : '' }}>Rejected
                                 </option>
                             </select>
+                        </form>
+                    </div>
+
+                    <!-- Search Email -->
+                    <div class="col-md-3">
+                        <form action="{{ route('aproval.index') }}" method="GET" class="d-flex">
+                            <input type="text" class="form-control" name="search" placeholder="Cari email..."
+                                value="{{ $search }}">
+                            <button type="submit" class="btn btn-primary ms-2">Cari</button>
                         </form>
                     </div>
                 </div>
@@ -205,45 +207,46 @@
                             </thead>
                             <tbody>
                                 @forelse ($bookings as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->email }}</td>
-                                    <td>{{ $item->car->name }}</td>
-                                    <td>{{ $item->user->nik }}</td>
-                                    <td>{{ $item->user->jk }}</td>
-                                    <td>{{ $item->user->phone_number }}</td>
-                                    <td>
-                                        @php
-                                            $statusClass = [
-                                                'borrowed' => 'success',
-                                                'rejected' => 'danger',
-                                                'in_process' => 'warning',
-                                                'returned' => 'success',
-                                                'late' => 'danger',
-                                            ];
-                                        @endphp
-                                        <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
-                                            {{ ucfirst(str_replace('_', ' ', $item->status)) }}
-                                        </div>
-                                    </td>
-                                    <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
-                                    <td>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ route('aproval.show', $item->id) }}"
-                                                class="btn btn-info btn-sm p-1">
-                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">
-                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
-                                    </td>
-                                </tr>
-                            @endforelse
-                            
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->car->name }}</td>
+                                        <td>{{ $item->user->nik }}</td>
+                                        <td>{{ $item->user->jk }}</td>
+                                        <td>{{ $item->user->phone_number }}</td>
+                                        <td>
+                                            @php
+                                                $statusClass = [
+                                                    'borrowed' => 'success',
+                                                    'rejected' => 'danger',
+                                                    'in_process' => 'warning',
+                                                    'returned' => 'success',
+                                                    'late' => 'danger',
+                                                ];
+                                            @endphp
+                                            <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
+                                                {{ ucfirst(str_replace('_', ' ', $item->status)) }}
+                                            </div>
+                                        </td>
+                                        <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('aproval.show', $item->id) }}"
+                                                    class="btn btn-info btn-sm p-1">
+                                                    <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center">
+                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                                alt="">
+                                        </td>
+                                    </tr>
+                                @endforelse
+
                             </tbody>
                         </table>
                     </div>
