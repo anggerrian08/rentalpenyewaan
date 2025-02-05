@@ -83,7 +83,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
 
     Route::resource('/pemesanan',  PemesananController::class);
 Route::resource('/favorit',  FavoritController::class);
-Route::resource('/account',  ProfileController::class);
+
 Route::get('/pemesanan/search', [PemesananController::class, 'search'])->name('pemesanan.search');
 });
 
@@ -92,6 +92,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/bookings', BookingController::class);
     Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
     Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+
+    Route::resource('/account',  ProfileController::class);
     // car
     Route::get('/car/filter', [CarController::class, 'filter'])->name('car.filter');
     Route::resource('/car', CarController::class)->only('index', 'show');
