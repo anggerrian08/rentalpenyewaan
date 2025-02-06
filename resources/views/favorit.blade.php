@@ -1,11 +1,7 @@
 @extends('layouts.navuser')
 @section('content')
 
-    <head>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    </head>
-
+  
     <style>
         /* Hero Section Styling */
         .hero-section {
@@ -260,7 +256,7 @@
             margin-bottom: 5rem;
         }
     </style>
-    <div class="hero-section">
+    <div class="hero-section" >
         <div class="container text-center">
             <img src="assets.user/img/mbl.png" alt="Cars" class="hero-image">
             <!-- Card Add Merk -->
@@ -270,7 +266,7 @@
                         <p style="color: #01A8EF;">Profil Saya ></p>
                     </a>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="margin-top: 200px">
                     <form method="GET" action="{{ route('pemesanan.search') }}">
                         @csrf
                         <div class="form-row">

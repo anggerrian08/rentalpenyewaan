@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Merek;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -146,7 +147,9 @@ class CarController extends Controller
     }
     public function show(Car $car)
     {
-        return view('car.show', compact('car'));
+        $count_data = Review::count();
+        $reviews = Review::where('car_id', $car->id)->get();
+        return view('car.show', compact('car', 'reviews', 'count_data'));
     }
     public function edit(Car $car)
     {

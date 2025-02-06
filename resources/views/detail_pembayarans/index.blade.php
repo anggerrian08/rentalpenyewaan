@@ -89,32 +89,41 @@
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="w-100">
-                    <form action="{{ route('detail_pembayarans.index') }}">
+                    <form action="{{ route('detail_pembayarans.index') }}" method="GET">
                         <div class="row g-2 align-items-center">
                             <!-- Input Pencarian -->
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="fa fa-search" style="color:#00000040;"></i>
                                     </span>
                                     <input type="text" class="form-control border-start-0"
-                                        placeholder="Cari detail pembayaran..." aria-label="Search" name="search">
+                                           placeholder="Cari detail pembayaran..." aria-label="Search" name="search">
                                 </div>
                             </div>
-
+        
                             <!-- Input Harga Min -->
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input type="number" name="min_price" class="form-control" placeholder="Harga min">
                             </div>
-
+        
                             <!-- Input Harga Max -->
-                            <div class="col-md-3">
-                                <input type="number" name="max_price" class="form-control" placeholder="Harga max"
-                                    ">
+                            <div class="col-md-2">
+                                <input type="number" name="max_price" class="form-control" placeholder="Harga max">
                             </div>
-
+        
+                            <!-- Input Tanggal Mulai -->
+                            <div class="col-md-2">
+                                <input type="date" name="start_date" class="form-control" placeholder="Tanggal mulai">
+                            </div>
+        
+                            <!-- Input Tanggal Akhir -->
+                            <div class="col-md-2">
+                                <input type="date" name="end_date" class="form-control" placeholder="Tanggal akhir">
+                            </div>
+        
                             <!-- Tombol Cari -->
-                            <div class="col-md-2 text-end">
+                            <div class="col-md-1 text-end">
                                 <button type="submit" class="btn btn-primary w-100">
                                     <i class="fa fa-search me-1"></i> Cari
                                 </button>
@@ -124,6 +133,7 @@
                 </div>
             </div>
         </div>
+        
 
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
