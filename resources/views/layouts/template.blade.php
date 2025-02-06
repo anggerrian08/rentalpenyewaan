@@ -437,7 +437,7 @@
                                         </a>
                                     </li>
 
-                                    <li class="sidebar-list">
+                                    {{-- <li class="sidebar-list">
                                         <a class="sidebar-link {{ request()->routeIs('review.index') ? 'bg-primary text-white' : '' }}"
                                             href="{{ route('review.index') }}">
                                             <i
@@ -449,7 +449,7 @@
                                             <span
                                                 class="{{ request()->routeIs('review.index') ? 'text-white' : '' }}">Tinjauan</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
 
                                     <li class="sidebar-list">
                                         <a class="sidebar-link {{ request()->routeIs('promosi.index') ? 'bg-primary text-white' : '' }}"

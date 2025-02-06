@@ -50,21 +50,21 @@ class ApprovalController extends Controller
         }
     
         // Auto-reject jika "in_process" lebih dari 2 hari
-        Booking::where('status', 'in_process')
-            ->whereRaw('DATEDIFF(NOW(), order_date) > 2')
-            ->update(['status' => 'rejected']);
+        // Booking::where('status', 'in_process')
+        //     ->whereRaw('DATEDIFF(NOW(), order_date) > 2')
+        //     ->update(['status' => 'rejected']);
     
         // Ubah status ke "late" hanya jika sudah lewat 1 hari penuh dari return_date
-        Booking::where('status', 'borrowed')
-            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
-            ->update(['status' => 'late']);
+        // Booking::where('status', 'borrowed')
+        //     ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
+        //     ->update(['status' => 'late']);
     
         // Hitung denda jika status sudah "late" dan lebih dari 1 hari dari return_date
-        Booking::where('status', 'late')
-            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
-            ->update([
-                'denda' => DB::raw('FLOOR(TIMESTAMPDIFF(DAY, return_date, NOW()) * 50000)')
-            ]);
+        // Booking::where('status', 'late')
+        //     ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
+        //     ->update([
+        //         'denda' => DB::raw('FLOOR(TIMESTAMPDIFF(DAY, return_date, NOW()) * 50000)')
+        //     ]);
     
         // Ambil data booking dengan pagination
         $bookings = $query->paginate(10);
@@ -169,6 +169,28 @@ class ApprovalController extends Controller
         return redirect()->route('aproval.index')->with('success', 'Booking berhasil dikembalikan.');
     }
     
+    public function refres()
+    {
+        // Auto-reject jika "in_process" lebih dari 2 hari
+        Booking::where('status', 'in_process')
+            ->whereRaw('DATEDIFF(NOW(), order_date) > 2')
+            ->update(['status' => 'rejected']);
+        
+        // Ubah status ke "late" hanya jika sudah lewat 1 hari penuh dari return_date
+        Booking::where('status', 'borrowed')
+            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
+            ->update(['status' => 'late']);
+        
+        // Hitung denda jika status sudah "late" dan lebih dari 1 hari dari return_date
+        Booking::where('status', 'late')
+            ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
+            ->update([
+                'denda' => DB::raw('FLOOR(TIMESTAMPDIFF(DAY, return_date, NOW()) * 50000)')
+            ]);
+    
+        // Kembalikan ke halaman yang sama dengan pesan sukses
+        return redirect()->route('aproval.index');
+    }
     
 
     // public function pay(Request $request, $id)

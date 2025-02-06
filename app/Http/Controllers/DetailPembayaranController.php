@@ -38,41 +38,53 @@ class DetailPembayaranController extends Controller
     
 
     public function index(Request $request)
-{
-    $search = $request->input('search'); // Pencarian berdasarkan email
-    $min_price = $request->input('min_price'); // Harga minimal
-    $max_price = $request->input('max_price'); // Harga maksimal
-
-    // Ambil data dengan relasi booking dan filter berdasarkan email
-    $data = DetailPembayaran::with('booking.user')
-        ->when($search, function ($query, $search) {
-            $query->whereHas('booking.user', function ($query) use ($search) {
-                $query->where('email', 'like', '%' . $search . '%');
+    {
+        $search = $request->input('search'); // Pencarian berdasarkan email
+        $min_price = $request->input('min_price'); // Harga minimal
+        $max_price = $request->input('max_price'); // Harga maksimal
+        $start_date = $request->input('start_date'); // Tanggal order
+        $end_date = $request->input('end_date'); // Tanggal return
+    
+        // Ambil data dengan relasi booking dan filter berdasarkan email
+        $data = DetailPembayaran::with('booking.user')
+            ->when($search, function ($query, $search) {
+                $query->whereHas('booking.user', function ($query) use ($search) {
+                    $query->where('email', 'like', '%' . $search . '%');
+                });
+            })
+            ->when($start_date, function ($query, $start_date) {
+                $query->whereHas('booking', function ($query) use ($start_date) {
+                    $query->whereDate('order_date', '=', $start_date);
+                });
+            })
+            ->when($end_date, function ($query, $end_date) {
+                $query->whereHas('booking', callback: function ($query) use ($end_date) {
+                    $query->whereDate('return_date', '=', $end_date);
+                });
+            })
+            ->get()
+            ->map(function ($item) {
+                // Tambahkan total pembayaran dengan denda
+                $item->total_pembayaran = $item->total_price + ($item->booking->denda ?? 0);
+                return $item;
             });
-        })
-        ->get()
-        ->map(function ($item) {
-            // Tambahkan total pembayaran dengan denda
-            $item->total_pembayaran = $item->total_price + ($item->booking->denda ?? 0);
-            return $item;
-        });
-
-    // Filter data setelah perhitungan total_pembayaran
-    if ($min_price) {
-        $data = $data->filter(function ($item) use ($min_price) {
-            return $item->total_pembayaran >= $min_price;
-        });
+    
+        // Filter data setelah perhitungan total_pembayaran
+        if ($min_price) {
+            $data = $data->filter(function ($item) use ($min_price) {
+                return $item->total_pembayaran >= $min_price;
+            });
+        }
+    
+        if ($max_price) {
+            $data = $data->filter(function ($item) use ($max_price) {
+                return $item->total_pembayaran <= $max_price;
+            });
+        }
+    
+        return view('detail_pembayarans.index', compact('data', 'search', 'min_price', 'max_price', 'start_date', 'end_date'));
     }
-
-    if ($max_price) {
-        $data = $data->filter(function ($item) use ($max_price) {
-            return $item->total_pembayaran <= $max_price;
-        });
-    }
-
-    return view('detail_pembayarans.index', compact('data', 'search', 'min_price', 'max_price'));
-}
-
+    
     
 
     /**
