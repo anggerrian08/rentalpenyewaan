@@ -110,7 +110,7 @@
                             <!-- Input Harga Max -->
                             <div class="col-md-3">
                                 <input type="number" name="max_price" class="form-control" placeholder="Harga max"
-                                    value="{{ request('max_price') }}">
+                                    ">
                             </div>
 
                             <!-- Tombol Cari -->
@@ -139,6 +139,8 @@
                                     <th>Tanggal Kembali</th>
                                     <th>Durasi Rental (Hari)</th>
                                     <th>Total Harga</th>
+                                    <th>denda</th>
+                                    <th>total bayar</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -153,7 +155,14 @@
                                         <td>{{ \Carbon\Carbon::parse($item->booking->return_date)->translatedFormat('d-M-Y') ?? '-' }}
                                         </td>
                                         <td>{{ $item->rental_duration_days }}</td>
-                                        <td>{{ number_format($item->total_price, 0, ',', '.') }}</td>
+                                        <td>Rp.{{ number_format($item->total_price, 0, ',', '.') }}</td>
+                                        <td class="text-danger">
+                                                    Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-info">
+                                                    Rp {{ number_format($item->total_pembayaran ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        
                                         <td>
                                             <button type="button" class=""
                                                 data-bs-target="#detailPembayaran{{ $item->id }}" style="border: none"
