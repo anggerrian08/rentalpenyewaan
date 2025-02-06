@@ -25,6 +25,8 @@ Route::get('/', function () {
 })->name('halamanutama');
 
 Route::resource('/beranda',  BerandaController::class);
+Route::resource('/pemesanan',  PemesananController::class);
+Route::resource('/favorit',  FavoritController::class);
 
 
 
