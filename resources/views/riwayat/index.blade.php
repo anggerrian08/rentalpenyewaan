@@ -485,7 +485,7 @@
                                                 <p class="order-date">
                                                     {{ $item->created_at->translatedFormat('d M Y') }}
                                                 </p>
-                                                @if($item->booking->status == 'late')
+                                                @if ($item->booking->status == 'late')
                                                     <span class="badge bg-danger text-white px-3">Late</span>
                                                 @elseif($item->booking->status == 'in_process')
                                                     <span class="badge bg-warning text-dark px-3">In Process</span>
@@ -698,83 +698,85 @@
     @endforeach
 
     @foreach ($data_all as $item)
-    <div class="modal fade" id="detail{{ $item->id }}" tabindex="-1"
-        aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #007bff; color: white;">
-                    <h5 class="modal-title" id="reviewLabel{{ $item->booking->car->id }}">Detail Sewa</h5>
-                    <button type="button" class="btn-close" style="color: white;" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="padding: 2rem;">
-                    <!-- Booking Details Section -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <strong>Email:</strong>
-                            <p class="text-muted">{{ $item->booking->user->email }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <strong>Mobil:</strong>
-                            <p class="text-muted">{{ $item->booking->car->name }}</p>
-                        </div>
+        <div class="modal fade" id="detail{{ $item->id }}" tabindex="-1"
+            aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #01A8EF;">
+                        <h5 class="modal-title" id="reviewLabel{{ $item->booking->car->id }}" style="color: #fff">
+                            Detail Sewa</h5>
+                        <button type="button" class="btn-close" style="color: white;" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <strong>Order Date:</strong>
-                            <p class="text-muted">{{ $item->booking->order_date }}</p>
+                    <div class="modal-body" style="padding: 2rem;">
+                        <!-- Booking Details Section -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <strong>Email:</strong>
+                                <p class="text-muted">{{ $item->booking->user->email }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Mobil:</strong>
+                                <p class="text-muted">{{ $item->booking->car->name }}</p>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <strong>Return Date:</strong>
-                            <p class="text-muted">{{ $item->booking->return_date }}</p>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <strong>Order Date:</strong>
+                                <p class="text-muted">{{ $item->booking->order_date }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Return Date:</strong>
+                                <p class="text-muted">{{ $item->booking->return_date }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <strong>Durasi Sewa:</strong>
-                            <p class="text-muted">{{ $item->rental_duration_days }} hari</p>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <strong>Durasi Sewa:</strong>
+                                <p class="text-muted">{{ $item->rental_duration_days }} hari</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Status:</strong><br>
+                                @if ($item->booking->status == 'late')
+                                    <span class="badge bg-danger text-white px-3">Late</span>
+                                @elseif($item->booking->status == 'in_process')
+                                    <span class="badge bg-warning text-dark px-3">In Process</span>
+                                @elseif($item->booking->status == 'borrowed')
+                                    <span class="badge bg-primary text-white px-3">Borrowed</span>
+                                @elseif($item->booking->status == 'returned')
+                                    <span class="badge bg-success text-white px-3">Returned</span>
+                                @elseif($item->booking->status == 'rejected')
+                                    <span class="badge bg-secondary text-white px-3">Rejected</span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <strong>Status:</strong><br>
-                            @if($item->booking->status == 'late')
-                                <span class="badge bg-danger text-white px-3">Late</span>
-                            @elseif($item->booking->status == 'in_process')
-                                <span class="badge bg-warning text-dark px-3">In Process</span>
-                            @elseif($item->booking->status == 'borrowed')
-                                <span class="badge bg-primary text-white px-3">Borrowed</span>
-                            @elseif($item->booking->status == 'returned')
-                                <span class="badge bg-success text-white px-3">Returned</span>
-                            @elseif($item->booking->status == 'rejected')
-                                <span class="badge bg-secondary text-white px-3">Rejected</span>
-                            @endif
-                        </div>
-                    </div>
 
-                    <!-- Payment Breakdown Section -->
-                    <div class="p-4 rounded" style="background-color: #f8f9fa;">
-                        <div class="row border-bottom">
-                            <div class="col-6 fw-bold">Harga Sewa</div>
-                            <div class="col-6 text-end" style="color: #007bff;">
-                                <p class="fw-bold">Rp {{ number_format($item->total_price, 0, ',', '.') }}</p>
+                        <!-- Payment Breakdown Section -->
+                        <div class="p-4 rounded" style="background-color: #f8f9fa;">
+                            <div class="row border-bottom">
+                                <div class="col-6 fw-bold">Harga Sewa</div>
+                                <div class="col-6 text-end" style="color: #007bff;">
+                                    <p class="fw-bold">Rp {{ number_format($item->total_price, 0, ',', '.') }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row border-bottom py-2">
-                            <div class="col-6 fw-bold">Denda</div>
-                            <div class="col-6 text-end" style="color: #dc3545;">
-                                Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Denda</div>
+                                <div class="col-6 text-end" style="color: #dc3545;">
+                                    Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="row border-bottom py-2" style="background-color: white; font-weight: bold;">
-                            <div class="col-6 text-dark">Total Pembayaran</div>
-                            <div class="col-6 text-end" style="color: #007bff;">
-                                Rp {{ number_format($item->total_pembayaran, 0, ',', '.') }}
+                            <div class="row border-bottom py-2" style="background-color: white; font-weight: bold;">
+                                <div class="col-6 text-dark">Total Pembayaran</div>
+                                <div class="col-6 text-end" style="color: #007bff;">
+                                    Rp {{ number_format($item->total_pembayaran, 0, ',', '.') }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-@endforeach
+    @endforeach
 
 
 

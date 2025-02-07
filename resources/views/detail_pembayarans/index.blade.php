@@ -98,42 +98,47 @@
                                         <i class="fa fa-search" style="color:#00000040;"></i>
                                     </span>
                                     <input type="text" class="form-control border-start-0"
-                                           placeholder="Cari detail pembayaran..." aria-label="Search" name="search">
+                                        placeholder="Cari detail pembayaran..." aria-label="Search" name="search">
                                 </div>
                             </div>
-        
+
                             <!-- Input Harga Min -->
                             <div class="col-md-2">
                                 <input type="number" name="min_price" class="form-control" placeholder="Harga min">
                             </div>
-        
+
                             <!-- Input Harga Max -->
                             <div class="col-md-2">
                                 <input type="number" name="max_price" class="form-control" placeholder="Harga max">
                             </div>
-        
+
                             <!-- Input Tanggal Mulai -->
                             <div class="col-md-2">
                                 <input type="date" name="start_date" class="form-control" placeholder="Tanggal mulai">
                             </div>
-        
+
                             <!-- Input Tanggal Akhir -->
-                            <div class="col-md-2">
-                                <input type="date" name="end_date" class="form-control" placeholder="Tanggal akhir">
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <input type="date" name="end_date" class="form-control" placeholder="Tanggal akhir">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-search me-1"></i> Cari
+                                    </button>
+                                </div>
                             </div>
-        
-                            <!-- Tombol Cari -->
+
+                            {{-- <!-- Tombol Cari -->
                             <div class="col-md-1 text-end">
-                                <button type="submit" class="btn btn-primary w-100">
+                                <button type="submit" class="btn btn-primary w-10">
                                     <i class="fa fa-search me-1"></i> Cari
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        
+
 
         <div class="card p-3">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -167,12 +172,12 @@
                                         <td>{{ $item->rental_duration_days }}</td>
                                         <td>Rp.{{ number_format($item->total_price, 0, ',', '.') }}</td>
                                         <td class="text-danger">
-                                                    Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                                            Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-info">
-                                                    Rp {{ number_format($item->total_pembayaran ?? 0, 0, ',', '.') }}
+                                            Rp {{ number_format($item->total_pembayaran ?? 0, 0, ',', '.') }}
                                         </td>
-                                        
+
                                         <td>
                                             <button type="button" class=""
                                                 data-bs-target="#detailPembayaran{{ $item->id }}" style="border: none"
