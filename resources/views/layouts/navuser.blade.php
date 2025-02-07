@@ -47,14 +47,14 @@
             <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets.user/img/logo.png" alt=""> -->
-                <img src="assets.user/img/humma.png" alt="" width="180px">
+                <img src="{{ asset('assets/humma.png') }}" alt="" width="180px">
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/" class="<?php echo $_SERVER['REQUEST_URI'] == '/' ? 'active' : ''; ?>">Beranda</a></li>
-                    <li><a href="{{route('pemesanan.index')}}" class="<?php echo $_SERVER['REQUEST_URI'] == '/pemesanan' ? 'active' : ''; ?>">Pemesanan</a></li>
-                    <li><a href="{{route('favorit.index')}}" class="<?php echo $_SERVER['REQUEST_URI'] == '/favorit' ? 'active' : ''; ?>">Favorit</a></li>
+                    <li><a href="{{ route('pemesanan.index') }}" class="<?php echo $_SERVER['REQUEST_URI'] == '/pemesanan' ? 'active' : ''; ?>">Pemesanan</a></li>
+                    <li><a href="{{ route('favorit.index') }}" class="<?php echo $_SERVER['REQUEST_URI'] == '/favorit' ? 'active' : ''; ?>">Favorit</a></li>
                 </ul>
             </nav>
 
@@ -473,7 +473,7 @@
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-4 footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <img src="assets.user/img/humma.png" alt="" width="200px">
+                        <img src="{{ asset('assets/humma.png') }}" alt="" width="200px">
                     </a>
                     Humma RentCar adalah sebuah platform berbasis web yang dirancang untuk memberikan kemudahan
                     dalam proses penyewaan mobil. Website ini menawarkan solusi praktis bagi pengguna untuk

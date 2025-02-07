@@ -18,9 +18,9 @@
         }
 
         /* .card:hover {
-                                transform: translateY(-5px);
-                                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-                            } */
+                                                                                    transform: translateY(-5px);
+                                                                                    box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                                                                                } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
@@ -115,8 +115,8 @@
             </div>
         </div>
     </div>
- 
-    
+
+
     <!-- Filter dan Search -->
     <div class="col-md-12 project-list">
         <div class="card">
@@ -130,40 +130,54 @@
                             </select>
                         </form>
                     </div>
-                
-                    <div class="col-md-3">
+
+                    {{-- <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <input type="text" class="form-control" name="filter_no_telpon"
-                                   placeholder="Cari no telepon..." value="{{ $filter_no_telpon }}">
+                                placeholder="Cari no telepon..." value="{{ $filter_no_telpon }}">
                         </form>
-                    </div>
-                
+                    </div> --}}
+
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <select class="form-select" name="filter_status" onchange="this.form.submit()">
                                 <option value="" {{ $filter_status == '' ? 'selected' : '' }}>Filter Status</option>
-                                <option value="borrowed" {{ $filter_status == 'borrowed' ? 'selected' : '' }}>Borrowed</option>
-                                <option value="returned" {{ $filter_status == 'returned' ? 'selected' : '' }}>Returned</option>
+                                <option value="borrowed" {{ $filter_status == 'borrowed' ? 'selected' : '' }}>Borrowed
+                                </option>
+                                <option value="returned" {{ $filter_status == 'returned' ? 'selected' : '' }}>Returned
+                                </option>
                                 <option value="late" {{ $filter_status == 'late' ? 'selected' : '' }}>Late</option>
-                                <option value="in_process" {{ $filter_status == 'in_process' ? 'selected' : '' }}>In Process</option>
-                                <option value="rejected" {{ $filter_status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                <option value="in_process" {{ $filter_status == 'in_process' ? 'selected' : '' }}>In
+                                    Process</option>
+                                <option value="rejected" {{ $filter_status == 'rejected' ? 'selected' : '' }}>Rejected
+                                </option>
                             </select>
                         </form>
                     </div>
-                
-                    <div class="col-md-3 d-flex">
-                        <form action="{{ route('aproval.index') }}" method="GET" class="d-flex me-2">
+                    <div class="col-md-4">
+                        <form action="{{ route('aproval.index') }}" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="filter_no_telpon"
+                                    placeholder="Cari no telepon..." value="{{ $filter_no_telpon }}">
+                                <button type="submit" class="btn btn-primary">Cari</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="col-md-2 d-flex">
+                        {{-- <form action="{{ route('aproval.index') }}" method="GET" class="d-flex me-2">
                             <input type="text" class="form-control" name="search" placeholder="Cari email..." value="{{ $search }}">
                             <button type="submit" class="btn btn-primary ms-2">Cari</button>
-                        </form>
+                        </form> --}}
                         <form action="{{ route('aproval.refres') }}" method="POST">
                             @csrf
                             <button class="btn btn-outline-primary ms-2" type="submit">Refresh</button>
                         </form>
                     </div>
                 </div>
-                
-    
+
+
                 <!-- Tabel Data -->
                 <div class="col-sm-12 mt-3">
                     <div class="table-responsive custom-scrollbar p-3">
@@ -207,7 +221,8 @@
                                         <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{ route('aproval.show', $item->id) }}" class="btn btn-info btn-sm p-1">
+                                                <a href="{{ route('aproval.show', $item->id) }}"
+                                                    class="btn btn-info btn-sm p-1">
                                                     <i class="fa fa-eye" style="font-size: 15px;"></i>
                                                 </a>
                                             </div>
@@ -216,7 +231,8 @@
                                 @empty
                                     <tr>
                                         <td colspan="9" class="text-center">
-                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
+                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                                alt="">
                                         </td>
                                     </tr>
                                 @endforelse
@@ -224,7 +240,7 @@
                         </table>
                     </div>
                 </div>
-    
+
                 <!-- Pagination -->
                 <div class="row mt-3">
                     <div class="col-md-12 text-center">
@@ -234,10 +250,10 @@
             </div>
         </div>
     </div>
-    
 
-        <!-- Modal Pembayaran -->
-        {{-- @foreach ($data as $item)
+
+    <!-- Modal Pembayaran -->
+    {{-- @foreach ($data as $item)
         <div class="modal fade" id="payModal{{ $item->id }}" tabindex="-1" aria-labelledby="payModalLabel{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -267,4 +283,4 @@
             </div>
         </div>
     @endforeach --}}
-    @endsection
+@endsection
