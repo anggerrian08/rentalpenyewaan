@@ -162,9 +162,9 @@
                                                             <td>Rp.{{ number_format($car->price, 0, ',', '.') }}</td>
                                                             <td class="justify-center">
                                                                 @if ($car->stock > 0)
-                                                                    <button class="badge badge-primary">tersedia</button>
+                                                                    <button class="badge badge-primary" style="border: none">tersedia</button>
                                                                 @else
-                                                                    <button class="badge badge-danger">tidak
+                                                                    <button class="badge badge-danger" style="border: none">tidak
                                                                         tersedia</button>
                                                                 @endif
                                                             </td>

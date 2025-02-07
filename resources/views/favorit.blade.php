@@ -266,7 +266,7 @@
                         <p style="color: #01A8EF;">Profil Saya ></p>
                     </a>
                 </div>
-                <div class="card-body" style="margin-top: 200px">
+                <div class="card-body" >
                     <form method="GET" action="{{ route('pemesanan.search') }}">
                         @csrf
                         <div class="form-row">

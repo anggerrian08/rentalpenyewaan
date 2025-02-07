@@ -85,8 +85,8 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::post('/review2', [ReviewController2::class, 'store'])->name('review2.store');
 
 
-    Route::resource('/pemesanan',  PemesananController::class);
-Route::resource('/favorit',  FavoritController::class);
+//     Route::resource('/pemesanan',  PemesananController::class);
+// Route::resource('/favorit',  FavoritController::class);
 
 Route::get('/pemesanan/search', [PemesananController::class, 'search'])->name('pemesanan.search');
 });
