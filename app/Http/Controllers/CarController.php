@@ -147,10 +147,18 @@ class CarController extends Controller
     }
     public function show(Car $car)
     {
-        $count_data = Review::count();
         $reviews = Review::where('car_id', $car->id)->get();
-        return view('car.show', compact('car', 'reviews', 'count_data'));
+        $count_data = $reviews->count(); 
+    
+        // Hitung total rating
+        $total_rating = $reviews->sum('rating'); 
+    
+        // Hitung rata-rata rating, pastikan tidak membagi dengan 0
+        $average_rating = $count_data > 0 ? round($total_rating / $count_data, 1) : 0;
+    
+        return view('car.show', compact('car', 'reviews', 'count_data', 'average_rating'));
     }
+    
     public function edit(Car $car)
     {
         $data_merek = Merek::all();

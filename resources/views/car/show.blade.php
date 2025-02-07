@@ -12,7 +12,7 @@
             {{ session('error') }}
         </div>
     @endif
-
+        <br><br>
     <div class="card shadow p-4">
         <div class="row">
             <!-- Image Section -->
@@ -75,14 +75,23 @@
     <div class="card p-4 shadow mt-4">
         <h4 class="text-primary">Review</h4>
         <div class="d-flex align-items-center mb-4">
-            <h1 class="display-4 text-success me-3">4.6</h1>
+            <h1 class="display-4 text-success me-3">{{ $average_rating }}</h1>
             <div>
                 <div class="star-rating text-warning">
-                    ⭐⭐⭐⭐☆
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if($i <= floor($average_rating))
+                            ⭐
+                        @elseif($i - 0.5 == $average_rating)
+                            ⭐☆
+                        @else
+                            ☆
+                        @endif
+                    @endfor
                 </div>
-                <p class="mb-0 text-muted">{{$count_data}} Review</p>
+                <p class="mb-0 text-muted">{{ $count_data }} Review</p>
             </div>
         </div>
+        
         <div>
             <div class="progress mb-2" style="height: 8px;">
                 <div class="progress-bar bg-warning" style="width: 80%;"></div>
@@ -105,4 +114,34 @@
 
     <a href="{{ route('car.index') }}" class="btn btn-secondary mt-4">Kembali ke Daftar Mobil</a>
 </div>
+
+
+
+<div class="modal fade" id="pesanModal{{ $car->id }}" tabindex="-1" aria-labelledby="pesanModalLabel{{ $car->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pesanModalLabel{{ $car->id }}">Konfirmasi Pemesanan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{-- <p>Apakah Anda yakin ingin memesan mobil <strong>{{ $car->name }}</strong> dengan harga <strong>Rp{{ number_format($car->price, 0, ',', '.') }}</strong> per hari?</p> --}}
+                <form action="{{ route('bookings.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="car_id" value="{{ $car->id }}">
+                    <div class="mb-3">
+                        <label for="" class='form-label'>order date</label>
+                        <input type="date" class="form-control" name="order_date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class='form-label'>return date</label>
+                        <input type="date" class="form-control" name="return_date">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Konfirmasi Pesan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 @endsection

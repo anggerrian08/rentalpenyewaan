@@ -53,8 +53,8 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/" class="<?php echo $_SERVER['REQUEST_URI'] == '/' ? 'active' : ''; ?>">Beranda</a></li>
-                    <li><a href="/pemesanan" class="<?php echo $_SERVER['REQUEST_URI'] == '/pemesanan' ? 'active' : ''; ?>">Pemesanan</a></li>
-                    <li><a href="/favorit" class="<?php echo $_SERVER['REQUEST_URI'] == '/favorit' ? 'active' : ''; ?>">Favorit</a></li>
+                    <li><a href="{{route('pemesanan.index')}}" class="<?php echo $_SERVER['REQUEST_URI'] == '/pemesanan' ? 'active' : ''; ?>">Pemesanan</a></li>
+                    <li><a href="{{route('favorit.index')}}" class="<?php echo $_SERVER['REQUEST_URI'] == '/favorit' ? 'active' : ''; ?>">Favorit</a></li>
                 </ul>
             </nav>
 
