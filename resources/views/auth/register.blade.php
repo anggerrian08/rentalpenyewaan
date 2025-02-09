@@ -15,7 +15,7 @@
         class="transition-all duration-500 ease-in-out ...">
         <!-- Kolom Kiri -->
         <div class="w-1/2 bg-blue-50 px-8 flex flex-col justify-center h-full py-16">
-            <h1 class="text-3xl font-bold text-gray-800 leading-snug text-center">
+            <h1 class="text-3xl font-bold text-gray-800 leading-snug text-center" style="margin-top: 10px">
                 Selamat Datang Di <span class="text-blue-500">HummaCar</span>
             </h1>
             <div class="space-y-4 mt-3 flex flex-col items-center">

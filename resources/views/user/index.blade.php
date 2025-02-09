@@ -93,10 +93,11 @@
                                         action="{{ route('user.index') }}">
                                         <!-- Dropdown filter -->
                                         <select name="gender" class="form-select me-2" aria-label="Filter Jenis Kelamin">
-                                            <option value="" selected disabled>Filter Jenis Kelamin</option>
-                                            <option value="laki-laki">Laki-laki</option>
-                                            <option value="perempuan">Perempuan</option>
+                                            <option value="" disabled {{ request('gender') == null ? 'selected' : '' }}>Filter Jenis Kelamin</option>
+                                            <option value="laki-laki" {{ request('gender') == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                            <option value="perempuan" {{ request('gender') == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
                                         </select>
+                                        
 
                                         <!-- Kolom untuk search -->
                                         <div class="input-group me-2">
@@ -104,7 +105,7 @@
                                                 <i class="fa fa-search" style="color:#00000040;"></i>
                                             </span>
                                             <input type="text" name="search" class="form-control"
-                                                placeholder="Cari berdasarkan email..." aria-label="Search">
+                                                placeholder="Cari berdasarkan email..." aria-label="Search" value="{{request('search')}}">
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Cari</button>

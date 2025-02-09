@@ -18,9 +18,9 @@ class MerekController extends Controller
         ]);
         $search = $request->input('search');
         if($search){
-            $data = Merek::where('name', 'LIKE','%'.$search.'%')->paginate(8);
+            $data = Merek::where('name', 'LIKE','%'.$search.'%')->paginate(8)->appends(request()->query());
         }else{
-            $data = Merek::latest()->paginate(8);
+            $data = Merek::latest()->paginate(8)->appends(request()->query());
         }
         return view('merek.index', compact('data'));
     }
@@ -59,7 +59,7 @@ class MerekController extends Controller
 
         $merek->update($data);
 
-        return redirect()->route('merek.index')->with('success', 'Berhasil Menambahkan Merek.');
+        return redirect()->route('merek.index')->with('success', 'Berhasil Mengupdate Merek.');
 
     }
     public function destroy(Merek $merek)

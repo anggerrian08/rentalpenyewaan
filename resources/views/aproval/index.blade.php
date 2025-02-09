@@ -18,9 +18,9 @@
         }
 
         /* .card:hover {
-                        transform: translateY(-5px);
-                        box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-                    } */
+                                                                                    transform: translateY(-5px);
+                                                                                    box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                                                                                } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
@@ -116,39 +116,28 @@
         </div>
     </div>
 
+
     <!-- Filter dan Search -->
     <div class="col-md-12 project-list">
         <div class="card">
             <div class="row align-items-center">
                 <div class="row align-items-center mb-3">
-                    <!-- Filter Email -->
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <select class="form-select" name="filter" onchange="this.form.submit()">
                                 <option value="a-z" {{ $filter == 'a-z' ? 'selected' : '' }}>Terbaru</option>
-                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>terlama</option>
+                                <option value="z-a" {{ $filter == 'z-a' ? 'selected' : '' }}>Terlama</option>
                             </select>
                         </form>
                     </div>
 
-                    <!-- Search Email -->
-                    <div class="col-md-3">
-                        <form action="{{ route('aproval.index') }}" method="GET" class="d-flex">
-                            <input type="text" class="form-control" name="search" placeholder="Cari email..."
-                                value="{{ $search }}">
-                            <button type="submit" class="btn btn-primary ms-2">Cari</button>
-                        </form>
-                    </div>
-
-                    <!-- Filter Nomor Telepon -->
-                    <div class="col-md-3">
+                    {{-- <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <input type="text" class="form-control" name="filter_no_telpon"
                                 placeholder="Cari no telepon..." value="{{ $filter_no_telpon }}">
                         </form>
-                    </div>
+                    </div> --}}
 
-                    <!-- Filter Status -->
                     <div class="col-md-3">
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <select class="form-select" name="filter_status" onchange="this.form.submit()">
@@ -165,26 +154,29 @@
                             </select>
                         </form>
                     </div>
-                </div>
-
-
-
-
-
-                {{-- <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="search">
-                        <form action="{{ route('aproval.index') }}"
-                            style=" border: 0.2px solid #fffefe; display:flex; flex-direction:row; align-items: center; padding:8px 8px; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                            <span id="search-icon" style="cursor: pointer;">
-                                <i class="fa fa-search"
-                                    style="padding-left: 4px; color: #999; padding-right: 8px; transition: color 0.3s;"></i>
-                            </span>
-                            <input type="text"
-                                style="border: none; outline: none; background-color: transparent; flex-grow: 1;"
-                                placeholder="Cari merek mobil..." aria-label="Search" name="search">
+                    <div class="col-md-4">
+                        <form action="{{ route('aproval.index') }}" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="filter_no_telpon"
+                                    placeholder="Cari no telepon..." value="{{ $filter_no_telpon }}">
+                                <button type="submit" class="btn btn-primary">Cari</button>
+                            </div>
                         </form>
                     </div>
-                </div> --}}
+
+
+                    <div class="col-md-2 d-flex">
+                        {{-- <form action="{{ route('aproval.index') }}" method="GET" class="d-flex me-2">
+                            <input type="text" class="form-control" name="search" placeholder="Cari email..." value="{{ $search }}">
+                            <button type="submit" class="btn btn-primary ms-2">Cari</button>
+                        </form> --}}
+                        <form action="{{ route('aproval.refres') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-outline-primary ms-2" type="submit">Refresh</button>
+                        </form>
+                    </div>
+                </div>
+
 
                 <!-- Tabel Data -->
                 <div class="col-sm-12 mt-3">
@@ -205,45 +197,45 @@
                             </thead>
                             <tbody>
                                 @forelse ($bookings as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->email }}</td>
-                                    <td>{{ $item->car->name }}</td>
-                                    <td>{{ $item->user->nik }}</td>
-                                    <td>{{ $item->user->jk }}</td>
-                                    <td>{{ $item->user->phone_number }}</td>
-                                    <td>
-                                        @php
-                                            $statusClass = [
-                                                'borrowed' => 'success',
-                                                'rejected' => 'danger',
-                                                'in_process' => 'warning',
-                                                'returned' => 'success',
-                                                'late' => 'danger',
-                                            ];
-                                        @endphp
-                                        <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
-                                            {{ ucfirst(str_replace('_', ' ', $item->status)) }}
-                                        </div>
-                                    </td>
-                                    <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
-                                    <td>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ route('aproval.show', $item->id) }}"
-                                                class="btn btn-info btn-sm p-1">
-                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">
-                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="">
-                                    </td>
-                                </tr>
-                            @endforelse
-                            
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->car->name }}</td>
+                                        <td>{{ $item->user->nik }}</td>
+                                        <td>{{ $item->user->jk }}</td>
+                                        <td>{{ $item->user->phone_number }}</td>
+                                        <td>
+                                            @php
+                                                $statusClass = [
+                                                    'borrowed' => 'success',
+                                                    'rejected' => 'danger',
+                                                    'in_process' => 'warning',
+                                                    'returned' => 'success',
+                                                    'late' => 'danger',
+                                                ];
+                                            @endphp
+                                            <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
+                                                {{ ucfirst(str_replace('_', ' ', $item->status)) }}
+                                            </div>
+                                        </td>
+                                        <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('aproval.show', $item->id) }}"
+                                                    class="btn btn-info btn-sm p-1">
+                                                    <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="9" class="text-center">
+                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                                alt="">
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -257,9 +249,11 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal Pembayaran -->
-        {{-- @foreach ($data as $item)
+
+    <!-- Modal Pembayaran -->
+    {{-- @foreach ($data as $item)
         <div class="modal fade" id="payModal{{ $item->id }}" tabindex="-1" aria-labelledby="payModalLabel{{ $item->id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -289,4 +283,4 @@
             </div>
         </div>
     @endforeach --}}
-    @endsection
+@endsection

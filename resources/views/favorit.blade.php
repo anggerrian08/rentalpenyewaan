@@ -1,11 +1,7 @@
 @extends('layouts.navuser')
 @section('content')
 
-    <head>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    </head>
-
+  
     <style>
         /* Hero Section Styling */
         .hero-section {
@@ -260,41 +256,46 @@
             margin-bottom: 5rem;
         }
     </style>
-    <div class="hero-section">
+    <div class="hero-section" >
         <div class="container text-center">
             <img src="assets.user/img/mbl.png" alt="Cars" class="hero-image">
             <!-- Card Add Merk -->
             <div class="card" style="width: 2000px;">
                 <div class="card-header">
                     <img src="{{ asset('assets.user/img/humma.png') }}" alt="" width="200px"> <a href="/account">
-                        <p style="color: #01A8EF;">Profil Saya ></p>
                     </a>
                 </div>
-                <div class="card-body">
-                    <form method="GET" action="{{ route('pemesanan.search') }}">
-                        @csrf
+                <div class="card-body" >
+                    <form method="GET" action="{{ route('favorit.index') }}">
+                        <p>filter mobil yang tersedia sesuai rentang tanggal<p>
                         <div class="form-row">
+                            <!-- Form Group: Tanggal Pinjam -->
                             <div class="form-group">
-                                <label for="tanggal-pinjam" class="form-label"><b>Tanggal Pinjam</b></label>
+                                <label for="tanggal-pinjam" class="form-label"><b>start date</b></label>
                                 <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
-                                            style="color: #01A8EF;"></i></span>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
+                                    </span>
                                     <input type="date" class="form-control text-muted" id="tanggal-pinjam"
-                                        name="order_date" value="{{ request('order_date') }}" required>
+                                        name="order_date" value="{{ request('order_date') }}">
                                     <i class="bi bi-arrow-left-right mt-2 ms-3 text-muted"></i>
                                 </div>
                             </div>
+
+                            <!-- Form Group: Tanggal Kembali -->
                             <div class="form-group">
-                                <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
+                                <label for="tanggal-kembali" class="form-label"><b>end date</b></label>
                                 <div class="input-group d-flex">
-                                    <span class="input-group-text"><i class="fas fa-calendar-alt"
-                                            style="color: #01A8EF;"></i></span>
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
+                                    </span>
                                     <input type="date" class="form-control text-muted" id="tanggal-kembali"
-                                        name="return_date" value="{{ request('return_date') }}" required>
-                                    <button type="submit" class="boton ms-3 rounded">Cari</button>
+                                        name="return_date" value="{{ request('return_date') }}">
+                                    <button type="submit" class="boton ms-3 rounded">
+                                        Cari
+                                    </button>
                                 </div>
                             </div>
-
                         </div>
                     </form>
                 </div>
@@ -310,7 +311,7 @@
     <section id="features" class="features section">
 
         <div class="container">
-            @foreach ($data as $car)
+            @foreach ($cars as $car)
                 <div class="card">
                     <h3 style="text-align: left;">{{ $car->car->name }}</h3>
                     <form action="{{ route('car_likes.destroy', $car->id) }}" method="post" style="display: inline-block;">
@@ -336,7 +337,7 @@
                     </div>
                     <div class="price-button-wrapper">
                         <p class="price text-muted">Rp. {{ number_format($car->car->price, 0, ',', '.') }}</p>
-                        <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
+                        <a href="{{ route('car.show', $car->car->id) }}" class="pesan-btn">pesan</a>
                     </div>
                 </div>
             @endforeach

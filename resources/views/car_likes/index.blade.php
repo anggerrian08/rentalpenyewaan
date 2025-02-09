@@ -10,6 +10,10 @@
             max-height: 85px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .like-icon {
+            color: red;
+            margin-right: 5px;
+        }
     </style>
     <br>
     <!-- Card 1: Kotak Biru -->
@@ -39,7 +43,7 @@
                         <p class="card-text text-muted">Harga: Rp.{{ number_format($like->car->price, 2) }}</p>
 
                         <p class="card-text">
-                            <strong>{{ $likes[$like->car_id] ?? 0 }} Suka</strong>
+                            <i class="fas fa-heart like-icon"></i><strong>{{ $likes[$like->car_id] ?? 0 }} Suka</strong>
                         </p>
 
                         @if (auth()->user()->hasRole('user'))
@@ -60,5 +64,4 @@
             <img src="{{ asset('assets/images/logo/notdata.png') }}" width="200px" alt="">
         </div>
     @endif
-    </div>
 @endsection

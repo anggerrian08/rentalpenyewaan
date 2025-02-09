@@ -48,9 +48,10 @@
                 }
 
                 .navbar .profile {
-                    padding-left: 50px;
+                    padding-left: 30px;
                     padding-right: 60px;
                     text-align: center;
+                    margin-top: 20px;
                     margin-bottom: 20px;
                 }
 
@@ -400,9 +401,13 @@
                             <a href="http://localhost:8000/" style=" text-decoration: none;">
                                 <i class="fa fa-arrow-left"></i> Kembali
                             </a>
-                            
+
                             <div class="profile">
-                                <img src="{{ asset('assets/images/dashboard/profile.png') }}" alt="User">
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ asset('storage/uploads/photo/' . auth()->user()->photo) }}"
+                                        alt="Foto Profil" class="rounded-circle border"
+                                        style="width: 120px; height: 120px; object-fit: cover;">
+                                </div>
                                 <h3>{{ Auth::user()->name }}</h3>
                             </div>
                             <ul class="menu">
@@ -416,9 +421,8 @@
                             </ul>
                         </div>
                         <div class="grid text-left" style="--bs-gap: .25rem 1rem;">
-                            <h3>Riwayat Transaksi</h3>
                             <div class="main-content">
-                                {{-- search --}}
+                                <h3 class="text-muted mb-3">Riwayat Transaksi</h3>
                                 <div class="search" style="display: flex; justify-content: center; margin-top: 2px;">
                                     <input type="search" id="searchInput" placeholder="Cari sesuatu..."
                                         style="
@@ -443,7 +447,7 @@
                                                         margin-left: 10px;
                                                          color: #6b6e70;
                                                     "
-                                            name="order_date">
+                                            name="order_date" value="{{ request('order_date') }}">
 
                                         <button type="submit"
                                             style="
@@ -461,27 +465,38 @@
                                         </button>
                                     </form>
                                 </div>
-
+                                
                                 {{-- filter  --}}
                                 <div class="filter">
-                                    <button onclick="filterOrders('all')">Semua</button>
-                                    <button onclick="filterOrders('in_process')">Diproses</button>
-                                    <button onclick="filterOrders('borrowed')">Berlangsung</button>
-                                    <button onclick="filterOrders('late')">Terlambat</button>
-                                    <button onclick="filterOrders('rejected')">DiTolak</button>
-                                    <button onclick="filterOrders('returned')">Selesai</button>
+                                    <button onclick="filterOrders('all')" class="btns">Semua</button>
+                                    <button onclick="filterOrders('in_process')"  class="btns active" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Diproses</button>
+                                    <button onclick="filterOrders('borrowed')"  class="btns" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Berlangsung</button>
+                                    <button onclick="filterOrders('late')"  class="btns" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Terlambat</button>
+                                    <button onclick="filterOrders('rejected')"  class="btns">DiTolak</button>
+                                    <button onclick="filterOrders('returned')"  class="btns">Selesai</button>
                                 </div>
+                                
                                 {{-- card isi --}}
                                 <div id="orderList">
                                     <!-- Your order cards go here -->
-                                    @foreach ($data_all as $item)
+                                    @forelse ($data_all as $item)
                                         <div class="order-card" data-status="{{ $item->booking->status }}">
                                             <div class="order-header">
                                                 <p class="order-title">Pesanan</p>
                                                 <p class="order-date">
                                                     {{ $item->created_at->translatedFormat('d M Y') }}
                                                 </p>
-                                                <span class="order-status">{{ $item->booking->status }}</span>
+                                                @if ($item->booking->status == 'late')
+                                                    <span class="badge bg-danger text-white px-3">Late</span>
+                                                @elseif($item->booking->status == 'in_process')
+                                                    <span class="badge bg-warning text-dark px-3">In Process</span>
+                                                @elseif($item->booking->status == 'borrowed')
+                                                    <span class="badge bg-primary text-white px-3">Borrowed</span>
+                                                @elseif($item->booking->status == 'returned')
+                                                    <span class="badge bg-success text-white px-3">Returned</span>
+                                                @elseif($item->booking->status == 'rejected')
+                                                    <span class="badge bg-danger text-white px-3">Rejected</span>
+                                                @endif
                                             </div>
                                             <div class="order-body">
                                                 <div class="car-details">
@@ -537,7 +552,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                    <div class="d-flex justify-content-center align-items-center" style="height: 380px;">
+                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="No Cars">
+                                    </div> 
+                                    @endforelse
                                     <div class="pagination-wrapper"
                                         style="display: flex; justify-content: center; margin-top: 20px;">
                                         {{ $data_all->links('pagination::bootstrap-5') }}
@@ -646,7 +665,7 @@
             filterByDate(); // Panggil fungsi filter tanggal
         }
     </script>
-
+{{-- review --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="review{{ $item->booking->car->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
@@ -682,40 +701,81 @@
             </div>
         </div>
     @endforeach
-
-
+{{-- detail --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="detail{{ $item->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="reviewLabel{{ $item->booking->car->id }}">Detail Ulasan</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    <div class="modal-header" style="background-color: #01A8EF;">
+                        <h5 class="modal-title" id="reviewLabel{{ $item->booking->car->id }}" style="color: #fff">
+                            Detail Sewa</h5>
+                        <button type="button" class="btn-close" style="color: white;" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <strong>Email:</strong>
-                            <p class="text-muted mb-1">{{ $item->booking->user->email }}</p>
+                    <div class="modal-body" style="padding: 2rem;">
+                        <!-- Booking Details Section -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <strong>Email:</strong>
+                                <p class="text-muted">{{ $item->booking->user->email }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Mobil:</strong>
+                                <p class="text-muted">{{ $item->booking->car->name }}</p>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Mobil:</strong>
-                            <p class="text-muted mb-1">{{ $item->booking->car->name }}</p>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <strong>Order Date:</strong>
+                                <p class="text-muted">{{ $item->booking->order_date }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Return Date:</strong>
+                                <p class="text-muted">{{ $item->booking->return_date }}</p>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Durasi Sewa:</strong>
-                            <p class="text-muted mb-1">{{ $item->rental_duration_days }} hari</p>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <strong>Durasi Sewa:</strong>
+                                <p class="text-muted">{{ $item->rental_duration_days }} hari</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Status:</strong><br>
+                                @if ($item->booking->status == 'late')
+                                    <span class="badge bg-danger text-white px-3">Late</span>
+                                @elseif($item->booking->status == 'in_process')
+                                    <span class="badge bg-warning text-dark px-3">In Process</span>
+                                @elseif($item->booking->status == 'borrowed')
+                                    <span class="badge bg-primary text-white px-3">Borrowed</span>
+                                @elseif($item->booking->status == 'returned')
+                                    <span class="badge bg-success text-white px-3">Returned</span>
+                                @elseif($item->booking->status == 'rejected')
+                                    <span class="badge bg-danger text-white px-3">Rejected</span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <strong>Total Harga:</strong>
-                            <p class="fw-bold text-primary">Rp {{ number_format($item->total_price, 0, ',', '.') }}
-                            </p>
-                        </div>
-                        <div class="mb-3">
-                            <strong>Total Denda:</strong>
-                            <p class="fw-bold text-danger">Rp {{ number_format($item->booking->denda, 0, ',', '.') }}
-                            </p>
+
+                        <!-- Payment Breakdown Section -->
+                        <div class="p-4 rounded" style="background-color: #f8f9fa;">
+                            <div class="row border-bottom">
+                                <div class="col-6 fw-bold">Harga Sewa</div>
+                                <div class="col-6 text-end" style="color: #007bff;">
+                                    <p class="fw-bold">Rp {{ number_format($item->total_price, 0, ',', '.') }}</p>
+                                </div>
+                            </div>
+                            <div class="row border-bottom py-2">
+                                <div class="col-6 fw-bold">Denda</div>
+                                <div class="col-6 text-end" style="color: #dc3545;">
+                                    Rp {{ number_format($item->booking->denda ?? 0, 0, ',', '.') }}
+                                </div>
+                            </div>
+                            <div class="row border-bottom py-2" style="background-color: white; font-weight: bold;">
+                                <div class="col-6 text-dark">Total Pembayaran</div>
+                                <div class="col-6 text-end" style="color: #007bff;">
+                                    Rp {{ number_format($item->total_pembayaran, 0, ',', '.') }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -724,27 +784,27 @@
     @endforeach
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-    integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">
-</script>
+        integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    @if (session('success'))
-        Swal.fire({
-            title: "Success",
-            text: "{{ session('success') }}",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000
-        });
-    @endif
-    @if (session('error'))
-        Swal.fire({
-            title: "Error",
-            text: "{{ session('error') }}",
-            icon: "error",
-            showConfirmButton: false,
-            timer: 3000
-        });
-    @endif
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: "Success",
+                text: "{{ session('success') }}",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+        @if (session('error'))
+            Swal.fire({
+                title: "Error",
+                text: "{{ session('error') }}",
+                icon: "error",
+                showConfirmButton: false,
+                timer: 3000
+            });
+        @endif
+    </script>

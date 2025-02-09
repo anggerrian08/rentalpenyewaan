@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Car;
+use App\Models\CarLikes;
 use App\Models\Merek;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,7 +38,7 @@ class CarController extends Controller
         }
 
         // Urutkan hasil dan paginate
-        $cars = $cars->orderBy('best_choice', 'ASC')->paginate(8);
+        $cars = $cars->orderBy('best_choice', 'ASC')->paginate(5);
 
         // Ambil data merek untuk tampilan
         $merek = Merek::all();
@@ -146,8 +149,22 @@ class CarController extends Controller
     }
     public function show(Car $car)
     {
-        return view('car.show', compact('car'));
+        $reviews = Review::where('car_id', $car->id)->get();
+        $count_data = $reviews->count(); 
+    
+        // Hitung total rating
+        $total_rating = $reviews->sum('rating'); 
+    
+        // Hitung rata-rata rating, pastikan tidak membagi dengan 0
+        $average_rating = $count_data > 0 ? round($total_rating / $count_data, 1) : 0;
+
+        $count_like = CarLikes::where('car_id', $car->id)->count();
+
+        $count_transaksi = Booking::where('car_id', $car->id)->count();
+    
+        return view('car.show', compact('car', 'reviews', 'count_data', 'average_rating','count_like', 'count_transaksi'));
     }
+    
     public function edit(Car $car)
     {
         $data_merek = Merek::all();
@@ -268,7 +285,7 @@ class CarController extends Controller
                 'luggage_capacity' => $request->luggage_capacity,
             ]);
         }
-        return redirect()->route('car.index');
+        return redirect()->route('car.index')->with('success','Berhasil Mengupdate jenis mobil');
     }
 
     public function destroy(Car $car)
@@ -276,7 +293,7 @@ class CarController extends Controller
         try {
             $car->delete();
             Storage::disk('public')->delete('uploads/car/'. $car->photo);
-            return redirect()->route('car.index')->with('success', 'jenis mobil berhasil dihapus.');
+            return redirect()->route('car.index')->with('success', 'Jenis mobil berhasil dihapus.');
         } catch (\Throwable $th) {
             // Tangani error jika mobil terkait dengan entitas lain
             return back()->with('error', 'Gagal menghapus mobil karena terkait dengan data lain.');
