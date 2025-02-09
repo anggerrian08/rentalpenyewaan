@@ -272,10 +272,11 @@
                 </div>
                 <div class="card-body">
                     <form method="GET" action="{{ route('pemesanan.index') }}">
+                        <p>filter mobil yang tersedia sesuai rentang tanggal<p>
                         <div class="form-row">
                             <!-- Form Group: Tanggal Pinjam -->
                             <div class="form-group">
-                                <label for="tanggal-pinjam" class="form-label"><b>Tanggal Pinjam</b></label>
+                                <label for="tanggal-pinjam" class="form-label"><b>start date</b></label>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
@@ -288,7 +289,7 @@
 
                             <!-- Form Group: Tanggal Kembali -->
                             <div class="form-group">
-                                <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
+                                <label for="tanggal-kembali" class="form-label"><b>end date</b></label>
                                 <div class="input-group d-flex">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
@@ -318,7 +319,7 @@
         <div class="container">
             @foreach ($cars as $car)
                 <div class="card">
-                    <h3 style="text-align: left;">{{ $car->car->name }}</h3>
+                    <h3 style="text-align: left;">{{ $car->name }}</h3>
                     {{-- <form action="{{ route('car_likes.store') }}" method="post">
                         @csrf
                         <button type="submit">
@@ -329,13 +330,13 @@
                         <form action="{{ route('car_likes.store') }}" method="POST" style="display: inline;">
                             @csrf
                             @method('post')
-                            <input type="hidden" name="car_id" value="{{ $car->car->id }}">
+                            <input type="hidden" name="car_id" value="{{ $car->id }}">
                             <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer;">
                                 ❤
                             </button>
                         </form>
                     </div>
-                    <img src="{{ asset('storage/uploads/car/' . $car->car->photo) }}" alt="{{ $car->car->name }}"
+                    <img src="{{ asset('storage/uploads/car/' . $car->photo) }}" alt="{{ $car->name }}"
                         class="car-image img-fluid">
                     <h3>{{ $car->model }}</h3>
                     <p class="brand">{{ $car->brand }}</p>
@@ -347,15 +348,18 @@
                             <i class="fas fa-cogs"></i> Manual
                         </span>
                         <span class="text-muted">
-                            <i class="fas fa-user"></i> {{ $car->car->seats }} Orang
+                            <i class="fas fa-user"></i> {{ $car->seats }} Orang
                         </span>
                     </div>
                     <div class="price-button-wrapper">
-                        <p class="price text-muted">Rp. {{ number_format($car->car->price, 0, ',', '.') }}</p>
-                        <a href="{{ route('car.show', $car->car->id) }}" class="pesan-btn">pesan</a>
+                        <p class="price text-muted">Rp. {{ number_format($car->price, 0, ',', '.') }}</p>
+                        <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
+                <div class="container float-end">
+                    {{$cars->links()}}
+                </div>
         </div>
     </section>
 @endsection

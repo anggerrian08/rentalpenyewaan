@@ -15,13 +15,24 @@ use App\Http\Controllers\PemesananController;
 
 use App\Http\Controllers\DetailPembayaranController;
 use App\Http\Controllers\RiwayatController;
+use App\Models\Booking;
 use App\Models\Car;
 use App\Models\DetailPembayaran;
+use App\Models\Merek;
+use App\Models\Promosi;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $cars = Car::paginate(8); // Ambil semua data mobil dari model Car
-    return view('welcome', compact('cars')); // Kirim data ke view welcome
+    $cars = Car::paginate(8);
+    $count_user = User::role('user')->count(); // Ambil semua data mobil dari model Car
+    $count_review = Review::count();
+    $count_merek = Merek::count();
+    $count_transaksi = Booking::whereIn('status', ['borrowed', 'returned', 'late'])->count();
+    $data_review = Review::with('car', 'user')->orderBy('id', 'ASC')->paginate(4);
+    $promotions = Promosi::all();
+    return view('welcome', compact('promotions','cars', 'count_user', 'count_review', 'count_merek', 'count_transaksi','data_review')); // Kirim data ke view welcome
 })->name('halamanutama');
 
 Route::resource('/beranda',  BerandaController::class);
@@ -62,6 +73,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 
     // Route::resource('/bookings', BookingController::class);
     Route::resource('/promosi', controller: PromosiController::class);
+    Route::post('/promotions/refresh', [PromosiController::class, 'refresh'])->name('promotions.refresh');
+
 
 
     // Route::patch('/aproval/{id}', [ApprovalController::class, 'accepted'])->name('aproval.accepted');

@@ -18,9 +18,9 @@ class MerekController extends Controller
         ]);
         $search = $request->input('search');
         if($search){
-            $data = Merek::where('name', 'LIKE','%'.$search.'%')->paginate(8);
+            $data = Merek::where('name', 'LIKE','%'.$search.'%')->paginate(8)->appends(request()->query());
         }else{
-            $data = Merek::latest()->paginate(8);
+            $data = Merek::latest()->paginate(8)->appends(request()->query());
         }
         return view('merek.index', compact('data'));
     }

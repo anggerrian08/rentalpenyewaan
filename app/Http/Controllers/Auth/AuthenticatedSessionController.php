@@ -40,9 +40,9 @@ class AuthenticatedSessionController extends Controller
     
             // Cek peran user
             if ($user->hasRole('admin')) {
-                return redirect()->intended(route('dashboard', absolute: false)); // Halaman dashboard untuk admin
+                return redirect()->intended(route('dashboard')); // Halaman dashboard untuk admin
             } elseif ($user->hasRole('user')) {
-                return redirect()->intended(route('halamanutama', absolute: false)); // Halaman utama untuk user
+                return redirect()->intended(route('halamanutama')); // Halaman utama untuk user
             } else {
                 Auth::logout();
                 return back()->withErrors([

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PromosiRequest;
 use App\Models\Promosi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,16 +35,22 @@ class PromosiController extends Controller
     public function store(PromosiRequest $request)
     {
         $validatedRequest = $request->validated();
+        
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('photos', 'public');
-
             $validatedRequest['photo'] = $photoPath;
         }
-
-        Promosi::create($validatedRequest);
-
+    
+        Promosi::create([
+            'title' => $validatedRequest['title'], // Pastikan ini tidak kosong
+            'photo' => $validatedRequest['photo'],
+            'start_date' => $validatedRequest['start_date'],
+            'end_date' => $validatedRequest['end_date'] ?? null, // Hindari NULL error
+        ]);
+    
         return redirect()->route('promosi.index')->with('success', 'Promosi berhasil dibuat');
     }
+    
 
 
     /**
@@ -68,26 +75,23 @@ class PromosiController extends Controller
     public function update(PromosiRequest $request, $id)
     {
         $promosi = Promosi::findOrFail($id);
-
-        // dd($promosi);
-
+    
         $validated = $request->validated();
-
+    
         if ($request->hasFile('photo')) {
-            if ($promosi->photo && Storage::exists('public/' . $promosi->photo)) {
-                Storage::delete('public/' . $promosi->photo);
+            // Hapus foto lama jika ada
+            if ($promosi->photo) {
+                Storage::disk('public')->delete($promosi->photo);
             }
-
-            $photoPath = $request->file('photo')->store('photos', 'public');
-            $validated['photo'] = $photoPath;
+    
+            // Simpan foto baru
+            $validated['photo'] = $request->file('photo')->store('photos', 'public');
         }
-
+    
         $promosi->update($validated);
-
+    
         return back()->with('success', 'Promosi berhasil diupdate');
     }
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -109,5 +113,25 @@ class PromosiController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->route('promosi.index')->with('success', 'Promosi berhasil dihapus.');
+    }
+
+    public function refresh()
+    {
+        $today = Carbon::today();
+    
+        // Ambil semua promosi yang sudah kadaluarsa
+        $expiredPromotions = Promosi::where('end_date', '<', $today)->get();
+    
+        foreach ($expiredPromotions as $promo) {
+            // Hapus gambar jika ada
+            if ($promo->photo && Storage::exists('public/' . $promo->photo)) {
+                Storage::delete('public/' . $promo->photo);
+            }
+    
+            // Hapus data promosi
+            $promo->delete();
+        }
+    
+        return back()->with('success', 'Data promosi yang kadaluarsa berhasil dihapus!');
     }
 }

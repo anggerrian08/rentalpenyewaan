@@ -93,7 +93,7 @@
                             style="padding-left: 4px; color: #999; padding-right: 8px; transition: color 0.3s;"></i>
                     </span>
                     <input type="text" style="border: none; outline: none; background-color: transparent; flex-grow: 1;"
-                        placeholder="Cari merek mobil..." aria-label="Search" name="search">
+                        placeholder="Cari merek mobil..." aria-label="Search" name="search" value="{{ request('search') }}">
                 </form>
             </div>
 

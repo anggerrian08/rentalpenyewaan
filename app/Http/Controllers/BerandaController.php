@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\beranda;
 use App\Models\Car;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -14,7 +15,8 @@ class BerandaController extends Controller
     public function index()
     {
         $cars = Car::paginate(8);
-        return view('welcome', compact('cars'));
+        $count_user = User::count();
+        return view('welcome', compact('cars', 'count_user'));
 
     }
 
