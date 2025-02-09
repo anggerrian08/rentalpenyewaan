@@ -168,6 +168,12 @@
                     /* Warna teks saat hover */
                 }
 
+                .btns.active {
+                    background-color: #007bff;
+                    color: white;
+                    font-weight: bold;
+                }
+
                 .transaction-list {
                     display: flex;
                     flex-direction: column;
@@ -465,17 +471,20 @@
                                         </button>
                                     </form>
                                 </div>
-                                
+
                                 {{-- filter  --}}
                                 <div class="filter">
                                     <button onclick="filterOrders('all')" class="btns">Semua</button>
-                                    <button onclick="filterOrders('in_process')"  class="btns active" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Diproses</button>
-                                    <button onclick="filterOrders('borrowed')"  class="btns" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Berlangsung</button>
-                                    <button onclick="filterOrders('late')"  class="btns" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Terlambat</button>
-                                    <button onclick="filterOrders('rejected')"  class="btns">DiTolak</button>
-                                    <button onclick="filterOrders('returned')"  class="btns">Selesai</button>
+                                    <button onclick="filterOrders('in_process')" class="btns active"
+                                        {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Diproses</button>
+                                    <button onclick="filterOrders('borrowed')" class="btns"
+                                        {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Berlangsung</button>
+                                    <button onclick="filterOrders('late')" class="btns"
+                                        {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Terlambat</button>
+                                    <button onclick="filterOrders('rejected')" class="btns">DiTolak</button>
+                                    <button onclick="filterOrders('returned')" class="btns">Selesai</button>
                                 </div>
-                                
+
                                 {{-- card isi --}}
                                 <div id="orderList">
                                     <!-- Your order cards go here -->
@@ -553,9 +562,11 @@
                                             </div>
                                         </div>
                                     @empty
-                                    <div class="d-flex justify-content-center align-items-center" style="height: 380px;">
-                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="No Cars">
-                                    </div> 
+                                        <div class="d-flex justify-content-center align-items-center"
+                                            style="height: 380px;">
+                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                                alt="No Cars">
+                                        </div>
                                     @endforelse
                                     <div class="pagination-wrapper"
                                         style="display: flex; justify-content: center; margin-top: 20px;">
@@ -586,20 +597,24 @@
                 }
 
                 function filterOrders(status) {
+                    // Filter order cards berdasarkan status
                     const orderCards = document.querySelectorAll('.order-card');
+                    const buttons = document.querySelectorAll('.btns');
 
                     orderCards.forEach(card => {
                         if (status === 'all') {
                             card.style.display = '';
                         } else {
                             const cardStatus = card.getAttribute('data-status');
-                            if (cardStatus === status) {
-                                card.style.display = '';
-                            } else {
-                                card.style.display = 'none';
-                            }
+                            card.style.display = (cardStatus === status) ? '' : 'none';
                         }
                     });
+
+                    // Hapus kelas active dari semua tombol
+                    buttons.forEach(button => button.classList.remove('active'));
+
+                    // Tambahkan kelas active ke tombol yang diklik
+                    event.target.classList.add('active');
                 }
             </script>
         </body>
@@ -613,7 +628,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="review">Beri Ulasan</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <form action="{{ route('review2.store') }}" method="POST">
                         @csrf
@@ -665,7 +681,7 @@
             filterByDate(); // Panggil fungsi filter tanggal
         }
     </script>
-{{-- review --}}
+    {{-- review --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="review{{ $item->booking->car->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
@@ -701,7 +717,7 @@
             </div>
         </div>
     @endforeach
-{{-- detail --}}
+    {{-- detail --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="detail{{ $item->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
@@ -807,4 +823,15 @@
                 timer: 3000
             });
         @endif
+
+        //         function filterOrders(status) {
+        //     const buttons = document.querySelectorAll('.btns');
+        //     buttons.forEach(button => button.classList.remove('active'));
+
+        //     // Tambahkan class active ke tombol yang dipilih
+        //     event.target.classList.add('active');
+
+        //     // Lakukan logika filter sesuai status yang dipilih
+        //     console.log(`Filtering by: ${status}`);
+        // }
     </script>
