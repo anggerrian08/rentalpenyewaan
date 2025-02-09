@@ -169,9 +169,11 @@
                 }
 
                 .btns.active {
-                    background-color: #007bff;
-                    color: white;
-                    font-weight: bold;
+                    border: 2px solid #01A8EF;
+                    background-color: #D9F4FF;
+                    /* Warna latar belakang saat hover */
+                    color: #01A8EF;
+                    /* Warna teks saat hover */
                 }
 
                 .transaction-list {
@@ -475,7 +477,7 @@
                                 {{-- filter  --}}
                                 <div class="filter">
                                     <button onclick="filterOrders('all')" class="btns">Semua</button>
-                                    <button onclick="filterOrders('in_process')" class="btns active"
+                                    <button onclick="filterOrders('in_process')" class="btns"
                                         {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Diproses</button>
                                     <button onclick="filterOrders('borrowed')" class="btns"
                                         {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Berlangsung</button>
