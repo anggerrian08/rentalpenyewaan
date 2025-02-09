@@ -98,29 +98,29 @@
                                         <i class="fa fa-search" style="color:#00000040;"></i>
                                     </span>
                                     <input type="text" class="form-control border-start-0"
-                                        placeholder="Cari detail pembayaran..." aria-label="Search" name="search">
+                                        placeholder="Cari detail pembayaran..." aria-label="Search" name="search" value="{{request('search')}}">
                                 </div>
                             </div>
 
                             <!-- Input Harga Min -->
                             <div class="col-md-2">
-                                <input type="number" name="min_price" class="form-control" placeholder="Harga min">
+                                <input type="number" name="min_price" class="form-control" placeholder="Harga min"  value="{{request('min_price')}}">
                             </div>
 
                             <!-- Input Harga Max -->
                             <div class="col-md-2">
-                                <input type="number" name="max_price" class="form-control" placeholder="Harga max">
+                                <input type="number" name="max_price" class="form-control" placeholder="Harga max"  value="{{request('max_price')}}">
                             </div>
 
                             <!-- Input Tanggal Mulai -->
                             <div class="col-md-2">
-                                <input type="date" name="start_date" class="form-control" placeholder="Tanggal mulai">
+                                <input type="date" name="start_date" class="form-control" placeholder="Tanggal mulai"  value="{{request('start_date')}}">
                             </div>
 
                             <!-- Input Tanggal Akhir -->
                             <div class="col-md-3">
                                 <div class="input-group">
-                                    <input type="date" name="end_date" class="form-control" placeholder="Tanggal akhir">
+                                    <input type="date" name="end_date" class="form-control" placeholder="Tanggal akhir"  value="{{request('end_date')}}">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search me-1"></i> Cari
                                     </button>

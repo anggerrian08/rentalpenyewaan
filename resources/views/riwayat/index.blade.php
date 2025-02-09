@@ -447,7 +447,7 @@
                                                         margin-left: 10px;
                                                          color: #6b6e70;
                                                     "
-                                            name="order_date">
+                                            name="order_date" value="{{ request('order_date') }}">
 
                                         <button type="submit"
                                             style="
@@ -465,20 +465,21 @@
                                         </button>
                                     </form>
                                 </div>
-
+                                
                                 {{-- filter  --}}
                                 <div class="filter">
-                                    <button onclick="filterOrders('all')">Semua</button>
-                                    <button onclick="filterOrders('in_process')">Diproses</button>
-                                    <button onclick="filterOrders('borrowed')">Berlangsung</button>
-                                    <button onclick="filterOrders('late')">Terlambat</button>
-                                    <button onclick="filterOrders('rejected')">DiTolak</button>
-                                    <button onclick="filterOrders('returned')">Selesai</button>
+                                    <button onclick="filterOrders('all')" class="btns">Semua</button>
+                                    <button onclick="filterOrders('in_process')"  class="btns active" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Diproses</button>
+                                    <button onclick="filterOrders('borrowed')"  class="btns" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Berlangsung</button>
+                                    <button onclick="filterOrders('late')"  class="btns" {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Terlambat</button>
+                                    <button onclick="filterOrders('rejected')"  class="btns">DiTolak</button>
+                                    <button onclick="filterOrders('returned')"  class="btns">Selesai</button>
                                 </div>
+                                
                                 {{-- card isi --}}
                                 <div id="orderList">
                                     <!-- Your order cards go here -->
-                                    @foreach ($data_all as $item)
+                                    @forelse ($data_all as $item)
                                         <div class="order-card" data-status="{{ $item->booking->status }}">
                                             <div class="order-header">
                                                 <p class="order-title">Pesanan</p>
@@ -494,7 +495,7 @@
                                                 @elseif($item->booking->status == 'returned')
                                                     <span class="badge bg-success text-white px-3">Returned</span>
                                                 @elseif($item->booking->status == 'rejected')
-                                                    <span class="badge bg-secondary text-white px-3">Rejected</span>
+                                                    <span class="badge bg-danger text-white px-3">Rejected</span>
                                                 @endif
                                             </div>
                                             <div class="order-body">
@@ -551,7 +552,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                    <div class="d-flex justify-content-center align-items-center" style="height: 380px;">
+                                        <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px" alt="No Cars">
+                                    </div> 
+                                    @endforelse
                                     <div class="pagination-wrapper"
                                         style="display: flex; justify-content: center; margin-top: 20px;">
                                         {{ $data_all->links('pagination::bootstrap-5') }}
@@ -660,7 +665,7 @@
             filterByDate(); // Panggil fungsi filter tanggal
         }
     </script>
-
+{{-- review --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="review{{ $item->booking->car->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
@@ -696,7 +701,7 @@
             </div>
         </div>
     @endforeach
-
+{{-- detail --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="detail{{ $item->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
@@ -746,7 +751,7 @@
                                 @elseif($item->booking->status == 'returned')
                                     <span class="badge bg-success text-white px-3">Returned</span>
                                 @elseif($item->booking->status == 'rejected')
-                                    <span class="badge bg-secondary text-white px-3">Rejected</span>
+                                    <span class="badge bg-danger text-white px-3">Rejected</span>
                                 @endif
                             </div>
                         </div>
@@ -777,13 +782,6 @@
             </div>
         </div>
     @endforeach
-
-
-
-
-
-
-
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">

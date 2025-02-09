@@ -10,7 +10,7 @@ class Promosi extends Model
    protected $fillable = [
 
 
-    'photo', 'start_date', 'end_date'
+    'title','photo', 'start_date', 'end_date'
     
    ];
 }

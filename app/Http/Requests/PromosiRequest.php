@@ -22,6 +22,7 @@ class PromosiRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'title' => ['required', 'string'],
             'photo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'start_date' => ['required', 'date',],
             'end_date' => ['date'],

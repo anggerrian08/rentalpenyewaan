@@ -40,6 +40,13 @@
                     @csrf
                     @method('POST')
                     <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Title</label>
+                        <input type="text" class="form-control" id="recipient-name" name="title">
+                        @error('title')
+                            <div class="text-danger mt-1">{{ $title }}</div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Foto</label>
                         <input type="file" class="form-control" id="recipient-name" name="photo">
                         @error('photo')
@@ -87,9 +94,15 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
+                            <label for="title" class="form-label">title</label>
+                            <input type="text" class="form-control" name="title" id="title" value="{{$item->title}}">
+                        </div>
+                        <div class="mb-3">
                             <label for="photo" class="form-label">Foto Promosi</label>
                             <input type="file" class="form-control" name="photo" id="photo">
                         </div>
+                        <small>foto lama</small><br>
+                        <img src="{{asset('storage/'. $item->photo)}}" alt="" height="100px">
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Tanggal Mulai</label>
                             <input type="date" class="form-control" name="start_date"
@@ -102,6 +115,32 @@
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+<style>
+    .small-img {
+        width: 50%; /* Adjust the percentage as needed */
+        max-width: 200px; /* Set a max width if necessary */
+    }
+</style>
+@foreach ($promosi as $item)
+    <div class="modal fade" id="detail{{ $item->id }}" tabindex="-1" aria-labelledby="detailLabel{{ $item->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailLabel{{ $item->id }}">Detail Promosi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="{{ asset('storage/' . $item->photo) }}" class="img-fluid rounded small-img" alt="Foto Promosi"> <!-- Adjusted width with custom class -->
+                    </div>
+                    <hr>
+                    <p><strong>Tanggal Mulai:</strong> {{ \Carbon\Carbon::parse($item->start_date)->translatedFormat('d-M-Y') }}</p>
+                    <p><strong>Tanggal Selesai:</strong> {{ \Carbon\Carbon::parse($item->end_date)->translatedFormat('d-M-Y') }}</p>
+                </div>  
             </div>
         </div>
     </div>

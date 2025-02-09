@@ -189,7 +189,12 @@ class ApprovalController extends Controller
             ]);
     
         // Kembalikan ke halaman yang sama dengan pesan sukses
-        return redirect()->route('aproval.index');
+      
+    if (Booking::count() == 0) {
+        return redirect()->route('aproval.index')->with('error', 'Gagal update karena data masih kosong');
+    }
+
+        return redirect()->route('aproval.index')->with('success', 'update data berhasil');
     }
     
 

@@ -128,7 +128,7 @@
                                             style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
                                     </span>
                                     <input type="text" style="border: none;" placeholder="Cari jenis mobil..."
-                                        aria-label="Search" name="search">
+                                        aria-label="Search" name="search" value="{{request('search')}}">
                                 </form>
                             </div>
 
@@ -196,7 +196,10 @@
                                                     @endforelse
                                                 </tbody>
                                             </table>
-                                            <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;">
+                                            <div class="mt-2 float-end">
+                                                {{$cars->links()}}
+                                            </div>
+                                            {{-- <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;"> --}}
                                             </hr>
                                             {{-- @empty
                                             <tr>
