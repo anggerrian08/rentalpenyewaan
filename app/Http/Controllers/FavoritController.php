@@ -15,8 +15,8 @@ class FavoritController extends Controller
      */
     public function index()
     {
-
-        $data = CarLikes::with('user', 'car')->where('user_id', Auth::user()->id)->paginate(8);
+        $user_id = Auth::user()?->id;
+        $data = CarLikes::with('user', 'car')->where('user_id', $user_id)->paginate(8);
         return view('favorit',compact('data'));
     }
 
