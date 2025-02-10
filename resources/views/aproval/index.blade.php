@@ -18,9 +18,9 @@
         }
 
         /* .card:hover {
-                                                                                    transform: translateY(-5px);
-                                                                                    box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-                                                                                } */
+                                                                                                transform: translateY(-5px);
+                                                                                                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                                                                                            } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
@@ -230,8 +230,9 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9" class="text-center">
-                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                        <td colspan="10" class="text-center">
+                                            <br><br><br>
+                                            <img src="{{ asset('assets/images/logo/notdata.png') }}" width="200px"
                                                 alt="">
                                         </td>
                                     </tr>
