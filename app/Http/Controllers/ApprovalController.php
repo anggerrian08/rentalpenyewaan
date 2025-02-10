@@ -175,22 +175,38 @@ class ApprovalController extends Controller
         Booking::where('status', 'in_process')
             ->whereRaw('DATEDIFF(NOW(), order_date) > 2')
             ->update(['status' => 'rejected']);
-        
-        // Ubah status ke "late" hanya jika sudah lewat 1 hari penuh dari return_date
-        Booking::where('status', 'borrowed')
+    
+        // Ambil ID mobil yang dipinjam dan update status menjadi "late"
+        $affectedCars = Booking::where('status', 'borrowed')
             ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
-            ->update(['status' => 'late']);
-        
-        // Hitung denda jika status sudah "late" dan lebih dari 1 hari dari return_date
+            ->pluck('car_id')
+            ->toArray();
+    
+        if (!empty($affectedCars)) {
+            // Update status booking menjadi "late"
+            Booking::whereIn('car_id', $affectedCars)
+                ->where('status', 'borrowed')
+                ->update(['status' => 'late']);
+    
+            // Tambahkan stok mobil yang berkaitan
+            Car::whereIn('id', $affectedCars)->increment('stock', 1);
+        }
+    
+        // Hitung denda untuk pemesanan yang sudah "late"
         Booking::where('status', 'late')
             ->whereRaw('DATEDIFF(NOW(), return_date) >= 1')
             ->update([
                 'denda' => DB::raw('FLOOR(TIMESTAMPDIFF(DAY, return_date, NOW()) * 50000)')
             ]);
     
-        // Kembalikan ke halaman yang sama dengan pesan sukses
-        return redirect()->route('aproval.index');
+        // Cek jika ada data booking
+        if (Booking::count() == 0) {
+            return redirect()->route('aproval.index')->with('error', 'Gagal update karena data masih kosong');
+        }
+    
+        return redirect()->route('aproval.index')->with('success', 'Update data berhasil');
     }
+    
     
 
     // public function pay(Request $request, $id)

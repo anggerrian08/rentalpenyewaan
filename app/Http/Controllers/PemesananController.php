@@ -16,24 +16,18 @@ class PemesananController extends Controller
         $orderDate = $request->input('order_date'); // Tanggal pinjam
         $returnDate = $request->input('return_date'); // Tanggal kembali
     
-        // Query dasar
-        $query = Booking::with('car', 'user')
-            ->whereIn('status', ['borrowed', 'late'])
-            ->whereHas('user', function ($query) {
-                $query->where('id', auth()->id());
-            });
-    
-        // Tambahkan filter berdasarkan rentang tanggal jika input ada
         if ($orderDate && $returnDate) {
-            $query->whereBetween('order_date', [$orderDate, $returnDate])
-                  ->orWhereBetween('return_date', [$orderDate, $returnDate]);
+            $cars = Car::whereBetween('created_at', [$orderDate, $returnDate])
+                       ->where('stock', 1)
+                       ->paginate(8)
+                       ->appends(request()->query());
+        } else {
+            $cars = Car::paginate(8)->appends(request()->query());
         }
-    
-        // Eksekusi query dengan pagination
-        $cars = $query->paginate(8);
     
         return view('pemesanan', compact('cars'));
     }
+    
     
     
 
@@ -82,7 +76,7 @@ class PemesananController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
   
     

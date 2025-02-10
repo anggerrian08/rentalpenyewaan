@@ -343,8 +343,8 @@
             @endforeach
         </div>
         <!-- Pagination Links -->
-        <div class="pagination-wrapper">
-            {{ $cars->links() }}
+        <div class="container float-end" style="position: relative; left: 170px;">
+            <a href="{{route('pemesanan.index')}}">lihat semuanya -->
         </div>
     </section>
 
@@ -359,7 +359,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$count_user}}" data-purecounter-duration="1"
                             class="purecounter"></span>
                         <p>Clients</p>
                     </div>
@@ -367,25 +367,25 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$count_review}}" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Projects</p>
+                        <p>Review</p>
                     </div>
                 </div><!-- End Stats Item -->
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$count_merek}}" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Hours Of Support</p>
+                        <p>Merek Mobil</p>
                     </div>
                 </div><!-- End Stats Item -->
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1"
+                        <span data-purecounter-start="0" data-purecounter-end="{{$count_transaksi}}" data-purecounter-duration="1"
                             class="purecounter"></span>
-                        <p>Workers</p>
+                        <p>Transaksi</p>
                     </div>
                 </div><!-- End Stats Item -->
 
@@ -405,96 +405,78 @@
         <div class="container">
 
             <div class="row g-5">
-
+                @forelse ($data_review as $review )
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="testimonial-item">
-                        <img src="assets.user/img/testimonials/testimonials-1.jpg" class="testimonial-img"
+                        <img src="{{asset('storage/uploads/photo/'. $review->user->photo)}}" class="testimonial-img"
                             alt="">
-                        <h3>Saul Goodman</h3>
-                        <h4>Ceo &amp; Founder</h4>
+                        <h3>{{$review->user->name}}</h3>
+                        <h4>
+                            @if (Auth::check() && Auth::user()->hasRole('user'))
+                                User
+                            @endif
+                        </h4>
+                        
                         <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i>
+                            @for ($rating = 0; $rating < $review->rating; $rating++)
+                                <i class="bi bi-star-fill"></i>
+                            @endfor
                         </div>
                         <p>
                             <i class="bi bi-quote quote-icon-left"></i>
-                            <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                risus at semper.</span>
+                            <span>{{$review->review}}</span>
                             <i class="bi bi-quote quote-icon-right"></i>
                         </p>
                     </div>
                 </div><!-- End testimonial item -->
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-item">
-                        <img src="assets.user/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                            alt="">
-                        <h3>Sara Wilsson</h3>
-                        <h4>Designer</h4>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i>
-                        </div>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                legam anim culpa.</span>
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-item">
-                        <img src="assets.user/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                            alt="">
-                        <h3>Jena Karlis</h3>
-                        <h4>Store Owner</h4>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i>
-                        </div>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                minim.</span>
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="testimonial-item">
-                        <img src="assets.user/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                            alt="">
-                        <h3>Matt Brandon</h3>
-                        <h4>Freelancer</h4>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                class="bi bi-star-fill"></i>
-                        </div>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
-                                dolore labore illum veniam.</span>
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
-
+                @empty
+                    <p class="text-center text-muted">Tidak ada ulasan</p>
+                @endforelse
+                
             </div>
 
         </div>
 
     </section><!-- /Testimonials Section -->
+
+
+    {{-- promosi --}}
+    <style>
+        .promotion-item:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+    </style>
+    <section id="promotions" class="promotions section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Promosi Terbaru</h2>
+        </div>
+    
+        <div class="container">
+            <div class="row g-4">
+                @forelse ($promotions->take(4) as $promo)
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="promotion-item shadow-lg rounded overflow-hidden">
+                        <img src="{{ asset('storage/' . $promo->photo) }}" 
+                            class="img-fluid w-100" 
+                            alt="Promosi" 
+                            style="height: 200px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                        
+                        <div class="p-3 text-center">
+                            <h5 class="fw-bold mb-2">{{ $promo->title }}</h5>
+                            <p class="text-primary fw-semibold">🗓️ {{ $promo->start_date }} - {{ $promo->end_date }}</p>
+                        </div>
+                    </div>
+                </div>
+                @empty
+                    <p class="text-center text-muted">Tidak ada promosi tersedia</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+    
 
     <!-- Contact Section -->
     <section id="contact" class="contact section light-background">

@@ -8,14 +8,14 @@
             border-radius: 10px;
             background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
             padding: 20px;
-            margin: 10px;
+            margin: 10px 0;
             max-height: 85px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .card {
             border-radius: 10px;
-            margin: 10px;
+            margin: 10px 0;
             box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -27,6 +27,8 @@
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
+            max-height: 150px;
+            object-fit: cover;
         }
 
         .card-title {
@@ -58,10 +60,29 @@
         .alert-warning {
             border-radius: 10px;
             padding: 20px;
-            margin: 10px;
+            margin: 10px 0;
             background-color: #fff3cd;
             color: #856404;
             border: 1px solid #ffeeba;
+        }
+
+        .search-container {
+            border: 1px solid #00000017;
+            display: flex;
+            flex-direction: row;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .search-container input {
+            border: none;
+            flex: 1;
+        }
+
+        .search-container i {
+            padding-left: 4px;
+            color: #00000040;
+            padding-right: 6px;
         }
     </style>
     <br>
@@ -74,22 +95,31 @@
         </div>
     </div>
     <div class="card p-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="col-md-2 p-0 text-end">
-                <form action="{{ route('merek.index') }}"
-                    style="border: 1px solid #00000017; display:flex; flex-direction:row; padding:8px;border-radius: 8px;">
-                    <span id="search-icon">
-                        <i class="fa fa-search" style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
-                    </span>
-                    <input type="text" style="border: none;" placeholder="Cari promosi mobil..." aria-label="Search"
-                        name="search">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <!-- Form Pencarian -->
+            <div class="col-md-4 p-0">
+                <form action="{{ route('merek.index') }}" class="search-container d-flex align-items-center">
+                    <i class="fa fa-search px-2"></i>
+                    <input type="text" class="form-control border-0" placeholder="Cari promosi mobil..." name="search">
                 </form>
             </div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="bi bi-plus-circle me-1"></i> Tambah Promosi Baru
-            </button>
+    
+            <!-- Tombol Tambah & Refresh -->
+            <div class="d-flex">
+                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="bi bi-plus-circle me-1"></i> Tambah Promosi
+                </button>
+    
+                <form action="{{ route('promotions.refresh') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
+    
 
     <div class="row">
         @forelse($promosi as $item)
@@ -99,13 +129,12 @@
                     <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top" alt="Foto Promosi">
                     <!-- Tanggal di bawah foto -->
                     <div class="card-footer d-flex justify-content-between align-items-center">
-                        <!-- Tanggal di sebelah kiri -->
-                        <div class="card-body">
+                        <div class="card-body p-2">
+                            <h4 class="mb-2">{{$item->title}}</h4>
                             <p class="card-text text-start mb-0">
                                 {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d-M-Y') }}
                             </p>
                         </div>
-
                         <div class="d-flex">
                             <!-- Tombol hapus -->
                             <form action="{{ route('promosi.destroy', $item->id) }}" method="POST" class="d-inline">
@@ -120,6 +149,11 @@
                                 data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">
                                 <i class="fa fa-edit"></i>
                             </button>
+                            <!-- Tombol detail -->
+                            <button type="button" class="btn-icon btn-edit btn btn-success btn-sm p-1 ms-2"
+                                 data-bs-toggle="modal" data-bs-target="#detail{{ $item->id }}">
+                                <i class="fa fa-info-circle"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -127,6 +161,7 @@
         @empty
             <div class="text-center" style="margin-top: 70px;">
                 <img src="{{ asset('assets/images/logo/notdata.png') }}" width="200px" alt="">
+                <p class="text-muted">Tidak ada data promosi yang tersedia.</p>
             </div>
         @endforelse
     </div>

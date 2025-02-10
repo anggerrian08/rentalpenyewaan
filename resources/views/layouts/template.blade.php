@@ -294,14 +294,14 @@
                   </li> --}}
 
                                     </li>
-                                    <li class="sidebar-list "><i class=""></i><a
+                                    {{-- <li class="sidebar-list "><i class=""></i><a
                                             class="sidebar-link {{ request()->routeIs('car_likes.index') ? 'bg-primary' : '' }} "
                                             href="{{ route('car_likes.index') }}">
                                             <i class="fa fa-users"></i>
                                             <svg class="fill-icon">
                                                 <use href="../assets/svg/icon-sprite.svg#fill-widget"></use>
                                             </svg><span class="">Mobil Favorit</span></a>
-                                    </li>
+                                    </li> --}}
                                     <li class="sidebar-list "><i class=""></i><a class="sidebar-link"
                                             href="{{ route('review.index') }}">
                                             <i class="fa fa-star"></i>
@@ -422,7 +422,7 @@
                                         </a>
                                     </li>
 
-                                    <li class="sidebar-list">
+                                    {{-- <li class="sidebar-list">
                                         <a class="sidebar-link {{ request()->routeIs('car_likes.index') ? 'bg-primary text-white' : '' }}"
                                             href="{{ route('car_likes.index') }}">
                                             <i
@@ -435,7 +435,7 @@
                                                 class="{{ request()->routeIs('car_likes.index') ? 'text-white' : '' }}">Favorit
                                                 Mobil</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
 
                                     {{-- <li class="sidebar-list">
                                         <a class="sidebar-link {{ request()->routeIs('review.index') ? 'bg-primary text-white' : '' }}"

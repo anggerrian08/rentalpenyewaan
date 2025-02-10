@@ -13,13 +13,28 @@ class FavoritController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user_id = Auth::user()?->id;
-        $data = CarLikes::with('user', 'car')->where('user_id', $user_id)->paginate(8);
-        return view('favorit',compact('data'));
+        // Ambil filter dari input (GET parameters)
+        $orderDate = $request->input('order_date'); // Tanggal pinjam
+        $returnDate = $request->input('return_date'); // Tanggal kembali
+        $userId = Auth::id(); // ID user yang sedang login
+    
+        // Query mobil favorit berdasarkan user
+        $cars = CarLikes::with('car') // Include relasi ke mobil
+            ->where('user_id', $userId) // Hanya mobil yang disukai oleh user
+            ->when($orderDate && $returnDate, function ($query) use ($orderDate, $returnDate) {
+                $query->whereHas('car', function ($carQuery) use ($orderDate, $returnDate) {
+                    $carQuery->whereBetween('created_at', [$orderDate, $returnDate])
+                             ->where('stock', 1); // Hanya mobil dengan stok tersedia
+                });
+            })
+            ->paginate(8)
+            ->appends(request()->query()); // Menjaga parameter GET saat paginasi
+    
+        return view('favorit', compact('cars'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */

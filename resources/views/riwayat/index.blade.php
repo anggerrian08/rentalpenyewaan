@@ -168,6 +168,14 @@
                     /* Warna teks saat hover */
                 }
 
+                .btns.active {
+                    border: 2px solid #01A8EF;
+                    background-color: #D9F4FF;
+                    /* Warna latar belakang saat hover */
+                    color: #01A8EF;
+                    /* Warna teks saat hover */
+                }
+
                 .transaction-list {
                     display: flex;
                     flex-direction: column;
@@ -447,7 +455,7 @@
                                                         margin-left: 10px;
                                                          color: #6b6e70;
                                                     "
-                                            name="order_date">
+                                            name="order_date" value="{{ request('order_date') }}">
 
                                         <button type="submit"
                                             style="
@@ -468,17 +476,21 @@
 
                                 {{-- filter  --}}
                                 <div class="filter">
-                                    <button onclick="filterOrders('all')">Semua</button>
-                                    <button onclick="filterOrders('in_process')">Diproses</button>
-                                    <button onclick="filterOrders('borrowed')">Berlangsung</button>
-                                    <button onclick="filterOrders('late')">Terlambat</button>
-                                    <button onclick="filterOrders('rejected')">DiTolak</button>
-                                    <button onclick="filterOrders('returned')">Selesai</button>
+                                    <button onclick="filterOrders('all')" class="btns">Semua</button>
+                                    <button onclick="filterOrders('in_process')" class="btns"
+                                        {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Diproses</button>
+                                    <button onclick="filterOrders('borrowed')" class="btns"
+                                        {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Berlangsung</button>
+                                    <button onclick="filterOrders('late')" class="btns"
+                                        {{ request()->routeIs('detail_pembayarans.index') ? 'text-white' : '' }}>Terlambat</button>
+                                    <button onclick="filterOrders('rejected')" class="btns">DiTolak</button>
+                                    <button onclick="filterOrders('returned')" class="btns">Selesai</button>
                                 </div>
+
                                 {{-- card isi --}}
                                 <div id="orderList">
                                     <!-- Your order cards go here -->
-                                    @foreach ($data_all as $item)
+                                    @forelse ($data_all as $item)
                                         <div class="order-card" data-status="{{ $item->booking->status }}">
                                             <div class="order-header">
                                                 <p class="order-title">Pesanan</p>
@@ -494,7 +506,7 @@
                                                 @elseif($item->booking->status == 'returned')
                                                     <span class="badge bg-success text-white px-3">Returned</span>
                                                 @elseif($item->booking->status == 'rejected')
-                                                    <span class="badge bg-secondary text-white px-3">Rejected</span>
+                                                    <span class="badge bg-danger text-white px-3">Rejected</span>
                                                 @endif
                                             </div>
                                             <div class="order-body">
@@ -551,7 +563,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="d-flex justify-content-center align-items-center"
+                                            style="height: 380px;">
+                                            <img src="{{ asset('assets/images/logo/tidakada.png') }}" width="500px"
+                                                alt="No Cars">
+                                        </div>
+                                    @endforelse
                                     <div class="pagination-wrapper"
                                         style="display: flex; justify-content: center; margin-top: 20px;">
                                         {{ $data_all->links('pagination::bootstrap-5') }}
@@ -581,20 +599,24 @@
                 }
 
                 function filterOrders(status) {
+                    // Filter order cards berdasarkan status
                     const orderCards = document.querySelectorAll('.order-card');
+                    const buttons = document.querySelectorAll('.btns');
 
                     orderCards.forEach(card => {
                         if (status === 'all') {
                             card.style.display = '';
                         } else {
                             const cardStatus = card.getAttribute('data-status');
-                            if (cardStatus === status) {
-                                card.style.display = '';
-                            } else {
-                                card.style.display = 'none';
-                            }
+                            card.style.display = (cardStatus === status) ? '' : 'none';
                         }
                     });
+
+                    // Hapus kelas active dari semua tombol
+                    buttons.forEach(button => button.classList.remove('active'));
+
+                    // Tambahkan kelas active ke tombol yang diklik
+                    event.target.classList.add('active');
                 }
             </script>
         </body>
@@ -608,7 +630,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="review">Beri Ulasan</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <form action="{{ route('review2.store') }}" method="POST">
                         @csrf
@@ -660,7 +683,7 @@
             filterByDate(); // Panggil fungsi filter tanggal
         }
     </script>
-
+    {{-- review --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="review{{ $item->booking->car->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
@@ -696,7 +719,7 @@
             </div>
         </div>
     @endforeach
-
+    {{-- detail --}}
     @foreach ($data_all as $item)
         <div class="modal fade" id="detail{{ $item->id }}" tabindex="-1"
             aria-labelledby="reviewLabel{{ $item->booking->car->id }}" aria-hidden="true">
@@ -746,7 +769,7 @@
                                 @elseif($item->booking->status == 'returned')
                                     <span class="badge bg-success text-white px-3">Returned</span>
                                 @elseif($item->booking->status == 'rejected')
-                                    <span class="badge bg-secondary text-white px-3">Rejected</span>
+                                    <span class="badge bg-danger text-white px-3">Rejected</span>
                                 @endif
                             </div>
                         </div>
@@ -778,13 +801,6 @@
         </div>
     @endforeach
 
-
-
-
-
-
-
-
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha384-oLxXk4BPLj3wR+QZXxIMT96ePAE+1vCA0J6KqjEsvN5j1A5j43rWsm1BTxf6fiAz" crossorigin="anonymous">
     </script>
@@ -809,4 +825,15 @@
                 timer: 3000
             });
         @endif
+
+        //         function filterOrders(status) {
+        //     const buttons = document.querySelectorAll('.btns');
+        //     buttons.forEach(button => button.classList.remove('active'));
+
+        //     // Tambahkan class active ke tombol yang dipilih
+        //     event.target.classList.add('active');
+
+        //     // Lakukan logika filter sesuai status yang dipilih
+        //     console.log(`Filtering by: ${status}`);
+        // }
     </script>

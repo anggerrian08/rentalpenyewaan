@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Car;
+use App\Models\CarLikes;
 use App\Models\Merek;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -36,7 +38,7 @@ class CarController extends Controller
         }
 
         // Urutkan hasil dan paginate
-        $cars = $cars->orderBy('best_choice', 'ASC')->paginate(8);
+        $cars = $cars->orderBy('best_choice', 'ASC')->paginate(5);
 
         // Ambil data merek untuk tampilan
         $merek = Merek::all();
@@ -155,8 +157,12 @@ class CarController extends Controller
     
         // Hitung rata-rata rating, pastikan tidak membagi dengan 0
         $average_rating = $count_data > 0 ? round($total_rating / $count_data, 1) : 0;
+
+        $count_like = CarLikes::where('car_id', $car->id)->count();
+
+        $count_transaksi = Booking::where('car_id', $car->id)->count();
     
-        return view('car.show', compact('car', 'reviews', 'count_data', 'average_rating'));
+        return view('car.show', compact('car', 'reviews', 'count_data', 'average_rating','count_like', 'count_transaksi'));
     }
     
     public function edit(Car $car)
