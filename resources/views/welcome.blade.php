@@ -288,7 +288,60 @@
         </div>
 
     </section><!-- /About Section -->
+    {{-- promosi --}}
 
+    <style>
+        .carousel-item {
+            min-height: 400px;
+            height: 100px /* Sesuaikan dengan tinggi gambar */
+        }
+    </style>
+    
+    <section id="promotions" class="promotions section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Promosi Terbaru</h2>
+        </div>
+    
+        <div class="container">
+            @if ($promotions->count() > 0)
+                <div id="promotionCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach ($promotions->take(4) as $index => $promo)
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                <div class="promotion-item shadow-lg rounded overflow-hidden">
+                                    <img src="{{ asset('storage/' . $promo->photo) }}" 
+                                    class="img-fluid d-block w-100" 
+                                    alt="Promosi"
+                                 >
+                                
+                                    
+                                    <div class="carousel-caption d-block bg-dark bg-opacity-50 p-3 rounded">
+                                        <h5 class="fw-bold">{{ $promo->title }}</h5>
+                                        <p class="text-light">🗓️ {{ $promo->start_date }} - {{ $promo->end_date }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+    
+                    <!-- Tombol Navigasi -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#promotionCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#promotionCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            @else
+                <p class="text-center text-muted">Tidak ada promosi tersedia</p>
+            @endif
+        </div>
+    </section>
+    
+    
+    
     <!-- Features Section -->
     <section id="features" class="features section">
 
@@ -449,33 +502,6 @@
 }
 
     </style>
-    <section id="promotions" class="promotions section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Promosi Terbaru</h2>
-        </div>
-    
-        <div class="container">
-            <div class="row g-4">
-                @forelse ($promotions->take(4) as $promo)
-                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="promotion-item shadow-lg rounded overflow-hidden">
-                        <img src="{{ asset('storage/' . $promo->photo) }}" 
-                            class="img-fluid w-100" 
-                            alt="Promosi" 
-                            style="height: 200px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        
-                        <div class="p-3 text-center">
-                            <h5 class="fw-bold mb-2">{{ $promo->title }}</h5>
-                            <p class="text-primary fw-semibold">🗓️ {{ $promo->start_date }} - {{ $promo->end_date }}</p>
-                        </div>
-                    </div>
-                </div>
-                @empty
-                    <p class="text-center text-muted">Tidak ada promosi tersedia</p>
-                @endforelse
-            </div>
-        </div>
-    </section>
     
 
     <!-- Contact Section -->

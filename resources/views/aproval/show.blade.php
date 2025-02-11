@@ -18,8 +18,16 @@
 
         .table-custom th,
         .table-custom td {
-            padding: 8px 15px;
+            padding: 12px 20px;
             vertical-align: top;
+        }
+
+        .table-custom th {
+            font-size: 1.1rem;
+        }
+
+        .table-custom td {
+            font-size: 1rem;
         }
 
         .image-preview {
