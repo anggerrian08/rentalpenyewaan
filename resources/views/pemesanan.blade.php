@@ -267,7 +267,7 @@
             <div class="card" style="width: 2000px;">
                 <div class="card-header">
                     <img src="{{ asset('assets.user/img/humma.png') }}" alt="" width="200px"> <a href="/account">
-                        <p style="color: #01A8EF;">Profil Saya ></p>
+                        <p style="color: #01A8EF;"></p>
                     </a>
                 </div>
                 <div class="card-body">
@@ -303,7 +303,6 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
 
             </div>

@@ -123,7 +123,7 @@
 
     <div class="row">
         @forelse($promosi as $item)
-            <div class="col-md-3 mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="card">
                     <!-- Foto promosi -->
                     <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top" alt="Foto Promosi">
