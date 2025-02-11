@@ -10,7 +10,7 @@
     @endif
 
     <a href="{{ Auth::user()->hasRole('admin') ? route('car.index') : route('pemesanan.index') }}" 
-        class="btn btn-outline-secondary mb-3"  style="margin-top: 50px">
+        class="btn btn-outline-secondary mb-3"  style="margin-top: 70px">
         ← Kembali ke Daftar Mobil
     </a>
 
@@ -58,14 +58,10 @@
                 <!-- Bagian Tombol -->
                 @if (Auth::user()->hasRole('user'))
                     <div class="d-flex mt-3 gap-2 align-items-center">
-                        @if ($car->stock > 0)
                             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" 
                                 data-bs-target="#pesanModal{{ $car->id }}">
                                 Pesan Sekarang
                             </button>
-                        @else
-                            <button type="button" class="btn btn-danger" disabled>Stok Habis</button>
-                        @endif
                         
                         <form action="{{ route('car_likes.store') }}" method="post">
                             @csrf
