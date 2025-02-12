@@ -161,8 +161,14 @@ class CarController extends Controller
         $count_like = CarLikes::where('car_id', $car->id)->count();
 
         $count_transaksi = Booking::where('car_id', $car->id)->count();
-    
-        return view('car.show', compact('car', 'reviews', 'count_data', 'average_rating','count_like', 'count_transaksi'));
+
+            // Ambil peminjaman terakhir untuk mengetahui kapan mobil dipinjam dan dikembalikan
+        $last_booking = Booking::where('car_id', $car->id)
+        ->where('status', 'borrowed') // Pastikan statusnya masih dipinjam
+        ->orderBy('return_date', 'desc') // Urutkan berdasarkan return_date terbaru
+        ->first();
+
+        return view('car.show', compact('car', 'reviews', 'count_data', 'average_rating','count_like', 'count_transaksi', 'last_booking'));
     }
     
     public function edit(Car $car)
