@@ -62,6 +62,9 @@
                                 data-bs-target="#pesanModal{{ $car->id }}">
                                 Pesan Sekarang
                             </button>
+
+                         
+
                         
                         <form action="{{ route('car_likes.store') }}" method="post">
                             @csrf
@@ -82,6 +85,16 @@
                     <i class="fas fa-heart text-danger"></i> {{ $count_like }}
                     <i class="fas fa-shopping-cart text-primary ms-4"></i>{{$count_transaksi}}
                 @endif
+
+                @if ($car->stock == 0 )
+                    <div class="alert alert-warning mt-3">
+                        <strong>Mobil sedang dipinjam!</strong> Mobil ini sedang digunakan dari 
+                        <strong>{{ \Carbon\Carbon::parse($last_booking->order_date)->format('d M Y') }}</strong> 
+                        sampai 
+                        <strong>{{ \Carbon\Carbon::parse($last_booking->return_date)->format('d M Y') }}</strong>.
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>

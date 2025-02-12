@@ -123,17 +123,23 @@ class ApprovalController extends Controller
     // Fungsi untuk menolak (reject) booking
     public function rejected(Request $request, $id)
     {
+
+        $request->validate([
+            'reason' => 'required|string'
+        ]);
         $booking = Booking::find($id);
         
+
         if (!$booking) {
             return redirect()->back()->with('error', 'Data booking tidak ditemukan.');
         }
 
         $booking->update([
+            'reason' => $request->reason,
             'status' => 'rejected', // Ubah status menjadi rejected
         ]);
 
-        $car = Car::findOrFail($booking->car_id);
+        // $car = Car::findOrFail($booking->car_id);
         
         // Tambahkan stok mobil yang dikembalikan
         // $car->update([
@@ -189,6 +195,14 @@ class ApprovalController extends Controller
             ]);
     
         // Kembalikan ke halaman yang sama dengan pesan sukses
+
+        // ini stock bertamabh
+        Booking::where('status', 'borrowed')
+        ->whereRaw('NOW() > return_date')
+        ->update(['status' => 'late']);
+
+        Car::whereIn('id', Booking::where('status', 'late')->pluck('car_id'))
+            ->increment('stock');
       
     if (Booking::count() == 0) {
         return redirect()->route('aproval.index')->with('error', 'Gagal update karena data masih kosong');

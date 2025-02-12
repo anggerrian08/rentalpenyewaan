@@ -87,7 +87,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group( function(){
     Route::resource('/review', ReviewController::class)->except('index', 'show');
-
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
     Route::put('/bookings/{id}/proses_pengembalian', [BookingController::class, 'proses_pengembalian'])->name('bookings.proses_pengembalian');
 
     // Route::resource('/bookings', BookingController::class);
@@ -108,7 +108,7 @@ Route::get('/pemesanan/search', [PemesananController::class, 'search'])->name('p
 Route::middleware('auth')->group(function () {
     Route::resource('/bookings', BookingController::class);
     Route::resource('/detail_pembayarans', DetailPembayaranController::class)->only('index');
-    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+  
 
     Route::resource('/account',  ProfileController::class);
     // car

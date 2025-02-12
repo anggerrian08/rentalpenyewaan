@@ -773,6 +773,16 @@
                                 @endif
                             </div>
                         </div>
+                        @if($item->booking->status == 'rejected')
+                            <div class="col-md-12">
+                                <strong>Alasan DiTolak:</strong>
+                                @if($item->booking->reason == NULL)
+                                    <p class="text-danger" >mobil ini masih di pinjam</p>
+                                @else
+                                        <p class="text-danger" >{{ $item->booking->reason }}</p>
+                                @endif
+                            </div>
+                        @endif
 
                         <!-- Payment Breakdown Section -->
                         <div class="p-4 rounded" style="background-color: #f8f9fa;">
