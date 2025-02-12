@@ -97,7 +97,7 @@
                 </div>
 
                 <!-- Foto KTP dan SIM -->
-                <div class="col-md-6 text-center">
+                <div class="col-md-6">
                     <div class="mb-4">
                         <strong class="d-block mb-2" style="font-size: 1.3rem; color: #000000;">Foto KTP</strong>
                         <img src="{{ asset('storage/uploads/ktp/' . $aproval->booking->user->ktp) }}" class="img-fluid mb-3"
