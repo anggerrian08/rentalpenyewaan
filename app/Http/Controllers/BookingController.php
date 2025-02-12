@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\User;
 use App\Models\Car;
 use App\Models\DetailPembayaran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -98,6 +99,8 @@ class BookingController extends Controller
             'order_date' => 'required|date',
             'return_date' => 'required|date|after:order_date',
         ]);
+
+      
 
         // Cek stok mobil
         $car = Car::findOrFail($request->car_id);
