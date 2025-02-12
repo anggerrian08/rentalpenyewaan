@@ -103,7 +103,7 @@ class BookingController extends Controller
         $car = Car::findOrFail($request->car_id);
 
         if ($car->stock <= 0) {
-            return back()->with('error', 'Mobil ini tidak tersedia untuk dipinjam saat ini.');
+            return back()->with('error', 'Mobil ini masih di pinjam.');
         }
 
         // Ambil user yang sedang login

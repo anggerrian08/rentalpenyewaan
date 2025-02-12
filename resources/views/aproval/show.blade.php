@@ -1,5 +1,27 @@
 @extends('layouts.template')
 @section('content')
+
+
+<script>
+    function confirmReturn(event, formId) {
+        event.preventDefault(); // Mencegah form dikirim langsung
+
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Anda ingin mengembalikan mobil ini?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, kembalikan!",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(formId).submit();
+            }
+        });
+    }
+</script>
     <style>
         .kotak-biru {
             border-radius: 10px;
@@ -141,6 +163,29 @@
                     </div>
                 </div>
             </div>
+            <div class="d-flex justify-content-end mt-3">
+                @if ($aproval->booking->status == 'in_process')
+                    {{-- <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                    </form> --}}
+                    <button type="buttton" data-bs-toggle="modal" data-bs-target="#tolak{{$aproval->id}}" class="btn btn-danger me-2">Tolak</button>
+                    <form action="{{ route('aproval.accepted', $aproval->id) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-success me-2">terima</button>
+                    </form>
+                @endif
+           
+                @if ($aproval->booking->status == 'borrowed' || ($aproval->booking->status == 'late'))
+                    <form id="returnForm-{{ $aproval->id }}" action="{{ route('aproval.returned', $aproval->id) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <button type="button" class="btn btn-success me-2" onclick="confirmReturn(event, 'returnForm-{{ $aproval->id }}')">Returned</button>
+                    </form>
+                @endif
+                <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
+            </div>
         </div>
 
     </div>
@@ -171,6 +216,31 @@
 
 
 
+
+    {{-- modal toalk--}}
+    <div class="modal fade" id="tolak{{$aproval->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <label for="" class="form-label">Alasan Ditolak</label>
+                <input type="text" name="reason" class="form-control" value="{{request('reason')}}">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 
     <!-- Tombol Aksi -->
 @endsection
