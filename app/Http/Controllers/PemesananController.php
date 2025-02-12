@@ -16,17 +16,35 @@ class PemesananController extends Controller
         $orderDate = $request->input('order_date'); // Tanggal pinjam
         $returnDate = $request->input('return_date'); // Tanggal kembali
     
+        // Ambil semua mobil
+        $cars = Car::with('booking');
+    
         if ($orderDate && $returnDate) {
-            $cars = Car::whereBetween('created_at', [$orderDate, $returnDate])
-                       ->where('stock', 1)
-                       ->paginate(8)
-                       ->appends(request()->query());
-        } else {
-            $cars = Car::paginate(8)->appends(request()->query());
+            $cars = $cars->whereDoesntHave('booking', function ($query) use ($orderDate, $returnDate) {
+                $query->where('status', 'borrowed') // Hanya booking yang statusnya "borrowed"
+                      ->where(function ($q) use ($orderDate, $returnDate) {
+                          $q->whereBetween('order_date', [$orderDate, $returnDate]) // Cek jika order_date ada di range filter
+                            ->orWhere(function ($q) use ($orderDate, $returnDate) {
+                                // Jika return_date user berada di bawah atau sama dengan return_date booking, maka mobil tidak ditampilkan
+                                $q->where('return_date', '>=', $returnDate);
+                            })
+                            ->orWhere(function ($q) use ($orderDate, $returnDate) {
+                                // Jika filter order_date masuk dalam range booking, maka mobil tidak ditampilkan
+                                $q->where('order_date', '<=', $orderDate)
+                                  ->where('return_date', '>=', $returnDate);
+                            });
+                      });
+            });
         }
+        
+    
+    
+        // Paginate hasilnya
+        $cars = $cars->paginate(8)->appends(request()->query());
     
         return view('pemesanan', compact('cars'));
     }
+    
     
     
     
