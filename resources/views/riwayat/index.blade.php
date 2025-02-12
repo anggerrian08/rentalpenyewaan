@@ -16,6 +16,33 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Transaksi</title>
             <style>
+.pagination {
+    display: flex;
+    gap: 8px;
+}
+
+.pagination .page-link {
+    border: none;
+    background: transparent;
+    color: #555;
+    font-size: 16px;
+    padding: 6px 10px;
+    font-weight: 500;
+    position: relative;
+}
+
+.pagination .page-item.active .page-link::after,
+.pagination .page-link:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+    transition: width 0.3s ease-in-out;
+}
+
                 * {
                     margin: 0;
                     padding: 0;
@@ -773,13 +800,13 @@
                                 @endif
                             </div>
                         </div>
-                        @if($item->booking->status == 'rejected')
+                        @if ($item->booking->status == 'rejected')
                             <div class="col-md-12">
                                 <strong>Alasan DiTolak:</strong>
-                                @if($item->booking->reason == NULL)
-                                    <p class="text-danger" >mobil ini masih di pinjam</p>
+                                @if ($item->booking->reason == null)
+                                    <p class="text-danger">mobil ini masih di pinjam</p>
                                 @else
-                                        <p class="text-danger" >{{ $item->booking->reason }}</p>
+                                    <p class="text-danger">{{ $item->booking->reason }}</p>
                                 @endif
                             </div>
                         @endif
