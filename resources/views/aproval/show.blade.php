@@ -77,75 +77,96 @@
             <div class="row">
                 <!-- Data Penyewa -->
                 <div class="col-md-6">
-                    <table class="table table-borderless table-custom">
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">Nama Penyewa</th>
-                            <td class="text-muted">{{ $aproval->booking->user->name }}</td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">NIK</th>
-                            <td class="text-muted">{{ $aproval->booking->user->nik }}</td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">No HP</th>
-                            <td class="text-muted">{{ $aproval->booking->user->phone_number }}</td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">Alamat</th>
-                            <td class="text-muted">{{ $aproval->booking->user->address }}</td>
-                        </tr>
-                    </table>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;"> Nama Penyewa</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->user->name }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">NIK</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->user->nik }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">No HP</strong>
+                        <span class="text-muted"
+                            style="font-size: 1.15rem;">{{ $aproval->booking->user->phone_number }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Alamat</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->user->address }}</span>
+                    </div>
                 </div>
 
                 <!-- Foto KTP dan SIM -->
-                <div class="col-md-6 text-center">
+                <div class="col-md-6">
                     <div class="mb-4">
-                        <strong class="d-block mb-2" style="font-size: 1.1rem; color: #495057;">Foto KTP</strong>
-                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->booking->user->ktp) }}" class="img-fluid mb-3" alt="Foto KTP"
+                        <strong class="d-block mb-2" style="font-size: 1.3rem; color: #000000;">Foto KTP</strong>
+                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->booking->user->ktp) }}" class="img-fluid mb-3"
+                            alt="Foto KTP"
                             style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     <div>
-                        <strong class="d-block mb-2" style="font-size: 1.1rem; color: #495057;">Foto SIM</strong>
+                        <strong class="d-block mb-2" style="font-size: 1.3rem; color: #000000;">Foto SIM</strong>
                         <img src="{{ asset('storage/uploads/sim/' . $aproval->booking->user->sim) }}" class="img-fluid"
-                            alt="Foto SIM" style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                            alt="Foto SIM"
+                            style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                 </div>
             </div>
 
             <!-- Data Pinjaman -->
-            <hr style="border-top: 2px solid #e0e0e0;">
+            {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
             <div class="row">
                 <div class="col-md-6">
-                    <table class="table table-borderless table-custom">
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">Tanggal Pinjam</th>
-                            <td class="text-muted">{{ $aproval->booking->order_date }}</td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">Tanggal Kembali</th>
-                            <td class="text-muted">{{ $aproval->booking->return_date }}</td>
-                        </tr>
-                    </table>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tanggal Pinjam</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->order_date }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tanggal Kembali</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->return_date }}</span>
+                    </div>
                 </div>
 
                 <div class="col-md-6">
-                    <table class="table table-borderless table-custom">
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">Total Hari</th>
-                            <td class="text-muted">{{ $aproval->rental_duration_days }}</td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">Tarif/hari</th>
-                            <td class="text-muted">Rp. {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</td>
-                        </tr>
-                        <tr>
-                            <th class="font-weight-bold" style="color: #6c757d;">Total Tarif</th>
-                            <td class="text-muted">Rp. {{ number_format($aproval->total_price, 0, ',', '.') }}</td>
-                        </tr>
-                    </table>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Hari</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->rental_duration_days }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tarif/hari</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">Rp.
+                            {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</span>
+                    </div>
+                    {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
+                    {{-- <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">Rp.
+                            {{ number_format($aproval->total_price, 0, ',', '.') }}</span>
+                    </div> --}}
+                </div>
+
+                <div class="col-md-6">
+                    {{-- <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Hari</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->rental_duration_days }}</span>
+                    </div>
+                    <div class="mb-3">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tarif/hari</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">Rp.
+                            {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</span>
+                    </div> --}}
+                    {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
+
                 </div>
             </div>
+
+                            <div class="mb-3"  style="position: relative;top:70px;">
+                                <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
+                                <span class="text-muted" style="font-size: 1.15rem;">Rp.
+                                    {{ number_format($aproval->total_price, 0, ',', '.') }}</span>
+                            </div>
             <div class="d-flex justify-content-end mt-3">
+
                 @if ($aproval->booking->status == 'in_process')
                     {{-- <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
                         @csrf
@@ -158,7 +179,7 @@
                         <button type="submit" class="btn btn-success me-2">terima</button>
                     </form>
                 @endif
-           
+
                 @if ($aproval->booking->status == 'borrowed' || ($aproval->booking->status == 'late'))
                     <form id="returnForm-{{ $aproval->id }}" action="{{ route('aproval.returned', $aproval->id) }}" method="post">
                         @csrf
@@ -169,7 +190,38 @@
                 <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
             </div>
         </div>
+
     </div>
+
+    </div>
+    </div>
+
+
+
+
+    {{-- modal toalk--}}
+    <div class="modal fade" id="tolak{{$aproval->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <label for="" class="form-label">Alasan Ditolak</label>
+                <input type="text" name="reason" class="form-control" value="{{request('reason')}}">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     {{-- modal toalk--}}
@@ -198,5 +250,4 @@
       
 
     <!-- Tombol Aksi -->
-  
 @endsection

@@ -20,7 +20,7 @@ class RiwayatController extends Controller
                 $query->whereDate('order_date', $order_date);
             }
         })
-        ->paginate(5)
+        ->paginate(10)
         ->through(function ($item) {
             // Tambahkan alias total_pembayaran tanpa perlu ada di database
             $item->total_pembayaran = $item->total_price + ($item->booking->denda ?? 0);

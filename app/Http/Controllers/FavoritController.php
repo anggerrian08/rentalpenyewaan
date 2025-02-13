@@ -18,15 +18,21 @@ class FavoritController extends Controller
         // Ambil filter dari input (GET parameters)
         $orderDate = $request->input('order_date'); // Tanggal pinjam
         $returnDate = $request->input('return_date'); // Tanggal kembali
+        $carId = $request->input('car_id'); // ID Mobil (jika ada filter)
         $userId = Auth::id(); // ID user yang sedang login
     
         // Query mobil favorit berdasarkan user
         $cars = CarLikes::with('car') // Include relasi ke mobil
             ->where('user_id', $userId) // Hanya mobil yang disukai oleh user
-            ->when($orderDate && $returnDate, function ($query) use ($orderDate, $returnDate) {
-                $query->whereHas('car', function ($carQuery) use ($orderDate, $returnDate) {
-                    $carQuery->whereBetween('created_at', [$orderDate, $returnDate])
-                             ->where('stock', 1); // Hanya mobil dengan stok tersedia
+            ->when($carId, function ($query) use ($carId) {
+                return $query->where('car_id', $carId);
+            })
+            ->when($returnDate, function ($query) use ($returnDate) {
+                $query->whereHas('car', function ($carQuery) use ($returnDate) {
+                    $carQuery->whereDoesntHave('booking', function ($bookingQuery) use ($returnDate) {
+                        $bookingQuery->where('status', 'borrowed')
+                                     ->where('return_date', '>=', $returnDate);
+                    });
                 });
             })
             ->paginate(8)
@@ -34,6 +40,7 @@ class FavoritController extends Controller
     
         return view('favorit', compact('cars'));
     }
+    
     
     /**
      * Show the form for creating a new resource.
