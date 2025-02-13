@@ -272,11 +272,12 @@
                 </div>
                 <div class="card-body">
                     <form method="GET" action="{{ route('pemesanan.index') }}">
-                        <p>filter mobil yang tersedia sesuai rentang tanggal<p>
+                        {{-- <p>filter mobil yang tersedia sesuai rentang tanggal
+                        <p> --}}
                         <div class="form-row">
                             <!-- Form Group: Tanggal Pinjam -->
                             <div class="form-group">
-                                <label for="tanggal-pinjam" class="form-label"><b>start date</b></label>
+                                <label for="tanggal-pinjam" class="form-label"><b>Tanggal Pinjam</b></label>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
@@ -289,7 +290,7 @@
 
                             <!-- Form Group: Tanggal Kembali -->
                             <div class="form-group">
-                                <label for="tanggal-kembali" class="form-label"><b>end date</b></label>
+                                <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
                                 <div class="input-group d-flex">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
@@ -355,10 +356,10 @@
                         <a href="{{ route('car.show', $car->id) }}" class="pesan-btn">pesan</a>
                     </div>
                 </div>
-                @endforeach
-                <div class="container float-end">
-                    {{$cars->links()}}
-                </div>
+            @endforeach
+            <div class="container float-end">
+                {{ $cars->links() }}
+            </div>
         </div>
     </section>
 @endsection
