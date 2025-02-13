@@ -16,32 +16,32 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Transaksi</title>
             <style>
-.pagination {
-    display: flex;
-    gap: 8px;
-}
+                .pagination {
+                    display: flex;
+                    gap: 8px;
+                }
 
-.pagination .page-link {
-    border: none;
-    background: transparent;
-    color: #555;
-    font-size: 16px;
-    padding: 6px 10px;
-    font-weight: 500;
-    position: relative;
-}
+                .pagination .page-link {
+                    border: none;
+                    background: transparent;
+                    color: #555;
+                    font-size: 16px;
+                    padding: 6px 10px;
+                    font-weight: 500;
+                    position: relative;
+                }
 
-.pagination .page-item.active .page-link::after,
-.pagination .page-link:hover::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #007bff;
-    transition: width 0.3s ease-in-out;
-}
+                .pagination .page-item.active .page-link::after,
+                .pagination .page-link:hover::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background-color: #007bff;
+                    transition: width 0.3s ease-in-out;
+                }
 
                 * {
                     margin: 0;
@@ -525,15 +525,20 @@
                                                     {{ $item->created_at->translatedFormat('d M Y') }}
                                                 </p>
                                                 @if ($item->booking->status == 'late')
-                                                    <span class="badge bg-danger text-white px-3">Late</span>
+                                                    <span class="badge bg-danger text-white px-3"
+                                                        style="font-size: 12px; padding: 8px 12px;">Late</span>
                                                 @elseif($item->booking->status == 'in_process')
-                                                    <span class="badge bg-warning text-dark px-3">In Process</span>
+                                                    <span class="badge bg-warning text-dark px-3"
+                                                        style="font-size: 12px; padding: 8px 12px;">In Process</span>
                                                 @elseif($item->booking->status == 'borrowed')
-                                                    <span class="badge bg-primary text-white px-3">Borrowed</span>
+                                                    <span class="badge bg-primary text-white px-3"
+                                                        style="font-size: 12px; padding: 8px 12px;">Borrowed</span>
                                                 @elseif($item->booking->status == 'returned')
-                                                    <span class="badge bg-success text-white px-3">Returned</span>
+                                                    <span class="badge bg-success text-white px-3"
+                                                        style="font-size: 12px; padding: 8px 12px;">Returned</span>
                                                 @elseif($item->booking->status == 'rejected')
-                                                    <span class="badge bg-danger text-white px-3">Rejected</span>
+                                                    <span class="badge bg-danger text-white px-3"
+                                                        style="font-size: 12px; padding: 8px 12px;">Rejected</span>
                                                 @endif
                                             </div>
                                             <div class="order-body">
@@ -788,15 +793,20 @@
                             <div class="col-md-6">
                                 <strong>Status:</strong><br>
                                 @if ($item->booking->status == 'late')
-                                    <span class="badge bg-danger text-white px-3">Late</span>
+                                    <span class="badge bg-danger text-white px-3"
+                                        style="font-size: 13px; padding: 8px 12px;">Late</span>
                                 @elseif($item->booking->status == 'in_process')
-                                    <span class="badge bg-warning text-dark px-3">In Process</span>
+                                    <span class="badge bg-warning text-dark px-3"
+                                        style="font-size: 13px; padding: 8px 12px;">In Process</span>
                                 @elseif($item->booking->status == 'borrowed')
-                                    <span class="badge bg-primary text-white px-3">Borrowed</span>
+                                    <span class="badge bg-primary text-white px-3"
+                                        style="font-size: 13px; padding: 8px 12px;">Borrowed</span>
                                 @elseif($item->booking->status == 'returned')
-                                    <span class="badge bg-success text-white px-3">Returned</span>
+                                    <span class="badge bg-success text-white px-3"
+                                        style="font-size: 13px; padding: 8px 12px;">Returned</span>
                                 @elseif($item->booking->status == 'rejected')
-                                    <span class="badge bg-danger text-white px-3">Rejected</span>
+                                    <span class="badge bg-danger text-white px-3"
+                                        style="font-size: 13px; padding: 8px 12px;">Rejected</span>
                                 @endif
                             </div>
                         </div>

@@ -33,9 +33,9 @@
                 }
 
                 /* .card:hover {
-                                                                    transform: translateY(-5px);
-                                                                    box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-                                                                } */
+                                                                                                                                                                                                transform: translateY(-5px);
+                                                                                                                                                                                                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                                                                                                                                                                                            } */
 
                 .card-img-top {
                     border-radius: 10px 10px 0 0;
@@ -128,7 +128,7 @@
                                             style="padding-left: 4px;color:#00000040; padding-right: 6px;"></i>
                                     </span>
                                     <input type="text" style="border: none;" placeholder="Cari jenis mobil..."
-                                        aria-label="Search" name="search" value="{{request('search')}}">
+                                        aria-label="Search" name="search" value="{{ request('search') }}">
                                 </form>
                             </div>
 
@@ -162,9 +162,11 @@
                                                             <td>Rp.{{ number_format($car->price, 0, ',', '.') }}</td>
                                                             <td class="justify-center">
                                                                 @if ($car->stock > 0)
-                                                                    <button class="badge badge-primary" style="border: none">tersedia</button>
+                                                                    <button class="badge badge-primary"
+                                                                        style="font-size: 13px; padding: 8px 12px; border: none;">tersedia</button>
                                                                 @else
-                                                                    <button class="badge badge-danger" style="border: none">tidak
+                                                                    <button class="badge badge-danger"
+                                                                        style="font-size: 13px; padding: 8px 12px; border: none;">tidak
                                                                         tersedia</button>
                                                                 @endif
                                                             </td>
@@ -197,7 +199,7 @@
                                                 </tbody>
                                             </table>
                                             <div class="mt-2 float-end">
-                                                {{$cars->links()}}
+                                                {{ $cars->links() }}
                                             </div>
                                             {{-- <hr style="border-bottom: 1px solid #7a7979; margin: 10px 0;"> --}}
                                             </hr>
@@ -374,11 +376,15 @@
                                                     <td>Rp.{{ number_format($car->price, 0, ',', '.') }}</td>
                                                     <td class="text-center">
                                                         @if ($car->stock > 0)
-                                                            <button class="badge badge-primary" style="border: none">Tersedia</button>
+                                                            <span class="badge badge-primary"
+                                                                style="font-size: 13px; padding: 8px 12px; border: none;">Tersedia</span>
                                                         @else
-                                                            <button class="badge badge-danger" style="bor">Tidak Tersedia</button>
+                                                            <span class="badge badge-danger"
+                                                                style="font-size: 13px; padding: 8px 12px; border: none;">Tidak
+                                                                Tersedia</span>
                                                         @endif
                                                     </td>
+
                                                     <td class="text-center">
                                                         <a href="{{ route('car.show', $car->id) }}"
                                                             class="btn btn-info btn-sm" style="padding: 5px 10px;">
