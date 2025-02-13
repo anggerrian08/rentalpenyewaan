@@ -10,6 +10,7 @@ class PemesananController extends Controller
     /**
      * Display a listing of the resource.
      */
+
   public function index(Request $request)
 {
     $orderDate = $request->input('order_date');
@@ -37,6 +38,7 @@ class PemesananController extends Controller
     return view('pemesanan', compact('cars'));
 }
 
+    
     
     
     

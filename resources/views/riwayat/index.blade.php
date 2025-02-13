@@ -800,6 +800,7 @@
                                 @endif
                             </div>
                         </div>
+
                         @if ($item->booking->status == 'rejected')
                             <div class="col-md-12">
                                 <strong>Alasan DiTolak:</strong>
