@@ -156,14 +156,17 @@
                             {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</span>
                     </div> --}}
                     {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
-                    <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">Rp.
-                            {{ number_format($aproval->total_price, 0, ',', '.') }}</span>
-                    </div>
+
                 </div>
             </div>
+
+                            <div class="mb-3"  style="position: relative;top:70px;">
+                                <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
+                                <span class="text-muted" style="font-size: 1.15rem;">Rp.
+                                    {{ number_format($aproval->total_price, 0, ',', '.') }}</span>
+                            </div>
             <div class="d-flex justify-content-end mt-3">
+
                 @if ($aproval->booking->status == 'in_process')
                     {{-- <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
                         @csrf
