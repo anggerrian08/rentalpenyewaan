@@ -1,7 +1,9 @@
 @extends('layouts.navuser')
 @section('content')
 
-  
+    <head>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    </head>
     <style>
         /* Hero Section Styling */
         .hero-section {
@@ -256,7 +258,7 @@
             margin-bottom: 5rem;
         }
     </style>
-    <div class="hero-section" >
+    <div class="hero-section">
         <div class="container text-center">
             <img src="assets.user/img/mbl.png" alt="Cars" class="hero-image">
             <!-- Card Add Merk -->
@@ -265,13 +267,13 @@
                     <img src="{{ asset('assets.user/img/humma.png') }}" alt="" width="200px"> <a href="/account">
                     </a>
                 </div>
-                <div class="card-body" >
+                <div class="card-body">
                     <form method="GET" action="{{ route('favorit.index') }}">
-                        <p>filter mobil yang tersedia sesuai rentang tanggal<p>
+                        {{-- <p>filter mobil yang tersedia sesuai rentang tanggal<p> --}}
                         <div class="form-row">
                             <!-- Form Group: Tanggal Pinjam -->
                             <div class="form-group">
-                                <label for="tanggal-pinjam" class="form-label"><b>start date</b></label>
+                                <label for="tanggal-pinjam" class="form-label"><b>Tanggal Pinjam</b></label>
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
@@ -284,7 +286,7 @@
 
                             <!-- Form Group: Tanggal Kembali -->
                             <div class="form-group">
-                                <label for="tanggal-kembali" class="form-label"><b>end date</b></label>
+                                <label for="tanggal-kembali" class="form-label"><b>Tanggal Kembali</b></label>
                                 <div class="input-group d-flex">
                                     <span class="input-group-text">
                                         <i class="fas fa-calendar-alt" style="color: #01A8EF;"></i>
