@@ -21,11 +21,18 @@ class ApprovalController extends Controller
         $filter_status = $request->input('filter_status');
     
         // Query dasar
-        $query = Booking::query()
-            ->select('bookings.*')
-            ->with('user', 'car')
-            ->leftJoin('users', 'users.id', '=', 'bookings.user_id')
-            ->orderByRaw("CASE WHEN bookings.status = 'in_process' THEN 1 ELSE 2 END");
+       // **6. Query Booking**
+       $query = Booking::query()
+       ->select('bookings.*')
+       ->with('user', 'car')
+       ->leftJoin('users', 'users.id', '=', 'bookings.user_id')
+       ->orderByRaw("CASE 
+                       WHEN bookings.status = 'in_process' THEN 1 
+                       WHEN bookings.status = 'borrowed' THEN 2
+                       WHEN bookings.status = 'returned' THEN 3
+                       WHEN bookings.status = 'late' THEN 4
+                       WHEN bookings.status = 'rejected' THEN 5
+                     ELSE 6 END");
     
         // Filter berdasarkan email (A-Z, Z-A)
         if ($filter === 'a-z') {
