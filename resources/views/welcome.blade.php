@@ -130,15 +130,15 @@
 
         /* Card Positioning for Love Icon */
         /* .card {
-                                        position: relative;
-                                        background-color: #ffffff;
-                                        width: 250px;
-                                        border-radius: 10px;
-                                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                                        padding: 15px;
-                                        text-align: center;
-                                        transition: all 0.3s ease;
-                                    } */
+                                                                position: relative;
+                                                                background-color: #ffffff;
+                                                                width: 250px;
+                                                                border-radius: 10px;
+                                                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                                                padding: 15px;
+                                                                text-align: center;
+                                                                transition: all 0.3s ease;
+                                                            } */
 
         .card:hover {
             transform: translateY(-10px);
@@ -293,15 +293,16 @@
     <style>
         .carousel-item {
             min-height: 400px;
-            height: 100px /* Sesuaikan dengan tinggi gambar */
+            height: 100px
+                /* Sesuaikan dengan tinggi gambar */
         }
     </style>
-    
+
     <section id="promotions" class="promotions section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Promosi Terbaru</h2>
         </div>
-    
+
         <div class="container">
             @if ($promotions->count() > 0)
                 <div id="promotionCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -309,12 +310,10 @@
                         @foreach ($promotions->take(4) as $index => $promo)
                             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                 <div class="promotion-item shadow-lg rounded overflow-hidden">
-                                    <img src="{{ asset('storage/' . $promo->photo) }}" 
-                                    class="img-fluid d-block w-100" 
-                                    alt="Promosi"
-                                 >
-                                
-                                    
+                                    <img src="{{ asset('storage/' . $promo->photo) }}" class="img-fluid d-block w-100"
+                                        alt="Promosi">
+
+
                                     <div class="carousel-caption d-block bg-dark bg-opacity-50 p-3 rounded">
                                         <h5 class="fw-bold">{{ $promo->title }}</h5>
                                         <p class="text-light">🗓️ {{ $promo->start_date }} - {{ $promo->end_date }}</p>
@@ -323,13 +322,15 @@
                             </div>
                         @endforeach
                     </div>
-    
+
                     <!-- Tombol Navigasi -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#promotionCarousel" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#promotionCarousel"
+                        data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#promotionCarousel" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#promotionCarousel"
+                        data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -339,9 +340,9 @@
             @endif
         </div>
     </section>
-    
-    
-    
+
+
+
     <!-- Features Section -->
     <section id="features" class="features section">
 
@@ -396,8 +397,9 @@
             @endforeach
         </div>
         <!-- Pagination Links -->
-        <div class="container float-end" style="position: relative; left: 170px;">
-            <a href="{{route('pemesanan.index')}}">lihat semuanya -->
+        <div class="container float-center" style="position: relative; left: 170px;">
+            <a href="{{ route('pemesanan.index') }}">
+                Lihat Semuanya -->
         </div>
     </section>
 
@@ -412,32 +414,32 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="{{$count_user}}" data-purecounter-duration="1"
-                            class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $count_user }}"
+                            data-purecounter-duration="1" class="purecounter"></span>
                         <p>Clients</p>
                     </div>
                 </div><!-- End Stats Item -->
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="{{$count_review}}" data-purecounter-duration="1"
-                            class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $count_review }}"
+                            data-purecounter-duration="1" class="purecounter"></span>
                         <p>Review</p>
                     </div>
                 </div><!-- End Stats Item -->
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="{{$count_merek}}" data-purecounter-duration="1"
-                            class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $count_merek }}"
+                            data-purecounter-duration="1" class="purecounter"></span>
                         <p>Merek Mobil</p>
                     </div>
                 </div><!-- End Stats Item -->
 
                 <div class="col-lg-3 col-md-6">
                     <div class="stats-item text-center w-100 h-100">
-                        <span data-purecounter-start="0" data-purecounter-end="{{$count_transaksi}}" data-purecounter-duration="1"
-                            class="purecounter"></span>
+                        <span data-purecounter-start="0" data-purecounter-end="{{ $count_transaksi }}"
+                            data-purecounter-duration="1" class="purecounter"></span>
                         <p>Transaksi</p>
                     </div>
                 </div><!-- End Stats Item -->
@@ -458,34 +460,34 @@
         <div class="container">
 
             <div class="row g-5">
-                @forelse ($data_review as $review )
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-item">
-                        <img src="{{asset('storage/uploads/photo/'. $review->user->photo)}}" class="testimonial-img"
-                            alt="">
-                        <h3>{{$review->user->name}}</h3>
-                        <h4>
-                            @if (Auth::check() && Auth::user()->hasRole('user'))
-                                User
-                            @endif
-                        </h4>
-                        
-                        <div class="stars">
-                            @for ($rating = 0; $rating < $review->rating; $rating++)
-                                <i class="bi bi-star-fill"></i>
-                            @endfor
+                @forelse ($data_review as $review)
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="testimonial-item">
+                            <img src="{{ asset('storage/uploads/photo/' . $review->user->photo) }}"
+                                class="testimonial-img" alt="">
+                            <h3>{{ $review->user->name }}</h3>
+                            <h4>
+                                @if (Auth::check() && Auth::user()->hasRole('user'))
+                                    User
+                                @endif
+                            </h4>
+
+                            <div class="stars">
+                                @for ($rating = 0; $rating < $review->rating; $rating++)
+                                    <i class="bi bi-star-fill"></i>
+                                @endfor
+                            </div>
+                            <p>
+                                <i class="bi bi-quote quote-icon-left"></i>
+                                <span>{{ $review->review }}</span>
+                                <i class="bi bi-quote quote-icon-right"></i>
+                            </p>
                         </div>
-                        <p>
-                            <i class="bi bi-quote quote-icon-left"></i>
-                            <span>{{$review->review}}</span>
-                            <i class="bi bi-quote quote-icon-right"></i>
-                        </p>
-                    </div>
-                </div><!-- End testimonial item -->
+                    </div><!-- End testimonial item -->
                 @empty
                     <p class="text-center text-muted">Tidak ada ulasan</p>
                 @endforelse
-                
+
             </div>
 
         </div>
@@ -496,13 +498,12 @@
     {{-- promosi --}}
     <style>
         .promotion-item:hover {
-    transform: scale(1.05);
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
+            transform: scale(1.05);
+            transition: 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
     </style>
-    
+
 
     <!-- Contact Section -->
     <section id="contact" class="contact section light-background">

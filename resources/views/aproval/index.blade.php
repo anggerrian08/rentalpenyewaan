@@ -18,9 +18,9 @@
         }
 
         /* .card:hover {
-                                                                                                transform: translateY(-5px);
-                                                                                                box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
-                                                                                            } */
+                                                                                                                                                                                                                                                                    transform: translateY(-5px);
+                                                                                                                                                                                                                                                                    box-shadow: 0 6px 10px rgba(55, 54, 54, 0.2);
+                                                                                                                                                                                                                                                                } */
 
         .card-img-top {
             border-radius: 10px 10px 0 0;
@@ -214,7 +214,8 @@
                                                     'late' => 'danger',
                                                 ];
                                             @endphp
-                                            <div class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}">
+                                            <div
+                                                class="badge badge-{{ $statusClass[$item->status] ?? 'secondary' }}" style="font-size: 13px; padding: 8px 12px;">
                                                 {{ ucfirst(str_replace('_', ' ', $item->status)) }}
                                             </div>
                                         </td>
