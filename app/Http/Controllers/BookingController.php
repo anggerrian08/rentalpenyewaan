@@ -100,7 +100,10 @@ class BookingController extends Controller
             'return_date' => 'required|date|after:order_date',
         ]);
 
-      
+        $this_date = Carbon::now();
+        if($request->order_date < $this_date){
+            return back()->with('error', 'tanggal order tidak boleh kurang dari sekarang');
+        }
 
         // Cek stok mobil
         $car = Car::findOrFail($request->car_id);

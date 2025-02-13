@@ -597,10 +597,10 @@
                                                 alt="No Cars">
                                         </div>
                                     @endforelse
-                                    <div class="pagination-wrapper"
+                                    {{-- <div class="pagination-wrapper"
                                         style="display: flex; justify-content: center; margin-top: 20px;">
-                                        {{ $data_all->links('pagination::bootstrap-5') }}
-                                    </div>
+                                        {{ $data_all->links() }}
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
