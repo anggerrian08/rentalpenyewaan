@@ -83,7 +83,7 @@ class ApprovalController extends Controller
     
 
     public function show(string $id){
-        $aproval = DetailPembayaran::with('booking')->findOrFail($id);
+        $aproval = Booking::with('detailPembayaran', 'user')->find($id);
         return view('aproval.show', compact('aproval'));
     }
 
