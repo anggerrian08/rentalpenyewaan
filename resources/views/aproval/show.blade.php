@@ -77,20 +77,20 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;"> Nama Penyewa</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->user->name }}</span>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->user->name }}</span>
                     </div>
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;">NIK</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->user->nik }}</span>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->user->nik }}</span>
                     </div>
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;">No HP</strong>
                         <span class="text-muted"
-                            style="font-size: 1.15rem;">{{ $aproval->booking->user->phone_number }}</span>
+                            style="font-size: 1.15rem;">{{ $aproval->user->phone_number }}</span>
                     </div>
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Alamat</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->user->address }}</span>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->user->address }}</span>
                     </div>
                 </div>
 
@@ -98,13 +98,13 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <strong class="d-block mb-2" style="font-size: 1.3rem; color: #000000;">Foto KTP</strong>
-                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->booking->user->ktp) }}" class="img-fluid mb-3"
+                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->user->ktp) }}" class="img-fluid mb-3"
                             alt="Foto KTP"
                             style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     </div>
                     <div>
                         <strong class="d-block mb-2" style="font-size: 1.3rem; color: #000000;">Foto SIM</strong>
-                        <img src="{{ asset('storage/uploads/sim/' . $aproval->booking->user->sim) }}" class="img-fluid"
+                        <img src="{{ asset('storage/uploads/sim/' . $aproval->user->sim) }}" class="img-fluid"
                             alt="Foto SIM"
                             style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     </div>
@@ -117,18 +117,18 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tanggal Pinjam</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->order_date }}</span>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->order_date }}</span>
                     </div>
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tanggal Kembali</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->return_date }}</span>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->return_date }}</span>
                     </div>
 
                 </div>
-                @if ($aproval->booking->status == 'rejected')
+                @if ($aproval->status == 'rejected')
                 <div class="mb-3 bg-danger">
                     <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Alasan di tolak</strong>
-                    <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->reason }}</span>
+                    <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->reason }}</span>
                 </div>
                 
                 @endif
@@ -136,12 +136,12 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Hari</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->rental_duration_days }}</span>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->detailPembayaran->rental_duration_days }}</span>
                     </div>
                     <div class="mb-3">
                         <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tarif/hari</strong>
                         <span class="text-muted" style="font-size: 1.15rem;">Rp.
-                            {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</span>
+                            {{ number_format($aproval->car->price, 0, ',', '.') }}</span>
                     </div>
                     {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
                     {{-- <div class="mb-3">
@@ -169,11 +169,11 @@
             <div class="mb-3" style="position: relative;top:70px;">
                 <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
                 <span class="text-muted" style="font-size: 1.15rem;">Rp.
-                    {{ number_format($aproval->total_price, 0, ',', '.') }}</span>
+                    {{ number_format($aproval->detailPembayaran->total_price, 0, ',', '.') }}</span>
             </div>
             <div class="d-flex justify-content-end mt-3">
 
-                @if ($aproval->booking->status == 'in_process')
+                @if ($aproval->status == 'in_process')
                     {{-- <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
                         @csrf
                         @method('PATCH')
@@ -187,7 +187,7 @@
                     </form>
                 @endif
 
-                @if ($aproval->booking->status == 'borrowed' || $aproval->booking->status == 'late')
+                @if ($aproval->status == 'borrowed' || $aproval->status == 'late')
                     <form id="returnForm-{{ $aproval->id }}" action="{{ route('aproval.returned', $aproval->id) }}"
                         method="post">
                         @csrf
