@@ -76,131 +76,102 @@
                 <!-- Data Penyewa -->
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;"> Nama Penyewa</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->user->name }}</span>
+                        <strong class="d-block text-dark fs-5">Nama Penyewa</strong>
+                        <span class="text-muted fs-6">{{ $aproval->user->name }}</span>
                     </div>
                     <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">NIK</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->user->nik }}</span>
+                        <strong class="d-block text-dark fs-5">NIK</strong>
+                        <span class="text-muted fs-6">{{ $aproval->user->nik }}</span>
                     </div>
                     <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">No HP</strong>
-                        <span class="text-muted"
-                            style="font-size: 1.15rem;">{{ $aproval->user->phone_number }}</span>
+                        <strong class="d-block text-dark fs-5">No HP</strong>
+                        <span class="text-muted fs-6">{{ $aproval->user->phone_number }}</span>
                     </div>
                     <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Alamat</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->user->address }}</span>
+                        <strong class="d-block text-dark fs-5">Alamat</strong>
+                        <span class="text-muted fs-6">{{ $aproval->user->address }}</span>
                     </div>
                 </div>
 
                 <!-- Foto KTP dan SIM -->
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <strong class="d-block mb-2" style="font-size: 1.3rem; color: #000000;">Foto KTP</strong>
-                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->user->ktp) }}" class="img-fluid mb-3"
-                            alt="Foto KTP"
-                            style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <strong class="d-block text-dark fs-5 mb-2">Foto KTP</strong>
+                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->user->ktp) }}" class="img-fluid rounded shadow-sm" alt="Foto KTP" style="width: 150px; height: 100px;">
                     </div>
                     <div>
-                        <strong class="d-block mb-2" style="font-size: 1.3rem; color: #000000;">Foto SIM</strong>
-                        <img src="{{ asset('storage/uploads/sim/' . $aproval->user->sim) }}" class="img-fluid"
-                            alt="Foto SIM"
-                            style="width:150px; height: 100px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <strong class="d-block text-dark fs-5 mb-2">Foto SIM</strong>
+                        <img src="{{ asset('storage/uploads/sim/' . $aproval->user->sim) }}" class="img-fluid rounded shadow-sm" alt="Foto SIM" style="width: 150px; height: 100px;">
                     </div>
                 </div>
             </div>
 
+            <hr>
+
             <!-- Data Pinjaman -->
-            {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tanggal Pinjam</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->order_date }}</span>
+                        <strong class="d-block text-dark fs-5">Tanggal Pinjam</strong>
+                        <span class="text-muted fs-6">{{ $aproval->order_date }}</span>
                     </div>
                     <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tanggal Kembali</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->return_date }}</span>
+                        <strong class="d-block text-dark fs-5">Tanggal Kembali</strong>
+                        <span class="text-muted fs-6">{{ $aproval->return_date }}</span>
                     </div>
-
-                </div>
-                @if ($aproval->status == 'rejected')
-                <div class="mb-3 bg-danger">
-                    <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Alasan di tolak</strong>
-                    <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->reason }}</span>
-                </div>
-                
-                @endif
-
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Hari</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->detailPembayaran->rental_duration_days }}</span>
-                    </div>
-                    <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tarif/hari</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">Rp.
-                            {{ number_format($aproval->car->price, 0, ',', '.') }}</span>
-                    </div>
-                    {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
-                    {{-- <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">Rp.
-                            {{ number_format($aproval->total_price, 0, ',', '.') }}</span>
-                    </div> --}}
                 </div>
 
                 <div class="col-md-6">
-                    {{-- <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Hari</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->rental_duration_days }}</span>
+                    <div class="mb-3">
+                        <strong class="d-block text-dark fs-5">Total Hari</strong>
+                        <span class="text-muted fs-6">{{ $aproval->detailPembayaran->rental_duration_days }}</span>
                     </div>
                     <div class="mb-3">
-                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Tarif/hari</strong>
-                        <span class="text-muted" style="font-size: 1.15rem;">Rp.
-                            {{ number_format($aproval->booking->car->price, 0, ',', '.') }}</span>
-                    </div> --}}
-                    {{-- <hr style="border-top: 2px solid #e0e0e0;"> --}}
-
+                        <strong class="d-block text-dark fs-5">Tarif/hari</strong>
+                        <span class="text-muted fs-6">Rp. {{ number_format($aproval->car->price, 0, ',', '.') }}</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="mb-3" style="position: relative;top:70px;">
-                <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
-                <span class="text-muted" style="font-size: 1.15rem;">Rp.
-                    {{ number_format($aproval->detailPembayaran->total_price, 0, ',', '.') }}</span>
+            @if ($aproval->status == 'rejected')
+            <div class="mb-3">
+                <strong class="d-block text-dark fs-5">Alasan Ditolak</strong>
+                <span class="text-muted fs-6">{{ $aproval->reason }}</span>
             </div>
-            <div class="d-flex justify-content-end mt-3">
+            @endif
 
-                @if ($aproval->status == 'in_process')
-                    {{-- <form action="{{ route('aproval.rejected', $aproval->id) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                    </form> --}}
-                    <button type="buttton" data-bs-toggle="modal" data-bs-target="#tolak{{ $aproval->id }}"
-                        class="btn btn-danger me-2">Tolak</button>
-                    <form action="{{ route('aproval.accepted', $aproval->id) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="btn btn-success me-2">terima</button>
-                    </form>
-                @endif
+            <hr>
 
-                @if ($aproval->status == 'borrowed' || $aproval->status == 'late')
-                    <form id="returnForm-{{ $aproval->id }}" action="{{ route('aproval.returned', $aproval->id) }}"
-                        method="post">
-                        @csrf
-                        @method('PATCH')
-                        <button type="button" class="btn btn-success me-2"
-                            onclick="confirmReturn(event, 'returnForm-{{ $aproval->id }}')">Returned</button>
-                    </form>
-                @endif
-                <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
-            </div>
+
+
+            <!-- Tombol Aksi -->
+            <div class="d-flex justify-content-between mt-4">
+                <div>
+                    <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
+                    <span class="text-muted" style="font-size: 1.15rem;">Rp. {{ number_format($aproval->detailPembayaran->total_price, 0, ',', '.') }}</span>
+                </div>
+                <div class="d-flex">
+                    @if ($aproval->status == 'in_process')
+                        <button type="buttton" data-bs-toggle="modal" data-bs-target="#tolak{{ $aproval->id }}" class="btn btn-danger me-2">Tolak</button>
+                        <form action="{{ route('aproval.accepted', $aproval->id) }}" method="post">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-success me-2">Terima</button>
+                        </form>
+                    @endif
+
+                    @if ($aproval->status == 'borrowed' || $aproval->status == 'late')
+                        <form id="returnForm-{{ $aproval->id }}" action="{{ route('aproval.returned', $aproval->id) }}" method="post">
+                            @csrf
+                            @method('PATCH')
+                            <button type="button" class="btn btn-success me-2" onclick="confirmReturn(event, 'returnForm-{{ $aproval->id }}')">Returned</button>
+                        </form>
+                    @endif
+                    <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
+                </div>
         </div>
-
     </div>
+
 
     </div>
     </div>
