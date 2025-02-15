@@ -100,6 +100,10 @@ class ApprovalController extends Controller
         if (!$booking || !$car) {
             return redirect()->back()->with('error', 'Data booking atau mobil tidak ditemukan.');
         }
+
+        if($car->stock == 0){
+            return back()->with('error', 'belum bisa di pinjamkan karena mobil belum di kembalikan');
+        }
     
         // Ubah status booking menjadi "borrowed"
         $booking->update([
