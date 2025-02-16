@@ -74,71 +74,64 @@
         <div class="card p-4 shadow-lg" style="border-radius: 10px; background-color: #f8f9fa;">
             <div class="row">
                 <!-- Data Penyewa -->
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">Nama Penyewa</strong>
-                        <span class="text-muted fs-6">{{ $aproval->user->name }}</span>
-                    </div>
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">NIK</strong>
-                        <span class="text-muted fs-6">{{ $aproval->user->nik }}</span>
-                    </div>
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">No HP</strong>
-                        <span class="text-muted fs-6">{{ $aproval->user->phone_number }}</span>
-                    </div>
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">Alamat</strong>
-                        <span class="text-muted fs-6">{{ $aproval->user->address }}</span>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong class="d-block text-dark fs-5">Nama Penyewa</strong>
+                                <span class="text-muted fs-6">{{ $aproval->user->name }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <strong class="d-block text-dark fs-5">No HP</strong>
+                                <span class="text-muted fs-6">{{ $aproval->user->phone_number }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <strong class="d-block text-dark fs-5">Alamat</strong>
+                                <span class="text-muted fs-6">{{ $aproval->user->address }}</span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong class="d-block text-dark fs-5">NIK</strong>
+                                <span class="text-muted fs-6">{{ $aproval->user->nik }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <strong class="d-block text-dark fs-5">Tanggal Pinjam</strong>
+                                <span class="text-muted fs-6">{{ $aproval->order_date }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <strong class="d-block text-dark fs-5">Tanggal Kembali</strong>
+                                <span class="text-muted fs-6">{{ $aproval->return_date }}</span>
+                            </div>
+                            @if ($aproval->status == 'rejected')
+                            <div class="mb-3">
+                                <strong class="d-block text-dark fs-5">Alasan Ditolak</strong>
+                                <span class="text-muted fs-6">{{ $aproval->reason }}</span>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
 
+
                 <!-- Foto KTP dan SIM -->
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="mb-4">
                         <strong class="d-block text-dark fs-5 mb-2">Foto KTP</strong>
-                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->user->ktp) }}" class="img-fluid rounded shadow-sm" alt="Foto KTP" style="width: 150px; height: 100px;">
+                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->user->ktp) }}" class="img-fluid rounded shadow-sm" alt="Foto KTP" style="width: 220px; height: 110px">
                     </div>
                     <div>
                         <strong class="d-block text-dark fs-5 mb-2">Foto SIM</strong>
-                        <img src="{{ asset('storage/uploads/sim/' . $aproval->user->sim) }}" class="img-fluid rounded shadow-sm" alt="Foto SIM" style="width: 150px; height: 100px;">
+                        <img src="{{ asset('storage/uploads/sim/' . $aproval->user->sim) }}" class="img-fluid rounded shadow-sm" alt="Foto SIM" style="width: 220px; height: 110px;">
                     </div>
                 </div>
             </div>
 
-            <hr>
 
-            <!-- Data Pinjaman -->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">Tanggal Pinjam</strong>
-                        <span class="text-muted fs-6">{{ $aproval->order_date }}</span>
-                    </div>
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">Tanggal Kembali</strong>
-                        <span class="text-muted fs-6">{{ $aproval->return_date }}</span>
-                    </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">Total Hari</strong>
-                        <span class="text-muted fs-6">{{ $aproval->detailPembayaran->rental_duration_days }}</span>
-                    </div>
-                    <div class="mb-3">
-                        <strong class="d-block text-dark fs-5">Tarif/hari</strong>
-                        <span class="text-muted fs-6">Rp. {{ number_format($aproval->car->price, 0, ',', '.') }}</span>
-                    </div>
-                </div>
-            </div>
 
-            @if ($aproval->status == 'rejected')
-            <div class="mb-3">
-                <strong class="d-block text-dark fs-5">Alasan Ditolak</strong>
-                <span class="text-muted fs-6">{{ $aproval->reason }}</span>
-            </div>
-            @endif
+
 
             <hr>
 
@@ -146,10 +139,20 @@
 
             <!-- Tombol Aksi -->
             <div class="d-flex justify-content-between mt-4">
+                <div class="mb-3">
+                    <strong class="d-block text-dark fs-5">Total Hari</strong>
+                    <span class="text-muted fs-6">{{ $aproval->detailPembayaran->rental_duration_days }}</span>
+                </div>
+                <div class="mb-3">
+                    <strong class="d-block text-dark fs-5">Tarif/hari</strong>
+                    <span class="text-muted fs-6">Rp. {{ number_format($aproval->car->price, 0, ',', '.') }}</span>
+                </div>
                 <div>
                     <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
                     <span class="text-muted" style="font-size: 1.15rem;">Rp. {{ number_format($aproval->detailPembayaran->total_price, 0, ',', '.') }}</span>
                 </div>
+
+
                 <div class="d-flex">
                     @if ($aproval->status == 'in_process')
                         <button type="buttton" data-bs-toggle="modal" data-bs-target="#tolak{{ $aproval->id }}" class="btn btn-danger me-2">Tolak</button>
