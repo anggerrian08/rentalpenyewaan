@@ -74,7 +74,7 @@ class ApprovalController extends Controller
         //     ]);
     
         // Ambil data booking dengan pagination
-        $bookings = $query->paginate(10);
+        $bookings = $query->paginate(5)->appends(request()->query());
     
         return view('aproval.index', compact(
             'bookings', 'filter', 'search', 'filter_no_telpon', 'filter_status'

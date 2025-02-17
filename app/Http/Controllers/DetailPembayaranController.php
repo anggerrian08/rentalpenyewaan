@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailPembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DetailPembayaranController extends Controller
 {
@@ -37,6 +38,7 @@ class DetailPembayaranController extends Controller
     // }
     
 
+
     public function index(Request $request)
     {
         $search = $request->input('search'); // Pencarian berdasarkan email
@@ -46,45 +48,57 @@ class DetailPembayaranController extends Controller
         $end_date = $request->input('end_date'); // Tanggal return
     
         // Ambil data dengan relasi booking dan filter berdasarkan email
-        $data = DetailPembayaran::with('booking.user')
-            ->when($search, function ($query, $search) {
-                $query->whereHas('booking.user', function ($query) use ($search) {
-                    $query->where('email', 'like', '%' . $search . '%');
-                });
-            })
-            ->when($start_date, function ($query, $start_date) {
-                $query->whereHas('booking', function ($query) use ($start_date) {
-                    $query->whereDate('order_date', '=', $start_date);
-                });
-            })
-            ->when($end_date, function ($query, $end_date) {
-                $query->whereHas('booking', callback: function ($query) use ($end_date) {
-                    $query->whereDate('return_date', '=', $end_date);
-                });
-            })
-            ->get()
-            ->map(function ($item) {
-                // Tambahkan total pembayaran dengan denda
-                $item->total_pembayaran = $item->total_price + ($item->booking->denda ?? 0);
-                return $item;
-            });
+        $query = DetailPembayaran::with('booking.user');
     
-        // Filter data setelah perhitungan total_pembayaran
-        if ($min_price) {
-            $data = $data->filter(function ($item) use ($min_price) {
-                return $item->total_pembayaran >= $min_price;
+        if ($search) {
+            $query->whereHas('booking.user', function ($query) use ($search) {
+                $query->where('email', 'like', '%' . $search . '%');
             });
         }
     
-        if ($max_price) {
-            $data = $data->filter(function ($item) use ($max_price) {
-                return $item->total_pembayaran <= $max_price;
+        if ($start_date) {
+            $query->whereHas('booking', function ($query) use ($start_date) {
+                $query->whereDate('order_date', '=', $start_date);
             });
         }
+    
+        if ($end_date) {
+            $query->whereHas('booking', function ($query) use ($end_date) {
+                $query->whereDate('return_date', '=', $end_date);
+            });
+        }
+    
+        // Ambil semua data dulu sebelum paginate
+        $allData = $query->get();
+    
+        // Tambahkan total pembayaran di setiap item
+        $allData->transform(function ($item) {
+            $item->total_pembayaran = $item->total_price + ($item->booking->denda ?? 0);
+            return $item;
+        });
+    
+        // Filter min_price dan max_price sebelum pagination
+        if ($min_price || $max_price) {
+            $allData = $allData->filter(function ($item) use ($min_price, $max_price) {
+                return (!$min_price || $item->total_pembayaran >= $min_price) &&
+                       (!$max_price || $item->total_pembayaran <= $max_price);
+            });
+        }
+    
+        // Ambil halaman saat ini
+        $currentPage = request()->input('page', 1);
+    
+        // Konversi ke LengthAwarePaginator agar pagination tetap berfungsi
+        $data = new LengthAwarePaginator(
+            $allData->forPage($currentPage, 10), // Ambil 10 data sesuai halaman
+            $allData->count(), // Total item setelah filter harga
+            10, // Per page
+            $currentPage, // Halaman saat ini
+            ['path' => request()->url(), 'query' => request()->query()] // Jaga pagination tetap berjalan
+        );
     
         return view('detail_pembayarans.index', compact('data', 'search', 'min_price', 'max_price', 'start_date', 'end_date'));
     }
-    
     
 
     /**

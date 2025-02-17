@@ -158,7 +158,7 @@
                         <form action="{{ route('aproval.index') }}" method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="filter_no_telpon"
-                                    placeholder="Cari no telepon..." value="{{ $filter_no_telpon }}">
+                                    placeholder="Cari no telepon..." value="{{ request('filter_no_telpon') }}" >
                                 <button type="submit" class="btn btn-primary">Cari</button>
                             </div>
                         </form>
@@ -243,12 +243,10 @@
                         </table>
                     </div>
                 </div>
-
+                
                 <!-- Pagination -->
-                <div class="row mt-3">
-                    <div class="col-md-12 text-center">
-                        {{ $bookings->links() }}
-                    </div>
+                <div class="d-flex justify-content-end mt-3">
+                    {{ $bookings->links() }}
                 </div>
             </div>
         </div>
