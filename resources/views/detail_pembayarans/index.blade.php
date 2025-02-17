@@ -98,7 +98,7 @@
                                         <i class="fa fa-search" style="color:#00000040;"></i>
                                     </span>
                                     <input type="text" class="form-control border-start-0"
-                                        placeholder="Cari detail pembayaran..." aria-label="Search" name="search" value="{{request('search')}}">
+                                        placeholder="Cari user berdasarkan email..." aria-label="Search" name="search" value="{{request('search')}}">
                                 </div>
                             </div>
 
@@ -197,6 +197,9 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center mt-3 float-end">
+                            {{ $data->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
