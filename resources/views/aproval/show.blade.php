@@ -20,7 +20,7 @@
             });
         }
     </script>
-        @if ($aproval->status == 'in_process')
+    @if ($aproval->status == 'in_process')
         <style>
             .kotak-biru {
                 border-radius: 10px;
@@ -30,27 +30,27 @@
                 max-height: 85px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
-    
+
             .card {
                 border-radius: 10px;
                 margin: 10px;
                 box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
             }
-    
+
             .table-custom th,
             .table-custom td {
                 padding: 12px 20px;
                 vertical-align: top;
             }
-    
+
             .table-custom th {
                 font-size: 1.1rem;
             }
-    
+
             .table-custom td {
                 font-size: 1rem;
             }
-    
+
             .image-preview {
                 max-width: 150px;
                 max-height: 100px;
@@ -59,37 +59,37 @@
                 border: 1px solid #ddd;
             }
         </style>
-        @elseif($aproval->status == 'borrowed' || $aproval->status == 'returned')
+    @elseif($aproval->status == 'borrowed' || $aproval->status == 'returned')
         <style>
             .kotak-biru {
                 border-radius: 10px;
-                background:  linear-gradient(90deg, #32c354 33.4%, #99ff7d 100%);
+                background: linear-gradient(90deg, #32c354 33.4%, #99ff7d 100%);
                 padding: 20px;
                 margin: 10px;
                 max-height: 85px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
-    
+
             .card {
                 border-radius: 10px;
                 margin: 10px;
                 box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
             }
-    
+
             .table-custom th,
             .table-custom td {
                 padding: 12px 20px;
                 vertical-align: top;
             }
-    
+
             .table-custom th {
                 font-size: 1.1rem;
             }
-    
+
             .table-custom td {
                 font-size: 1rem;
             }
-    
+
             .image-preview {
                 max-width: 150px;
                 max-height: 100px;
@@ -98,37 +98,37 @@
                 border: 1px solid #ddd;
             }
         </style>
-        @elseif($aproval->status == 'late' || $aproval->status == 'rejected')
+    @elseif($aproval->status == 'late' || $aproval->status == 'rejected')
         <style>
             .kotak-biru {
                 border-radius: 10px;
-                background:  linear-gradient(90deg, #da2d44 33.4%, #fd7a8b 100%);
+                background: linear-gradient(90deg, #da2d44 33.4%, #fd7a8b 100%);
                 padding: 20px;
                 margin: 10px;
                 max-height: 85px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
-    
+
             .card {
                 border-radius: 10px;
                 margin: 10px;
                 box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
             }
-    
+
             .table-custom th,
             .table-custom td {
                 padding: 12px 20px;
                 vertical-align: top;
             }
-    
+
             .table-custom th {
                 font-size: 1.1rem;
             }
-    
+
             .table-custom td {
                 font-size: 1rem;
             }
-    
+
             .image-preview {
                 max-width: 150px;
                 max-height: 100px;
@@ -137,8 +137,8 @@
                 border: 1px solid #ddd;
             }
         </style>
-        @endif
-        {{-- <style>
+    @endif
+    {{-- <style>
             .kotak-biru {
                 border-radius: 10px;
                 background: linear-gradient(90deg, #15B9FF 33.4%, #0D6EFD 100%);
@@ -147,27 +147,27 @@
                 max-height: 85px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
-    
+
             .card {
                 border-radius: 10px;
                 margin: 10px;
                 box-shadow: 0 4px 6px rgba(77, 76, 76, 0.1);
             }
-    
+
             .table-custom th,
             .table-custom td {
                 padding: 12px 20px;
                 vertical-align: top;
             }
-    
+
             .table-custom th {
                 font-size: 1.1rem;
             }
-    
+
             .table-custom td {
                 font-size: 1rem;
             }
-    
+
             .image-preview {
                 max-width: 150px;
                 max-height: 100px;
@@ -176,36 +176,36 @@
                 border: 1px solid #ddd;
             }
         </style> --}}
- 
+
     <br>
     <!-- Header -->
     @if ($aproval->status == 'in_process')
-    <div class="kotak-biru">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h2 class="text-white fw-bold mb-1">Status : @if ($aproval->status == 'in_process')
-                    In Process
-                @endif</h2>
+        <div class="kotak-biru">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="text-white fw-bold mb-1">Status : @if ($aproval->status == 'in_process')
+                            In Process
+                        @endif
+                    </h2>
+                </div>
             </div>
         </div>
-    </div>
     @elseif($aproval->status == 'borrowed' || $aproval->status == 'returned')
-    <div class="kotak-biru">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h2 class="text-white fw-bold mb-1">Status : {{ ucwords($aproval->status)}}</h2>
+        <div class="kotak-biru">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="text-white fw-bold mb-1">Status : {{ ucwords($aproval->status) }}</h2>
+                </div>
             </div>
         </div>
-    </div>
-
     @elseif($aproval->status == 'late' || $aproval->status == 'rejected')
-    <div class="kotak-biru">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h2 class="text-white fw-bold mb-1">Status : {{ ucwords($aproval->status)}}</h2>
+        <div class="kotak-biru">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="text-white fw-bold mb-1">Status : {{ ucwords($aproval->status) }}</h2>
+                </div>
             </div>
         </div>
-    </div>
     @endif
 
     <!-- Card Konten -->
@@ -244,13 +244,13 @@
                                 <span class="text-muted fs-6">{{ $aproval->return_date }}</span>
                             </div>
                             @if ($aproval->status == 'rejected')
-                            <div class="mb-3">
-                                <strong class="d-block text-dark fs-5">Alasan Ditolak</strong>
-                                @if ($aproval->reason == NULL)
-                                    <span class="text-muted fs-6">Mobil Dipinjam Orang lain</span>
-                                @endif
-                                <span class="text-muted fs-6">{{ $aproval->reason }}</span>
-                            </div>
+                                <div class="mb-3">
+                                    <strong class="d-block text-dark fs-5">Alasan Ditolak</strong>
+                                    @if ($aproval->reason == null)
+                                        <span class="text-muted fs-6">Mobil Dipinjam Orang lain</span>
+                                    @endif
+                                    <span class="text-muted fs-6">{{ $aproval->reason }}</span>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -261,11 +261,13 @@
                 <div class="col-md-3">
                     <div class="mb-4">
                         <strong class="d-block text-dark fs-5 mb-2">Foto KTP</strong>
-                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->user->ktp) }}" class="img-fluid rounded shadow-sm" alt="Foto KTP" style="width: 220px; height: 110px">
+                        <img src="{{ asset('storage/uploads/ktp/' . $aproval->user->ktp) }}"
+                            class="img-fluid rounded shadow-sm" alt="Foto KTP" style="width: 220px; height: 110px">
                     </div>
                     <div>
                         <strong class="d-block text-dark fs-5 mb-2">Foto SIM</strong>
-                        <img src="{{ asset('storage/uploads/sim/' . $aproval->user->sim) }}" class="img-fluid rounded shadow-sm" alt="Foto SIM" style="width: 220px; height: 110px;">
+                        <img src="{{ asset('storage/uploads/sim/' . $aproval->user->sim) }}"
+                            class="img-fluid rounded shadow-sm" alt="Foto SIM" style="width: 220px; height: 110px;">
                     </div>
                 </div>
             </div>
@@ -287,13 +289,15 @@
                 </div>
                 <div>
                     <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Total Tarif</strong>
-                    <span class="text-muted" style="font-size: 1.15rem;">Rp. {{ number_format($aproval->detailPembayaran->total_price, 0, ',', '.') }}</span>
+                    <span class="text-muted" style="font-size: 1.15rem;">Rp.
+                        {{ number_format($aproval->detailPembayaran->total_price, 0, ',', '.') }}</span>
                 </div>
 
 
                 <div class="d-flex">
                     @if ($aproval->status == 'in_process')
-                        <button type="buttton" data-bs-toggle="modal" data-bs-target="#tolak{{ $aproval->id }}" class="btn btn-danger me-2">Tolak</button>
+                        <button type="buttton" data-bs-toggle="modal" data-bs-target="#tolak{{ $aproval->id }}"
+                            class="btn btn-danger me-2">Tolak</button>
                         <form action="{{ route('aproval.accepted', $aproval->id) }}" method="post">
                             @csrf
                             @method('PATCH')
@@ -302,16 +306,18 @@
                     @endif
 
                     @if ($aproval->status == 'borrowed' || $aproval->status == 'late')
-                        <form id="returnForm-{{ $aproval->id }}" action="{{ route('aproval.returned', $aproval->id) }}" method="post">
+                        <form id="returnForm-{{ $aproval->id }}" action="{{ route('aproval.returned', $aproval->id) }}"
+                            method="post">
                             @csrf
                             @method('PATCH')
-                            <button type="button" class="btn btn-success me-2" onclick="confirmReturn(event, 'returnForm-{{ $aproval->id }}')">Returned</button>
+                            <button type="button" class="btn btn-success me-2"
+                                onclick="confirmReturn(event, 'returnForm-{{ $aproval->id }}')">Returned</button>
                         </form>
                     @endif
                     <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
                 </div>
+            </div>
         </div>
-    </div>
 
     </div>
     </div>
