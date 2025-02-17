@@ -126,11 +126,10 @@
 
                 </div>
                 @if ($aproval->booking->status == 'rejected')
-                <div class="mb-3 bg-danger">
-                    <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Alasan di tolak</strong>
-                    <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->reason }}</span>
-                </div>
-                
+                    <div class="mb-3 bg-danger">
+                        <strong class="d-block" style="color: #000000; font-size: 1.25rem;">Alasan di tolak</strong>
+                        <span class="text-muted" style="font-size: 1.15rem;">{{ $aproval->booking->reason }}</span>
+                    </div>
                 @endif
 
                 <div class="col-md-6">
@@ -199,9 +198,7 @@
                 <a href="/admin/aproval" class="btn btn-secondary">Kembali</a>
             </div>
         </div>
-
     </div>
-
     </div>
     </div>
 
