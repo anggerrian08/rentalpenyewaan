@@ -175,7 +175,6 @@
                             data-bs-target="#editProfileModal">
                             Edit password
                         </button>
-
                     </div>
                     <hr class="my-3">
                     <div class="alert alert-success light text-dark" role="alert"
