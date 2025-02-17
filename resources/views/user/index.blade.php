@@ -149,7 +149,7 @@
                                                     <td>{{ $isi->phone_number }}</td>
                                                     <td>
                                                         <div class="d-flex justify-content-center align-items-center">
-                                                            <button style="position: relative; right:20px" type="button"
+                                                            <button style="position: relative; right:40px" type="button"
                                                                 class="btn btn-info btn-sm px-3 py-1" data-bs-toggle="modal"
                                                                 data-bs-target="#show{{ $isi->id }}">
                                                                 Detail
