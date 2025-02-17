@@ -222,12 +222,12 @@
                                         <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{ route('aproval.show', $item->id) }}"
-                                                    class="btn btn-info btn-sm p-1">
-                                                    <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                <a href="{{ route('aproval.show', $item->id) }}" class="btn btn-info btn-sm px-3 py-1">
+                                                    Detail
                                                 </a>
                                             </div>
                                         </td>
+
                                     </tr>
                                 @empty
                                     <tr>

@@ -179,10 +179,10 @@
                                         </td>
 
                                         <td>
-                                            <button type="button" class=""
+                                            <button type="button" class="btn btn-info btn-sm px-3 py-1"
                                                 data-bs-target="#detailPembayaran{{ $item->id }}" style="border: none"
                                                 data-bs-toggle="modal">
-                                                <img src="Frame 48.svg" alt="Show">
+                                                Detail
                                             </button>
                                         </td>
                                     </tr>

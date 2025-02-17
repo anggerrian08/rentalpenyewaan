@@ -150,9 +150,9 @@
                                                     <td>
                                                         <div class="d-flex justify-content-center align-items-center">
                                                             <button style="position: relative; right:20px" type="button"
-                                                                class="btn btn-info btn-sm p-1" data-bs-toggle="modal"
+                                                                class="btn btn-info btn-sm px-3 py-1" data-bs-toggle="modal"
                                                                 data-bs-target="#show{{ $isi->id }}">
-                                                                <i class="fa fa-eye" style="font-size: 15px;"></i>
+                                                                Detail
                                                             </button>
                                                         </div>
                                                     </td>
@@ -210,10 +210,6 @@
                                         style="width: 120px; height: 120px; object-fit: cover;">
                                     <h3 class="mt-1">{{ $isi->name }}</h3>
                                     <p class="text-muted">{{ $isi->phone_number }}</p>
-                                    <div class="d-flex justify-content-center gap-2 mt-2">
-                                        <button class="btn btn-outline-info" type="button">Email</button>
-                                        <button class="btn btn-outline-info" type="button">Kirim</button>
-                                    </div>
                                     <hr class="my-3">
                                     <div class="alert alert-success light text-dark" role="alert"
                                         style="background-color: rgba(40, 167, 69, 0.2);">
