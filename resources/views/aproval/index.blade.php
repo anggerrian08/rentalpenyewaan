@@ -222,8 +222,9 @@
                                         <td>Rp. {{ number_format($item->denda, 0, ',', '.') }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center">
-                                                <a href="{{ route('aproval.show', $item->id) }}" class="btn btn-info btn-sm px-3 py-1">
+                                                <a href="{{ route('aproval.show', $item->id) }}"> <button style="position: relative; right:20px" type="button" class="btn btn-info btn-sm px-3 py-1">
                                                     Detail
+                                                </button>
                                                 </a>
                                             </div>
                                         </td>
