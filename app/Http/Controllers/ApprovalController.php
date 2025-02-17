@@ -84,6 +84,9 @@ class ApprovalController extends Controller
 
     public function show(string $id){
         $aproval = Booking::with('detailPembayaran', 'user')->find($id);
+        if (!$aproval) {
+            abort(404, 'Data tidak ditemukan');
+        }
         return view('aproval.show', compact('aproval'));
     }
 

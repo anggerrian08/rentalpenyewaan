@@ -672,17 +672,24 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="rating{{ $item->booking->car->name }}" class="form-label">Rating</label>
-                                <select class="form-select" id="rating" name="rating" required>
+                                <select class="form-select" id="rating" name="rating" >
+                                    <option value="" selected disabled>pilih rating</option>
                                     <option value="5">5 - Sangat Baik</option>
                                     <option value="4">4 - Baik</option>
                                     <option value="3">3 - Cukup</option>
                                     <option value="2">2 - Kurang</option>
                                     <option value="1">1 - Sangat Buruk</option>
                                 </select>
+                                @error('rating')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="review" class="form-label">Ulasan</label>
-                                <textarea class="form-control" id="review" name="review" rows="3" required></textarea>
+                                <textarea class="form-control" id="review" name="review" rows="3" ></textarea>
+                                @error('review')
+                                    <div class="text-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="modal-footer">

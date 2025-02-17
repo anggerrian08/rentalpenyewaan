@@ -157,11 +157,17 @@
                     <input type="hidden" name="car_id" value="{{ $car->id }}">
                     <div class="mb-3">
                         <label class='form-label'>Order Date</label>
-                        <input type="date" class="form-control" name="order_date" required>
+                        <input type="date" class="form-control" name="order_date" >
+                        @error('order_date')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class='form-label'>Return Date</label>
-                        <input type="date" class="form-control" name="return_date" required>
+                        <input type="date" class="form-control" name="return_date" >
+                        @error('return_date')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Konfirmasi Pesan</button>
                 </form>
