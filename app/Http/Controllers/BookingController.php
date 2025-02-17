@@ -99,32 +99,56 @@ class BookingController extends Controller
             'order_date' => 'required|date',
             'return_date' => 'required|date|after:order_date',
         ]);
-
-        $this_date = Carbon::now();
-        if($request->order_date < $this_date){
-            return back()->with('error', 'tanggal order tidak boleh kurang dari sekarang');
+    
+        // Cek apakah tanggal order lebih kecil dari sekarang
+        $this_date = now()->toDateString();
+        if ($request->order_date < $this_date) {
+            return back()->with('error', 'Tanggal order tidak boleh kurang dari sekarang');
         }
-
-        // Cek stok mobil
-        $car = Car::findOrFail($request->car_id);
-
-        if ($car->stock <= 0) {
-            return back()->with('error', 'Mobil ini masih di pinjam.');
-        }
-
+    
+        // Cek apakah mobil sudah dipesan pada rentang tanggal yang sama
+        $existingBorrowedBooking = Booking::where('car_id', $request->car_id)
+        ->where('status', 'borrowed') // Hanya booking dengan status borrowed yang menghalangi
+        ->where(function ($query) use ($request) {
+            $query->whereBetween('order_date', [$request->order_date, $request->return_date])
+                  ->orWhereBetween('return_date', [$request->order_date, $request->return_date])
+                  ->orWhere(function ($query) use ($request) {
+                      $query->where('order_date', '<=', $request->order_date)
+                            ->where('return_date', '>=', $request->return_date);
+                  });
+        })
+        ->exists();
+    
+    if ($existingBorrowedBooking) {
+        return back()->with('error', 'Mobil ini masih dalam peminjaman.');
+    }
+    
+    // Pastikan order baru setelah tanggal terakhir peminjaman yang memiliki status borrowed
+    // $lastBorrowedBooking = Booking::where('car_id', $request->car_id)
+    //     ->where('status', 'borrowed')
+    //     ->orderBy('return_date', 'desc')
+    //     ->first();
+    
+    // if ($lastBorrowedBooking && $request->order_date <= $lastBorrowedBooking->return_date) {
+    //     return back()->with('error', 'Mobil hanya bisa dipesan setelah tanggal ' . $lastBorrowedBooking->return_date);
+    // }
+    
+    
         // Ambil user yang sedang login
         $user = Auth::user();
-
+    
         // Hitung jumlah hari pinjam
         $orderDate = strtotime($request->order_date);
         $returnDate = strtotime($request->return_date);
         $days = ceil(($returnDate - $orderDate) / 86400); // Konversi ke hari
-
-        // Hitung total harga (harga mobil * jumlah hari)
+    
+        // Ambil mobil
+        $car = Car::findOrFail($request->car_id);
+    
+        // Hitung total harga
         $totalPrice = $car->price * $days;
-
-        // Simpan data bookingPwebP
-
+    
+        // Simpan data booking
         $booking = Booking::create([
             'user_id' => $user->id,
             'car_id' => $request->car_id,
@@ -134,21 +158,17 @@ class BookingController extends Controller
             'ktp' => $request->ktp,
             'sim' => $request->sim,
         ]);
-
+    
         // Simpan data detail pembayaran
         DetailPembayaran::create([
-            'booking_id' => $booking->id, // Menggunakan booking yang baru saja dibuat
+            'booking_id' => $booking->id,
             'rental_duration_days' => $days,
             'total_price' => $totalPrice,
         ]);
-
-        // Kurangi stok mobil
-        // $car->stock -= 1;
-        // $car->save();
-
-
+    
         return back()->with('success', 'Booking berhasil ditambahkan.');
     }
+    
 
 
 

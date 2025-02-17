@@ -83,7 +83,7 @@ class ApprovalController extends Controller
     
 
     public function show(string $id){
-        $aproval = DetailPembayaran::with('booking')->findOrFail($id);
+        $aproval = Booking::with('detailPembayaran', 'user')->find($id);
         return view('aproval.show', compact('aproval'));
     }
 
@@ -99,6 +99,10 @@ class ApprovalController extends Controller
         // Jika booking tidak ditemukan atau mobil tidak ditemukan
         if (!$booking || !$car) {
             return redirect()->back()->with('error', 'Data booking atau mobil tidak ditemukan.');
+        }
+
+        if($car->stock == 0){
+            return back()->with('error', 'belum bisa di pinjamkan karena mobil belum di kembalikan');
         }
     
         // Ubah status booking menjadi "borrowed"
