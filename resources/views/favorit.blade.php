@@ -344,5 +344,8 @@
                 </div>
             @endforeach
         </div>
+        <div class="d-flex justify-content-center">
+            {{$cars->links()}}
+        </div>
     </section>
 @endsection
