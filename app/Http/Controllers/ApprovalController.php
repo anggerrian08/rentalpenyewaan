@@ -161,7 +161,7 @@ class ApprovalController extends Controller
         // ]);
 
         $booking->save(); // Simpan perubahan
-        return redirect()->route('aproval.index')->with('success', 'Status booking berhasil diubah menjadi rejected.');
+        return back()->with('success', 'Status booking berhasil diubah menjadi rejected.');
     }
 
     // Fungsi untuk mengubah status booking menjadi returned (dikembalikan)

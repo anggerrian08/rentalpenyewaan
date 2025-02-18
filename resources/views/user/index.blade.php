@@ -172,22 +172,22 @@
                             @endif
                         </div>
                     </div>
+                    @if ($data->count() > 0)
+                        <div class="row mt-3">
+                            <div class="col-md-12 text-center">
+                                <nav>
+                                    <ul class="pagination justify-content-end">
+                                        {{ $data->links() }}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
             </div>
         </body>
         <!-- Pagination -->
-        @if ($data->count() > 0)
-            <div class="row mt-3">
-                <div class="col-md-12 text-center">
-                    <nav>
-                        <ul class="pagination justify-content-end">
-                            {{ $data->links() }}
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        @endif
 
         @foreach ($data as $isi)
             <!-- Modal Detail User -->
