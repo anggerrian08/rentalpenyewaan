@@ -13,10 +13,19 @@ class PromosiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $promosi = Promosi::all();
+
+        $request->validate([
+            'search' => 'nullable|string|max:30'
+        ]);
+        $search = $request->input('search');
+        if($search){
+            $promosi = Promosi::where('title', 'LIKE','%'.$search.'%')->paginate(6)->appends(request()->query());
+        }else{
+            $promosi = Promosi::paginate(8)->appends(request()->query());
+        }
         return view('promosi.index', compact('promosi'));
 
     }

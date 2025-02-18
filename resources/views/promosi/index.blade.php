@@ -98,7 +98,7 @@
         <div class="d-flex justify-content-between align-items-center flex-wrap">
             <!-- Form Pencarian -->
             <div class="col-md-4 p-0">
-                <form action="{{ route('merek.index') }}" class="search-container d-flex align-items-center">
+                <form action="{{ route('promosi.index') }}" class="search-container d-flex align-items-center">
                     <i class="fa fa-search px-2"></i>
                     <input type="text" class="form-control border-0" placeholder="Cari promosi mobil..." name="search">
                 </form>

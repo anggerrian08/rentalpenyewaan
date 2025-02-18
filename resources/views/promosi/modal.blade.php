@@ -43,7 +43,7 @@
                         <label for="recipient-name" class="col-form-label">Title</label>
                         <input type="text" class="form-control" id="recipient-name" name="title">
                         @error('title')
-                            <div class="text-danger mt-1">{{ $title }}</div>
+                            <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
