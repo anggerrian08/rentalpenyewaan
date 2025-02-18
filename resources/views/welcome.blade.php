@@ -310,7 +310,7 @@
                         @foreach ($promotions->take(4) as $index => $promo)
                             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                 <div class="promotion-item shadow-lg rounded overflow-hidden">
-                                    <img src="{{ asset('storage/' . $promo->photo) }}" class="img-fluid d-block w-100"
+                                    <img src="{{ asset('storage/photos/' . $promo->photo) }}" class="img-fluid d-block w-100"
                                         alt="Promosi">
 
 
