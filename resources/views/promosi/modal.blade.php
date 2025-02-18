@@ -102,7 +102,7 @@
                             <input type="file" class="form-control" name="photo" id="photo">
                         </div>
                         <small>foto lama</small><br>
-                        <img src="{{asset('storage/'. $item->photo)}}" alt="" height="100px">
+                        <img src="{{asset('storage/photos/'. $item->photo)}}" alt="" height="100px">
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Tanggal Mulai</label>
                             <input type="date" class="form-control" name="start_date"
@@ -135,7 +135,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center">
-                        <img src="{{ asset('storage/' . $item->photo) }}" class="img-fluid rounded small-img" alt="Foto Promosi"> <!-- Adjusted width with custom class -->
+                        <img src="{{ asset('storage/photos//' . $item->photo) }}" class="img-fluid rounded small-img" alt="Foto Promosi"> <!-- Adjusted width with custom class -->
                     </div>
                     <hr>
                     <p><strong>Tanggal Mulai:</strong> {{ \Carbon\Carbon::parse($item->start_date)->translatedFormat('d-M-Y') }}</p>

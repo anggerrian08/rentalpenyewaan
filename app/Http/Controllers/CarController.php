@@ -38,7 +38,7 @@ class CarController extends Controller
         }
 
         // Urutkan hasil dan paginate
-        $cars = $cars->orderBy('best_choice', 'ASC')->paginate(5);
+        $cars = $cars->orderBy('best_choice', 'ASC')->paginate(5)->appends(request()->query());
 
         // Ambil data merek untuk tampilan
         $merek = Merek::all();

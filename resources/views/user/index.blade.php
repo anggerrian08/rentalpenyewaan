@@ -130,7 +130,7 @@
 
                                             <tr>
                                                 <th scope="col">No</th>
-                                                <th scope="col">Nama</th>
+                                                <th scope="col">Email</th>
                                                 <th scope="col">Nik</th>
                                                 <th scope="col">Umur</th>
                                                 <th scope="col">Jenis Kelamin</th>
@@ -142,7 +142,7 @@
                                             @foreach ($data as $isi)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $isi->name }}</td>
+                                                    <td>{{ $isi->email }}</td>
                                                     <td>{{ $isi->nik }}</td>
                                                     <td>{{ $isi->birt_date }}</td>
                                                     <td>{{ $isi->jk }}</td>

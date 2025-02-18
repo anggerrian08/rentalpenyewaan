@@ -100,7 +100,7 @@
             <div class="col-md-4 p-0">
                 <form action="{{ route('promosi.index') }}" class="search-container d-flex align-items-center">
                     <i class="fa fa-search px-2"></i>
-                    <input type="text" class="form-control border-0" placeholder="Cari promosi mobil..." name="search">
+                    <input type="text" class="form-control border-0" placeholder="Cari promosi mobil..." name="search" value="{{request('search')}}">
                 </form>
             </div>
     
@@ -126,13 +126,14 @@
             <div class="col-md-4 mb-3">
                 <div class="card">
                     <!-- Foto promosi -->
-                    <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top" alt="Foto Promosi">
+                    <img src="{{ asset('storage/photos/' . $item->photo) }}" class="card-img-top" alt="Foto Promosi">
                     <!-- Tanggal di bawah foto -->
                     <div class="card-footer d-flex justify-content-between align-items-center">
                         <div class="card-body p-2">
                             <h4 class="mb-2">{{$item->title}}</h4>
                             <p class="card-text text-start mb-0">
-                                {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d-M-Y') }}
+                                {{ \Carbon\Carbon::parse($item->start)->translatedFormat('d-M-Y') }}
+                                {{ \Carbon\Carbon::parse($item->end_date)->translatedFormat('d-M-Y')}}
                             </p>
                         </div>
                         <div class="d-flex">
@@ -164,6 +165,9 @@
                 <p class="text-muted">Tidak ada data promosi yang tersedia.</p>
             </div>
         @endforelse
+        <div class="d-flex justify-content-end mb-2">
+            {{$promosi->links()}}
+        </div>
     </div>
     @include('promosi.modal')
 @endsection

@@ -24,7 +24,7 @@ class PromosiController extends Controller
         if($search){
             $promosi = Promosi::where('title', 'LIKE','%'.$search.'%')->paginate(6)->appends(request()->query());
         }else{
-            $promosi = Promosi::paginate(8)->appends(request()->query());
+            $promosi = Promosi::paginate(6)->appends(request()->query());
         }
         return view('promosi.index', compact('promosi'));
 
@@ -41,23 +41,26 @@ class PromosiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PromosiRequest $request)
+    public function store(Request $request)
     {
-        $validatedRequest = $request->validated();
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date'
+        ]);
         
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('photos', 'public');
-            $validatedRequest['photo'] = $photoPath;
-        }
+        $photo = $request->file('photo');
+        $photo->storeAs('photos', $photo->hashName(), 'public');
     
         Promosi::create([
-            'title' => $validatedRequest['title'], // Pastikan ini tidak kosong
-            'photo' => $validatedRequest['photo'],
-            'start_date' => $validatedRequest['start_date'],
-            'end_date' => $validatedRequest['end_date'] ?? null, // Hindari NULL error
+            'title' => $request->title, // Pastikan ini tidak kosong
+            'photo' => $photo->hashName(),
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date, // Hindari NULL error
         ]);
     
-        return redirect()->route('promosi.index')->with('success', 'Promosi berhasil dibuat');
+        return back()->with('success', 'Promosi berhasil dibuat');
     }
     
 
@@ -81,23 +84,38 @@ class PromosiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PromosiRequest $request, $id)
+    public function update(Request $request,$id)
     {
         $promosi = Promosi::findOrFail($id);
-    
-        $validated = $request->validated();
+        
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date'
+        ]);
     
         if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $photo->storeAs('photos', $photo->hashName(), 'public');
+            Storage::disk('public')->delete('photos/'. $promosi->photo);
             // Hapus foto lama jika ada
-            if ($promosi->photo) {
-                Storage::disk('public')->delete($promosi->photo);
-            }
-    
+
+            $promosi->update([
+                'title' => $request->title,
+                'photo' => $photo->hashName(),
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date
+            ]);
             // Simpan foto baru
-            $validated['photo'] = $request->file('photo')->store('photos', 'public');
+        }else{
+            $promosi->update([
+                'title' => $request->title,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date
+            ]);
         }
-    
-        $promosi->update($validated);
+
     
         return back()->with('success', 'Promosi berhasil diupdate');
     }
@@ -109,17 +127,10 @@ class PromosiController extends Controller
     {
         $model = Promosi::find($promosi);
 
-        $filePath = 'public/' . $model->photo;
-
-        if ($model->photo && Storage::exists($filePath)) {
-            Storage::delete($filePath);
-        } else {
-            logger('File tidak ditemukan: ' . $filePath);
-        }
 
         // Hapus data dari database
         $model->delete();
-
+        Storage::disk('public')->delete('photos/'. $model->photo);
         // Redirect dengan pesan sukses
         return redirect()->route('promosi.index')->with('success', 'Promosi berhasil dihapus.');
     }
@@ -133,14 +144,12 @@ class PromosiController extends Controller
     
         foreach ($expiredPromotions as $promo) {
             // Hapus gambar jika ada
-            if ($promo->photo && Storage::exists('public/' . $promo->photo)) {
-                Storage::delete('public/' . $promo->photo);
-            }
-    
+            Storage::disk('public')->delete('photos/'. $promo->photo);
             // Hapus data promosi
             $promo->delete();
         }
     
         return back()->with('success', 'Data promosi yang kadaluarsa berhasil dihapus!');
     }
+    
 }
