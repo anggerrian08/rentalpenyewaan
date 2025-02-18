@@ -31,7 +31,7 @@ class UserController extends Controller
         }
 
         // Paginate hasil
-        $data = $query->paginate(8);
+        $data = $query->paginate(5)->appends(request()->query());
 
         return view('user.index', compact('data'));
     }
