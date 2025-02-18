@@ -20,9 +20,17 @@ class PasswordController extends Controller
         $validator = Validator::make($request->all(), [
             'current_password' => ['required', 'current_password'],
             'password' => ['required', Password::defaults(), 'confirmed'],
+            'password_confirmation' => ['required'], // Pastikan konfirmasi password wajib diisi
         ], [
+            'current_password.required' => 'Password lama wajib diisi.',
             'current_password.current_password' => 'Password lama yang Anda masukkan salah.',
+            'password.required' => 'Password baru wajib diisi.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'password_confirmation.required' => 'Konfirmasi password wajib diisi.',
         ]);
+        // [
+        //     'current_password.current_password' => 'Password lama yang Anda masukkan salah.',
+        // ]);
 
         // Jika validasi gagal, periksa apakah error di current_password dan return back dengan error message
         if ($validator->fails()) {

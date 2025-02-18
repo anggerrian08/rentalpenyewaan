@@ -217,6 +217,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </div>
+                                        <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2 text-danger" />
                                         @if($errors->updatePassword->has('current_password'))
                                             <div class="invalid-feedback">
                                                 {{ $errors->updatePassword->first('current_password') }}
@@ -235,6 +236,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </div>
+                                        <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2 text-danger" />
                                         @if($errors->updatePassword->has('password'))
                                             <div class="invalid-feedback">
                                                 {{ $errors->updatePassword->first('password') }}
@@ -253,12 +255,14 @@
                                                 <i class="fa fa-eye"></i>
                                             </button>
                                         </div>
+                                        <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2 text-danger" />
                                         @if($errors->updatePassword->has('password_confirmation'))
                                             <div class="invalid-feedback">
                                                 {{ $errors->updatePassword->first('password_confirmation') }}
                                             </div>
                                         @endif
                                     </div>
+                                
                                 
                                     <!-- Submit Button and Status Message -->
                                     <div class="d-flex align-items-center gap-3">
